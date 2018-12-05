@@ -1899,7 +1899,7 @@ input.input-material.is-invalid ~ label {
   height: 100%;
   display: block;
   z-index: -1;
-  background: url(../img/bg.jpg);
+  background: url(../img/login_1.jpg);
   background-size: cover;
   -webkit-filter: blur(10px);
   filter: blur(10px);
@@ -1958,7 +1958,7 @@ input.input-material.is-invalid ~ label {
 
 .login-page .form-holder .form form {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .login-page .form-holder .form #login, .login-page .form-holder .form #register {
