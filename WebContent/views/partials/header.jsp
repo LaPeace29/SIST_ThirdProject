@@ -11,7 +11,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<!-- Navbar Header-->
 				<div class="navbar-header">
 					<!-- Navbar Brand -->
-					<a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+					<a href="" class="navbar-brand d-none d-sm-inline-block">
 						<div class="brand-text d-none d-lg-inline-block">
 							<span>쌍용교육센터</span>
 						</div>
@@ -31,12 +31,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" class="nav-link language dropdown-toggle">
 							<span class="d-none d-sm-inline-block">개인 설정</span></a>
 						<ul class="dropdown-menu">
-							<li><a rel="nofollow" href="#" class="dropdown-item"> 개인정보 확인</a></li>
-							<li><a rel="nofollow" href="#" class="dropdown-item"> 비밀번호 변경</a></li>
+							<li><a rel="nofollow" href="${pageContext.request.contextPath}/views/common/05_common_info.jsp" class="dropdown-item"> 개인정보 확인</a></li>
+							<li><a rel="nofollow" href="${pageContext.request.contextPath}/views/common/04_common_changepw.jsp" class="dropdown-item"> 비밀번호 변경</a></li>
 
 						</ul></li>
 					<!-- Logout    -->
-					<li class="nav-item"><a href="login.html"
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/views/common/02_common_logoutform.jsp"
 						class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i
 							class="fa fa-sign-out"></i></a></li>
 				</ul>

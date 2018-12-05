@@ -15,28 +15,38 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <!-- Sidebar Navidation Menus-->
     <span class="heading">Main</span>
     <ul class="list-unstyled">
-		<li class="active">
-			<a href="index.html"><i class="icon-home"></i>Home</a>
-		</li>
 		<li>
-			<a href="tables.html"><i class="icon-grid"></i>Tables</a>
-		</li>
-		<li>
-			<a href="charts.html"><i class="fa fa-bar-chart"></i>Charts</a>
-		</li>
-		<li>
-			<a href="forms.html"><i class="icon-padnote"></i>Forms</a>
-		</li>
-		<li>
-			<a href="#exampledropdownDropdown" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown</a>
-			<ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-				<li><a href="#">Page</a></li>
-				<li><a href="#">Page</a></li>
-				<li><a href="#">Page</a></li>
+			<a href="#exampledropdownDropdown01" data-toggle="collapse"> <i class="icon-interface-windows"></i>기초 정보 관리</a>
+			<ul id="exampledropdownDropdown01" class="collapse list-unstyled ">
+				<li><a href="${pageContext.request.contextPath}/views/admin/19_admin_basic_course.jsp">과정 관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/views/admin/21_admin_basic_subject.jsp">과목 관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/views/admin/23_admin_basic_classroom.jsp">강의실 관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/views/admin/25_admin_basic_subjectbook.jsp">교재 관리</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="login.html"><i class="icon-interface-windows"></i>Login page</a>
+			<a href="${pageContext.request.contextPath}/views/admin/27_admin_instructor_mng1.jsp"><i class="icon-user"></i>강사 계정 관리</a>
 		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/views/admin/31_admin_opencourse1.jsp"><i class="fa fa-bar-chart"></i>개설 과정 관리</a>
+		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/views/admin/34_admin_opensubject.jsp"><i class="icon-padnote"></i>개설 과목 관리</a>
+		</li>
+		<li>
+			<a href="#exampledropdownDropdown02" data-toggle="collapse"> <i class="icon-interface-windows"></i>수강생 관리</a>
+			<ul id="exampledropdownDropdown02" class="collapse list-unstyled ">
+				<li><a href="${pageContext.request.contextPath}/views/admin/36_admin_student.jsp">수강생 관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/views/admin/38_admin_student_mng.jsp">수강생 과정 관리</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#exampledropdownDropdown03" data-toggle="collapse"> <i class="icon-interface-windows"></i>성적 조회</a>
+			<ul id="exampledropdownDropdown03" class="collapse list-unstyled ">
+				<li><a href="${pageContext.request.contextPath}/views/admin/42_admin_grade_opencourse1.jsp">개설 과정 성적 조회</a></li>
+				<li><a href="${pageContext.request.contextPath}/views/admin/44_admin_grade_student1.jsp">수강생 개인 성적 조회</a></li>
+			</ul>
+		</li>
+
 	</ul>
 </nav>
