@@ -24,11 +24,18 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
     <script src="${pageContext.request.contextPath}/resources/script/common.js"></script>
-    
+    <style>
+
+    </style>
 	<script>
 	
 		$(document).ready(function() {
 			
+			$("#popover").popover({ 
+				placement : 'left',
+				trigger: "hover", 
+				html: true
+			});
 		});
 	
 	</script>
@@ -56,41 +63,57 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">교재 목록</h3>
+										<h3 class="h4">강사 목록</h3>
 									</div>
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
-										<button class="btn btn-primary btn-sm btn-reg" data-toggle="modal" data-target="#subjectbook_reg">교재 등록</button>
+										<button class="btn btn-primary btn-sm btn-reg" data-toggle="modal" data-target="#instructor_reg">강사 등록</button>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
 													<tr>
-														<th>교재번호</th>
-														<th>교재명</th>
-														<th>ISBN</th>
-														<th>삭제</th>
+														<th>강사 번호</th>
+		                                                <th>강사 이름</th>
+		                                                <th>강사 휴대폰번호</th>
+		                                                <th>강사 등록일</th>
+		                                                <th>강의 가능 과목</th>
+		                                                <th>강의 과목 조회</th>
+		                                                <th>삭제</th>
+		                                                <th>비밀번호 초기화</th>
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-		                                                <td>SB00001</td>
-		                                                <td>이것이 자바다<br><button class="btn btn-xs btn-light btn-look btn-book-look" data-toggle="modal" data-target="#subjectbook_look">교재 보기</button></td>
-		                                                <td>1111111111111111</td>
-		                                                <td><button class="btn btn-sm btn-secondary btn-del" data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
+		                                            <tr>
+		                                                <td>INS001</td>
+		                                                <td><a id="popover" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
+		                                                <td>010-1234-4321</td>
+		                                                <td>2018-01-02</td>
+		                                                <td>Java SE, Oracle<br><button class="btn btn-xs btn-light" data-toggle="modal" data-target="#subject_manage">강의 가능 과목 관리</button></td>
+		                                                <td><button class="btn btn-sm btn-default instructor_manage">강의 과목 조회</button></td>
+		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-default btn-del">초기화</button></td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td>SB00002</td>
-		                                                <td>이것이 Oracle이다<br><button class="btn btn-xs btn-light btn-look btn-book-look">교재 보기</button></td>
-		                                                <td>2222222222222222</td>
-		                                                <td><button class="btn btn-sm btn-secondary btn-del">삭제</button></td>
+		                                                <td>INS002</td>
+		                                                <td>이강사</td>
+		                                                <td>010-4444-4321</td>
+		                                                <td>2018-05-05</td>
+		                                                <td>MySQL<br><button class="btn btn-xs btn-light" data-toggle="modal" data-target="#subject_manage">강의 가능 과목 관리</button></td>
+		                                                <td><button class="btn btn-sm btn-default instructor_manage">강의 과목 조회</button></td>
+		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-default btn-del">초기화</button></td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td>SB00003</td>
-		                                                <td>이것이 HTML5이다<br><button class="btn btn-xs btn-light btn-look btn-book-look">교재 보기</button></td>
-		                                                <td>3333333333333333</td>
-		                                                <td><button class="btn btn-sm btn-secondary btn-del">삭제</button></td>
+		                                                <td>INS003</td>
+		                                                <td>홍강사</td>
+		                                                <td>010-1111-4321</td>
+		                                                <td>2018-05-05</td>
+	                                               		<td>JSP<br><button class="btn btn-xs btn-light" data-toggle="modal" data-target="#subject_manage">강의 가능 과목 관리</button></td>
+		                                                <td><button class="btn btn-sm btn-default instructor_manage">강의 과목 조회</button></td>
+		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-default btn-del">초기화</button></td>
 		                                            </tr>
-												</tbody>
+		                                        </tbody>
 											</table>
 										</div>
 										<div style="text-align: center; padding-top: 10px">
@@ -102,9 +125,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			                                        <div class="form-group">
 			                                            <!-- 검색 단어 입력 폼 -->
 			                                            <select class="form-control text-small" id="key" name="key">
-			                                                <option class="text-small" value="subjectbook_id">교재번호</option>
-			                                                <option class="text-small" value="subjectbook_name">교재명</option>
-			                                                <option class="text-small" value="subjectbook_isbn">ISBN</option>
+			                                                <option class="text-small" value="instructor_id">강사번호</option>
+			                                                <option class="text-small" value="instructor_name">강사이름</option>
+			                                                <option class="text-small" value="instructor_phone">강사휴대폰번호</option>
 			                                            </select>
 			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
 			                                            <!-- 검색 진행 버튼 -->
@@ -128,11 +151,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     </div>
     
 	<!-- 등록에 관한 모달 -->
-	<div id="subjectbook_reg" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
+	<div id="instructor_reg" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 등록</h4>
+					<h4 id="exampleModalLabel" class="modal-title">강사 등록</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
@@ -140,13 +163,36 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				</div>
 				<div class="modal-body">
 					<form action="" method="post">
-						<div class="form-group">
-							<label for="subjectbook_name">교재명</label> 
-							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control">
+						<div class="row">
+							<div class="col-lg-3">
+								<img src="${pageContext.request.contextPath}/resources/img/avatar-1.jpg" width="100%">
+							</div>
+							<div class="col-lg-9">
+								<div class="form-group">
+									<label for="instructor_name">이름</label> 
+									<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="instructor_pw">비밀번호</label> 
+									<input type="text" id="instructor_pw" name="instructor_pw" placeholder="비밀번호" class="form-control">
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
-							<label for="subjectbook_isbn">ISBN</label> 
-							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
+							<label for="instructor_phone">휴대폰번호</label> 
+							<input type="text" id="instructor_phone" name="instructor_phone" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_regDate">등록일</label> 
+							<input type="text" id="instructor_regDate" name="instructor_regDate" placeholder="등록일" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_address">주소</label> 
+							<input type="text" id="instructor_address" name="instructor_address" placeholder="주소" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_email">이메일</label> 
+							<input type="text" id="instructor_email" name="instructor_email" placeholder="휴대폰번호" class="form-control">
 						</div>
 					</form>
 				</div>

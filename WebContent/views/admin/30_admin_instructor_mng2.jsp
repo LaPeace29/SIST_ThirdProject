@@ -46,8 +46,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/19_admin_basic_course.jsp">기초 정보 관리</a></li>
-						<li class="breadcrumb-item active"><a href="">교재 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/27_admin_instructor_mng1.jsp">강사 계정 관리</a></li>
+						<li class="breadcrumb-item active"><a href="">강의 과목</a></li>
 					</ul>
 				</div>
 				
@@ -57,39 +57,55 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">교재 목록</h3>
+										<h3 class="h4">김강사 - 강의 과목</h3>
 									</div>
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
-										<button class="btn btn-primary btn-sm btn-reg" data-toggle="modal" data-target="#subjectbook_reg">교재 등록</button>
+										<div class="btn-group">					
+											<button type="button" class="btn btn-sm btn-default">강의 종료</button>
+											<button type="button" class="btn btn-sm btn-default active">강의 중</button>
+											<button type="button" class="btn btn-sm btn-default">강의 예정</button>
+										</div>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
 													<tr>
-														<th>교재번호</th>
-														<th>교재명</th>
-														<th>ISBN</th>
-														<th>삭제</th>
-													</tr>
+		                                                <th>개설 과목 번호</th>
+		                                                <th>개설 과목명</th>
+		                                                <th>개설 과목 기간</th>
+		                                                <th>개설 과정명</th>
+		                                                <th>개설 과정 기간</th>
+		                                                <th>강의실</th>
+		                                                <th>강의 진행 여부</th>
+		                                            </tr>
 												</thead>
 												<tbody>
 													<tr>
-		                                                <td>SB00001</td>
-		                                                <td>이것이 자바다<br><button class="btn btn-xs btn-light btn-look btn-book-look" data-toggle="modal" data-target="#subjectbook_look">교재 보기</button></td>
-		                                                <td>1111111111111111</td>
-		                                                <td><button class="btn btn-sm btn-secondary btn-del" data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
+		                                                <td>OS0034</td>
+		                                                <td>HTML</td>
+		                                                <td>2018-01-02 ~ 2018-03-02</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자</td>
+		                                                <td>2018-01-02 ~ 2018-05-06</td>
+		                                                <td>1강의실</td>
+		                                                <td>강의종료</td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td>SB00002</td>
-		                                                <td>이것이 Oracle이다<br><button class="btn btn-xs btn-light btn-look btn-book-look">교재 보기</button></td>
-		                                                <td>2222222222222222</td>
-		                                                <td><button class="btn btn-sm btn-secondary btn-del">삭제</button></td>
+		                                                <td>OS0034</td>
+		                                                <td>HTML</td>
+		                                                <td>2018-01-02 ~ 2018-03-02</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자</td>
+		                                                <td>2018-01-02 ~ 2018-05-06</td>
+		                                                <td>1강의실</td>
+		                                                <td>강의종료</td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td>SB00003</td>
-		                                                <td>이것이 HTML5이다<br><button class="btn btn-xs btn-light btn-look btn-book-look">교재 보기</button></td>
-		                                                <td>3333333333333333</td>
-		                                                <td><button class="btn btn-sm btn-secondary btn-del">삭제</button></td>
+		                                                <td>OS0034</td>
+		                                                <td>HTML</td>
+		                                                <td>2018-01-02 ~ 2018-03-02</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자</td>
+		                                                <td>2018-01-02 ~ 2018-05-06</td>
+		                                                <td>1강의실</td>
+		                                                <td>강의종료</td>
 		                                            </tr>
 												</tbody>
 											</table>
