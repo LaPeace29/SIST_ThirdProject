@@ -64,10 +64,8 @@
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-					 
 						<li class="breadcrumb-item"><a href="index.html">HOME</a></li>
 						<li class="breadcrumb-item active"><a href="index.html">성적 조회</a></li>
-						
 					</ul>
 				</div>
 
@@ -81,38 +79,36 @@
 										<h3 class="h4">성적 조회</h3>
 									</div>
 									<div class="card-body">
-										<div align="center">
-											<div class="row">
-												<div class="col-sm-2">
-													<img
-														src="${pageContext.request.contextPath}/resources/img/avatar-2.jpg"
-														width="100%">
+										<div class="row">
+											<div class="col-sm-2">
+												<img
+													src="${pageContext.request.contextPath}/resources/img/avatar-2.jpg"
+													height="182px">
+											</div>
+											<div class="col-sm-4">
+												<table class="table table-bordered text-center">
+													<tbody>
+														<tr>
+															<td>수강생 번호</td>
+															<td>ST00000</td>
+														</tr>
 
-													<table class="table table-bordered text-center">
-														<tbody>
-															<tr>
-																<td>수강생 번호</td>
-																<td>ST00000</td>
-															</tr>
+														<tr>
+															<td>수강생 이름</td>
+															<td>홍길동</td>
+														</tr>
 
-															<tr>
-																<td>수강생 이름</td>
-																<td>홍길동</td>
-															</tr>
+														<tr>
+															<td>수강생 휴대폰 번호</td>
+															<td>010-0000-0000</td>
+														</tr>
 
-															<tr>
-																<td>수강생 휴대폰 번호</td>
-																<td>010-0000-0000</td>
-															</tr>
-
-															<tr>
-																<td>수강생 등록일</td>
-																<td>2000-00-00</td>
-															</tr>
-
-														</tbody>
-													</table>
-												</div>
+														<tr>
+															<td>수강생 등록일</td>
+															<td>2000-00-00</td>
+														</tr>
+													</tbody>
+												</table>
 											</div>
 										</div>
 
@@ -127,7 +123,6 @@
 														<th>진행 상황</th>
 														<th>수료 여부</th>
 														<th>성적</th>
-
 													</tr>
 												</thead>
 												<tbody>
@@ -144,7 +139,7 @@
 															</div>
 														</td>
 														<td>수료</td>
-														<td><button class ="btn btn-sm btn-default"><a>성적 조회</a></button></td>
+														<td><button class="btn btn-sm btn-default"><a>성적 조회</a></button></td>
 													</tr>
 													<tr>
 														<td>OC0015</td>
