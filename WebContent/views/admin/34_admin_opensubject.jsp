@@ -232,39 +232,39 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="courseNumSelect">개설 과정 번호:</label> <select
+							<label for="courseNumSelect">개설 과정</label> <select
 								class="form-control" id="courseNumSelect" name="courseNumSelect"
 								required>
-								<option>과정번호1</option>
-								<option>과정번호2</option>
-								<option>과정번호3</option>
-								<option>과정번호4</option>
-							</select> <label for="subjectSelect">과목:</label> <select
+								<option>과정번호1 / 과정명1</option>
+								<option>과정번호2 / 과정명2</option>
+								<option>과정번호3 / 과정명3</option>
+								<option>과정번호4 / 과정명4</option>
+							</select> <label for="subjectSelect">과목</label> <select
 								class="form-control" id="subjectSelect" name="subjectSelect"
 								required>
-								<option>과목1</option>
-								<option>과목2</option>
-								<option>과목3</option>
-								<option>과목4</option>
-							</select> <label for="subjectStartDate">과목 시작일:</label> <input type="date"
+								<option>과목번호1 / 과목명1</option>
+								<option>과목번호2 / 과목명2</option>
+								<option>과목번호3 / 과목명3</option>
+								<option>과목번호4 / 과목명4</option>
+							</select> <label for="subjectStartDate">과목 시작일</label> <input type="date"
 								class="form-control" id="subjectStartDate"
 								name="subjectStartDate" required> <label
-								for="subjectEndDate">과목 종료일:</label> <input type="date"
+								for="subjectEndDate">과목 종료일</label> <input type="date"
 								class="form-control" id="subjectEndDate" name="subjectEndDate"
-								required> <label for="subjectBookSelect">교재:</label> <select
+								required> <label for="subjectBookSelect">교재</label> <select
 								class="form-control" id="subjectBookSelect"
 								name="subjectBookSelect" required>
-								<option>교재1</option>
-								<option>교재2</option>
-								<option>교재3</option>
-								<option>교재4</option>
-							</select> <label for="instructorSelect">강사:</label> <select
+								<option>교재번호1 / 교재명1</option>
+								<option>교재번호2 / 교재명2</option>
+								<option>교재번호3 / 교재명3</option>
+								<option>교재번호4 / 교재명4</option>
+							</select> <label for="instructorSelect">강사</label> <select
 								class="form-control" id="instructorSelect"
 								name="instructorSelect" required>
-								<option>강사1</option>
-								<option>강사2</option>
-								<option>강사3</option>
-								<option>강사4</option>
+								<option>강사번호1 / 강사명1</option>
+								<option>강사번호2 / 강사명2</option>
+								<option>강사번호3 / 강사명3</option>
+								<option>강사번호4 / 강사명4</option>
 							</select>
 						</div>
 					</form>
@@ -294,13 +294,23 @@
 				</div>
 				<div class="modal-body">
 					<p>다음 과목을 삭제하시겠습니까?</p>
-					<p>과목명 : C++</p>
-					<p>과목 기간 : 2018-06-25 ~ 2019-01-17</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="subject_name">과목명</label> <input type="text"
+								id=subject_name name="subject_name" placeholder="과목명"
+								class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="subject_date">과목 기간</label> <input type="text"
+								id="subject_date" name="subject_date"
+								placeholder="과목 기간" class="form-control" readonly>
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-light">취소</button>
+						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>

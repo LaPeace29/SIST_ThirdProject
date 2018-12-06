@@ -123,7 +123,7 @@
 											txt += "			<select class=\"form-control\" id=\"key\" name=\"key\">";
 											txt += "			<option value=exam_id>시험 번호</option>";
 											txt += "			</select> <input type=\"text\" class=\"form-control\" id=\"value\" name=\"value\" placeholder=\"Search\">";
-											txt += "				<button type=\"button\" class=\"btn btn-sm btn-inverse-dark\" id=\"btnSearchExam\">";
+											txt += "				<button type=\"button\" class=\"btn btn-md btn-light\" id=\"btnSearchExam\">";
 											txt += "					<i class=\"fa fa-search\"></i>";
 											txt += "				</button>";
 											txt += "			</div>";
@@ -154,7 +154,7 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
+							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">Home</a></li>
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/views/admin/31_admin_opencourse1.jsp">개설 과정 관리</a></li>
 						<li class="breadcrumb-item active"><a

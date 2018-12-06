@@ -107,7 +107,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			                                            </select>
 			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
 			                                            <!-- 검색 진행 버튼 -->
-			                                            <button type="button" class="btn btn-md btn-light" id="btnSearch">
+			                                            <button type="button" class="btn btn-md btn-secondary" id="btnSearch">
 			                                                <i class="fa fa-search"></i>
 			                                            </button>
 			                                        </div>

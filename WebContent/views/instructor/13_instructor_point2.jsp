@@ -111,7 +111,9 @@
 														<td>2018-11-12</td>
 														<td>OS0032_181112.zip<br>
 															<button class="btn btn-xs btn-light btn-look">다운로드</button></td>
-														<td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
+													 	<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#point_delete">삭제
+															</button></td> 
 													</tr>
 												</tbody>
 											</table>
@@ -195,27 +197,12 @@
 							<div class="form-group">
 							<label for="subjectbook_name">시험 번호</label> <input type="text"
 								id="exam_id" name="exam_id"
-								placeholder="시험 번호" class="form-control">
-						</div>
-					<div class="form-group">
-							<label for="subjectbook_name">출석 배점</label> <input type="text"
-								id="attendance_point" name="attendance_point"
-								placeholder="출석 배점" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">필기 배점</label> <input type="text"
-								id="write_point" name="write_point"
-								placeholder="필기 배점" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">실기 배점</label> <input type="text"
-								id="skill_point" name="skill_point"
-								placeholder="실기 배점" class="form-control">
+								placeholder="EXAM0013" class="form-control" readonly = "readonly">
 						</div>
 						<div class="form-group">
 							<label for="subjectbook_isbn">시험 날짜</label> <input type="text"
 								id="exam_date" name="exam_date"
-								placeholder="시험 날짜" class="form-control">
+								placeholder="2018-10-15" class="form-control" readonly = "readonly">
 						</div>
 					</form>
 				</div>

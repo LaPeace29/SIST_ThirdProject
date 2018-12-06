@@ -4,7 +4,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>쌍용교육센터</title>
+	<title>교재 관리</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -80,19 +80,21 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<tbody>
 													<tr>
 		                                                <td>SB00001</td>
-		                                                <td><a class="subjectbook-look" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이 자바다</a></td>
+		                                                <td><a class="subjectbook-look" data-toggle="popover" title="이것이 자바다" 
+		                                                	data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='180px' height='216px'/> <br>출판사: 한빛 미디어<br>가격: 27000원">
+		                                                	이것이 자바다</a></td>
 		                                                <td>1111111111111111</td>
 		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>SB00002</td>
-		                                                <td>이것이 Oracle이다<br><button class="btn btn-xs btn-light btn-look btn-book-look">교재 보기</button></td>
+		                                                <td>이것이 Oracle이다</td>
 		                                                <td>2222222222222222</td>
 		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>SB00003</td>
-		                                                <td>이것이 HTML5이다<br><button class="btn btn-xs btn-light btn-look btn-book-look">교재 보기</button></td>
+		                                                <td>이것이 HTML5이다</td>
 		                                                <td>3333333333333333</td>
 		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>

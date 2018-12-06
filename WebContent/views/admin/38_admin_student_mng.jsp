@@ -175,35 +175,28 @@
 				</div>
 				<div class="modal-body">
 					<div class="modal-body">
-						<div class="col-12 stretch-card">
-							<div class="card card-rounded">
-								<div class="card-body">
-									<p class="card-description">홍길동 / 010-2356-4528</p>
-									<form action="" method="post">
-										<div class="form-group row">
-											<label for="exampleFormControlSelect3"
-												class="col-sm-3 col-form-label">개설 과정</label>
-											<div class="col-sm-9">
-												<select class="form-control form-control-sm"
-													id="exampleFormControlSelect3">
-													<option>모든개설과정출력합니다.</option>
-													<option>OC0001/Java</option>
-													<option>OC0002/Oracle</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-										</div>
-									</form>
+						<p>홍길동 / 010-2356-4528</p>
+						<br>
+						<form action="" method="post">
+							<div class="form-group">
+								<label for="exampleFormControlSelect3">개설 과정</label>
+								<div class="form-group">
+									<select class="form-control" id="exampleFormControlSelect3">
+										<option>모든개설과정출력합니다.</option>
+										<option>OC0001/Java</option>
+										<option>OC0002/Oracle</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
 								</div>
 							</div>
-						</div>
+						</form>
+
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-light">취소</button>
+					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -222,35 +215,27 @@
 				</div>
 				<div class="modal-body">
 					<div class="modal-body">
-						<div class="col-12 stretch-card">
-							<div class="card card-rounded">
-								<div class="card-body">
-									<p class="card-description">홍길동 / 010-2356-4528</p>
-									<form action="" method="post">
-										<div class="form-group row">
-											<label for="exampleFormControlSelect3"
-												class="col-sm-3 col-form-label">개설 과정</label>
-											<div class="col-sm-9">
-												<select class="form-control form-control-sm"
-													id="exampleFormControlSelect3">
-													<option>모든개설과정출력합니다.</option>
-													<option>OC0001/Java</option>
-													<option>OC0002/Oracle</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-										</div>
-									</form>
+						<p>홍길동 / 010-2356-4528</p>
+						<br>
+						<form action="" method="post">
+							<div class="form-group">
+								<label for="exampleFormControlSelect3">개설 과정</label>
+								<div class="form-group">
+									<select class="form-control" id="exampleFormControlSelect3">
+										<option>모든개설과정출력합니다.</option>
+										<option>OC0001/Java</option>
+										<option>OC0002/Oracle</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-light">취소</button>
+					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -269,47 +254,41 @@
 				</div>
 				<div class="modal-body">
 					<div class="modal-body">
-						<div class="col-12 stretch-card">
-							<div class="card card-rounded">
-								<div class="card-body">
-									<p class="card-description">홍길동 / 010-2356-4528</p>
-									<form action="" method="post">
-										<div class="form-group row">
-											<label for="exampleFormControlSelect3"
-												class="col-sm-3 col-form-label">개설 과정</label>
-											<div class="col-sm-9">
-												<select class="form-control form-control-sm"
-													id="exampleFormControlSelect3">
-													<option>모든개설과정출력합니다.</option>
-													<option>OC0001/Java</option>
-													<option>OC0002/Oracle</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-										</div>
-
-										<div class="form-group row">
-											<label for="exampleFormControlSelect3"
-												class="col-sm-5 col-form-label">중도 탈락 날짜</label>
-											<div class="input group col-sm-7">
-												<input type="date" class="form-control"
-													id="exampleInputPassword2" placeholder="날짜">
-											</div>
-										</div>
-									</form>
+						<p>홍길동 / 010-2356-4528</p>
+						<br>
+						<form action="" method="post">
+							<div class="form-group">
+								<label for="exampleFormControlSelect3">개설 과정</label>
+								<div class="form-group">
+									<select class="form-control" id="exampleFormControlSelect3">
+										<option>OC0001/Java/2018-01-01 ~ 2018-06-06</option>
+										<option>OC0002/Java/2018-01-01 ~ 2018-06-06</option>
+										<option>OC0003/Oracle/2018-01-01 ~ 2018-06-06</option>
+										<option>OC0004/Oracle/2018-01-01 ~ 2018-06-06</option>
+										<option>OC0005/Oracle/2018-01-01 ~ 2018-06-06</option>
+									</select>
 								</div>
 							</div>
-						</div>
+
+							<div class="form-group">
+								<label for="exampleFormControlSelect3">중도 탈락 날짜</label>
+								<div class="input group">
+									<input type="date" class="form-control"
+										id="exampleInputPassword2" placeholder="날짜">
+								</div>
+							</div>
+						</form>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary">확인</button>
+		<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
+	</div>
+	</div>
+	</div>
 	</div>
 
 

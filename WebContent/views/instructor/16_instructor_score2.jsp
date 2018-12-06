@@ -226,23 +226,13 @@
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="subjectbook_name">수강생 번호</label> <input type="text"
-								id="student_id" name="student_id" placeholder="수강생 번호"
-								class="form-control">
+								id="student_id" name="student_id" placeholder="ST00031"
+								class="form-control" readonly="readonly">
 						</div>
 							<div class="form-group">
-							<label for="subjectbook_name">출석 점수</label> <input type="text"
-								id="attendance_score" name="attendance_score" placeholder="출석 점수"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">필기 점수</label> <input type="text"
-								id="write_score" name="write_score" placeholder="필기 점수"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">실기 점수</label> <input type="text"
-								id="skill_score" name="skill_score" placeholder="실기 점수"
-								class="form-control">
+							<label for="subjectbook_name">이름 </label> <input type="text"
+								id="attendance_score" name="attendance_score" placeholder="조인성"
+								class="form-control" readonly="readonly">
 						</div>
 					</form>
 				</div>

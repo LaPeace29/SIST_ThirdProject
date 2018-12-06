@@ -4,7 +4,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>쌍용교육센터</title>
+	<title>강사 계정 관리</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -35,6 +35,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				placement : 'left',
 				trigger: "hover", 
 				html: true
+			});
+			
+			$(".instructor_manage").on("click", function(){
+				window.location.assign("${pageContext.request.contextPath}/views/admin/30_admin_instructor_mng2.jsp");
 			});
 		});
 	
@@ -274,6 +278,66 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="instructor_pw2">신규 비밀번호 확인</label> 
 							<input type="password" id="instructor_pw2" name="instructor_pw2" placeholder="신규 비밀번호 확인" class="form-control">
 						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">확인</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-light">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<!-- 강의 가능 과목 관리 모달 -->
+	<div id="subject_manage" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">강의 가능 과목 관리</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>김강사 / 010-1234-1234</p>
+					<form action="" method="post">
+					<div class="form-group">
+					<div class="form-checkbox">
+						<!-- label style을 css로 빼기 ~~~~~~~~~~~~~~~~~~~~~~-->
+                              <input type="checkbox" class="checkbox-template" value="student" name="loginType"  checked >
+                              <label for="checkbox" >Java SE</label>
+                    </div>
+                    <div class="form-checkbox">
+                              <input type="checkbox" class="checkbox-template" value="instructor" name="loginType" checked >
+                              <label for="checkbox" >Oracle</label>
+                    </div>
+                    <div class="form-checkbox">
+                              <input type="checkbox" class="checkbox-template" value="admin" name="loginType" checked>
+                              <label for="checkbox" >HTML5</label>
+                    </div>
+                    <div class="form-checkbox">
+                              <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
+                              <label for="checkbox" >CSS</label>                    
+                    </div>
+                    <div class="form-checkbox">
+                              <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
+                              <label for="checkbox">JavaScript</label>                      
+                    </div>
+                    <div class="form-checkbox">
+                               <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
+                              <label for="checkbox">...</label>                   
+                    </div>
+                    <div class="form-checkbox">
+                               <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
+                              <label for="checkbox">...</label>                   
+                    </div>
+                    <div class="form-checkbox">
+                               <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
+                              <label for="checkbox">...</label>                   
+                    </div>	               
+	               </div>
 					</form>
 				</div>
 				<div class="modal-footer">

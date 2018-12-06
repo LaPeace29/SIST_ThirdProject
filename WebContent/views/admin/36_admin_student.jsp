@@ -163,6 +163,7 @@
 		</div>
 	</div>
 
+
 	<!-- 등록에 관한 모달 -->
 	<div id="student_reg" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog modal-lg">
@@ -217,7 +218,9 @@
 		</div>
 	</div>
 
-	<!-- 삭제에 관한 모달 -->
+
+
+	<!-- 과목 삭제에 관한 모달 -->
 	<div id="student_delete" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
@@ -229,29 +232,24 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>다음 수강생을 삭제하시겠습니까?</p>
+					<p>다음 수강생 정보를 삭제하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="student_id">수강생번호</label> 
-							<input type="text" id="student_id" name="student_id" placeholder="수강생번호" class="form-control">
+							<label for="student_name">수강생명</label> <input type="text"
+								id=student_name name="student_name" placeholder="수강생명"
+								class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="student_name">이름</label> 
-							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="student_phone">휴대폰번호</label> 
-							<input type="text" id="student_phone" name="student_phone" placeholder="휴대폰번호" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="student_regDate">등록일</label> 
-							<input type="text" id="student_regDate" name="student_regDate" placeholder="등록일" class="form-control">
+							<label for="student_phone">수강생 전화번호</label> <input type="text"
+								id="student_phone" name="student_phone" placeholder="수강생 전화번호"
+								class="form-control" readonly>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
@@ -273,11 +271,11 @@
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="student_id">수강생번호</label> 
-							<input type="text" id="student_id" name="student_id" placeholder="수강생번호" class="form-control">
+							<input type="text" id="student_id" name="student_id" placeholder="수강생번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="student_name">이름</label> 
-							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control">
+							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="student_pw">신규 비밀번호</label> 
@@ -297,7 +295,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- JavaScript files-->
 	<script
 		src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>

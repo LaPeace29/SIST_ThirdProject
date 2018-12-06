@@ -4,7 +4,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>쌍용교육센터</title>
+	<title>강의 과목</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -47,7 +47,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/27_admin_instructor_mng1.jsp">강사 계정 관리</a></li>
-						<li class="breadcrumb-item active"><a href="">강의 과목</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/30_admin_instructor_mng2.jsp">강의 과목 관리</a></li>
 					</ul>
 				</div>
 				

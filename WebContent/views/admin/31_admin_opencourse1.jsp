@@ -64,9 +64,10 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
+							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">Home</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/31_admin_opencourse1.jsp">개설	과정 관리</a></li>
+							href="${pageContext.request.contextPath}/views/admin/31_admin_opencourse1.jsp">개설
+								과정 관리</a></li>
 					</ul>
 				</div>
 
@@ -82,7 +83,8 @@
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<button class="btn btn-primary btn-sm btn-reg"
-											data-toggle="modal" data-target="#course_reg">신규 개설 과정 등록</button>
+											data-toggle="modal" data-target="#course_reg">신규 개설
+											과정 등록</button>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -111,7 +113,8 @@
 														</td>
 														<td>
 															<button type="button"
-																class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#course_delete">삭제</button>
+																class="btn btn-sm btn-light btn-del" data-toggle="modal"
+																data-target="#course_delete">삭제</button>
 														</td>
 													</tr>
 													<tr>
@@ -228,24 +231,24 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="courseSelect">과정:</label> <select
+							<label for="courseSelect">과정</label> <select
 								class="form-control" id="courseSelect" name="courseSelect"
 								required>
-								<option>과정1</option>
-								<option>과정2</option>
-								<option>과정3</option>
-								<option>과정4</option>
-							</select> <label for="courseStartDate">과정 시작일:</label> <input type="date"
+								<option>과정번호1 / 과정명1</option>
+								<option>과정번호2 / 과정명2</option>
+								<option>과정번호3 / 과정명3</option>
+								<option>과정번호4 / 과정명4</option>
+							</select> <label for="courseStartDate">과정 시작일</label> <input type="date"
 								class="form-control" id="courseStartDate" name="courseStartDate"
-								required> <label for="courseEndDate">과정 종료일:</label> <input
+								required> <label for="courseEndDate">과정 종료일</label> <input
 								type="date" class="form-control" id="courseEndDate"
 								name="courseEndDate" required> <label
-								for="classroomSelect">강의실:</label> <select class="form-control"
+								for="classroomSelect">강의실</label> <select class="form-control"
 								id="classroomSelect" name="classroomSelect" required>
-								<option>강의실1</option>
-								<option>강의실2</option>
-								<option>강의실3</option>
-								<option>강의실4</option>
+								<option>강의실번호1 / 강의실명1</option>
+								<option>강의실번호2 / 강의실명2</option>
+								<option>강의실번호3 / 강의실명3</option>
+								<option>강의실번호4 / 강의실명4</option>
 							</select>
 							<!-- 인덱스 저장용 -->
 							<input type="hidden" id="gid_" value="" />
@@ -254,8 +257,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">등록</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-light">취소</button>
+					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -268,7 +270,7 @@
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">과정 삭제</h4>
+					<h4 id="exampleModalLabel" class="modal-title">배점 삭제</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
@@ -276,18 +278,27 @@
 				</div>
 				<div class="modal-body">
 					<p>다음 과정을 삭제하시겠습니까?</p>
-					<p>과정명 : Python & Java 응용 SW실무 개발자 양성 과정</p>
-					<p>과정 기간 : 2018-06-25 ~ 2019-01-17</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="course_name">과정명</label> <input type="text"
+								id=course_name name="course_name" placeholder="과정명"
+								class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="course_date">과정 기간</label> <input type="date"
+								id="course_date" name="course_date"
+								placeholder="과정 기간" class="form-control" readonly>
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-light">취소</button>
+						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- JavaScript files-->
 	<script
