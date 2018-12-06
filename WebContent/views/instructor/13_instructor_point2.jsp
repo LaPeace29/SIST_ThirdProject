@@ -55,9 +55,9 @@
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">HOME</a></li>
-						<li class="breadcrumb-item"><a href="index.html">배점 관리</a></li>
-						<li class="breadcrumb-item active"><a href="index.html">시험 정보</a></li>
+						<li class="breadcrumb-item"><a href="09_instructor_first">HOME</a></li>
+						<li class="breadcrumb-item"><a href="12_instructor_point1.jsp">배점 관리</a></li>
+						<li class="breadcrumb-item active"><a href="13_instructor_point2.jsp">시험 정보</a></li>
 					</ul>
 				</div>
 
@@ -99,7 +99,7 @@
 														<td>OS0032_181015.zip<br>
 															<button class=" btn btn-xs btn-light btn-look"
 																id="btnDown">다운로드</button></td>
-														<td><button class="btn btn-sm btn-default btn-del"
+														<td><button class="btn btn-sm btn-light btn-del"
 																data-toggle="modal" data-target="#point_delete">삭제
 															</button></td>
 													</tr>
@@ -111,7 +111,7 @@
 														<td>2018-11-12</td>
 														<td>OS0032_181112.zip<br>
 															<button class="btn btn-xs btn-light btn-look">다운로드</button></td>
-														<td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+														<td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 													</tr>
 												</tbody>
 											</table>

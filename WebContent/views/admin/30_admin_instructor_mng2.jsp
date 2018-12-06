@@ -119,9 +119,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			                                        <div class="form-group">
 			                                            <!-- 검색 단어 입력 폼 -->
 			                                            <select class="form-control text-small" id="key" name="key">
-			                                                <option class="text-small" value="subjectbook_id">교재번호</option>
-			                                                <option class="text-small" value="subjectbook_name">교재명</option>
-			                                                <option class="text-small" value="subjectbook_isbn">ISBN</option>
+			                                                <option class="text-small" value="opensubject_id">개설과목번호</option>
+			                                                <option class="text-small" value="opensubject_name">개설과목명</option>
+			                                                <option class="text-small" value="opencourse_name">개설과정명</option>
 			                                            </select>
 			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
 			                                            <!-- 검색 진행 버튼 -->
@@ -202,27 +202,6 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 교재 보기에 관한 모달 -->
-	<div id="subjectbook_look" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 보기</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					교재 보기
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
 				</div>
 			</div>
 		</div>

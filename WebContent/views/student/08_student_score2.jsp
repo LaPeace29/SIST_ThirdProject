@@ -37,7 +37,17 @@
 
 <script>
 	$(document).ready(function() {
+		$(".instructor-look").popover({ 
+			placement : 'left',
+			trigger: "hover", 
+			html: true
+		});
 
+		$(".subjectbook-look").popover({ 
+						placement : 'left',
+						trigger: "hover", 
+						html: true
+					});
 	});
 </script>
 
@@ -67,11 +77,11 @@
 				
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">HOME</a></li>
-						<li class="breadcrumb-item"><a href="index.html">성적 조회</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/06_student_first.jsp">HOME</a></li>
+						
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/07_student_score1.jsp">성적 조회</a></li>
 						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
-						<li class="breadcrumb-item active"><a href="index.html">수강생 성적 조회
-							</a></li>
+						<li class="breadcrumb-item active"><a href="">수강생 성적 조회</a></li>
 					</ul>
 				</div>
 
@@ -153,13 +163,8 @@
 												<tbody>
 													<tr>
 														<td rowspan="2">Java SE (2018-06-25~2018-09-10)</td>
-														<td rowspan="2">이것이 자바다<br>
-															<button type="button" class="btn btn-xs btn-light"
-																data-toggle="modal" data-target="#subjectbook_look">교재보기</button>
-														</td>
-														<td rowspan="2">이민종<br>
-															<button class="btn btn-xs btn-light" data-toggle="modal"
-																data-target="#pictureModal">강사 사진</button></td>
+														<td rowspan="2"><a class="subjectbook-look" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이 자바다</a></td>
+														<td rowspan="2"><a class ="instructor-look" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
 														<td>2018-10-15</td>
 														<td>-(20)</td>
 														<td>-(30)</td>
@@ -194,48 +199,9 @@
 		</div>
 	</div>
 
-	<!-- 강사 사진에 관한 모달 -->
-	<div id="pictureModal" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">강사 사진</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<img
-						src="${pageContext.request.contextPath}/resources/img/avatar-2.jpg"
-						width="100%">
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
 
 	<!-- 교재 보기에 관한 모달 -->
-	<div id="subjectbook_look" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 보기</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">교재 보기</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<!-- JavaScript files-->
 	<script

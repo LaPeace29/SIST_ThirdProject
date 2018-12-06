@@ -46,6 +46,12 @@
 											window.location
 													.assign("${pageContext.request.contextPath}/views/admin/38_admin_student_mng.jsp");
 										});
+
+						$(".student-look").popover({
+							placement : 'left',
+							trigger : "hover",
+							html : true
+						});
 					});
 </script>
 
@@ -66,7 +72,8 @@
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/36_admin_student.jsp">수강생 관리</a></li>
+							href="${pageContext.request.contextPath}/views/admin/36_admin_student.jsp">수강생
+								관리</a></li>
 					</ul>
 				</div>
 
@@ -84,7 +91,7 @@
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<button class="btn btn-primary btn-sm btn-reg"
-											data-toggle="modal" data-target="#course_reg">수강생 등록</button>
+											data-toggle="modal" data-target="#student_reg">수강생 등록</button>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -102,19 +109,17 @@
 												<tbody>
 													<tr>
 														<td>ST0001</td>
-														<td>홍길동
-															<button type="button" class="btn btn-xs btn-light"
-																data-toggle="modal" data-target="#pictureModal">사진보기</button>
-														</td>
+														<td><a class="student-look" data-toggle="popover"
+															title="홍길동 사진"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">홍길동</a></td>
 														<td>010-2356-4528</td>
 														<td>2017-12-20</td>
 														<td>1회</td>
-														<td><button
-																class="btn btn-sm btn-default btnSearch">조회</button></td>
-														<td><button class="btn btn-sm btn-default btn-del"
+														<td><button class="btn btn-sm btn-light btnSearch">조회</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
 																data-toggle="modal" data-target="#student_delete">삭제</button></td>
-														<td><button
-																class="btn btn-sm btn-default btn-reset" data-toggle="modal" data-target="#password_reset">초기화</button></td>
+														<td><button class="btn btn-sm btn-light btn-reset"
+																data-toggle="modal" data-target="#password_reset">초기화</button></td>
 													</tr>
 												</tbody>
 											</table>
@@ -137,7 +142,7 @@
 														</select> <input type="text" class="form-control" id="value"
 															name="value" placeholder="Search">
 														<!-- 검색 진행 버튼 -->
-														<button type="button" class="btn btn-md btn-secondary"
+														<button type="button" class="btn btn-md btn-light"
 															id="btnSearch">
 															<i class="fa fa-search"></i>
 														</button>
@@ -158,10 +163,9 @@
 		</div>
 	</div>
 
-
 	<!-- 등록에 관한 모달 -->
-	<div id="course_reg" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
+	<div id="student_reg" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 id="exampleModalLabel" class="modal-title">수강생 등록</h4>
@@ -171,127 +175,47 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="modal-body">
-						<div class="col-12 stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<!-- 사진 넣어야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-									<p class="card-description"></p>
-									<form class="forms-sample">
-										<div class="form-group row">
-											<label for="exampleInputEmail2"
-												class="col-sm-3 col-form-label"><img
-												src="${pageContext.request.contextPath}/resources/img/avatar-3.jpg"
-												width="100%"></label>
-										</div>
-										<div class="form-group row">
-											<label for="exampleInputEmail2"
-												class="col-sm-3 col-form-label">이름</label>
-											<div class="col-sm-9">
-												<input type="email" class="form-control"
-													id="exampleInputEmail2" placeholder="내용을 입력해주세요">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label for="exampleInputEmail2"
-												class="col-sm-3 col-form-label">비밀번호</label>
-											<div class="col-sm-9">
-												<input type="email" class="form-control"
-													id="exampleInputEmail2" placeholder="내용을 입력해주세요">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label for="exampleInputEmail2"
-												class="col-sm-3 col-form-label">휴대폰번호</label>
-											<div class="col-sm-9">
-												<input type="email" class="form-control"
-													id="exampleInputEmail2" placeholder="내용을 입력해주세요">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label for="exampleInputEmail2"
-												class="col-sm-3 col-form-label">등록일</label>
-											<div class="col-sm-9">
-												<input type="email" class="form-control"
-													id="exampleInputEmail2" placeholder="내용을 입력해주세요">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label for="exampleInputEmail2"
-												class="col-sm-3 col-form-label">주소</label>
-											<div class="col-sm-9">
-												<input type="email" class="form-control"
-													id="exampleInputEmail2" placeholder="내용을 입력해주세요">
-											</div>
-										</div>
-
-										<div class="form-group row">
-											<label for="exampleInputPassword2"
-												class="col-sm-3 col-form-label">이메일</label>
-											<div class="col-sm-9">
-												<input type="password" class="form-control"
-													id="exampleInputPassword2" placeholder="내용을 입력해주세요">
-											</div>
-										</div>
-
-										<div class="form-group row">
-											<label for="exampleInputPassword2"
-												class="col-sm-4 col-form-label">사진 업로드</label> <input
-												type="file" name="img[]" class="file-upload-default">
-											<div class="input-group col-sm-8">
-
-												<input type="text" class="form-control file-upload-info"
-													disabled placeholder="Upload Image"> <span
-													class="input-group-append">
-													<button type="button"
-														class="file-upload-browse btn btn-sm btn-inverse-dark">파일
-														선택</button>
-												</span>
-											</div>
-										</div>
-									</form>
+					<form action="" method="post">
+						<div class="row">
+							<div class="col-lg-3">
+								<img src="${pageContext.request.contextPath}/resources/img/avatar-1.jpg" width="100%">
+							</div>
+							<div class="col-lg-9">
+								<div class="form-group">
+									<label for="instructor_name">이름</label> 
+									<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="instructor_pw">비밀번호</label> 
+									<input type="text" id="instructor_pw" name="instructor_pw" placeholder="비밀번호" class="form-control">
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 등록에 관한 모달 -->
-	<div id="pictureModal" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">홍길동 사진</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-
-					<form action="" method="post">
-						<div class="form-group row">
-							<label for="exampleInputEmail2" class="col-sm-3 col-form-label"><img
-								src="${pageContext.request.contextPath}/resources/img/avatar-3.jpg"
-								width="100%"></label>
+						<div class="form-group">
+							<label for="instructor_phone">휴대폰번호</label> 
+							<input type="text" id="instructor_phone" name="instructor_phone" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_regDate">등록일</label> 
+							<input type="text" id="instructor_regDate" name="instructor_regDate" placeholder="등록일" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_address">주소</label> 
+							<input type="text" id="instructor_address" name="instructor_address" placeholder="주소" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_email">이메일</label> 
+							<input type="text" id="instructor_email" name="instructor_email" placeholder="휴대폰번호" class="form-control">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-primary">확인</button>
+					<button type="button" class="btn btn-primary">등록</button>
+					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- 삭제에 관한 모달 -->
 	<div id="student_delete" role="dialog" class="modal fade text-left">
@@ -305,14 +229,29 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>다음 수강생 정보를 삭제하시겠습니까?</p>
-					<p>수강생 이름 : 홍길동</p>
-					<p>수강생 전화번호 : 010-2356-4528</p>
+					<p>다음 수강생을 삭제하시겠습니까?</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="student_id">수강생번호</label> 
+							<input type="text" id="student_id" name="student_id" placeholder="수강생번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_name">이름</label> 
+							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_phone">휴대폰번호</label> 
+							<input type="text" id="student_phone" name="student_phone" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_regDate">등록일</label> 
+							<input type="text" id="student_regDate" name="student_regDate" placeholder="등록일" class="form-control">
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
+					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
@@ -330,12 +269,30 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					기존 패스워드> <input type="text" id="password">
+					<p>다음 수강생 비밀번호를 초기화하시겠습니까?</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="student_id">수강생번호</label> 
+							<input type="text" id="student_id" name="student_id" placeholder="수강생번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_name">이름</label> 
+							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_pw">신규 비밀번호</label> 
+							<input type="password" id="student_pw" name="student_pw" placeholder="신규 비밀번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_pw2">신규 비밀번호 확인</label> 
+							<input type="password" id="student_pw2" name="student_pw2" placeholder="신규 비밀번호 확인" class="form-control">
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>

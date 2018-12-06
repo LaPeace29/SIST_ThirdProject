@@ -37,6 +37,12 @@
 
 <script>
 	$(document).ready(function() {
+		
+		$(".btn-look").on("click", function() {
+            window.location.assign("${pageContext.request.contextPath}/views/student/08_student_score2.jsp");
+         });
+		
+		
 
 	});
 </script>
@@ -64,8 +70,8 @@
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">HOME</a></li>
-						<li class="breadcrumb-item active"><a href="index.html">성적 조회</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/06_student_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item active"><a href="">성적 조회</a></li>
 					</ul>
 				</div>
 
@@ -139,7 +145,7 @@
 															</div>
 														</td>
 														<td>수료</td>
-														<td><button class="btn btn-sm btn-default"><a>성적 조회</a></button></td>
+														<td><button class="btn btn-sm btn-light btn-look"><a>성적 조회</a></button></td>
 													</tr>
 													<tr>
 														<td>OC0015</td>
@@ -154,7 +160,7 @@
 															</div>
 														</td>
 														<td>수료 예정</td>
-														<td><button class ="btn btn-sm btn-default"><a>성적 조회</a></button></td>
+														<td><button class ="btn btn-sm btn-light btn-look"><a>성적 조회</a></button></td>
 													</tr>
 												</tbody>
 											</table>

@@ -74,17 +74,17 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                            <tr>
 		                                                <td>CS0001</td>
 		                                                <td>웹기반 빅데이터 분석 응용</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del" data-toggle="modal" data-target="#course_delete">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#course_delete">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>CS0002</td>
 		                                                <td>웹기반 빅데이터 분석 응용</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>CS0003</td>
 		                                                <td>웹기반 빅데이터 분석 응용</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                        </tbody>									
 											</table>

@@ -45,7 +45,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="">HOME</a></li>
+						<li class="breadcrumb-item active" ><a href="">HOME</a></li>
 					</ul>
 				</div>
 				

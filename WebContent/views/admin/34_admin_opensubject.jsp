@@ -102,7 +102,7 @@
 														<td>-</td>
 														<td>-</td>
 														<td>
-															<button class="btn btn-sm btn-default btn-del" data-toggle="modal" data-target="#subject_delete">삭제</button>
+															<button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#subject_delete">삭제</button>
 														</td>
 													</tr>
 													<tr>
@@ -196,7 +196,7 @@
 														</select> <input type="text" class="form-control" id="value"
 															name="value" placeholder="Search">
 														<!-- 검색 진행 버튼 -->
-														<button type="button" class="btn btn-md btn-secondary"
+														<button type="button" class="btn btn-md btn-light"
 															id="btnSearch">
 															<i class="fa fa-search"></i>
 														</button>
@@ -272,7 +272,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">등록</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -300,7 +300,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>

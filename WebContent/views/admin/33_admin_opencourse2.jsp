@@ -40,6 +40,27 @@
 	$(document)
 			.ready(
 					function() {
+/* 						
+					$("#jobId").on("change", function() {
+						ajax($(this).val());
+					});
+					
+					
+					function ajax(jobId) {
+						$.ajax({
+							url: "${pageContext.request.contextPath}/employee/getMinBasicpay"
+							,data: {jobId:jobId}
+							,success: function(data_) {
+								console.log(data_);
+								var doc = JSON.parse(data_);
+								var minbasicpay = doc.minbasicpay;
+								//주의) numberWithCommas() 사용을 위해서 외부 스크립트(util.js) 연결 필요
+								$("#basicpay").attr("placeholder", "기본급 (최소 "+numberWithCommas(minbasicpay)+"원 이상)");
+								$("#basicpay").attr("min", minbasicpay);
+						}});
+*/
+						
+						
 						$(".btn-look")
 								.on(
 										"click",
@@ -133,7 +154,7 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">Home</a></li>
+							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/views/admin/31_admin_opencourse1.jsp">개설 과정 관리</a></li>
 						<li class="breadcrumb-item active"><a
@@ -173,7 +194,7 @@
 														<td>-</td>
 														<td>-</td>
 														<td>
-															<button class="btn btn-sm btn-default btn-look">보기</button>
+															<button class="btn btn-sm btn-light btn-look">보기</button>
 														</td>
 													</tr>
 													<tr>
@@ -213,7 +234,7 @@
 														</select> <input type="text" class="form-control" id="value"
 															name="value" placeholder="Search">
 														<!-- 검색 진행 버튼 -->
-														<button type="button" class="btn btn-md btn-secondary"
+														<button type="button" class="btn btn-md btn-light"
 															id="btnSearch">
 															<i class="fa fa-search"></i>
 														</button>

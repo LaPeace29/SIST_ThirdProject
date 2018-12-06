@@ -37,7 +37,10 @@
 
 <script>
 	$(document).ready(function() {
-
+		
+		$(".btn-student").on("click", function() {
+	        window.location.assign("${pageContext.request.contextPath}/views/instructor/11_instructor_schedule2.jsp");
+	     });
 	});
 </script>
 
@@ -55,9 +58,9 @@
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">HOME</a></li>
-						<li class="breadcrumb-item"><a href="index.html">성적 관리</a></li>
-						<li class="breadcrumb-item active"><a href="index.html">시험 정보</a></li>
+						<li class="breadcrumb-item"><a href="09_instructor_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="15_instructor_score1.jsp">성적 관리</a></li>
+						<li class="breadcrumb-item active"><a href="16_instructor_score2.jsp">시험 정보</a></li>
 					</ul>
 				</div>
 
@@ -100,7 +103,7 @@
 																id="btnDown">다운로드</button></td>
 														<td>2명</td>
 														<td>성적 입력 완료</td>
-														<td><button class="btn btn-sm btn-default">보기</button></td>
+														<td><button class="btn btn-sm btn-light btn-student ">보기</button></td>
 													</tr>
 												</tbody>
 											</table>
@@ -143,9 +146,9 @@
 														<td>14</td>
 														<td>
 															<div class="btn-group">
-																<button class=" btn btn-default btn-sm"
+																<button class=" btn btn-light btn-sm"
 																	data-toggle="modal" data-target="#score_reg">입력</button>
-																<button class="btn btn-sm btn-default btn-del"
+																<button class="btn btn-sm btn-light btn-del"
 																	data-toggle="modal" data-target="#subjectbook_delete">삭제
 																</button>
 															</div>

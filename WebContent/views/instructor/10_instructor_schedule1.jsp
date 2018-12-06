@@ -37,6 +37,19 @@
 
 <script>
 	$(document).ready(function() {
+		
+		$(".subjectbook-look").popover({ 
+			placement : 'left',
+			trigger: "hover", 
+			html: true
+		});
+		
+		$(".btn-look").on("click", function() {
+            window.location.assign("${pageContext.request.contextPath}/views/instructor/11_instructor_schedule2.jsp");
+         });
+		
+		
+		
 
 	});
 </script>
@@ -65,8 +78,8 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 
-						<li class="breadcrumb-item"><a href="index.html">HOME</a></li>
-						<li class="breadcrumb-item active"><a href="index.html">강사 스케줄 조회</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/instructor/09_instructor_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item active"><a href="">강사 스케줄 조회</a></li>
 					</ul>
 				</div>
 
@@ -80,41 +93,43 @@
 										<h3 class="h4">강사 스케줄 조회</h3>
 									</div>
 									<div class="card-body">
-										<div align="center">
-											<div class="row">
-												<div class="col-sm-2">
-													<img
-														src="${pageContext.request.contextPath}/resources/img/avatar-2.jpg"
-														width="100%">
+										<div class="row">
+											<div class="col-sm-2">
+												<img
+													src="${pageContext.request.contextPath}/resources/img/avatar-2.jpg"
+													height="182px">
+											</div>
+											<div class="col-sm-4">
+												<table class="table table-bordered text-center">
+													<tbody>
+														<tr>
+															<td>강사 번호</td>
+															<td>INS00000</td>
+														</tr>
 
-													<table class="table table-bordered text-center">
-														<tbody>
-															<tr>
-																<td>강사 번호</td>
-																<td>I000000</td>
-															</tr>
-															<tr>
-																<td>강사 이름</td>
-																<td>O O O</td>
-															</tr>
-															<tr>
-																<td>강사 휴대폰 번호</td>
-																<td>010-0000-0000</td>
-															</tr>
-															<tr>
-																<td>강사 등록일</td>
-																<td>2000-00-00</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
+														<tr>
+															<td>강사 이름</td>
+															<td>김강사</td>
+														</tr>
+
+														<tr>
+															<td>강사 휴대폰 번호</td>
+															<td>010-0000-0000</td>
+														</tr>
+
+														<tr>
+															<td>강사 등록일</td>
+															<td>2000-00-00</td>
+														</tr>
+													</tbody>
+												</table>
 											</div>
 										</div>
 
 										<div class="btn-group">					
-											<button type="button" class="btn btn-sm btn-default">강의 종료</button>
-											<button type="button" class="btn btn-sm btn-default active">강의 중</button>
-											<button type="button" class="btn btn-sm btn-default">강의 예정</button>
+											<button type="button" class="btn btn-sm btn-light">강의 종료</button>
+											<button type="button" class="btn btn-sm btn-light active">강의 중</button>
+											<button type="button" class="btn btn-sm btn-light">강의 예정</button>
 										</div>
 										<div class="table-responsive">															
 												<table class="table">
@@ -140,13 +155,12 @@
 															<td>웹기반 빅데이터 분석 응용SW개발자</td>
 															<td>2018-01-02 ~ 2018-05-06</td>
 															<td>1강의실</td>
-															<td>HTML5 웹 프로그래밍 입문<br>
-																<button type="button" class="btn btn-xs btn-light"
-																	data-toggle="modal" data-target="#subjectbook_reg">교재보기</button></td>
+															
+															<td><a class="subjectbook-look" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">HTML5 웹 프로그래밍 입문</a></td>
 															<td>3명</td>
 															<td>강의 종료</td>
 															<td><button type="button"
-																	class="btn btn-sm btn-default">보기</button></td>
+																	class="btn btn-sm btn-light btn-look">보기</button></td>
 														</tr>
 														<tr>
 															<td>OS0032</td>
@@ -155,13 +169,11 @@
 															<td>웹기반 빅데이터 분석 응용SW개발자</td>
 															<td>2018-01-02 ~ 2018-05-06</td>
 															<td>1강의실</td>
-															<td>HTML5 웹 프로그래밍 입문<br>
-																<button type="button" class="btn btn-xs btn-light"
-																	data-toggle="modal" data-target="#subjectbook_reg">교재보기</button></td>
+															<td><a class="subjectbook-look" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">HTML5 웹 프로그래밍 입문</a></td>
 															<td>2명</td>
 															<td>수강 중</td>
 															<td><button type="button"
-																	class="btn btn-sm btn-default">보기</button></td>
+																	class="btn btn-sm btn-light btn-look">보기</button></td>
 														</tr>
 
 													</tbody>
@@ -184,24 +196,6 @@
 		</div>
 	</div>
 
-	<!-- 교재 보기에 관한 모달 -->
-	<div id="subjectbook_look" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 보기</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">교재 보기</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- JavaScript files-->
 	<script

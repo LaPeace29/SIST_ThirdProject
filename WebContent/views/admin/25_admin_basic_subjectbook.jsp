@@ -29,6 +29,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	
 		$(document).ready(function() {
 			
+			$(".subjectbook-look").popover({ 
+				placement : 'left',
+				trigger: "hover", 
+				html: true
+			});
 		});
 	
 	</script>
@@ -75,21 +80,21 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<tbody>
 													<tr>
 		                                                <td>SB00001</td>
-		                                                <td>이것이 자바다<br><button class="btn btn-xs btn-light btn-look btn-book-look" data-toggle="modal" data-target="#subjectbook_look">교재 보기</button></td>
+		                                                <td><a class="subjectbook-look" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이 자바다</a></td>
 		                                                <td>1111111111111111</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del" data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>SB00002</td>
 		                                                <td>이것이 Oracle이다<br><button class="btn btn-xs btn-light btn-look btn-book-look">교재 보기</button></td>
 		                                                <td>2222222222222222</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>SB00003</td>
 		                                                <td>이것이 HTML5이다<br><button class="btn btn-xs btn-light btn-look btn-book-look">교재 보기</button></td>
 		                                                <td>3333333333333333</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 												</tbody>
 											</table>
@@ -186,27 +191,6 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 교재 보기에 관한 모달 -->
-	<div id="subjectbook_look" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 보기</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					교재 보기
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
 				</div>
 			</div>
 		</div>

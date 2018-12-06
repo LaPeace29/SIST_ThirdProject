@@ -37,6 +37,12 @@
 
 <script>
 	$(document).ready(function() {
+		
+		$(".student-look").popover({ 
+			placement : 'left',
+			trigger: "hover", 
+			html: true
+		});
 
 	});
 </script>
@@ -53,11 +59,10 @@
 			<div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">HOME</a></li>
-						<li class="breadcrumb-item"><a href="index.html">강사 스케줄
-								조회</a></li>
+								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/instructor/09_instructor_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/instructor/10_instructor_schedule1.jsp">강사 스케줄 조회</a></li>
 						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
-						<li class="breadcrumb-item active"><a href="index.html">수강생
+						<li class="breadcrumb-item active"><a href="">수강생
 								정보</a></li>
 					</ul>
 				</div>
@@ -90,10 +95,7 @@
 												<tbody>
 													<tr>
 														<td>ST00001</td>
-														<td>홍길동<br>
-															<button class="btn btn-xs btn-light" data-toggle="modal"
-																data-target="#pictureModal">사진 보기</button>
-														</td>
+														<td><a class ="student-look" data-toggle="popover" title="수강생 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-8.jpg' width='120' height='144'/>">홍길동</a></td>
 														<td>010-2356-4528</td>
 														<td>2017-12-20</td>
 														<td>수료</td>
@@ -101,10 +103,7 @@
 													</tr>
 													<tr>
 														<td>ST00032</td>
-														<td>조인성<br>
-															<button class="btn btn-xs btn-light" data-toggle="modal"
-																data-target="#pictureModal">사진 보기</button>
-														</td>
+														<td><a class ="student-look" data-toggle="popover" title="수강생 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-9.jpg' width='120' height='144'/>">조인성</a></td>
 														<td>010-1356-4528</td>
 														<td>2018-01-02</td>
 														<td>중도 탈락</td>
@@ -130,28 +129,7 @@
 	</div>
 
 
-	<div id="pictureModal" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">수강생 사진</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<img
-						src="${pageContext.request.contextPath}/resources/img/avatar-5.jpg"
-						width="100%">
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	
 	<!-- JavaScript files-->
 	<script
 		src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>

@@ -76,19 +76,19 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                <td>CR01</td>
 		                                                <td>1강의실</td>
 		                                                <td>30명</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del" data-toggle="modal" data-target="#classroom_delete">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#classroom_delete">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>CR02</td>
 		                                                <td>2강의실</td>
 		                                                <td>30명</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>CR03</td>
 		                                                <td>3강의실</td>
 		                                                <td>30명</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                        </tbody>		                                                                     					
 											</table>

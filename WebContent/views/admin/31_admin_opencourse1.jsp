@@ -64,7 +64,7 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">Home</a></li>
+							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item active"><a
 							href="${pageContext.request.contextPath}/views/admin/31_admin_opencourse1.jsp">개설	과정 관리</a></li>
 					</ul>
@@ -106,12 +106,12 @@
 														<td>3개</td>
 														<td>3명</td>
 														<td>
-															<button class="btn btn-sm btn-default btn-look"
+															<button class="btn btn-sm btn-light btn-look"
 																id="openSubject">보기</button>
 														</td>
 														<td>
 															<button type="button"
-																class="btn btn-sm btn-default btn-del" data-toggle="modal" data-target="#course_delete">삭제</button>
+																class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#course_delete">삭제</button>
 														</td>
 													</tr>
 													<tr>
@@ -194,7 +194,7 @@
 														</select> <input type="text" class="form-control" id="value"
 															name="value" placeholder="Search">
 														<!-- 검색 진행 버튼 -->
-														<button type="button" class="btn btn-md btn-secondary"
+														<button type="button" class="btn btn-md btn-light"
 															id="btnSearch">
 															<i class="fa fa-search"></i>
 														</button>
@@ -255,7 +255,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">등록</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -282,7 +282,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>

@@ -31,7 +31,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	
 		$(document).ready(function() {
 			
-			$("#popover").popover({ 
+			$(".instructor-look").popover({ 
 				placement : 'left',
 				trigger: "hover", 
 				html: true
@@ -85,13 +85,13 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<tbody>
 		                                            <tr>
 		                                                <td>INS001</td>
-		                                                <td><a id="popover" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
+		                                                <td><a class="instructor-look" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
 		                                                <td>010-1234-4321</td>
 		                                                <td>2018-01-02</td>
 		                                                <td>Java SE, Oracle<br><button class="btn btn-xs btn-light" data-toggle="modal" data-target="#subject_manage">강의 가능 과목 관리</button></td>
-		                                                <td><button class="btn btn-sm btn-default instructor_manage">강의 과목 조회</button></td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">초기화</button></td>
+		                                                <td><button class="btn btn-sm btn-light instructor_manage">조회</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#instructor_delete">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#password_reset">초기화</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>INS002</td>
@@ -99,9 +99,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                <td>010-4444-4321</td>
 		                                                <td>2018-05-05</td>
 		                                                <td>MySQL<br><button class="btn btn-xs btn-light" data-toggle="modal" data-target="#subject_manage">강의 가능 과목 관리</button></td>
-		                                                <td><button class="btn btn-sm btn-default instructor_manage">강의 과목 조회</button></td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">초기화</button></td>
+		                                                <td><button class="btn btn-sm btn-light instructor_manage">조회</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">초기화</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>INS003</td>
@@ -109,9 +109,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                <td>010-1111-4321</td>
 		                                                <td>2018-05-05</td>
 	                                               		<td>JSP<br><button class="btn btn-xs btn-light" data-toggle="modal" data-target="#subject_manage">강의 가능 과목 관리</button></td>
-		                                                <td><button class="btn btn-sm btn-default instructor_manage">강의 과목 조회</button></td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">초기화</button></td>
+		                                                <td><button class="btn btn-sm btn-light instructor_manage">조회</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">초기화</button></td>
 		                                            </tr>
 		                                        </tbody>
 											</table>
@@ -205,26 +205,34 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	</div>
 	
 	<!-- 삭제에 관한 모달 -->
-	<div id="subjectbook_delete" role="dialog" class="modal fade text-left">
+	<div id="instructor_delete" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 삭제</h4>
+					<h4 id="exampleModalLabel" class="modal-title">강사 삭제</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>다음 교재를 삭제하시겠습니까?</p>
+					<p>다음 강사를 삭제하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="subjectbook_name">교재명</label> 
-							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control">
+							<label for="instructor_id">강사번호</label> 
+							<input type="text" id="instructor_id" name="instructor_id" placeholder="강사번호" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="subjectbook_isbn">ISBN</label> 
-							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
+							<label for="instructor_name">이름</label> 
+							<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_phone">휴대폰번호</label> 
+							<input type="text" id="instructor_phone" name="instructor_phone" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_regDate">등록일</label> 
+							<input type="text" id="instructor_regDate" name="instructor_regDate" placeholder="등록일" class="form-control">
 						</div>
 					</form>
 				</div>
@@ -235,28 +243,48 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			</div>
 		</div>
 	</div>
-	
-	<!-- 교재 보기에 관한 모달 -->
-	<div id="subjectbook_look" role="dialog" class="modal fade text-left">
+
+	<!-- 비밀번호 초기화에 관한 모달 -->
+	<div id="password_reset" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 보기</h4>
+					<h4 id="exampleModalLabel" class="modal-title">비밀번호 초기화</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					교재 보기
+					<p>다음 강사 비밀번호를 초기화하시겠습니까?</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="instructor_id">강사번호</label> 
+							<input type="text" id="instructor_id" name="instructor_id" placeholder="강사번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_name">이름</label> 
+							<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_pw">신규 비밀번호</label> 
+							<input type="password" id="instructor_pw" name="instructor_pw" placeholder="신규 비밀번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_pw2">신규 비밀번호 확인</label> 
+							<input type="password" id="instructor_pw2" name="instructor_pw2" placeholder="신규 비밀번호 확인" class="form-control">
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>

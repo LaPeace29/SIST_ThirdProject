@@ -36,9 +36,19 @@
 	src="${pageContext.request.contextPath}/resources/script/common.js"></script>
 
 <script>
-	$(document).ready(function() {
-
+$(document).ready(function() {
+	
+	$(".subjectbook-look").popover({ 
+		placement : 'left',
+		trigger: "hover", 
+		html: true
 	});
+	
+	$(".btn-look").on("click", function() {
+        window.location.assign("${pageContext.request.contextPath}/views/instructor/13_instructor_point2.jsp");
+     });
+});
+
 </script>
 
 </head>
@@ -49,14 +59,15 @@
 		<%@ include file="/views/partials/header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
-			<%@ include file="/views/partials/instructor_sidebar.jsp" %>
+			<%@ include file="/views/partials/instructor_sidebar.jsp"%>
 			<div class="content-inner">
-			
+
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">HOME</a></li>
-						<li class="breadcrumb-item active"><a href="index.html">배점 관리</a></li>
+						<li class="breadcrumb-item"><a href="09_instructor_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item active"><a
+							href="12_instructor_point1.jsp">배점 관리</a></li>
 					</ul>
 				</div>
 
@@ -71,10 +82,13 @@
 									</div>
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
-										<div class="btn-group">					
-											<button type="button" class="btn btn-sm btn-default">강의 종료</button>
-											<button type="button" class="btn btn-sm btn-default active">강의 중</button>
-											<button type="button" class="btn btn-sm btn-default">강의 예정</button>
+										<div class="btn-group">
+											<button type="button" class="btn btn-sm btn-light">강의
+												종료</button>
+											<button type="button" class="btn btn-sm btn-light active">강의
+												중</button>
+											<button type="button" class="btn btn-sm btn-light">강의
+												예정</button>
 										</div>
 										<div class="table-responsive">
 											<table class="table">
@@ -100,14 +114,12 @@
 														<td>웹기반 빅데이터 분석 응용SW개발자</td>
 														<td>2018-01-02 ~ 2018-05-06</td>
 														<td>1강의실</td>
-														<td>HTML5 웹 프로그래밍 입문<br>
-															<button
-																class="btn btn-xs btn-light btn-look btn-book-look"
-																data-toggle="modal" data-target="#subjectbook_look">교재
-																보기</button></td>
+														<td><a class="subjectbook-look" data-toggle="popover"
+															title="이것이 자바다"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">HTML5 웹 프로그래밍 입문</a></td>
 														<td>3명</td>
 														<td>강의 중</td>
-														<td><button class="btn btn-sm btn-default">보기</button></td>
+														<td><button class="btn btn-sm btn-light btn-look">보기</button></td>
 													</tr>
 													<tr>
 														<td>OS0032</td>
@@ -116,14 +128,12 @@
 														<td>웹기반 빅데이터 분석 응용SW개발자</td>
 														<td>2018-01-02 ~ 2018-05-06</td>
 														<td>1강의실</td>
-														<td>HTML5 웹 프로그래밍 입문<br>
-															<button
-																class="btn btn-xs btn-light btn-look btn-book-look"
-																data-toggle="modal" data-target="#subjectbook_look">교재
-																보기</button></td>
+														<td><a class="subjectbook-look" data-toggle="popover"
+															title="이것이 자바다"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">HTML5 웹 프로그래밍 입문</a></td>
 														<td>2명</td>
 														<td>강의 종료</td>
-														<td><button class="btn btn-sm btn-default">보기</button></td>
+														<td><button class="btn btn-sm btn-light btn-look">보기</button></td>
 													</tr>
 													<tr>
 														<td></td>
@@ -206,93 +216,7 @@
 		</div>
 	</div>
 
-	<!-- 등록에 관한 모달 -->
-	<!-- <div id="subjectbook_reg" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 등록</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="" method="post">
-						<div class="form-group">
-							<label for="subjectbook_name">교재명</label> <input type="text"
-								id="subjectbook_name" name="subjectbook_name" placeholder="교재명"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">ISBN</label> <input type="text"
-								id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN"
-								class="form-control">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div> -->
 
-	<!-- 삭제에 관한 모달 -->
-	<!-- <div id="subjectbook_delete" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 삭제</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>다음 교재를 삭제하시겠습니까?</p>
-					<form action="" method="post">
-						<div class="form-group">
-							<label for="subjectbook_name">교재명</label> <input type="text"
-								id="subjectbook_name" name="subjectbook_name" placeholder="교재명"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">ISBN</label> <input type="text"
-								id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN"
-								class="form-control">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div> --> 
-
-	<!-- 교재 보기에 관한 모달 -->
-	<div id="subjectbook_look" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 보기</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">교재 보기</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- JavaScript files-->
 	<script

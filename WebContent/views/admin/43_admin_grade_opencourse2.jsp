@@ -49,8 +49,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/42_admin_grade_opencourse1.jsp">개설 과정 조회</a></li>
-						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/42_admin_grade_opencourse1.jsp">개설 과정 성적 조회</a></li>
 						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/43_admin_grade_opencourse2.jsp">과목 정보</a></li>
 					</ul>
 				</div>
@@ -84,7 +83,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														<td></td>
 														<td></td>
 														<td></td>
-														<td><button class="btn btn-sm btn-default">보기</button></td>
+														<td><button class="btn btn-sm btn-light">보기</button></td>
 													</tr>
 												</tbody>
 											</table>
@@ -120,7 +119,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														<td></td>
 														<td></td>
 														<td>
-															<button class="btn btn-sm btn-default">보기</button>
+															<button class="btn btn-sm btn-light">보기</button>
 														</td>
 													</tr>
 												</tbody>

@@ -74,17 +74,17 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                            <tr>
 		                                                <td>SUB0001</td>
 		                                                <td>Java SE</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del" data-toggle="modal" data-target="#subject_delete">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#subject_delete">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>SUB0002</td>
 		                                                <td>Oracle</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>SUB0003</td>
 		                                                <td>HTML5</td>
-		                                                <td><button class="btn btn-sm btn-default btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                        </tbody>		                                         					
 											</table>

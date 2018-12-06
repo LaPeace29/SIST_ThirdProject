@@ -38,6 +38,12 @@
 <script>
 	$(document).ready(function() {
 
+		$(".student-look").popover({
+			placement : 'left',
+			trigger : "hover",
+			html : true
+		});
+
 	});
 </script>
 
@@ -58,9 +64,11 @@
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/36_admin_student.jsp">수강생 관리</a></li>
+							href="${pageContext.request.contextPath}/views/admin/36_admin_student.jsp">수강생
+								관리</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/38_admin_student_mng.jsp">수강생 과정 관리</a></li>
+							href="${pageContext.request.contextPath}/views/admin/38_admin_student_mng.jsp">수강생
+								과정 관리</a></li>
 					</ul>
 				</div>
 
@@ -90,23 +98,22 @@
 												<tbody>
 													<tr>
 														<td>ST0001</td>
-														<td>홍길동<br>
-															<button type="button" class="btn btn-xs btn-light"
-																data-toggle="modal" data-target="#pictureModal">사진보기</button>
-														</td>
+														<td><a class="student-look" data-toggle="popover"
+															title="홍길동 사진"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">홍길동</a></td>
 														<td>010-2356-4528</td>
 														<td>2017-12-20</td>
 														<td>1회</td>
 														<td>
 															<div class="btn-group" role="group"
 																aria-label="Basic example">
-																<button type="button" class="btn btn-sm btn-default"
+																<button type="button" class="btn btn-sm btn-light"
 																	data-toggle="modal" data-target="#myModal01">과정
 																	등록</button>
-																<button type="button" class="btn btn-sm btn-default"
+																<button type="button" class="btn btn-sm btn-light"
 																	data-toggle="modal" data-target="#myModal02">과정
 																	취소</button>
-																<button type="button" class="btn btn-sm btn-default"
+																<button type="button" class="btn btn-sm btn-light"
 																	data-toggle="modal" data-target="#myModal03">중도
 																	탈락</button>
 															</div>
@@ -133,7 +140,7 @@
 														</select> <input type="text" class="form-control" id="value"
 															name="value" placeholder="Search">
 														<!-- 검색 진행 버튼 -->
-														<button type="button" class="btn btn-md btn-secondary"
+														<button type="button" class="btn btn-md btn-light"
 															id="btnSearch">
 															<i class="fa fa-search"></i>
 														</button>
@@ -196,7 +203,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -243,7 +250,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -299,37 +306,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<!-- 사진 모달 -->
-	<div id="pictureModal" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">홍길동 사진</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-
-					<form action="" method="post">
-						<div class="form-group row">
-							<label for="exampleInputEmail2" class="col-sm-3 col-form-label"><img
-								src="${pageContext.request.contextPath}/resources/img/avatar-3.jpg"
-								width="100%"></label>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-primary">확인</button>
+						class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>

@@ -29,6 +29,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	
 		$(document).ready(function() {
 			
+			$(".btn-look").on("click", function() {
+	            window.location.assign("${pageContext.request.contextPath}/views/admin/43_admin_grade_opencourse2.jsp");
+	         });
+			
 		});
 	
 	</script>
@@ -48,11 +52,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	            <!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">Home</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
 						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
 						<li class="breadcrumb-item active"><a
 									href="${pageContext.request.contextPath}/views/admin/42_admin_grade_opencourse1.jsp">개설
-										과정 조회</a></li>
+										과정 성적 조회</a></li>
 					</ul>
 				</div>
 				
@@ -86,9 +90,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                <td>2018-06-25~2019-01-17</td>
 		                                                <td>2강의실</td>
 		                                                <td>3개</td>
-														<td>
-															<button type="button"
-																class=" btn btn-sm btn-default">보기</button>
+														<td><button type="button"
+																class="btn-look btn btn-sm btn-light">보기</button>
 														</td>
 														<td>3명</td>
 													</tr>
@@ -111,7 +114,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			                                            </select>
 			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
 			                                            <!-- 검색 진행 버튼 -->
-			                                            <button type="button" class="btn btn-md btn-secondary" id="btnSearch">
+			                                            <button type="button" class="btn btn-md btn-light" id="btnSearch">
 			                                                <i class="fa fa-search"></i>
 			                                            </button>
 			                                        </div>
