@@ -67,149 +67,56 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				</div>
 					
                 <!-- 폼 자리-->
-                <section>
-            	 <div class="container-fluid">
-				<div class="row">
-                <div class="col-lg-12">
-                  <div class="card">
-<!--                     <div class="card-close">
-                      <div class="dropdown">
-                        <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                      </div>
-                    </div> -->
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">개인 정보 확인</h3>
-                    </div>
-                    <div class="card-body">
-                      <form class="form-horizontal">
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">이름</label>
-                          <div class="col-sm-9">
-                            <input id="inputHorizontalSuccess" type="text" placeholder="홍길동" class="form-control form-control-success" readonly>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">휴대폰 번호</label>
-                          <div class="col-sm-9">
-                            <input id="inputHorizontalSuccess" type="text" placeholder="010-1234-1234" class="form-control form-control-success" readonly>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">이메일</label>
-                          <div class="col-sm-9">
-                            <input id="inputHorizontalSuccess" type="text" placeholder="hong@naver.com" class="form-control form-control-success" readonly>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">주소</label>
-                          <div class="col-sm-9">
-                            <input id="inputHorizontalSuccess" type="text" placeholder="경기도 수원시 영통동.." class="form-control form-control-success" readonly>
-                          </div>
-                        </div>
-
-                        <div class="form-group row">       
-                          <div class="col-sm-12 text-center" >
-                            <input type="submit" value="확인" class="btn btn-primary" style="width: 72px;">
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>			
-		</div>
-		</div>	
-		</section>	
-                <!-- Page Footer-->
+				<section>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h4">개인 정보 확인</h3>
+									</div>
+									<div class="card-body">
+										<form class="form-horizontal">
+											<div class="form-group row">
+												<label class="col-sm-3 form-control-label">이름</label>
+												<div class="col-sm-9">
+													<input id="name" type="text" placeholder="홍길동"
+														class="form-control form-control-success" readonly>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 form-control-label">휴대폰 번호</label>
+												<div class="col-sm-9">
+													<input id="phone" type="text" placeholder="010-1234-1234"
+														class="form-control form-control-success" readonly>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 form-control-label">등록일</label>
+												<div class="col-sm-9">
+													<input id="regDate" type="text" placeholder="2010-00-00"
+														class="form-control form-control-success" readonly>
+												</div>
+											</div>
+											<div class="form-group row">
+												<div class="col-sm-12 text-center">
+													<input type="submit" value="확인" class="btn btn-primary"
+														style="width: 72px;">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Page Footer-->
                 <%@ include file="/views/partials/footer.jsp" %>
             </div>
         </div>
     </div>
-    
-	<!-- 등록에 관한 모달 -->
-	<div id="subjectbook_reg" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 등록</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="" method="post">
-						<div class="form-group">
-							<label for="subjectbook_name">교재명</label> 
-							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">ISBN</label> 
-							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
-					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 삭제에 관한 모달 -->
-	<div id="subjectbook_delete" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 삭제</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>다음 교재를 삭제하시겠습니까?</p>
-					<form action="" method="post">
-						<div class="form-group">
-							<label for="subjectbook_name">교재명</label> 
-							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">ISBN</label> 
-							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 교재 보기에 관한 모달 -->
-	<div id="subjectbook_look" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 보기</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					교재 보기
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
+ 
 	<!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>
