@@ -21,10 +21,34 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
     <script src="${pageContext.request.contextPath}/resources/script/common.js"></script>
-    
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['bar']});
+		google.charts.setOnLoadCallback(drawChart);
+	
+		$(window).resize(function(){
+			  drawChart();
+			});
+		
+		function drawChart() {
+		  var data = google.visualization.arrayToDataTable([
+		    ['강의실명', '최대 정원', '수강 인원', '중도 탈락 인원'],
+		    ['1강의실', 30, 25, 1],
+		    ['2강의실', 25, 20, 0],
+		    ['3강의실', 25, 20, 0],
+		  ]);
+		
+		  var options = {
+		    bars: 'horizontal' // Required for Material Bar Charts.
+		  };
+		
+		  var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+		
+		  chart.draw(data, google.charts.Bar.convertOptions(options));
+		}
+	</script>
 	<script>
 	
 		$(document).ready(function() {
@@ -55,19 +79,53 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">과정 목록</h3>
+										<h3 class="h4">수강생 등록 현황</h3>
 									</div>
 									<div class="card-body">
-										DASHBOARD
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>강의실</th>
+		                                                <th>최대정원</th>
+		                                                <th>수강인원</th>
+		                                                <th>중도 탈락 인원</th>
+		                                                <th>개설과정명(기간)</th>
+													</tr>
+												</thead>
+												<tbody>
+		                                            <tr>
+		                                                <td>1강의실</td>
+		                                                <td>30</td>
+		                                                <td>25</td>
+		                                                <td>1</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td>2강의실</td>
+		                                                <td>30</td>
+		                                                <td>25</td>
+		                                                <td>1</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td>3강의실</td>
+		                                                <td>30</td>
+		                                                <td>25</td>
+		                                                <td>1</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
+		                                            </tr>
+		                                        </tbody>									
+											</table>
+										</div>
 									</div>
 								</div>
-								
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">과정 목록</h3>
+										<h3 class="h4">수강생 등록 현황 차트</h3>
 									</div>
 									<div class="card-body">
-										DASHBOARD
+										<div id="barchart_material" style="width: 100%; height: 500px;"></div>
 									</div>
 								</div>
 							</div>

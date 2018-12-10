@@ -55,19 +55,24 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">DASHBOARD TILE</h3>
+										<h3 class="h4">현재 진행중인 과목</h3>
 									</div>
 									<div class="card-body">
-										DASHBOARD
+										<ul>
+											<li>웹기반 빅데이터 분석 응용 SW 개발자(0000-00-00 ~ 0000-00-00)    /  Java SE(0000-00-00 ~ 0000-00-00)											</li>
+										</ul>
 									</div>
 								</div>
 								
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">DASHBOARD TILE</h3>
+										<h3 class="h4">공지사항</h3>
 									</div>
 									<div class="card-body">
-										DASHBOARD
+										<ul>
+											<li>12/3 개강 Java를 활용한 웹 응용...</li>
+											<li>12/10개강 Framework기반의...</li>
+										</ul>
 									</div>
 								</div>
 							</div>
