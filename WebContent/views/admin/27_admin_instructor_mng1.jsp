@@ -167,20 +167,13 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				</div>
 				<div class="modal-body">
 					<form action="" method="post">
-						<div class="row">
-							<div class="col-lg-3">
-								<img src="${pageContext.request.contextPath}/resources/img/avatar-1.jpg" width="100%">
-							</div>
-							<div class="col-lg-9">
-								<div class="form-group">
-									<label for="instructor_name">이름</label> 
-									<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
-								</div>
-								<div class="form-group">
-									<label for="instructor_pw">비밀번호</label> 
-									<input type="text" id="instructor_pw" name="instructor_pw" placeholder="비밀번호" class="form-control">
-								</div>
-							</div>
+						<div class="form-group">
+							<label for="instructor_name">이름</label> 
+							<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_pw">비밀번호</label> 
+							<input type="text" id="instructor_pw" name="instructor_pw" placeholder="비밀번호" class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="instructor_phone">휴대폰번호</label> 
@@ -197,6 +190,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<div class="form-group">
 							<label for="instructor_email">이메일</label> 
 							<input type="text" id="instructor_email" name="instructor_email" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="instructor_photo">사진 파일</label> 
+							<input type="file" id="instructor_photo" name="instructor_photo" placeholder="사진 파일" class="form-control">
 						</div>
 					</form>
 				</div>
@@ -224,19 +221,19 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="instructor_id">강사번호</label> 
-							<input type="text" id="instructor_id" name="instructor_id" placeholder="강사번호" class="form-control">
+							<input type="text" id="instructor_id" name="instructor_id" placeholder="강사번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="instructor_name">이름</label> 
-							<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
+							<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="instructor_phone">휴대폰번호</label> 
-							<input type="text" id="instructor_phone" name="instructor_phone" placeholder="휴대폰번호" class="form-control">
+							<input type="text" id="instructor_phone" name="instructor_phone" placeholder="휴대폰번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="instructor_regDate">등록일</label> 
-							<input type="text" id="instructor_regDate" name="instructor_regDate" placeholder="등록일" class="form-control">
+							<input type="text" id="instructor_regDate" name="instructor_regDate" placeholder="등록일" class="form-control" readonly>
 						</div>
 					</form>
 				</div>
@@ -264,11 +261,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="instructor_id">강사번호</label> 
-							<input type="text" id="instructor_id" name="instructor_id" placeholder="강사번호" class="form-control">
+							<input type="text" id="instructor_id" name="instructor_id" placeholder="강사번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="instructor_name">이름</label> 
-							<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
+							<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="instructor_pw">신규 비밀번호</label> 
@@ -289,7 +286,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		</div>
 	</div>
 	
-		<!-- 강의 가능 과목 관리 모달 -->
+	<!-- 강의 가능 과목 관리 모달 -->
 	<div id="subject_manage" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">

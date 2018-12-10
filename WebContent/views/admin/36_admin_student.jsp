@@ -177,36 +177,33 @@
 				</div>
 				<div class="modal-body">
 					<form action="" method="post">
-						<div class="row">
-							<div class="col-lg-3">
-								<img src="${pageContext.request.contextPath}/resources/img/avatar-1.jpg" width="100%">
-							</div>
-							<div class="col-lg-9">
-								<div class="form-group">
-									<label for="instructor_name">이름</label> 
-									<input type="text" id="instructor_name" name="instructor_name" placeholder="이름" class="form-control">
-								</div>
-								<div class="form-group">
-									<label for="instructor_pw">비밀번호</label> 
-									<input type="text" id="instructor_pw" name="instructor_pw" placeholder="비밀번호" class="form-control">
-								</div>
-							</div>
+						<div class="form-group">
+							<label for="student_name">이름</label> 
+							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="instructor_phone">휴대폰번호</label> 
-							<input type="text" id="instructor_phone" name="instructor_phone" placeholder="휴대폰번호" class="form-control">
+							<label for="student_pw">비밀번호</label> 
+							<input type="text" id="student_pw" name="student_pw" placeholder="비밀번호" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="instructor_regDate">등록일</label> 
-							<input type="text" id="instructor_regDate" name="instructor_regDate" placeholder="등록일" class="form-control">
+							<label for="student_phone">휴대폰번호</label> 
+							<input type="text" id="student_phone" name="student_phone" placeholder="휴대폰번호" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="instructor_address">주소</label> 
-							<input type="text" id="instructor_address" name="instructor_address" placeholder="주소" class="form-control">
+							<label for="student_regDate">등록일</label> 
+							<input type="text" id="student_regDate" name="student_regDate" placeholder="등록일" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="instructor_email">이메일</label> 
-							<input type="text" id="instructor_email" name="instructor_email" placeholder="휴대폰번호" class="form-control">
+							<label for="student_address">주소</label> 
+							<input type="text" id="student_address" name="student_address" placeholder="주소" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_email">이메일</label> 
+							<input type="email" id="student_email" name="student_email" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_photo">사진 파일</label> 
+							<input type="file" id="student_photo" name="student_photo" placeholder="사진 파일" class="form-control">
 						</div>
 					</form>
 				</div>

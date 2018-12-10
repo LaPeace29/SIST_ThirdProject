@@ -165,11 +165,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="course_id">과정번호</label> 
-							<input type="text" id="course_id" name="course_id" placeholder="과정번호" class="form-control">
+							<input type="text" id="course_id" name="course_id" placeholder="과정번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="course_name">과정명</label> 
-							<input type="text" id="course_name" name="course_name" placeholder="과정명" class="form-control">
+							<input type="text" id="course_name" name="course_name" placeholder="과정명" class="form-control" readonly>
 						</div>
 					</form>
 				</div>

@@ -99,7 +99,7 @@
 													src="${pageContext.request.contextPath}/resources/img/avatar-2.jpg"
 													height="182px">
 											</div>
-											<div class="col-sm-4">
+											<div class="col-sm-10">
 												<table class="table table-bordered text-center">
 													<tbody>
 														<tr>

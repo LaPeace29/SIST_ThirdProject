@@ -91,8 +91,8 @@
 													src="${pageContext.request.contextPath}/resources/img/avatar-2.jpg"
 													height="182px">
 											</div>
-											<div class="col-sm-4">
-												<table class="table table-bordered text-center">
+											<div class="col-sm-11">
+												<table class="table table-bordered text-center" >
 													<tbody>
 														<tr>
 															<td>수강생 번호</td>

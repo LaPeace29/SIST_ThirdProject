@@ -40,7 +40,7 @@
                   <div class="logo">
                     <h1>쌍용교육센터</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                 <p>사자의 심장을 가져라<br>당신은 세상을 변화시키는 IT리더입니다.</p>
                 </div>
               </div>
             </div>
