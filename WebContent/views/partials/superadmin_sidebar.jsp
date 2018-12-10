@@ -16,7 +16,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <span class="heading">Main</span>
     <ul class="list-unstyled">
 		<li>
-			<a href="#exampledropdownDropdown01" data-toggle="collapse"> <i class="icon-interface-windows"></i>관리자 계정 관리</a>
+			<a href="" data-toggle="collapse"> <i class="icon-interface-windows"></i>관리자 계정 관리</a>
 		</li>
 
 	</ul>
