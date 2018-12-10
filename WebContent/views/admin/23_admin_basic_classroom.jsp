@@ -173,11 +173,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="classroom_id">강의실번호</label> 
-							<input type="text" id="classroom_id" name="classroom_id" placeholder="강의실번호" class="form-control">
+							<input type="text" id="classroom_id" name="classroom_id" placeholder="강의실번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="subject_name">강의실명</label> 
-							<input type="text" id="classroom_name" name="classroom_name" placeholder="강의실명" class="form-control">
+							<input type="text" id="classroom_name" name="classroom_name" placeholder="강의실명" class="form-control" readonly>
 						</div>
 					</form>
 				</div>

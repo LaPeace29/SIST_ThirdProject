@@ -182,11 +182,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="subjectbook_name">교재명</label> 
-							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control">
+							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="subjectbook_isbn">ISBN</label> 
-							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
+							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control" readonly>
 						</div>
 					</form>
 				</div>
