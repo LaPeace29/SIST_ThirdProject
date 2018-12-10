@@ -11,13 +11,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<!-- Navbar Header-->
 				<div class="navbar-header">
 					<!-- Navbar Brand -->
-					<a href="" class="navbar-brand d-none d-sm-inline-block">
-						<div class="brand-text d-none d-lg-inline-block">
-							<span>쌍용교육센터</span>
-						</div>
-						<div class="brand-text d-none d-sm-inline-block d-lg-none">
-							<strong>SIST</strong>
-						</div>
+					<a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp" class="navbar-brand d-none d-sm-inline-block">
+						<span class="brand-text d-none d-lg-inline-block">쌍용교육센터</span>
+						<strong class="brand-text d-none d-sm-inline-block d-lg-none">SIST</strong>
 					</a>
 					<!-- Toggle Button-->
 					<a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>

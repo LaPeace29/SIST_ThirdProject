@@ -5,10 +5,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <p>Your company &copy; 2017-2019</p>
+                <p>쌍용교육센터 1조 &copy; 2017-2019</p>
             </div>
             <div class="col-sm-6 text-right">
-                <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
+                <p>Design by 쌍용교육센터 1조</p>
                 <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
             </div>
         </div>
