@@ -33,3 +33,8 @@
 	width: 72px;
     margin-left: 15px;
 }
+
+.popover-bold {
+	color: #338FD0 !important;
+	font-weight: bold;
+}
