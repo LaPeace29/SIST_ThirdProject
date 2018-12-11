@@ -73,7 +73,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														<th>등급</th>
 														<th>계정잠금상태</th>
 														<th>등록일</th>
-														<th>패스워드초기화</th>
+														<th>비밀번호 초기화</th>
 														<th>계정잠금</th>
 													</tr>
 												</thead>
@@ -83,15 +83,15 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                <td>superadmin</td>
 		                                                <td>unlocking</td>
 		                                                <td>2018-01-01</td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light">패스워드초기화</button></td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light">계정잠금</button></td>
+		                                                <td><button type="button" class=" btn btn-sm btn-light" data-toggle="modal" data-target="#password_reset">비밀번호 초기화</button></td>
+		                                                <td><button type="button" class=" btn btn-sm btn-light" data-toggle="modal" data-target="#admin_lock">계정잠금</button></td>
 		                                           </tr>
 													<tr>
 		                                                <td>admin</td>
 		                                                <td>manager</td>
 		                                                <td>unlocking</td>
 		                                                <td>2018-01-01</td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light">패스워드초기화</button></td>
+		                                                <td><button type="button" class=" btn btn-sm btn-light">비밀번호 초기화</button></td>
 		                                                <td><button type="button" class=" btn btn-sm btn-light">계정잠금</button></td>
 		                                           </tr>
 		                                           <tr>
@@ -99,7 +99,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                <td>manager</td>
 		                                                <td>unlocking</td>
 		                                                <td>2018-01-01</td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light">패스워드초기화</button></td>
+		                                                <td><button type="button" class=" btn btn-sm btn-light">비밀번호 초기화</button></td>
 		                                                <td><button type="button" class=" btn btn-sm btn-light">계정잠금</button></td>
 		                                           </tr>
 												</tbody>
@@ -107,10 +107,6 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 										</div>
 									</div>
 								</div>
-								
-				
-								
-								
 							</div>
 						</div>
 					</div>
@@ -154,6 +150,79 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		</div>
 	</div>   
 
+	<!-- 비밀번호 초기화에 관한 모달 -->
+	<div id="password_reset" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">비밀번호 초기화</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>다음 관리자 비밀번호를 초기화하시겠습니까?</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="admin_id">관리자 ID</label> 
+							<input type="text" id="admin_id" name="admin_id" placeholder="관리자 ID" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="admin_id_">관리자 아이디</label> 
+							<input type="text" id="admin_id_" name="admin_id_" placeholder="관리자 아이디" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="admin_pw">신규 비밀번호</label> 
+							<input type="password" id="admin_pw" name="admin_pw" placeholder="신규 비밀번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="admin_pw2">신규 비밀번호 확인</label> 
+							<input type="password" id="admin_pw2" name="admin_pw2" placeholder="신규 비밀번호 확인" class="form-control">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">확인</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-light">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 계정 잠금에 관한 모달 -->
+	<div id="admin_lock" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">계정 잠금</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>다음 관리자의 계정을 잠그시겠습니까?</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="admin_id">관리자 ID</label> 
+							<input type="text" id="admin_id" name="admin_id" placeholder="관리자 ID" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="admin_id_">관리자 아이디</label> 
+							<input type="text" id="admin_id_" name="admin_id_" placeholder="관리자 아이디" class="form-control" readonly>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">확인</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-light">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>
