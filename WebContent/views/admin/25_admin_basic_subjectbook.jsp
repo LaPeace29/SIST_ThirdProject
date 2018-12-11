@@ -24,7 +24,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
     <script src="${pageContext.request.contextPath}/resources/script/common.js"></script>
-    
+
 	<script>
 	
 		$(document).ready(function() {
@@ -80,7 +80,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<tbody>
 													<tr>
 		                                                <td>SB00001</td>
-		                                                <td><a class="subjectbook-look" data-toggle="popover" title="이것이 자바다" 
+		                                                <td><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" 
 		                                                	data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='180px' height='216px'/> <br>출판사: 한빛 미디어<br>가격: 27000원">
 		                                                	이것이 자바다</a></td>
 		                                                <td>1111111111111111</td>
