@@ -84,7 +84,7 @@
         </div>
       </div>
       <div class="copyrights text-center">
-        <p>Design by SIST 1조</p>
+      	<p>Design by SIST 1조</p>
       </div>
     </div>
     <!-- JavaScript files-->
