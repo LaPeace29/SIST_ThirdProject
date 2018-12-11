@@ -44,7 +44,7 @@
 										"click",
 										function() {
 											window.location
-													.assign("${pageContext.request.contextPath}/views/admin/33_admin_opencourse2.jsp");
+													.assign("${pageContext.request.contextPath}/views/admin/admin_opencourse2.jsp");
 										});
 					});
 </script>
@@ -54,7 +54,7 @@
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/header.jsp"%>
+		<%@ include file="/views/partials/admin_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<%@ include file="/views/partials/admin_sidebar.jsp"%>
@@ -64,9 +64,9 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">Home</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">Home</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/31_admin_opencourse1.jsp">개설
+							href="${pageContext.request.contextPath}/views/admin/admin_opencourse1.jsp">개설
 								과정 관리</a></li>
 					</ul>
 				</div>
@@ -102,7 +102,7 @@
 												<tbody>
 													<tr>
 														<td>OC0015</td>
-														<td>Python & Java 응용 SW실무 개발자 양성 과정</td>
+														<td>Python &amp; Java 응용 SW실무 개발자 양성 과정</td>
 														<td>2018-06-25 ~ 2019-01-17</td>
 														<td>2강의실</td>
 														<td>3개</td>

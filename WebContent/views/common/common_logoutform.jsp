@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>로그인 실패</title>
+    <title>로그아웃</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -40,7 +40,7 @@
                   <div class="logo">
                     <h1>쌍용교육센터</h1>
                   </div>
-                 <p>사자의 심장을 가져라<br>당신은 세상을 변화시키는 IT리더입니다.</p>
+                  <p>사자의 심장을 가져라<br>당신은 세상을 변화시키는 IT리더입니다.</p>
                 </div>
               </div>
             </div>
@@ -48,10 +48,10 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                      <h4><i class="fa fa-lock"> 로그인</i></h4>
-                      <label>로그인에 실패하였습니다.</label>
+                      <h4><i class="fa fa-lock"> 로그아웃</i></h4>
+                      <label>안전하게 로그아웃 되었습니다.</label>
                       <div style="margin-top: 50px" class="form-group">
-                          <a href="${pageContext.request.contextPath}/views/common/01_common_login.jsp" class="btn btn-primary btn-block">Main</a>
+                          <a href="${pageContext.request.contextPath}/views/common/common_login.jsp" class="btn btn-primary btn-block">Main</a>
                       </div>
                   	</div>
                     </div>
@@ -60,9 +60,7 @@
               </div>
             </div>
       <div class="copyrights text-center">
-        <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a>
-          <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-        </p>
+        <p>Design by SIST 1조</p>
       </div>
       </div>
     <!-- JavaScript files-->

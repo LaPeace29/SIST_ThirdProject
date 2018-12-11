@@ -4,7 +4,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>과목 관리</title>
+	<title>강의실 관리</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -30,7 +30,6 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		$(document).ready(function() {
 			
 		});
-	
 	</script>
 
 </head>
@@ -38,16 +37,16 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/header.jsp" %>
+        <%@ include file="/views/partials/admin_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/views/partials/admin_sidebar.jsp" %>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/19_admin_basic_course.jsp">기초 정보 관리</a></li>
-						<li class="breadcrumb-item active"><a href="">과목 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_course.jsp">기초 정보 관리</a></li>
+						<li class="breadcrumb-item active"><a href="">강의실 관리</a></li>
 					</ul>
 				</div>
 				
@@ -57,36 +56,40 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">과목 목록</h3>
+										<h3 class="h4">강의실 목록</h3>
 									</div>
 									<div class="card-body">
-										<button class="btn btn-primary btn-sm btn-reg" data-toggle="modal" data-target="#subject_reg">과목 등록</button>
+										<button class="btn btn-primary btn-sm btn-reg" data-toggle="modal" data-target="#classroom_reg">강의실 등록</button>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
 													<tr>
-														<th>과목번호</th>
-		                                                <th>과목명</th>
+														<th>강의실번호</th>
+		                                                <th>강의실명</th>
+		                                                <th>최대정원</th>
 		                                                <th>삭제</th>
 													</tr>
 												</thead>
 												<tbody>
 		                                            <tr>
-		                                                <td>SUB0001</td>
-		                                                <td>Java SE</td>
-		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#subject_delete">삭제</button></td>
+		                                                <td>CR01</td>
+		                                                <td>1강의실</td>
+		                                                <td>30명</td>
+		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#classroom_delete">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td>SUB0002</td>
-		                                                <td>Oracle</td>
+		                                                <td>CR02</td>
+		                                                <td>2강의실</td>
+		                                                <td>30명</td>
 		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td>SUB0003</td>
-		                                                <td>HTML5</td>
+		                                                <td>CR03</td>
+		                                                <td>3강의실</td>
+		                                                <td>30명</td>
 		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
 		                                            </tr>
-		                                        </tbody>		                                         					
+		                                        </tbody>		                                                                     					
 											</table>
 										</div>
 										<div style="text-align: center; padding-top: 10px">
@@ -98,8 +101,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			                                        <div class="form-group">
 			                                            <!-- 검색 단어 입력 폼 -->
 			                                            <select class="form-control text-small" id="key" name="key">
-			                                                <option class="text-small" value="subject_id">과목번호</option>
-			                                                <option class="text-small" value="subject_name">과목명</option>
+			                                                <option class="text-small" value="classroom_id">강의실번호</option>
+			                                                <option class="text-small" value="classroom_name">강의실명</option>
 			                                            </select>
 			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
 			                                            <!-- 검색 진행 버튼 -->
@@ -123,11 +126,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     </div>
     
 	<!-- 등록에 관한 모달 -->
-	<div id="subject_reg" role="dialog" class="modal fade text-left">
+	<div id="classroom_reg" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">과목 등록</h4>
+					<h4 id="exampleModalLabel" class="modal-title">강의실 등록</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
@@ -136,8 +139,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="subject_name">과목명</label> 
-							<input type="text" id="subject_name" name="subject_name" placeholder="과목명" class="form-control">
+							<label for="classroom_name">강의실명</label> 
+							<input type="text" id="classroom_name" name="classroom_name" placeholder="강의실명" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="classroom_name">최대정원</label> 
+							<input type="text" id="classroom_max_number" name="classroom_max_number" placeholder="최대정원" class="form-control">
 						</div>
 					</form>
 				</div>
@@ -150,26 +157,26 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	</div>
 	
 	<!-- 삭제에 관한 모달 -->
-	<div id="subject_delete" role="dialog" class="modal fade text-left">
+	<div id="classroom_delete" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">과목 삭제</h4>
+					<h4 id="exampleModalLabel" class="modal-title">강의실 삭제</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>다음 과목을 삭제하시겠습니까?</p>
+					<p>다음 강의실을 삭제하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="subject_id">과목번호</label> 
-							<input type="text" id="subject_id" name="subject_id" placeholder="과목번호" class="form-control" readonly>
+							<label for="classroom_id">강의실번호</label> 
+							<input type="text" id="classroom_id" name="classroom_id" placeholder="강의실번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="subject_name">과목명</label> 
-							<input type="text" id="subject_name" name="subject_name" placeholder="과목명" class="form-control" readonly>
+							<label for="subject_name">강의실명</label> 
+							<input type="text" id="classroom_name" name="classroom_name" placeholder="강의실명" class="form-control" readonly>
 						</div>
 					</form>
 				</div>

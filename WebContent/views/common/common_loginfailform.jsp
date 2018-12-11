@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>로그인</title>
+    <title>로그인 실패</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -40,55 +40,29 @@
                   <div class="logo">
                     <h1>쌍용교육센터</h1>
                   </div>
-				<p>사자의 심장을 가져라<br>당신은 세상을 변화시키는 IT리더입니다.</p>
+                 <p>사자의 심장을 가져라<br>당신은 세상을 변화시키는 IT리더입니다.</p>
                 </div>
               </div>
             </div>
-            
             <!-- Form Panel    -->
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                   <form method="post" class="form-validate">
-                    <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" required data-msg="이름을 입력하세요" class="input-material">
-                      <label for="login-username" class="label-material">User Name</label>
+                      <h4><i class="fa fa-lock"> 로그인</i></h4>
+                      <label>로그인에 실패하였습니다.</label>
+                      <div style="margin-top: 50px" class="form-group">
+                          <a href="${pageContext.request.contextPath}/views/common/common_login.jsp" class="btn btn-primary btn-block">Main</a>
+                      </div>
+                  	</div>
                     </div>
-                    <div class="form-group">
-                      <input id="login-password" type="password" name="loginPassword" required data-msg="비밀번호를 입력하세요" class="input-material">
-                      <label for="login-password" class="label-material">Password</label>
-					</div>
-					
-					<div class="form-group">
-					<div class="form-radio">
-						<!-- label style을 css로 빼기 ~~~~~~~~~~~~~~~~~~~~~~-->
-                              <input type="radio" class="radio-template" value="student" name="loginType"  checked >
-                              <label for="radio" style="margin-right:20px">수강생</label>
-                              <input type="radio" class="radio-template" value="instructor" name="loginType" >
-                              <label for="radio" style="margin-right:20px">강사</label>
-                              <input type="radio" class="radio-template" value="admin" name="loginType" >
-                              <label for="radio" style="margin-right:20px">관리자</label>
-	               </div>
-	               </div>
-	               <div class="form-group">
-                    	<button class="btn btn-primary submit-btn btn-block">Login</button>
-					</div>
-                  </form>
- 					<div class="form-group">
-                       <button class="btn btn-default btn-reg" style="float: right">오시는 길</button>
-                   </div> 
+                </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
       <div class="copyrights text-center">
-        <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a>
-          <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-        </p>
+        <p>Design by SIST 1조</p>
       </div>
-    </div>
+      </div>
     <!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"> </script>

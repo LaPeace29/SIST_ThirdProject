@@ -43,16 +43,16 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/header.jsp" %>
+        <%@ include file="/views/partials/admin_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/views/partials/admin_sidebar.jsp" %>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/19_admin_basic_course.jsp">기초 정보 관리</a></li>
-						<li class="breadcrumb-item active"><a href="">교재 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_subjectbook.jsp">기초 정보 관리</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_subjectbook.jsp">교재 관리</a></li>
 					</ul>
 				</div>
 				

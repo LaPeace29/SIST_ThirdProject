@@ -45,7 +45,7 @@ $(document).ready(function() {
 	});
 	
 	$(".btn-look").on("click", function() {
-        window.location.assign("${pageContext.request.contextPath}/views/instructor/16_instructor_score2.jsp");
+        window.location.assign("${pageContext.request.contextPath}/views/instructor/instructor_score2.jsp");
      });
 });
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/header.jsp"%>
+		<%@ include file="/views/partials/instructor_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<%@ include file="/views/partials/instructor_sidebar.jsp"%>
@@ -65,9 +65,9 @@ $(document).ready(function() {
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="09_instructor_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="instructor_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item active"><a
-							href="12_instructor_point1.jsp">성적 관리</a></li>
+							href="instructor_point1.jsp">성적 관리</a></li>
 					</ul>
 				</div>
 
@@ -114,7 +114,7 @@ $(document).ready(function() {
 														<td>웹기반 빅데이터 분석 응용SW개발자</td>
 														<td>2018-01-02 ~ 2018-05-06</td>
 														<td>1강의실</td>
-														<td><a class="subjectbook-look" data-toggle="popover"
+														<td><a class="subjectbook-look popover-bold" data-toggle="popover"
 															title="이것이 자바다"
 															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">HTML5 웹 프로그래밍 입문</a></td>
 														<td>3명</td>
@@ -128,7 +128,7 @@ $(document).ready(function() {
 														<td>웹기반 빅데이터 분석 응용SW개발자</td>
 														<td>2018-01-02 ~ 2018-05-06</td>
 														<td>1강의실</td>
-														<td><a class="subjectbook-look" data-toggle="popover"
+														<td><a class="subjectbook-look popover-bold" data-toggle="popover"
 															title="이것이 자바다"
 															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">HTML5 웹 프로그래밍 입문</a></td>
 														<td>2명</td>

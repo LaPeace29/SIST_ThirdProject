@@ -144,7 +144,7 @@
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/header.jsp"%>
+		<%@ include file="/views/partials/admin_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<%@ include file="/views/partials/admin_sidebar.jsp"%>
@@ -154,11 +154,11 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">Home</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">Home</a></li>
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/31_admin_opencourse1.jsp">개설 과정 관리</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_opencourse1.jsp">개설 과정 관리</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/33_admin_opencourse2.jsp">개설	과목 성적</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_opencourse2.jsp">개설 과목 성적</a></li>
 					</ul>
 				</div>
 
@@ -169,7 +169,7 @@
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="h4">Python & Java 응용 SW실무 개발자 양성 과정(2018-06-25 ~ 2019-01-17)</h3>
+										<h3 class="h4">Python &amp; Java 응용 SW실무 개발자 양성 과정(2018-06-25 ~ 2019-01-17)</h3>
 										<h5>과목 정보</h5>
 									</div>
 									<div class="card-body">

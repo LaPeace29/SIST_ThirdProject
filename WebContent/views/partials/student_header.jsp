@@ -11,7 +11,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<!-- Navbar Header-->
 				<div class="navbar-header">
 					<!-- Navbar Brand -->
-					<a href="${pageContext.request.contextPath}/views/student/06_student_first.jsp" class="navbar-brand d-none d-sm-inline-block">
+					<a href="${pageContext.request.contextPath}/views/student/student_first.jsp" class="navbar-brand d-none d-sm-inline-block">
 						<span class="brand-text d-none d-lg-inline-block">쌍용교육센터</span>
 						<strong class="brand-text d-none d-sm-inline-block d-lg-none">SIST</strong>
 					</a>
@@ -32,7 +32,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 						</ul></li>
 					<!-- Logout    -->
-					<li class="nav-item"><a href="${pageContext.request.contextPath}/views/common/02_common_logoutform.jsp"
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/views/common/common_logoutform.jsp"
 						class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i
 							class="fa fa-sign-out"></i></a></li>
 				</ul>

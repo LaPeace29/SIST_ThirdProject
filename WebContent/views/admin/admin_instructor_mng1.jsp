@@ -38,7 +38,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			});
 			
 			$(".instructor_manage").on("click", function(){
-				window.location.assign("${pageContext.request.contextPath}/views/admin/30_admin_instructor_mng2.jsp");
+				window.location.assign("${pageContext.request.contextPath}/views/admin/admin_instructor_mng2.jsp");
 			});
 		});
 	
@@ -49,15 +49,15 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/header.jsp" %>
+        <%@ include file="/views/partials/admin_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/views/partials/admin_sidebar.jsp" %>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="">강사 계정 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_instructor_mng1.jsp">강사 계정 관리</a></li>
 					</ul>
 				</div>
 				
@@ -89,7 +89,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<tbody>
 		                                            <tr>
 		                                                <td>INS001</td>
-		                                                <td><a class="instructor-look" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
+		                                                <td><a class="instructor-look popover-bold" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
 		                                                <td>010-1234-4321</td>
 		                                                <td>2018-01-02</td>
 		                                                <td>Java SE, Oracle<br><button class="btn btn-xs btn-light" data-toggle="modal" data-target="#subject_manage">강의 가능 과목 관리</button></td>

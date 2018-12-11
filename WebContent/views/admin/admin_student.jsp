@@ -44,7 +44,7 @@
 										"click",
 										function() {
 											window.location
-													.assign("${pageContext.request.contextPath}/views/admin/38_admin_student_mng.jsp");
+													.assign("${pageContext.request.contextPath}/views/admin/admin_student_mng.jsp");
 										});
 
 						$(".student-look").popover({
@@ -60,7 +60,7 @@
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/header.jsp"%>
+		<%@ include file="/views/partials/admin_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<%@ include file="/views/partials/admin_sidebar.jsp"%>
@@ -70,9 +70,9 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/36_admin_student.jsp">수강생
+							href="${pageContext.request.contextPath}/views/admin/admin_student.jsp">수강생
 								관리</a></li>
 					</ul>
 				</div>
@@ -109,7 +109,7 @@
 												<tbody>
 													<tr>
 														<td>ST0001</td>
-														<td><a class="student-look" data-toggle="popover"
+														<td><a class="student-look popover-bold" data-toggle="popover"
 															title="홍길동 사진"
 															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">홍길동</a></td>
 														<td>010-2356-4528</td>

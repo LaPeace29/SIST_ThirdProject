@@ -44,10 +44,10 @@
 		});
 
 		$(".subjectbook-look").popover({ 
-						placement : 'left',
-						trigger: "hover", 
-						html: true
-					});
+			placement : 'left',
+			trigger: "hover", 
+			html: true
+		});
 	});
 </script>
 
@@ -56,7 +56,7 @@
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/header.jsp"%>
+		<%@ include file="/views/partials/student_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<%@ include file="/views/partials/student_sidebar.jsp" %>
@@ -77,9 +77,9 @@
 				
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/06_student_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/student_first.jsp">HOME</a></li>
 						
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/07_student_score1.jsp">성적 조회</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/student_score1.jsp">성적 조회</a></li>
 						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
 						<li class="breadcrumb-item active"><a href="">수강생 성적 조회</a></li>
 					</ul>
@@ -130,20 +130,12 @@
 												</tbody>
 											</table>
 										</div>
-
-
-
-
-
-
 									</div>
 								</div>
 
 								<div class="card">
 									<div class="card-header d-flex align-items-center"></div>
 									<div class="card-body">
-
-
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -163,8 +155,8 @@
 												<tbody>
 													<tr>
 														<td rowspan="2">Java SE (2018-06-25~2018-09-10)</td>
-														<td rowspan="2"><a class="subjectbook-look" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이 자바다</a></td>
-														<td rowspan="2"><a class ="instructor-look" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
+														<td rowspan="2"><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이 자바다</a></td>
+														<td rowspan="2"><a class ="instructor-look popover-bold" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
 														<td>2018-10-15</td>
 														<td>-(20)</td>
 														<td>-(30)</td>
@@ -198,7 +190,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- 교재 보기에 관한 모달 -->
 

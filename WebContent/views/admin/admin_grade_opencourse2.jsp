@@ -29,10 +29,6 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	
 		$(document).ready(function() {
 			
-			$(".btn-look").on("click", function() {
-	            window.location.assign("${pageContext.request.contextPath}/views/admin/45_admin_grade_student2.jsp");
-	         });
-			
 		});
 	
 	</script>
@@ -42,7 +38,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/header.jsp" %>
+        <%@ include file="/views/partials/admin_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/views/partials/admin_sidebar.jsp" %>
@@ -52,9 +48,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	            <!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
-						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/44_admin_grade_student1.jsp">수강생 개인 성적 조회</a> </li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_grade_opencourse1.jsp">개설 과정 성적 조회</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/admin_grade_opencourse2.jsp">과목 정보</a></li>
 					</ul>
 				</div>
 				
@@ -65,7 +61,76 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">수강생 정보</h3>
+										<h3 class="h4">Python &amp; Java 응용 SW실무 개발자 양성 과정(2018-06-25 ~ 2019-01-17)과목 정보</h3>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>개설 과목 번호</th>
+														<th>개설 과목명</th>
+														<th>개설 과목 기간</th>
+														<th>강사명</th>
+														<th>교재명</th>
+														<th>시험 정보</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td><button class="btn btn-sm btn-light">보기</button></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							
+								<div class="card">
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h4">HTML(2018-09-01 ~ 2018-09-20)시험 정보</h3>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>시험 번호</th>
+														<th>출결 배점</th>
+														<th>필기 배점</th>
+														<th>실기 배점</th>
+														<th>시험 날짜</th>
+														<th>시험 문제 파일</th>
+														<th>수강생 정보</th>
+														
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td>
+															<button class="btn btn-sm btn-light">보기</button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+						
+								<div class="card">
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h4">홍길동 / 000-0000-000 성적 정보</h3>
 									</div>
 									<div class="card-body">
 										<div class="table-responsive">
@@ -75,47 +140,28 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														<th>수강생 번호</th>
 														<th>수강생 이름</th>
 														<th>수강생 전화번호</th>
-														<th>수강생 등록일</th>
-														<th>수강 횟수</th>
-														<th>수강 과정</th>
+														<th>출결 점수</th>
+														<th>필기 점수</th>
+														<th>실기 점수</th>
+														<th>총점</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<td>ST000001</td>
 														<td></td>
 														<td></td>
 														<td></td>
 														<td></td>
-														<td><button class="btn-look btn btn-sm btn-light">보기</button></td>
-		                                            </tr>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
 												</tbody>
 											</table>
 										</div>
-										<div style="text-align: center; padding-top: 10px">
-		                                    <button class="btn btn-primary" id="prev">이전</button>
-		                                    <button class="btn btn-primary" id="next">다음</button>
-		                                
-			                                <form style="float: right" class="form-inline" method="post">
-			                                    <div>
-			                                        <div class="form-group">
-			                                            <!-- 검색 단어 입력 폼 -->
-			                                            <!-- 검색 기준은 각자 상황에 맞춰서 설정하세요!! -->
-			                                            <select class="form-control text-small" id="key" name="key">
-			                                               <option value="student_id">수강생 번호</option>
-														   <option value="student_name">수강생 이름</option>
-			                                            </select>
-			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
-			                                            <!-- 검색 진행 버튼 -->
-			                                            <button type="button" class="btn btn-md btn-secondary" id="btnSearch">
-			                                                <i class="fa fa-search"></i>
-			                                            </button>
-			                                        </div>
-			                                    </div>
-			                                </form>
-		                                </div>
 									</div>
 								</div>
+							
 							</div>
 						</div>
 					</div>
@@ -125,7 +171,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             </div>
         </div>
     </div>
-  
+    
+
 	<!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>

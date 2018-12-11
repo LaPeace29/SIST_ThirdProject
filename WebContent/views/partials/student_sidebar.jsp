@@ -16,7 +16,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <span class="heading">Main</span>
     <ul class="list-unstyled">
 		<li>
-			<a href="${pageContext.request.contextPath}/views/student/07_student_score1.jsp"><i class="icon-user"></i>성적 조회</a>
+			<a href="${pageContext.request.contextPath}/views/student/student_score1.jsp"><i class="icon-user"></i>성적 조회</a>
 		</li>
 	</ul>
 </nav>

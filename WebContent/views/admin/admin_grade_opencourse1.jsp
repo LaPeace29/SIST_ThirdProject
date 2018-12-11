@@ -30,7 +30,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		$(document).ready(function() {
 			
 			$(".btn-look").on("click", function() {
-	            window.location.assign("${pageContext.request.contextPath}/views/admin/43_admin_grade_opencourse2.jsp");
+	            window.location.assign("${pageContext.request.contextPath}/views/admin/admin_grade_opencourse2.jsp");
 	         });
 			
 		});
@@ -42,7 +42,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/header.jsp" %>
+        <%@ include file="/views/partials/admin_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/views/partials/admin_sidebar.jsp" %>
@@ -52,10 +52,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	            <!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
 						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
 						<li class="breadcrumb-item active"><a
-									href="${pageContext.request.contextPath}/views/admin/42_admin_grade_opencourse1.jsp">개설
+									href="${pageContext.request.contextPath}/views/admin/admin_grade_opencourse1.jsp">개설
 										과정 성적 조회</a></li>
 					</ul>
 				</div>
@@ -86,7 +86,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<tbody>
 													<tr>
 		                                                <td>OC0015</td>
-		                                                <td>Python & Java 응용 SW 실무 개발자 양성 과정</td>
+		                                                <td>Python &amp; Java 응용 SW 실무 개발자 양성 과정</td>
 		                                                <td>2018-06-25~2019-01-17</td>
 		                                                <td>2강의실</td>
 		                                                <td>3개</td>

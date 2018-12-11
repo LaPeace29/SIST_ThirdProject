@@ -21,10 +21,34 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
     <script src="${pageContext.request.contextPath}/resources/script/common.js"></script>
-    
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['bar']});
+		google.charts.setOnLoadCallback(drawChart);
+	
+		$(window).resize(function(){
+			  drawChart();
+			});
+		
+		function drawChart() {
+		  var data = google.visualization.arrayToDataTable([
+		    ['강의실명', '최대 정원', '수강 인원', '중도 탈락 인원'],
+		    ['1강의실', 30, 25, 1],
+		    ['2강의실', 25, 20, 0],
+		    ['3강의실', 25, 20, 0],
+		  ]);
+		
+		  var options = {
+		    bars: 'horizontal' // Required for Material Bar Charts.
+		  };
+		
+		  var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+		
+		  chart.draw(data, google.charts.Bar.convertOptions(options));
+		}
+	</script>
 	<script>
 	
 		$(document).ready(function() {
@@ -38,14 +62,14 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/header.jsp" %>
+        <%@ include file="/views/partials/admin_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
-            <%@ include file="/views/partials/instructor_sidebar.jsp" %>
+            <%@ include file="/views/partials/admin_sidebar.jsp" %>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item active" ><a href="">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
 					</ul>
 				</div>
 				
@@ -55,24 +79,53 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">현재 진행중인 과목</h3>
+										<h3 class="h4">수강생 등록 현황</h3>
 									</div>
 									<div class="card-body">
-										<ul>
-											<li>웹기반 빅데이터 분석 응용 SW 개발자(0000-00-00 ~ 0000-00-00)    /  Java SE(0000-00-00 ~ 0000-00-00)											</li>
-										</ul>
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>강의실</th>
+		                                                <th>최대정원</th>
+		                                                <th>수강인원</th>
+		                                                <th>중도 탈락 인원</th>
+		                                                <th>개설과정명(기간)</th>
+													</tr>
+												</thead>
+												<tbody>
+		                                            <tr>
+		                                                <td>1강의실</td>
+		                                                <td>30</td>
+		                                                <td>25</td>
+		                                                <td>1</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td>2강의실</td>
+		                                                <td>30</td>
+		                                                <td>25</td>
+		                                                <td>1</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td>3강의실</td>
+		                                                <td>30</td>
+		                                                <td>25</td>
+		                                                <td>1</td>
+		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
+		                                            </tr>
+		                                        </tbody>									
+											</table>
+										</div>
 									</div>
 								</div>
-								
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">공지사항</h3>
+										<h3 class="h4">수강생 등록 현황 차트</h3>
 									</div>
 									<div class="card-body">
-										<ul>
-											<li>12/3 개강 Java를 활용한 웹 응용...</li>
-											<li>12/10개강 Framework기반의...</li>
-										</ul>
+										<div id="barchart_material" style="width: 100%; height: 500px;"></div>
 									</div>
 								</div>
 							</div>

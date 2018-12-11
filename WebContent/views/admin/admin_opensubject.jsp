@@ -46,7 +46,7 @@
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/header.jsp"%>
+		<%@ include file="/views/partials/admin_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<%@ include file="/views/partials/admin_sidebar.jsp"%>
@@ -56,9 +56,9 @@
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/18_admin_first.jsp">Home</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">Home</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/34_admin_opensubject.jsp">개설 과목 관리</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_opensubject.jsp">개설 과목 관리</a></li>
 					</ul>
 				</div>
 
