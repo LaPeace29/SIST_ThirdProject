@@ -28,7 +28,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	<script>
 	
 		$(document).ready(function() {
-			
+			$(".admin-look").popover({ 
+				placement : 'left',
+				trigger: "hover", 
+				html: true
+			});
 		});
 	
 	</script>
@@ -83,7 +87,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<tbody>
 													<tr>
 														<td>admin001</td>
-		                                                <td>김관리</td>
+		                                                <td><a class="admin-look popover-bold" data-toggle="popover" title="김관리 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김관리</a></td>
 		                                                <td>010-1234-1234</td>
 		                                                <td>2018-01-01</td>
 		                                                <td>superadmin</td>
@@ -99,7 +103,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                           </tr>
 													<tr>
                                                			<td>admin002</td>
-		                                                <td>이관리</td>
+		                                                <td><a class="admin-look popover-bold" data-toggle="popover" title="이관리 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">이관리</a></td>
 		                                                <td>010-1111-1234</td>
 		                                                <td>2018-01-01</td>
 		                                                <td>admin</td>
@@ -115,7 +119,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                           </tr>
 		                                           <tr>
 		                                                <td>admin003</td>
-		                                                <td>박관리</td>
+		                                                <td><a class="admin-look popover-bold" data-toggle="popover" title="박관리 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">박관리</a></td>
 		                                                <td>010-2222-1234</td>
 		                                                <td>2018-01-01</td>
 		                                                <td>admin</td>
