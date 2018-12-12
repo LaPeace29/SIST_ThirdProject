@@ -48,8 +48,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	            <!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/46_superadmin.jsp">HOME</a></li>
-						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
+						<li class="breadcrumb-item active"><a href="">HOME</a></li>
 					</ul>
 				</div>
 				
@@ -69,38 +68,66 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 											<table class="table">
 												<thead>
 													<tr>
-														<th>아이디</th>
+														<th>관리자 번호</th>
+														<th>관리자 이름</th>
+														<th>관리자 휴대폰번호</th>
+														<th>관리자 등록일</th>
 														<th>등급</th>
 														<th>계정잠금상태</th>
-														<th>등록일</th>
-														<th>비밀번호 초기화</th>
 														<th>계정잠금</th>
+														<th>수정</th>
+														<th>삭제</th>
+														<th>비밀번호 초기화</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-		                                                <td>admin</td>
+														<td>admin001</td>
+		                                                <td>김관리</td>
+		                                                <td>010-1234-1234</td>
+		                                                <td>2018-01-01</td>
 		                                                <td>superadmin</td>
 		                                                <td>unlocking</td>
-		                                                <td>2018-01-01</td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light" data-toggle="modal" data-target="#password_reset">비밀번호 초기화</button></td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light" data-toggle="modal" data-target="#admin_lock">계정잠금</button></td>
+														<td><button class=" btn btn-sm btn-light"
+																data-toggle="modal" data-target="#admin_lock">계정잠금</button></td>
+														<td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#admin_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#admin_delete">삭제</button></td>
+														<td><button class=" btn btn-sm btn-light"
+																data-toggle="modal" data-target="#password_reset">초기화</button></td>
 		                                           </tr>
 													<tr>
-		                                                <td>admin</td>
-		                                                <td>manager</td>
-		                                                <td>unlocking</td>
+                                               			<td>admin002</td>
+		                                                <td>이관리</td>
+		                                                <td>010-1111-1234</td>
 		                                                <td>2018-01-01</td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light">비밀번호 초기화</button></td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light">계정잠금</button></td>
+		                                                <td>admin</td>
+		                                                <td>unlocking</td>
+														<td><button class=" btn btn-sm btn-light"
+																data-toggle="modal" data-target="#admin_lock">계정잠금</button></td>
+														<td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#admin_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#admin_delete">삭제</button></td>
+														<td><button class=" btn btn-sm btn-light"
+																data-toggle="modal" data-target="#password_reset">초기화</button></td>
 		                                           </tr>
 		                                           <tr>
-		                                                <td>admin</td>
-		                                                <td>manager</td>
-		                                                <td>unlocking</td>
+		                                                <td>admin003</td>
+		                                                <td>박관리</td>
+		                                                <td>010-2222-1234</td>
 		                                                <td>2018-01-01</td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light">비밀번호 초기화</button></td>
-		                                                <td><button type="button" class=" btn btn-sm btn-light">계정잠금</button></td>
+		                                                <td>admin</td>
+		                                                <td>unlocking</td>
+														<td><button class=" btn btn-sm btn-light"
+																data-toggle="modal" data-target="#admin_lock">계정잠금</button></td>
+														<td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#admin_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#admin_delete">삭제</button></td>
+														<td><button class=" btn btn-sm btn-light"
+																data-toggle="modal" data-target="#password_reset">초기화</button></td>
 		                                           </tr>
 												</tbody>
 											</table>
@@ -116,12 +143,46 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             </div>
         </div>
     </div>
+    
+    <!-- 계정 잠금에 관한 모달 -->
+	<div id="admin_lock" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">계정 잠금</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>다음 관리자의 계정을 잠그시겠습니까?</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="admin_id">관리자 번호</label> 
+							<input type="text" id="admin_id" name="admin_id" placeholder="관리자 번호" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="admin_name">관리자 이름</label> 
+							<input type="text" id="admin_name" name="admin_name" placeholder="관리자 이름" class="form-control" readonly>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">확인</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-light">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
  	<!-- 등록에 관한 모달 -->
 	<div id="admin_reg" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">계정 등록</h4>
+					<h4 id="exampleModalLabel" class="modal-title">관리자 계정 등록</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
@@ -130,14 +191,68 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="superadmin_id">아이디</label> <input type="text"
-								id="superadmin_id" name="superadmin_id"
-								placeholder="아이디" class="form-control">
+							<label for="admin_name">이름</label> 
+							<input type="text" id="admin_name" name="admin_name" placeholder="이름" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="superadmin_pw">패스워드</label> <input type="password"
-								id="superadmin_pw" name="superadmin_pw"
-								placeholder="패스워드" class="form-control">
+							<label for="admin_pw">비밀번호</label> 
+							<input type="text" id="admin_pw" name="admin_pw" placeholder="비밀번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="admin_phone">휴대폰번호</label> 
+							<input type="text" id="admin_phone" name="admin_phone" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="admin_regDate">등록일</label> 
+							<input type="text" id="admin_regDate" name="admin_regDate" placeholder="등록일" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="admin_photo">사진 파일</label> 
+							<input type="file" id="admin_photo" name="admin_photo" placeholder="사진 파일" class="form-control">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">수정</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-secondary">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>   
+
+	<!-- 수정에 관한 모달 -->
+	<div id="admin_update" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">관리자 계정 수정</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="admin_id">관리자 번호</label> 
+							<input type="text" id="admin_id" name="admin_id" placeholder="관리자 번호" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="admin_name">이름</label> 
+							<input type="text" id="admin_name" name="admin_name" placeholder="이름" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="admin_phone">휴대폰번호</label> 
+							<input type="text" id="admin_phone" name="admin_phone" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="admin_regDate">등록일</label> 
+							<input type="text" id="admin_regDate" name="admin_regDate" placeholder="등록일" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="admin_photo">사진 파일</label> 
+							<input type="file" id="admin_photo" name="admin_photo" placeholder="사진 파일" class="form-control">
 						</div>
 					</form>
 				</div>
@@ -149,7 +264,39 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			</div>
 		</div>
 	</div>   
-
+	
+	<!-- 삭제에 관한 모달 -->
+	<div id="admin_delete" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">관리자 계정 삭제</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="admin_id">관리자 번호</label> 
+							<input type="text" id="admin_id" name="admin_id" placeholder="관리자 번호" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="admin_name">이름</label> 
+							<input type="text" id="admin_name" name="admin_name" placeholder="이름" class="form-control" readonly>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">확인</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-secondary">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>  
+	
 	<!-- 비밀번호 초기화에 관한 모달 -->
 	<div id="password_reset" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
@@ -165,12 +312,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					<p>다음 관리자 비밀번호를 초기화하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="admin_id">관리자 ID</label> 
-							<input type="text" id="admin_id" name="admin_id" placeholder="관리자 ID" class="form-control" readonly>
+							<label for="admin_id">관리자 번호</label> 
+							<input type="text" id="admin_id" name="admin_id" placeholder="관리자 번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="admin_id_">관리자 아이디</label> 
-							<input type="text" id="admin_id_" name="admin_id_" placeholder="관리자 아이디" class="form-control" readonly>
+							<label for="admin_name">관리자 이름</label> 
+							<input type="text" id="admin_name" name="admin_name" placeholder="관리자 이름" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="admin_pw">신규 비밀번호</label> 
@@ -191,38 +338,6 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		</div>
 	</div>
 	
-	<!-- 계정 잠금에 관한 모달 -->
-	<div id="admin_lock" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">계정 잠금</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>다음 관리자의 계정을 잠그시겠습니까?</p>
-					<form action="" method="post">
-						<div class="form-group">
-							<label for="admin_id">관리자 ID</label> 
-							<input type="text" id="admin_id" name="admin_id" placeholder="관리자 ID" class="form-control" readonly>
-						</div>
-						<div class="form-group">
-							<label for="admin_id_">관리자 아이디</label> 
-							<input type="text" id="admin_id_" name="admin_id_" placeholder="관리자 아이디" class="form-control" readonly>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-light">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>
