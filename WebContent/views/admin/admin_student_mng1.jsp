@@ -44,7 +44,7 @@
 										"click",
 										function() {
 											window.location
-													.assign("${pageContext.request.contextPath}/views/admin/admin_student_mng.jsp");
+													.assign("${pageContext.request.contextPath}/views/admin/admin_student_mng2.jsp");
 										});
 
 						$(".student-look").popover({
@@ -72,7 +72,7 @@
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/admin_student.jsp">수강생
+							href="${pageContext.request.contextPath}/views/admin/admin_student_mng1.jsp">수강생
 								관리</a></li>
 					</ul>
 				</div>
@@ -102,6 +102,7 @@
 														<th>수강생 등록일</th>
 														<th>수강 횟수</th>
 														<th>수강내역 조회</th>
+														<th>수정</th>
 														<th>삭제</th>
 														<th>비밀번호 초기화</th>
 													</tr>
@@ -116,6 +117,8 @@
 														<td>2017-12-20</td>
 														<td>1회</td>
 														<td><button class="btn btn-sm btn-light btnSearch">조회</button></td>
+														<td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#student_update">수정</button></td>
 														<td><button class="btn btn-sm btn-light btn-del"
 																data-toggle="modal" data-target="#student_delete">삭제</button></td>
 														<td><button class="btn btn-sm btn-light btn-reset"
@@ -164,7 +167,7 @@
 	</div>
 
 
-	<!-- 등록에 관한 모달 -->
+	<!-- 수강생 등록에 관한 모달 -->
 	<div id="student_reg" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -194,14 +197,6 @@
 							<input type="text" id="student_regDate" name="student_regDate" placeholder="등록일" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_address">주소</label> 
-							<input type="text" id="student_address" name="student_address" placeholder="주소" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="student_email">이메일</label> 
-							<input type="email" id="student_email" name="student_email" placeholder="휴대폰번호" class="form-control">
-						</div>
-						<div class="form-group">
 							<label for="student_photo">사진 파일</label> 
 							<input type="file" id="student_photo" name="student_photo" placeholder="사진 파일" class="form-control">
 						</div>
@@ -216,8 +211,51 @@
 	</div>
 
 
-
-	<!-- 과목 삭제에 관한 모달 -->
+	<!-- 수강생 수정에 관한 모달 -->
+	<div id="student_update" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">수강생 수정</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="student_id">수강생 번호</label> 
+							<input type="text" id="student_id" name="student_id" placeholder="수강생 번호" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="student_name">이름</label> 
+							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_phone">휴대폰번호</label> 
+							<input type="text" id="student_phone" name="student_phone" placeholder="휴대폰번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_regDate">등록일</label> 
+							<input type="text" id="student_regDate" name="student_regDate" placeholder="등록일" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="student_photo">사진 파일</label> 
+							<input type="file" id="student_photo" name="student_photo" placeholder="사진 파일" class="form-control">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">수정</button>
+					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 수강생 삭제에 관한 모달 -->
 	<div id="student_delete" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
@@ -232,13 +270,12 @@
 					<p>다음 수강생 정보를 삭제하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="student_name">수강생명</label> <input type="text"
-								id=student_name name="student_name" placeholder="수강생명"
-								class="form-control" readonly>
+							<label for="student_id">수강생 번호</label>
+							<input type="text" id="student_id" name="student_id" placeholder="수강생번호" class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="student_phone">수강생 전화번호</label> <input type="text"
-								id="student_phone" name="student_phone" placeholder="수강생 전화번호"
+							<label for="student_name">이름</label> <input type="text"
+								id=student_name name="student_name" placeholder="이름"
 								class="form-control" readonly>
 						</div>
 					</form>

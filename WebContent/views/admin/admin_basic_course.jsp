@@ -67,6 +67,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													<tr>
 														<th>과정번호</th>
 		                                                <th>과정명</th>
+		                                                <th>수정</th>
 		                                                <th>삭제</th>
 													</tr>
 												</thead>
@@ -74,42 +75,30 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                            <tr>
 		                                                <td>CS0001</td>
 		                                                <td>웹기반 빅데이터 분석 응용</td>
-		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#course_delete">삭제</button></td>
-		                                            </tr>
+														<td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#course_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#course_delete">삭제</button></td>
+													</tr>
 		                                            <tr>
 		                                                <td>CS0002</td>
 		                                                <td>웹기반 빅데이터 분석 응용</td>
-		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#course_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#course_delete">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>CS0003</td>
 		                                                <td>웹기반 빅데이터 분석 응용</td>
-		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#course_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#course_delete">삭제</button></td>
 		                                            </tr>
 		                                        </tbody>									
 											</table>
 										</div>
-										<div style="text-align: center; padding-top: 10px">
-		                                    <button class="btn btn-primary" id="prev">이전</button>
-		                                    <button class="btn btn-primary" id="next">다음</button>
-		                                
-			                                <form style="float: right" class="form-inline" method="post">
-			                                    <div>
-			                                        <div class="form-group">
-			                                            <!-- 검색 단어 입력 폼 -->
-			                                            <select class="form-control text-small" id="key" name="key">
-			                                                <option class="text-small" value="course_id">과정번호</option>
-			                                                <option class="text-small" value="course_name">과정명</option>
-			                                            </select>
-			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
-			                                            <!-- 검색 진행 버튼 -->
-			                                            <button type="button" class="btn btn-md btn-secondary" id="btnSearch">
-			                                                <i class="fa fa-search"></i>
-			                                            </button>
-			                                        </div>
-			                                    </div>
-			                                </form>
-		                                </div>
 									</div>
 								</div>
 							</div>
@@ -122,7 +111,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
         </div>
     </div>
     
-	<!-- 등록에 관한 모달 -->
+    <!-- 등록에 관한 모달 -->
 	<div id="course_reg" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
@@ -143,6 +132,37 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">등록</button>
+					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 수정에 관한 모달 -->
+	<div id="course_update" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">과정 수정</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="course_id">과정번호</label> 
+							<input type="text" id="course_id" name="course_id" placeholder="과정번호" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="course_name">과정명</label> 
+							<input type="text" id="course_name" name="course_name" placeholder="과정명" class="form-control">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">수정</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
 			</div>

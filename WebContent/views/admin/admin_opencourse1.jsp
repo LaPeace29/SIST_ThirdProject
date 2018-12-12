@@ -83,7 +83,7 @@
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<button class="btn btn-primary btn-sm btn-reg"
-											data-toggle="modal" data-target="#course_reg">신규 개설
+											data-toggle="modal" data-target="#opencourse_reg">신규 개설
 											과정 등록</button>
 										<div class="table-responsive">
 											<table class="table">
@@ -96,7 +96,8 @@
 														<th>개설 과목 등록 개수</th>
 														<th>수강생 등록 인원</th>
 														<th>개설 과목</th>
-														<th>삭제 가능 여부</th>
+														<th>수정</th>
+														<th>삭제</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -113,8 +114,13 @@
 														</td>
 														<td>
 															<button type="button"
+																class="btn btn-sm btn-light btn-update" data-toggle="modal"
+																data-target="#opencourse_update">수정</button>
+														</td>
+														<td>
+															<button type="button"
 																class="btn btn-sm btn-light btn-del" data-toggle="modal"
-																data-target="#course_delete">삭제</button>
+																data-target="#opencourse_delete">삭제</button>
 														</td>
 													</tr>
 													<tr>
@@ -126,28 +132,10 @@
 														<td>-</td>
 														<td>-</td>
 														<td>-</td>
-													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
 														<td>-</td>
 													</tr>
 													<tr>
 														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-													<tr>
 														<td>-</td>
 														<td>-</td>
 														<td>-</td>
@@ -166,8 +154,32 @@
 														<td>-</td>
 														<td>-</td>
 														<td>-</td>
+														<td>-</td>
 													</tr>
 													<tr>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+													</tr>
+													<tr>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+														<td>-</td>
+													</tr>
+													<tr>
+														<td>-</td>
 														<td>-</td>
 														<td>-</td>
 														<td>-</td>
@@ -187,8 +199,6 @@
 											<form style="float: right" class="form-inline" method="post">
 												<div>
 													<div class="form-group">
-														<!-- 검색 단어 입력 폼 -->
-														<!-- 검색 기준은 각자 상황에 맞춰서 설정하세요!! -->
 														<select class="form-control text-small" id="key"
 															name="key">
 															<option class="text-small" value="open_course_id">개설
@@ -218,7 +228,7 @@
 	</div>
 
 	<!-- 등록에 관한 모달 -->
-	<div id="course_reg" role="dialog" class="modal fade text-left">
+	<div id="opencourse_reg" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -231,27 +241,31 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="courseSelect">과정</label> <select
-								class="form-control" id="courseSelect" name="courseSelect"
-								required>
+							<label for="courseSelect">과정명</label> 
+							<select	class="form-control" id="courseSelect" name="courseSelect" required>
 								<option>과정번호1 / 과정명1</option>
 								<option>과정번호2 / 과정명2</option>
 								<option>과정번호3 / 과정명3</option>
 								<option>과정번호4 / 과정명4</option>
-							</select> <label for="courseStartDate">과정 시작일</label> <input type="date"
-								class="form-control" id="courseStartDate" name="courseStartDate"
-								required> <label for="courseEndDate">과정 종료일</label> <input
-								type="date" class="form-control" id="courseEndDate"
-								name="courseEndDate" required> <label
-								for="classroomSelect">강의실</label> <select class="form-control"
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="courseStartDate">과정 시작일</label> 
+							<input type="date" class="form-control" id="courseStartDate" name="courseStartDate"	required> 
+						</div>
+						<div class="form-group">
+							<label for="courseEndDate">과정 종료일</label>
+							<input type="date" class="form-control" id="courseEndDate"		name="courseEndDate" required>
+						</div>
+						<div class="form-group">
+							<label for="classroomSelect">강의실</label>
+							<select class="form-control"
 								id="classroomSelect" name="classroomSelect" required>
 								<option>강의실번호1 / 강의실명1</option>
 								<option>강의실번호2 / 강의실명2</option>
 								<option>강의실번호3 / 강의실명3</option>
 								<option>강의실번호4 / 강의실명4</option>
 							</select>
-							<!-- 인덱스 저장용 -->
-							<input type="hidden" id="gid_" value="" />
 						</div>
 					</form>
 				</div>
@@ -263,14 +277,67 @@
 		</div>
 	</div>
 
-
-
-	<!-- 과정 삭제에 관한 모달 -->
-	<div id="course_delete" role="dialog" class="modal fade text-left">
+	<!-- 과정 수정에 관한 모달 -->
+	<div id="opencourse_update" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">배점 삭제</h4>
+					<h4 id="exampleModalLabel" class="modal-title">과정 수정</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="opencourse_id">개설과정번호</label>
+							<input type="text" id=opencourse_id name="opencourse_id" placeholder="과정명" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="courseSelect">과정명</label> 
+							<select	class="form-control" id="courseSelect" name="courseSelect" required>
+								<option>과정번호1 / 과정명1</option>
+								<option>과정번호2 / 과정명2</option>
+								<option>과정번호3 / 과정명3</option>
+								<option>과정번호4 / 과정명4</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="courseStartDate">과정 시작일</label> 
+							<input type="date" class="form-control" id="courseStartDate" name="courseStartDate"	required> 
+						</div>
+						<div class="form-group">
+							<label for="courseEndDate">과정 종료일</label>
+							<input type="date" class="form-control" id="courseEndDate"		name="courseEndDate" required>
+						</div>
+						<div class="form-group">
+							<label for="classroomSelect">강의실</label>
+							<select class="form-control"
+								id="classroomSelect" name="classroomSelect" required>
+								<option>강의실번호1 / 강의실명1</option>
+								<option>강의실번호2 / 강의실명2</option>
+								<option>강의실번호3 / 강의실명3</option>
+								<option>강의실번호4 / 강의실명4</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">수정</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-secondary">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 과정 삭제에 관한 모달 -->
+	<div id="opencourse_delete" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">과정 삭제</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
@@ -280,14 +347,18 @@
 					<p>다음 과정을 삭제하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
+							<label for="opencourse_id">개설과정번호</label> <input type="text"
+								id=opencourse_id name="opencourse_id" placeholder="과정명"
+								class="form-control" readonly>
+						</div>
+						<div class="form-group">
 							<label for="course_name">과정명</label> <input type="text"
 								id=course_name name="course_name" placeholder="과정명"
 								class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="course_date">과정 기간</label> <input type="date"
-								id="course_date" name="course_date"
-								placeholder="과정 기간" class="form-control" readonly>
+							<label for="course_date">과정 기간</label> 
+							<input type="text" id="course_date" name="course_date" placeholder="과정 기간" class="form-control" readonly>
 						</div>
 					</form>
 				</div>

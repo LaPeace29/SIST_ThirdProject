@@ -74,6 +74,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														<th>교재번호</th>
 														<th>교재명</th>
 														<th>ISBN</th>
+														<th>수정</th>
 														<th>삭제</th>
 													</tr>
 												</thead>
@@ -84,45 +85,36 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                	data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='180px' height='216px'/> <br>출판사: 한빛 미디어<br>가격: 27000원">
 		                                                	이것이 자바다</a></td>
 		                                                <td>1111111111111111</td>
-		                                                <td><button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
-		                                            </tr>
+														<td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#subjectbook_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
+													</tr>
 		                                            <tr>
 		                                                <td>SB00002</td>
-		                                                <td>이것이 Oracle이다</td>
+		                                                <td><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" 
+		                                                	data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='180px' height='216px'/> <br>출판사: 한빛 미디어<br>가격: 27000원">
+		                                                	이것이 오라클이다.</a></td>
 		                                                <td>2222222222222222</td>
-		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#subjectbook_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <td>SB00003</td>
-		                                                <td>이것이 HTML5이다</td>
+		                                                <td><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" 
+		                                                	data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='180px' height='216px'/> <br>출판사: 한빛 미디어<br>가격: 27000원">
+		                                                	이것이 HTML이다.</a></td>
 		                                                <td>3333333333333333</td>
-		                                                <td><button class="btn btn-sm btn-light btn-del">삭제</button></td>
+		                                                <td><button class="btn btn-sm btn-light btn-update"
+																data-toggle="modal" data-target="#subjectbook_update">수정</button></td>
+														<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
 		                                            </tr>
 												</tbody>
 											</table>
 										</div>
-										<div style="text-align: center; padding-top: 10px">
-		                                    <button class="btn btn-primary" id="prev">이전</button>
-		                                    <button class="btn btn-primary" id="next">다음</button>
-		                                
-			                                <form style="float: right" class="form-inline" method="post">
-			                                    <div>
-			                                        <div class="form-group">
-			                                            <!-- 검색 단어 입력 폼 -->
-			                                            <select class="form-control text-small" id="key" name="key">
-			                                                <option class="text-small" value="subjectbook_id">교재번호</option>
-			                                                <option class="text-small" value="subjectbook_name">교재명</option>
-			                                                <option class="text-small" value="subjectbook_isbn">ISBN</option>
-			                                            </select>
-			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
-			                                            <!-- 검색 진행 버튼 -->
-			                                            <button type="button" class="btn btn-md btn-secondary" id="btnSearch">
-			                                                <i class="fa fa-search"></i>
-			                                            </button>
-			                                        </div>
-			                                    </div>
-			                                </form>
-		                                </div>
 									</div>
 								</div>
 							</div>
@@ -166,6 +158,41 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		</div>
 	</div>
 	
+	<!-- 수정에 관한 모달 -->
+	<div id="subjectbook_update" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">교재 수정</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="subjectbook_id">교재번호</label> 
+							<input type="text" id="subjectbook_id" name="subjectbook_id" placeholder="교재번호" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="subjectbook_name">교재명</label> 
+							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="subjectbook_isbn">ISBN</label> 
+							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">수정</button>
+					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- 삭제에 관한 모달 -->
 	<div id="subjectbook_delete" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
@@ -180,6 +207,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<div class="modal-body">
 					<p>다음 교재를 삭제하시겠습니까?</p>
 					<form action="" method="post">
+						<div class="form-group">
+							<label for="subjectbook_id">교재번호</label> 
+							<input type="text" id="subjectbook_id" name="subjectbook_id" placeholder="교재번호" class="form-control" readonly>
+						</div>
 						<div class="form-group">
 							<label for="subjectbook_name">교재명</label> 
 							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control" readonly>

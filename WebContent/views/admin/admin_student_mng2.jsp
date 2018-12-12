@@ -64,10 +64,10 @@
                   <li class="breadcrumb-item"><a
                      href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
                   <li class="breadcrumb-item"><a
-                     href="${pageContext.request.contextPath}/views/admin/admin_student.jsp">수강생
+                     href="${pageContext.request.contextPath}/views/admin/admin_student_mng1.jsp">수강생
                         관리</a></li>
                   <li class="breadcrumb-item active"><a
-                     href="${pageContext.request.contextPath}/views/admin/admin_student_mng.jsp">수강생
+                     href="${pageContext.request.contextPath}/views/admin/admin_student_mng2.jsp">수강생
                         과정 관리</a></li>
                </ul>
             </div>

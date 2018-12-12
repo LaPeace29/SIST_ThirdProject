@@ -34,11 +34,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			<a href="${pageContext.request.contextPath}/views/admin/admin_opensubject.jsp"><i class="icon-padnote"></i>개설 과목 관리</a>
 		</li>
 		<li>
-			<a href="#exampledropdownDropdown02" data-toggle="collapse"> <i class="icon-interface-windows"></i>수강생 관리</a>
-			<ul id="exampledropdownDropdown02" class="collapse list-unstyled ">
-				<li><a href="${pageContext.request.contextPath}/views/admin/admin_student.jsp">수강생 관리</a></li>
-				<li><a href="${pageContext.request.contextPath}/views/admin/admin_student_mng.jsp">수강생 과정 관리</a></li>
-			</ul>
+			<a href="${pageContext.request.contextPath}/views/admin/admin_student_mng1.jsp"><i class="icon-padnote"></i>수강생 관리</a>
 		</li>
 		<li>
 			<a href="#exampledropdownDropdown03" data-toggle="collapse"> <i class="icon-interface-windows"></i>성적 조회</a>

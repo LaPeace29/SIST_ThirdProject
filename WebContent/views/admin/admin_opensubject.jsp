@@ -74,8 +74,8 @@
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<button class="btn btn-primary btn-sm btn-reg"
-											data-toggle="modal" data-target="#course_reg">신규 개설
-											과정 추가</button>
+											data-toggle="modal" data-target="#opensubject_reg">신규 개설 과목 추가
+										</button>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -88,7 +88,8 @@
 														<th>개설 과정명</th>
 														<th>개설 과정 기간</th>
 														<th>강의실</th>
-														<th>삭제 가능 여부</th>
+														<th>수정</th>
+														<th>삭제</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -100,9 +101,11 @@
 														<td>-</td>
 														<td>-</td>
 														<td>-</td>
-														<td>-</td>
 														<td>
-															<button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#subject_delete">삭제</button>
+															<button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#opensubject_update">수정</button>
+														</td>
+														<td>
+															<button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#opensubject_delete">삭제</button>
 														</td>
 													</tr>
 													<tr>
@@ -217,13 +220,12 @@
 		</div>
 	</div>
 
-
 	<!-- 등록에 관한 모달 -->
-	<div id="course_reg" role="dialog" class="modal fade text-left">
+	<div id="opensubject_reg" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">신규 개설 과정 등록</h4>
+					<h4 id="exampleModalLabel" class="modal-title">신규 개설 과목 등록</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
@@ -232,35 +234,44 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="courseNumSelect">개설 과정</label> <select
-								class="form-control" id="courseNumSelect" name="courseNumSelect"
-								required>
-								<option>과정번호1 / 과정명1</option>
-								<option>과정번호2 / 과정명2</option>
-								<option>과정번호3 / 과정명3</option>
-								<option>과정번호4 / 과정명4</option>
-							</select> <label for="subjectSelect">과목</label> <select
-								class="form-control" id="subjectSelect" name="subjectSelect"
-								required>
+							<label for="courseNumSelect">개설 과정</label> 
+							<select
+								class="form-control" id="courseNumSelect" name="courseNumSelect" required>
+								<option>개설과정번호1 / 과정명1</option>
+								<option>개설과정번호2 / 과정명2</option>
+								<option>개설과정번호3 / 과정명3</option>
+								<option>개설과정번호4 / 과정명4</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="subjectSelect">과목</label>
+							<select class="form-control" id="subjectSelect" name="subjectSelect" required>
 								<option>과목번호1 / 과목명1</option>
 								<option>과목번호2 / 과목명2</option>
 								<option>과목번호3 / 과목명3</option>
 								<option>과목번호4 / 과목명4</option>
-							</select> <label for="subjectStartDate">과목 시작일</label> <input type="date"
-								class="form-control" id="subjectStartDate"
-								name="subjectStartDate" required> <label
-								for="subjectEndDate">과목 종료일</label> <input type="date"
-								class="form-control" id="subjectEndDate" name="subjectEndDate"
-								required> <label for="subjectBookSelect">교재</label> <select
-								class="form-control" id="subjectBookSelect"
-								name="subjectBookSelect" required>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="subjectStartDate">과목 시작일</label> 
+							<input type="date" class="form-control" id="subjectStartDate" name="subjectStartDate" required>
+						</div>
+						<div class="form-group">
+							<label for="subjectEndDate">과목 종료일</label> 
+							<input type="date" class="form-control" id="subjectEndDate" name="subjectEndDate" required>
+						</div>
+						<div class="form-group">
+							<label for="subjectBookSelect">교재</label> 
+							<select class="form-control" id="subjectBookSelect" name="subjectBookSelect" required>
 								<option>교재번호1 / 교재명1</option>
 								<option>교재번호2 / 교재명2</option>
 								<option>교재번호3 / 교재명3</option>
 								<option>교재번호4 / 교재명4</option>
-							</select> <label for="instructorSelect">강사</label> <select
-								class="form-control" id="instructorSelect"
-								name="instructorSelect" required>
+							</select> 
+						</div>
+						<div class="form-group">
+							<label for="instructorSelect">강사</label> 
+								<select	class="form-control" id="instructorSelect" name="instructorSelect" required>
 								<option>강사번호1 / 강사명1</option>
 								<option>강사번호2 / 강사명2</option>
 								<option>강사번호3 / 강사명3</option>
@@ -279,31 +290,104 @@
 	</div>
 
 
-
-
-	<!-- 과목 삭제에 관한 모달 -->
-	<div id="subject_delete" role="dialog" class="modal fade text-left">
+	<!-- 수정에 관한 모달 -->
+	<div id="opensubject_update" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">과목 삭제</h4>
+					<h4 id="exampleModalLabel" class="modal-title">신규 개설 과목 수정</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>다음 과목을 삭제하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="subject_name">과목명</label> <input type="text"
-								id=subject_name name="subject_name" placeholder="과목명"
-								class="form-control" readonly>
+							<label for="opensubject_id">개설 과정 번호</label> 
+							<input type="date" class="form-control" id="opensubject_id" name="opensubject_id" required>
 						</div>
 						<div class="form-group">
-							<label for="subject_date">과목 기간</label> <input type="text"
-								id="subject_date" name="subject_date"
-								placeholder="과목 기간" class="form-control" readonly>
+							<label for="courseNumSelect">개설과정명</label> 
+							<select
+								class="form-control" id="courseNumSelect" name="courseNumSelect" required>
+								<option>개설과정번호1 / 과정명1</option>
+								<option>개설과정번호2 / 과정명2</option>
+								<option>개설과정번호3 / 과정명3</option>
+								<option>개설과정번호4 / 과정명4</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="subjectSelect">과목</label>
+							<select class="form-control" id="subjectSelect" name="subjectSelect" required>
+								<option>과목번호1 / 과목명1</option>
+								<option>과목번호2 / 과목명2</option>
+								<option>과목번호3 / 과목명3</option>
+								<option>과목번호4 / 과목명4</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="subjectStartDate">과목 시작일</label> 
+							<input type="date" class="form-control" id="subjectStartDate" name="subjectStartDate" required>
+						</div>
+						<div class="form-group">
+							<label for="subjectEndDate">과목 종료일</label> 
+							<input type="date" class="form-control" id="subjectEndDate" name="subjectEndDate" required>
+						</div>
+						<div class="form-group">
+							<label for="subjectBookSelect">교재</label> 
+							<select class="form-control" id="subjectBookSelect" name="subjectBookSelect" required>
+								<option>교재번호1 / 교재명1</option>
+								<option>교재번호2 / 교재명2</option>
+								<option>교재번호3 / 교재명3</option>
+								<option>교재번호4 / 교재명4</option>
+							</select> 
+						</div>
+						<div class="form-group">
+							<label for="instructorSelect">강사</label> 
+								<select	class="form-control" id="instructorSelect" name="instructorSelect" required>
+								<option>강사번호1 / 강사명1</option>
+								<option>강사번호2 / 강사명2</option>
+								<option>강사번호3 / 강사명3</option>
+								<option>강사번호4 / 강사명4</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">수정</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-light">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 과목 삭제에 관한 모달 -->
+	<div id="opensubject_delete" role="dialog" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="exampleModalLabel" class="modal-title">개설 과목 삭제</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>다음 개설과목을 삭제하시겠습니까?</p>
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="subject_name">개설 과목 번호</label> 
+							<input type="text" id=subject_name name="subject_name" placeholder="과목명"	class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="subject_name">개설 과목명</label> 
+							<input type="text" id=subject_name name="subject_name" placeholder="과목명" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<label for="subject_date">과목 기간</label>
+							<input type="text" id="subject_date" name="subject_date" placeholder="과목 기간" class="form-control" readonly>
 						</div>
 					</form>
 				</div>
