@@ -103,10 +103,10 @@
 												<thead>
 													<tr>
 														<th>개설 과정 번호</th>
-														<th>개설 과정명</th>
+														<th>과정명</th>
 														<th>개설 과정 기간</th>
-														<th>강의실</th>
-														<th>징행 상황</th>
+														<th>강의실명</th>
+														<th>진행 상황</th>
 														<th>수료 여부</th>
 
 													</tr>
@@ -140,10 +140,10 @@
 											<table class="table">
 												<thead>
 													<tr>
-														<th>개설 과목명</th>
+														<th>과목명</th>
 														<th>교재명</th>
-														<th>강사명</th>
-														<th>시험날짜</th>
+														<th>강사 이름</th>
+														<th>시험 날짜</th>
 														<th>출결 점수(배점)</th>
 														<th>필기 점수(배점)</th>
 														<th>실기 점수(배점)</th>
@@ -156,7 +156,7 @@
 													<tr>
 														<td rowspan="2">Java SE (2018-06-25~2018-09-10)</td>
 														<td rowspan="2"><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이 자바다</a></td>
-														<td rowspan="2"><a class ="instructor-look popover-bold" data-toggle="popover" title="김강사 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
+														<td rowspan="2"><a class ="instructor-look popover-bold" data-toggle="popover" title="김강사<br>010-1234-1234" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
 														<td>2018-10-15</td>
 														<td>-(20)</td>
 														<td>-(30)</td>

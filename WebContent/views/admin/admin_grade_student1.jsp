@@ -74,7 +74,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													<tr>
 														<th>수강생 번호</th>
 														<th>수강생 이름</th>
-														<th>수강생 전화번호</th>
+														<th>수강생 휴대폰번호</th>
 														<th>수강생 등록일</th>
 														<th>수강 횟수</th>
 														<th>수강 과정</th>

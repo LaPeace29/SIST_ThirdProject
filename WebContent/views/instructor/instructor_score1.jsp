@@ -95,14 +95,14 @@ $(document).ready(function() {
 												<thead>
 													<tr>
 														<th>개설 과목 번호</th>
-														<th>개설 과목명</th>
+														<th>과목명</th>
 														<th>개설 과목 기간</th>
-														<th>개설 과정명</th>
+														<th>과정명</th>
 														<th>개설 과정 기간</th>
-														<th>강의실</th>
+														<th>강의실명</th>
 														<th>교재명</th>
 														<th>수강생 등록 인원</th>
-														<th>비고</th>
+														<th>강의 진행 여부</th>
 														<th>시험 정보</th>
 													</tr>
 												</thead>

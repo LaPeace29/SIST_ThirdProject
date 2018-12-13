@@ -102,7 +102,7 @@
 														</tr>
 
 														<tr>
-															<td>수강생 휴대폰 번호</td>
+															<td>수강생 휴대폰번호</td>
 															<td>010-0000-0000</td>
 														</tr>
 
@@ -120,9 +120,9 @@
 												<thead>
 													<tr>
 														<th>개설 과정 번호</th>
-														<th>개설 과정명</th>
+														<th>과정명</th>
 														<th>개설 과정 기간</th>
-														<th>강의실</th>
+														<th>강의실명</th>
 														<th>진행 상황</th>
 														<th>수료 여부</th>
 														<th>성적</th>
@@ -142,11 +142,11 @@
 															</div>
 														</td>
 														<td>수료</td>
-														<td><button class="btn btn-sm btn-light btn-look"><a>성적 조회</a></button></td>
+														<td><button class="btn btn-sm btn-light btn-look">성적 조회</button></td>
 													</tr>
 													<tr>
 														<td>OC0015</td>
-														<td>Java & Python 기반 응용 SW 개발자 양성 과정</td>
+														<td>Java &amp; Python 기반 응용 SW 개발자 양성 과정</td>
 														<td>2018-06-25 ~ 2019-01-17</td>
 														<td>2강의실</td>
 														<td>
@@ -157,7 +157,7 @@
 															</div>
 														</td>
 														<td>수료 예정</td>
-														<td><button class ="btn btn-sm btn-light btn-look"><a>성적 조회</a></button></td>
+														<td><button class ="btn btn-sm btn-light btn-look">성적 조회</button></td>
 													</tr>
 												</tbody>
 											</table>

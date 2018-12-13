@@ -86,7 +86,7 @@
 														<th>실기 배점</th>
 														<th>시험 날짜</th>
 														<th>시험 문제</th>
-														<th>비고</th>
+														<th>삭제</th>
 													</tr>
 												</thead>
 												<tbody>													

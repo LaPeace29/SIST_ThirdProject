@@ -28,11 +28,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	<script>
 	
 		$(document).ready(function() {
-			$(".admin-look").popover({ 
-				placement : 'left',
-				trigger: "hover", 
-				html: true
-			});
+
 		});
 	
 	</script>
@@ -76,8 +72,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														<th>관리자 이름</th>
 														<th>관리자 휴대폰번호</th>
 														<th>관리자 등록일</th>
-														<th>등급</th>
-														<th>계정잠금상태</th>
+														<th>관리자 등급</th>
+														<th>계정 잠금 상태</th>
 														<th>계정잠금</th>
 														<th>수정</th>
 														<th>삭제</th>
@@ -87,7 +83,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<tbody>
 													<tr>
 														<td>admin001</td>
-		                                                <td><a class="admin-look popover-bold" data-toggle="popover" title="김관리 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김관리</a></td>
+		                                                <td>김관리</td>
 		                                                <td>010-1234-1234</td>
 		                                                <td>2018-01-01</td>
 		                                                <td>superadmin</td>
@@ -103,7 +99,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                           </tr>
 													<tr>
                                                			<td>admin002</td>
-		                                                <td><a class="admin-look popover-bold" data-toggle="popover" title="이관리 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">이관리</a></td>
+		                                                <td>이관리</td>
 		                                                <td>010-1111-1234</td>
 		                                                <td>2018-01-01</td>
 		                                                <td>admin</td>
@@ -119,7 +115,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                           </tr>
 		                                           <tr>
 		                                                <td>admin003</td>
-		                                                <td><a class="admin-look popover-bold" data-toggle="popover" title="박관리 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">박관리</a></td>
+		                                                <td>박관리</td>
 		                                                <td>010-2222-1234</td>
 		                                                <td>2018-01-01</td>
 		                                                <td>admin</td>
@@ -210,14 +206,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="admin_regDate">등록일</label> 
 							<input type="text" id="admin_regDate" name="admin_regDate" placeholder="등록일" class="form-control">
 						</div>
-						<div class="form-group">
-							<label for="admin_photo">사진 파일</label> 
-							<input type="file" id="admin_photo" name="admin_photo" placeholder="사진 파일" class="form-control">
-						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">수정</button>
+					<button type="button" class="btn btn-primary">등록</button>
 					<button type="button" data-dismiss="modal"
 						class="btn btn-secondary">취소</button>
 				</div>
@@ -254,14 +246,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="admin_regDate">등록일</label> 
 							<input type="text" id="admin_regDate" name="admin_regDate" placeholder="등록일" class="form-control">
 						</div>
-						<div class="form-group">
-							<label for="admin_photo">사진 파일</label> 
-							<input type="file" id="admin_photo" name="admin_photo" placeholder="사진 파일" class="form-control">
-						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
+					<button type="button" class="btn btn-primary">수정</button>
 					<button type="button" data-dismiss="modal"
 						class="btn btn-secondary">취소</button>
 				</div>

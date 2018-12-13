@@ -102,9 +102,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<thead>
 													<tr>
 														<th>개설 과목 번호</th>
-														<th>개설 과목명</th>
+														<th>과목명</th>
 														<th>개설 과목 기간</th>
-														<th>강사명</th>
+														<th>강사 이름</th>
 														<th>교재명</th>
 														<th>시험 정보</th>
 													</tr>

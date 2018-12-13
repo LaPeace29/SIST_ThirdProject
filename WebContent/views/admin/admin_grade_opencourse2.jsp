@@ -69,9 +69,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												<thead>
 													<tr>
 														<th>개설 과목 번호</th>
-														<th>개설 과목명</th>
+														<th>과목명</th>
 														<th>개설 과목 기간</th>
-														<th>강사명</th>
+														<th>강사 이름</th>
 														<th>교재명</th>
 														<th>시험 정보</th>
 													</tr>
@@ -139,7 +139,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													<tr>
 														<th>수강생 번호</th>
 														<th>수강생 이름</th>
-														<th>수강생 전화번호</th>
+														<th>수강생 휴대폰번호</th>
 														<th>출결 점수</th>
 														<th>필기 점수</th>
 														<th>실기 점수</th>

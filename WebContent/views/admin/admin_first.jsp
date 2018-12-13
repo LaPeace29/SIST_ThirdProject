@@ -90,7 +90,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                <th>최대정원</th>
 		                                                <th>수강인원</th>
 		                                                <th>중도 탈락 인원</th>
-		                                                <th>개설과정명(기간)</th>
+		                                                <th>과정명(개설과정기간)</th>
 													</tr>
 												</thead>
 												<tbody>
