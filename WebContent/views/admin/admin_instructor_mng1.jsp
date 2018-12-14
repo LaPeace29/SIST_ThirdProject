@@ -339,41 +339,48 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<div class="modal-body">
 					<p>김강사 / 010-1234-1234</p>
 					<form action="" method="post">
-					<div class="form-group">
-					<div class="form-checkbox">
-						<!-- label style을 css로 빼기 ~~~~~~~~~~~~~~~~~~~~~~-->
-                              <input type="checkbox" class="checkbox-template" value="student" name="loginType"  checked >
-                              <label for="checkbox" >Java SE</label>
-                    </div>
-                    <div class="form-checkbox">
-                              <input type="checkbox" class="checkbox-template" value="instructor" name="loginType" checked >
-                              <label for="checkbox" >Oracle</label>
-                    </div>
-                    <div class="form-checkbox">
-                              <input type="checkbox" class="checkbox-template" value="admin" name="loginType" checked>
-                              <label for="checkbox" >HTML5</label>
-                    </div>
-                    <div class="form-checkbox">
-                              <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
-                              <label for="checkbox" >CSS</label>                    
-                    </div>
-                    <div class="form-checkbox">
-                              <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
-                              <label for="checkbox">JavaScript</label>                      
-                    </div>
-                    <div class="form-checkbox">
-                               <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
-                              <label for="checkbox">...</label>                   
-                    </div>
-                    <div class="form-checkbox">
-                               <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
-                              <label for="checkbox">...</label>                   
-                    </div>
-                    <div class="form-checkbox">
-                               <input type="checkbox" class="checkbox-template" value="admin" name="loginType" >
-                              <label for="checkbox">...</label>                   
-                    </div>	               
-	               </div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-checkbox">
+										<input type="checkbox" class="checkbox-template"
+											value="student" name="loginType" checked> <label
+											for="checkbox">Java SE</label>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="form-checkbox">
+										<input type="checkbox" class="checkbox-template"
+											value="instructor" name="loginType" checked> <label
+											for="checkbox">Oracle</label>
+									</div>
+									<div class="form-checkbox">
+										<input type="checkbox" class="checkbox-template" value="admin"
+											name="loginType" checked> <label for="checkbox">HTML5</label>
+									</div>
+									<div class="form-checkbox">
+										<input type="checkbox" class="checkbox-template" value="admin"
+											name="loginType"> <label for="checkbox">CSS</label>
+									</div>
+									<div class="form-checkbox">
+										<input type="checkbox" class="checkbox-template" value="admin"
+											name="loginType"> <label for="checkbox">JavaScript</label>
+									</div>
+									<div class="form-checkbox">
+										<input type="checkbox" class="checkbox-template" value="admin"
+											name="loginType"> <label for="checkbox">...</label>
+									</div>
+									<div class="form-checkbox">
+										<input type="checkbox" class="checkbox-template" value="admin"
+											name="loginType"> <label for="checkbox">...</label>
+									</div>
+									<div class="form-checkbox">
+										<input type="checkbox" class="checkbox-template" value="admin"
+											name="loginType"> <label for="checkbox">...</label>
+									</div>
+								</div>
+							</div>
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
