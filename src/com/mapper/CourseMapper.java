@@ -16,6 +16,9 @@ public class CourseMapper implements RowMapper<Course> {
 		// 미리 준비한 객체의 특정 변수와 연결
 		Course cs = new Course();
 		
+		cs.setCourse_id(rs.getString("course_id"));
+		cs.setCourse_name(rs.getString("course_name"));
+		cs.setCount_(rs.getInt("count_"));
 		
 		return cs;
 	}

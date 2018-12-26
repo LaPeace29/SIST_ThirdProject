@@ -12,10 +12,19 @@ public class AdminMapper implements RowMapper<Admin> {
 	@Override
 	public Admin mapRow(ResultSet rs, int count) throws SQLException {
 		
-		// ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ì½ì–´ì˜¨ ê²°ê³¼ë¥¼
-		// ë¯¸ë¦¬ ì¤€ë¹„í•œ ê°ì²´ì˜ íŠ¹ì • ë³€ìˆ˜ì™€ ì—°ê²°
+		// µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ÀĞ¾î¿Â °á°ú¸¦
+		// ¹Ì¸® ÁØºñÇÑ °´Ã¼ÀÇ Æ¯Á¤ º¯¼ö¿Í ¿¬°á
 		Admin admin = new Admin();
 		
+		admin.setAdmin_blind(rs.getBoolean("admin_blind"));
+		admin.setAdmin_grade(rs.getString("admin_grade"));
+		admin.setAdmin_id(rs.getString("admin_id"));
+		admin.setAdmin_name(rs.getString("admin_name"));
+		admin.setAdmin_new_pw(rs.getString("admin_new_pw"));
+		admin.setAdmin_phone(rs.getString("admin_phone"));
+		admin.setAdmin_pw(rs.getString("admin_pw"));
+		admin.setAdmin_regDate(rs.getDate("admin_regDate"));
+		admin.setCount_(rs.getInt("count_"));
 		
 		return admin;
 	}

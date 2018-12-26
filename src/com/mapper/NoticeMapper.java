@@ -12,10 +12,14 @@ public class NoticeMapper implements RowMapper<Notice> {
 	@Override
 	public Notice mapRow(ResultSet rs, int count) throws SQLException {
 		
-		// ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ì½ì–´ì˜¨ ê²°ê³¼ë¥¼
-		// ë¯¸ë¦¬ ì¤€ë¹„í•œ ê°ì²´ì˜ íŠ¹ì • ë³€ìˆ˜ì™€ ì—°ê²°
+		// µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ÀĞ¾î¿Â °á°ú¸¦
+		// ¹Ì¸® ÁØºñÇÑ °´Ã¼ÀÇ Æ¯Á¤ º¯¼ö¿Í ¿¬°á
 		Notice notice = new Notice();
 		
+		notice.setAdmin_id(rs.getString("admin_id"));
+		notice.setNotice_content(rs.getString("notice_content"));
+		notice.setNotice_id(rs.getString("notice_id"));
+		notice.setNotice_regDate(rs.getDate("notice_regDate"));
 		
 		return notice;
 	}

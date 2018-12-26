@@ -5,19 +5,21 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.domain.Subjectbook;
+import com.domain.Subject;
 
-public class SubjectMapper implements RowMapper<Subjectbook> {
+public class SubjectMapper implements RowMapper<Subject> {
 
 	@Override
-	public Subjectbook mapRow(ResultSet rs, int count) throws SQLException {
+	public Subject mapRow(ResultSet rs, int count) throws SQLException {
 		
 		// 데이터베이스에서 읽어온 결과를
 		// 미리 준비한 객체의 특정 변수와 연결
-		Subjectbook sb = new Subjectbook();
+		Subject sub = new Subject();
+		sub.setSubject_id(rs.getString("subject_id"));
+		sub.setSubject_name(rs.getString("subject_name"));
+		sub.setCount_(rs.getInt("count_"));
 		
-		
-		return sb;
+		return sub;
 	}
 
 }
