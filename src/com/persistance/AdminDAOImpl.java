@@ -1,5 +1,5 @@
 package com.persistance;
 
-public class AdminDAOImpl {
-	
+public class AdminDAOImpl implements AdminDAO {
+
 }

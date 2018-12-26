@@ -1,5 +1,5 @@
 package com.persistance;
 
-public class InstructorDAOImpl {
+public class InstructorDAOImpl implements InstructorDAO{
 
 }

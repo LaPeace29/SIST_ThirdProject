@@ -1,5 +1,5 @@
 package com.persistance;
 
-public class SubjectDAOImpl {
+public class SubjectDAOImpl implements SubjectDAO{
 
 }

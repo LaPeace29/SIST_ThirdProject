@@ -1,5 +1,5 @@
 package com.persistance;
 
-public class OpenSubjectDAOImpl {
+public class OpenSubjectDAOImpl implements OpenSubjectDAO{
 
 }

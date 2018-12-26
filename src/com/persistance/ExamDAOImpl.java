@@ -1,5 +1,5 @@
 package com.persistance;
 
-public class ExamDAOImpl {
+public class ExamDAOImpl implements ExamDAO{
 
 }
