@@ -58,7 +58,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 										<h3 class="h4">현재 진행중인 과정</h3>
 									</div>
 									<div class="card-body">
-										Java&Python 기반 응용 SW 개발자 양성과정 수료 (0000-00-00 ~ 0000-00-00) D-50
+										Java&amp;Python 기반 응용 SW 개발자 양성과정 수료 (0000-00-00 ~ 0000-00-00) D-50
 									</div>
 								</div>
 								
