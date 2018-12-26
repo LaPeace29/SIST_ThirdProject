@@ -5,8 +5,8 @@ import java.sql.Date;
 public class OpenCourse {
 	
 	private String open_course_id;			// 개설 과정 아이디
-	private String class_room_id;			// 강의실 아이디
-	private String class_room_name;			// 강의실 이름
+	private String classroom_id;			// 강의실 아이디
+	private String classroom_name;			// 강의실 이름
 	private String course_id;				// 과정 아이디
 	private String course_name;				// 과정 이름
 	private Date open_course_start_date;	// 개설 과정 시작일
@@ -25,12 +25,12 @@ public class OpenCourse {
 		return open_course_id;
 	}
 
-	public String getClass_room_id() {
-		return class_room_id;
+	public String getClassroom_id() {
+		return classroom_id;
 	}
 
-	public String getClass_room_name() {
-		return class_room_name;
+	public String getClassroom_name() {
+		return classroom_name;
 	}
 
 	public String getCourse_id() {
@@ -86,12 +86,12 @@ public class OpenCourse {
 		this.open_course_id = open_course_id;
 	}
 
-	public void setClass_room_id(String class_room_id) {
-		this.class_room_id = class_room_id;
+	public void setClassroom_id(String classroom_id) {
+		this.classroom_id = classroom_id;
 	}
 
-	public void setClass_room_name(String class_room_name) {
-		this.class_room_name = class_room_name;
+	public void setClassroom_name(String classroom_name) {
+		this.classroom_name = classroom_name;
 	}
 
 	public void setCourse_id(String course_id) {

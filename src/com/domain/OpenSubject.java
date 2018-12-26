@@ -19,7 +19,7 @@ public class OpenSubject {
 	private Date subject_end_date;			// 과목 종료일
 	private Date open_course_start_date;	// 개설 과정 시작일
 	private Date open_course_end_date;		// 개설 과정 종료일
-	private String class_room_name;			// 강의실 이름
+	private String classroom_name;			// 강의실 이름
 	private int student_count;				// 수강생 등록 인원
 	private String instructor_status;		// 강사 진행 여부(강의진행전, 강의진행중, 강의종료)
 	private int count_;						// 삭제 가능 여부
@@ -81,8 +81,8 @@ public class OpenSubject {
 		return open_course_end_date;
 	}
 
-	public String getClass_room_name() {
-		return class_room_name;
+	public String getClassroom_name() {
+		return classroom_name;
 	}
 
 	public int getStudent_count() {
@@ -154,8 +154,8 @@ public class OpenSubject {
 		this.open_course_end_date = open_course_end_date;
 	}
 
-	public void setClass_room_name(String class_room_name) {
-		this.class_room_name = class_room_name;
+	public void setClassroom_name(String classroom_name) {
+		this.classroom_name = classroom_name;
 	}
 
 	public void setStudent_count(int student_count) {
