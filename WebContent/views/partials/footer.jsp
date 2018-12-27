@@ -5,7 +5,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <p>쌍용교육센터 1조 &copy; 2017-2019</p>
+                <p>쌍용교육센터 1조 &copy; 2018-2019</p>
             </div>
             <div class="col-sm-6 text-right">
                 <p>Design by 쌍용교육센터 1조</p>
