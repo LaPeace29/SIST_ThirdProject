@@ -114,22 +114,6 @@
 											txt += "		</tbody>";
 											txt += "	</table>";
 											txt += "	</div>";
-											txt += "	<div style=\"text-align: center; padding-top: 10px\">";
-											txt += "		<button class=\"btn btn-primary\" id=\"prev\">이전</button>";
-											txt += "		<button class=\"btn btn-primary\" id=\"next\">다음</button>";
-											txt += "		<form style=\"float: right\" class=\"form-inline\" method=\"post\">";
-											txt += "		<div>";
-											txt += "		<div class=\"form-group\">";
-											txt += "			<select class=\"form-control\" id=\"key\" name=\"key\">";
-											txt += "			<option value=exam_id>시험 번호</option>";
-											txt += "			</select> <input type=\"text\" class=\"form-control\" id=\"value\" name=\"value\" placeholder=\"Search\">";
-											txt += "				<button type=\"button\" class=\"btn btn-md btn-light\" id=\"btnSearchExam\">";
-											txt += "					<i class=\"fa fa-search\"></i>";
-											txt += "				</button>";
-											txt += "			</div>";
-											txt += "		</div>";
-											txt += "		</form>";
-											txt += "	</div>";
 											txt += "	</div>";
 
 											console.log(txt);
@@ -158,7 +142,7 @@
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/views/admin/admin_opencourse1.jsp">개설 과정 관리</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/admin_opencourse2.jsp">개설 과목 성적</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_opencourse2.jsp">과목 정보</a></li>
 					</ul>
 				</div>
 
@@ -216,33 +200,6 @@
 												</tbody>
 											</table>
 										</div>
-										<div style="text-align: center; padding-top: 10px">
-											<button class="btn btn-primary" id="prev">이전</button>
-											<button class="btn btn-primary" id="next">다음</button>
-
-											<form style="float: right" class="form-inline" method="post">
-												<div>
-													<div class="form-group">
-														<!-- 검색 단어 입력 폼 -->
-														<!-- 검색 기준은 각자 상황에 맞춰서 설정하세요!! -->
-														<select class="form-control text-small" id="key"
-															name="key">
-															<option class="text-small" value=exam_id>개설 과목
-																번호</option>
-															<option class="text-small" value=subject_name>과목명</option>
-															<option class="text-small" value=instructor_name>강사명</option>
-														</select> <input type="text" class="form-control" id="value"
-															name="value" placeholder="Search">
-														<!-- 검색 진행 버튼 -->
-														<button type="button" class="btn btn-md btn-light"
-															id="btnSearch">
-															<i class="fa fa-search"></i>
-														</button>
-													</div>
-												</div>
-											</form>
-										</div>
-										<br>
 									</div>
 								</div>
 								<div id="demo"></div>

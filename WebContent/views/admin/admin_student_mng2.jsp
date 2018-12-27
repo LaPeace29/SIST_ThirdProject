@@ -122,33 +122,6 @@
                                     </tbody>
                                  </table>
                               </div>
-                              <div style="text-align: center; padding-top: 10px">
-                                 <button class="btn btn-primary" id="prev">이전</button>
-                                 <button class="btn btn-primary" id="next">다음</button>
-
-                                 <form style="float: right" class="form-inline" method="post">
-                                    <div>
-                                       <div class="form-group">
-                                          <!-- 검색 단어 입력 폼 -->
-                                          <!-- 검색 기준은 각자 상황에 맞춰서 설정하세요!! -->
-                                          <select class="form-control text-small" id="key"
-                                             name="key">
-                                             <option class="text-small" value="gid">Gid</option>
-                                             <option class="text-small" value="name">Name</option>
-                                             <option class="text-small" value="phone">Phone</option>
-                                             <option class="text-small" value="regDate">RegDate</option>
-                                          </select> <input type="text" class="form-control" id="value"
-                                             name="value" placeholder="Search">
-                                          <!-- 검색 진행 버튼 -->
-                                          <button type="button" class="btn btn-md btn-light"
-                                             id="btnSearch">
-                                             <i class="fa fa-search"></i>
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </form>
-                              </div>
-                              <br>
                            </div>
                         </div>
                      </div>
