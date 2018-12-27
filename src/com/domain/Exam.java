@@ -3,35 +3,36 @@ package com.domain;
 import java.sql.Date;
 
 public class Exam {
-	
+
 	// Field
-	private String exam_id;				// 시험 아이디
-	private String subject_point_id;	// 과목별 배점 정보 아이디
-	private String student_score_id;	// 수강생 성적 정보 아이디
-	private String open_subject_id;		// 개설 과목 아이디
-	private String subject_name;		// 과목 이름
-	private String subjectbook_name;	// 교재 이름
-	private Date subject_start_date;	// 과목 시작일
-	private Date subject_end_date;		// 과목 종료일
-	private String instructor_id;		// 강사 아이디
-	private String instructor_name;		// 강사 이름
-	private int attendance_point;		// 출결 배점
-	private int write_point;			// 필기 배점
-	private int skill_point;			// 실기 배점
-	private Date exam_date;				// 시험 날짜
-	private String exam_file;			// 시험 문제 파일
-	private String student_id;			// 수강생 아이디
-	private String student_name;		// 수강생 이름
-	private String student_phone;		// 수강생 휴대폰번호
-	private Date student_regDate;		// 수강생 등록일
-	private int attendance_score;		// 출결 점수
-	private int write_score;			// 필기 점수
-	private int skill_score;			// 실기 점수
-	private int total_score;			// 총점
-	private int class_count;			// 수강 횟수
-	private String completion_status;	// 수료 여부
-	private Date dropout_date;			// 날짜(수료 or 중도탈락)
-	private String score_status;		// 성적 입력 여부(관리자 20번 참고)
+	private String exam_id; 				// 시험 아이디
+	private String subject_point_id; 		// 과목별 배점 정보 아이디
+	private String student_score_id;	 	// 수강생 성적 정보 아이디
+	private String open_subject_id; 		// 개설 과목 아이디
+	private String subject_name; 			// 과목 이름
+	private String subjectbook_name; 		// 교재 이름
+	private Date subject_start_date; 		// 과목 시작일
+	private Date subject_end_date; 			// 과목 종료일
+	private String instructor_id; 			// 강사 아이디
+	private String instructor_name; 		// 강사 이름
+	private int attendance_point; 			// 출결 배점
+	private int write_point;				// 필기 배점
+	private int skill_point; 				// 실기 배점
+	private Date exam_date; 				// 시험 날짜
+	private String exam_file; 				// 시험 문제 파일
+	private String student_id; 				// 수강생 아이디
+	private String student_name; 			// 수강생 이름
+	private String student_phone; 			// 수강생 휴대폰번호
+	private Date student_regDate; 			// 수강생 등록일
+	private int attendance_score; 			// 출결 점수
+	private int write_score; 				// 필기 점수
+	private int skill_score; 				// 실기 점수
+	private int total_score; 				// 총점
+	private int class_count;			 	// 수강 횟수
+	private int count_; 					// 삭제 가능 여부
+	private String completion_status; 		// 수료 여부
+	private Date dropout_date; 				// 날짜(수료 or 중도탈락)
+	private String score_status; 			// 성적 입력 여부(관리자 20번 참고)
 
 	// Getter
 	public String getExam_id() {
@@ -69,7 +70,7 @@ public class Exam {
 	public String getInstructor_id() {
 		return instructor_id;
 	}
-	
+
 	public String getInstructor_name() {
 		return instructor_name;
 	}
@@ -134,7 +135,7 @@ public class Exam {
 		return completion_status;
 	}
 
-	public Date getCompletion_date() {
+	public Date getDropout_date() {
 		return dropout_date;
 	}
 
@@ -177,6 +178,14 @@ public class Exam {
 
 	public void setInstructor_id(String instructor_id) {
 		this.instructor_id = instructor_id;
+	}
+
+	public int getCount_() {
+		return count_;
+	}
+
+	public void setCount_(int count_) {
+		this.count_ = count_;
 	}
 
 	public void setInstructor_name(String instructor_name) {

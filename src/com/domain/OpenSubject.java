@@ -20,7 +20,9 @@ public class OpenSubject {
 	private Date open_course_start_date;	// 개설 과정 시작일
 	private Date open_course_end_date;		// 개설 과정 종료일
 	private String classroom_name;			// 강의실 이름
+	private int max_number;					// 강의실 최대 정원
 	private int student_count;				// 수강생 등록 인원
+	private int dropout_count;				// 중도 탈락 인원
 	private String instructor_status;		// 강사 진행 여부(강의진행전, 강의진행중, 강의종료)
 	private int count_;						// 삭제 가능 여부
 
@@ -85,6 +87,10 @@ public class OpenSubject {
 		return classroom_name;
 	}
 
+	public int getMax_number() {
+		return max_number;
+	}
+	
 	public int getStudent_count() {
 		return student_count;
 	}
@@ -93,6 +99,10 @@ public class OpenSubject {
 		return instructor_status;
 	}
 
+	public int getDropout_count() {
+		return dropout_count;
+	}
+	
 	public int getCount_() {
 		return count_;
 	}
@@ -158,6 +168,10 @@ public class OpenSubject {
 		this.classroom_name = classroom_name;
 	}
 
+	public void setMax_number(int max_number) {
+		this.max_number = max_number;
+	}	
+	
 	public void setStudent_count(int student_count) {
 		this.student_count = student_count;
 	}
@@ -166,7 +180,11 @@ public class OpenSubject {
 		this.instructor_status = instructor_status;
 	}
 
+	public void setDropout_count(int dropout_count) {
+		this.dropout_count = dropout_count;
+	}
+	
 	public void setCount_(int count_) {
 		this.count_ = count_;
-	}	
+	}
 }
