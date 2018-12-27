@@ -2,10 +2,19 @@ package com.service;
 
 import java.util.List;
 
-import com.domain.Course;
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
+import com.domain.Course;
+import com.persistance.CourseDAO;
+
+@Service("courseService")
 public class CourseServiceImpl implements CourseService {
 
+	@Resource(name="courseDAO")
+	private CourseDAO courseDAO;
+	
 	@Override
 	public int insert(Course cs) {
 		// TODO Auto-generated method stub

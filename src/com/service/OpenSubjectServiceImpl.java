@@ -2,11 +2,20 @@ package com.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.domain.OpenCourse;
 import com.domain.OpenSubject;
+import com.persistance.OpenSubjectDAO;
 
+@Service("openSubjectService")
 public class OpenSubjectServiceImpl implements OpenSubjectService {
 
+	@Resource(name="openSubjectDAO")
+	private OpenSubjectDAO openSubjectDAO;
+	
 	@Override
 	public List<OpenSubject> title() {
 		// TODO Auto-generated method stub

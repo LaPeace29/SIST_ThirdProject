@@ -2,10 +2,19 @@ package com.service;
 
 import java.util.List;
 
-import com.domain.Student;
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
+import com.domain.Student;
+import com.persistance.StudentDAO;
+
+@Service("studentService")
 public class StudentServiceImpl implements StudentService {
 
+	@Resource(name="studentDAO")
+	private StudentDAO studentDAO;
+	
 	@Override
 	public List<Student> title() {
 		// TODO Auto-generated method stub

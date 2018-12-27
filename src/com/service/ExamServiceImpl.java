@@ -2,10 +2,19 @@ package com.service;
 
 import java.util.List;
 
-import com.domain.Exam;
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
+import com.domain.Exam;
+import com.persistance.ExamDAO;
+
+@Service("examService")
 public class ExamServiceImpl implements ExamService {
 
+	@Resource(name="examDAO")
+	private ExamDAO examDAO;
+	
 	@Override
 	public List<Exam> prints1() {
 		// TODO Auto-generated method stub

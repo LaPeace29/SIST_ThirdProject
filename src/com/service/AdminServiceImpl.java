@@ -2,10 +2,19 @@ package com.service;
 
 import java.util.List;
 
-import com.domain.Admin;
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
+import com.domain.Admin;
+import com.persistance.AdminDAO;
+
+@Service("adminService")
 public class AdminServiceImpl implements AdminService{
 
+	@Resource(name="adminDAO")
+	private AdminDAO adminDAO;
+	
 	@Override
 	public List<Admin> info() {
 		// TODO Auto-generated method stub

@@ -2,10 +2,19 @@ package com.service;
 
 import java.util.List;
 
-import com.domain.Instructor;
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
+import com.domain.Instructor;
+import com.persistance.InstructorDAO;
+
+@Service("instructorService")
 public class InstructorServiceImpl implements InstructorService {
 
+	@Resource(name="instructorDAO")
+	private InstructorDAO instructorDAO;
+	
 	@Override
 	public List<Instructor> title() {
 		// TODO Auto-generated method stub
