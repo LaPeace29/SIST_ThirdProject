@@ -2,10 +2,19 @@ package com.persistance;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import com.domain.Subject;
 
+@Repository("subjectDAO")
 public class SubjectDAOImpl implements SubjectDAO{
 
+	@Resource(name="jdbcTemplate")
+	private JdbcTemplate jdbcTemplate;
+	
 	@Override
 	public int insert(Subject sub) {
 		// TODO Auto-generated method stub

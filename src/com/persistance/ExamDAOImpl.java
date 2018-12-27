@@ -2,10 +2,19 @@ package com.persistance;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import com.domain.Exam;
 
+@Repository("examDAO")
 public class ExamDAOImpl implements ExamDAO{
 
+	@Resource(name="jdbcTemplate")
+	private JdbcTemplate jdbcTemplate;
+	
 	@Override
 	public List<Exam> prints1() {
 		// TODO Auto-generated method stub
