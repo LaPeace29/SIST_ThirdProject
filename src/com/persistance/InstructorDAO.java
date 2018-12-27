@@ -50,6 +50,4 @@ public interface InstructorDAO {
 	
 	// (검색) 강사 계정 관리 - 강사 검색
 	public List<Instructor> search(String key, String value);
-	
-	
 }
