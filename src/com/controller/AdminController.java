@@ -14,6 +14,7 @@ import com.domain.Subject;
 import com.domain.Subjectbook;
 import com.service.ClassroomService;
 import com.service.CourseService;
+import com.service.OpenCourseService;
 import com.service.SubjectService;
 import com.service.SubjectbookService;
 
@@ -184,7 +185,59 @@ public class AdminController {
 	/*--------------------------------------------------*/
 	
 	// 현아
-	/*33333333333333333333333333333333333333333333333333*/
-	
+	/* 33333333333333333333333333333333333333333333333333 */
+	@Resource(name = "openCourseService")
+	private OpenCourseService openCourseService;
+
+	// 개설 과정 정보 출력
+	@RequestMapping("/grade/opencourse1")
+	public String openCourseList1(Model model) {
+		return "admin/admin_grade_opencourse1";
+	}
+
+	// 개설 과정 정보 검색
+	public String openCourseSearch(String key, String value, Model model) {
+		return "admin/admin_instructor_mng2";
+	}
+
+	// 개설 과목 정보 출력
+	@RequestMapping("/grade/opencourse2")
+	public String openSubjectList2(Model model) {
+		return "admin/admin_grade_opencourse2";
+	}
+
+	// 개설 과목 정보 검색
+	public String openSubjectSearch2(String key, String value, Model model) {
+		return "admin/admin_grade_opencourse2";
+	}
+
+	// 수강생 정보 출력
+	@RequestMapping("/grade/student1")
+	public String studentList(Model model) {
+		return "admin/admin_grade_student1";
+	}
+
+	// 수강생 정보 검색
+	public String studentSearch(String key, String value, Model model) {
+		return "admin/admin_grade_student1";
+	}
+
+	// 특정 수강생 수강 과정 정보 출력
+	@RequestMapping("/grade/student2")
+	public String studentOpencourseList(Model model) {
+		return "admin/admin_grade_student2";
+	}
+
+	// 특정 개설과정의 개설 과목 정보 출력
+	@RequestMapping("/grade/student2")
+	public String studentOpensubjectList(Model model) {
+		return "admin/admin_grade_student2";
+	}
+
+	// 특정 수강생의 특정 개설과목 시험 정보 출력
+	@RequestMapping("/grade/student2")
+	public String studentScoreList(Model model) {
+		return "admin/admin_grade_student2";
+	}
 	/*--------------------------------------------------*/
 }

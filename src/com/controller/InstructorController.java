@@ -116,14 +116,14 @@ public class InstructorController {
    @RequestMapping("/score2/insert")
    public String score2Insert(Student s, RedirectAttributes rttr) {
 
-      return "redirect:/instructor/instructor/socre2";
+      return "redirect:/instructor/instructor/score2";
 
    }
 
    @RequestMapping("/score2/delete")
    public String score2Delete(Student s, RedirectAttributes rttr) {
 
-      return "redirect:/instructor/instructor/socre2";
+      return "redirect:/instructor/instructor/score2";
 
    }
 }
