@@ -56,10 +56,10 @@
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/student_header.jsp"%>
+		<%@ include file="/WEB-INF/views/partials/student_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
-			<%@ include file="/views/partials/student_sidebar.jsp" %>
+			<%@ include file="/WEB-INF/views/partials/student_sidebar.jsp" %>
 			<div class="content-inner">
 				<!-- --------------------미활용---------------------- -->
 				<!-- Page Header-->
@@ -147,8 +147,6 @@
 														<th>출결 점수(배점)</th>
 														<th>필기 점수(배점)</th>
 														<th>실기 점수(배점)</th>
-														<th>평균</th>
-														<th>석차</th>
 														<th>시험 문제</th>
 													</tr>
 												</thead>
@@ -161,8 +159,6 @@
 														<td>-(20)</td>
 														<td>-(30)</td>
 														<td>-(50)</td>
-														<td>-</td>
-														<td>1</td>
 														<td>OS0032_181015.zip<br>
 															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
 													</tr>
@@ -171,8 +167,6 @@
 														<td>-(20)</td>
 														<td>-(40)</td>
 														<td>-(40)</td>
-														<td>-</td>
-														<td>2</td>
 														<td>OS0032_181112.zip<br>
 															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
 													</tr>
@@ -186,7 +180,7 @@
 					</div>
 				</section>
 				<!-- Page Footer-->
-				<%@ include file="/views/partials/footer.jsp"%>
+				<%@ include file="/WEB-INF/views/partials/footer.jsp"%>
 			</div>
 		</div>
 	</div>

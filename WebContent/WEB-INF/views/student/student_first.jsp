@@ -38,10 +38,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/student_header.jsp" %>
+        <%@ include file="/WEB-INF/views/partials/student_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
-            <%@ include file="/views/partials/student_sidebar.jsp" %>
+            <%@ include file="/WEB-INF/views/partials/student_sidebar.jsp" %>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
@@ -58,7 +58,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 										<h3 class="h4">현재 진행중인 과정</h3>
 									</div>
 									<div class="card-body">
-										Java&Python 기반 응용 SW 개발자 양성과정 수료 (0000-00-00 ~ 0000-00-00) D-50
+										Java&amp;Python 기반 응용 SW 개발자 양성과정 수료 (0000-00-00 ~ 0000-00-00) D-50
 									</div>
 								</div>
 								
@@ -78,7 +78,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					</div>
 				</section>
                 <!-- Page Footer-->
-                <%@ include file="/views/partials/footer.jsp" %>
+                <%@ include file="/WEB-INF/views/partials/footer.jsp" %>
             </div>
         </div>
     </div>

@@ -49,10 +49,10 @@
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/student_header.jsp"%>
+		<%@ include file="/WEB-INF/views/partials/student_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
-			<%@ include file="/views/partials/student_sidebar.jsp" %>
+			<%@ include file="/WEB-INF/views/partials/student_sidebar.jsp" %>
 			<div class="content-inner">
 				<!-- --------------------미활용---------------------- -->
 				<!-- Page Header-->
@@ -170,7 +170,7 @@
 					</div>
 				</section>
 				<!-- Page Footer-->
-				<%@ include file="/views/partials/footer.jsp"%>
+				<%@ include file="/WEB-INF/views/partials/footer.jsp"%>
 			</div>
 		</div>
 	</div>

@@ -4,7 +4,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>비밀번호 변경</title>
+	<title>개인정보 확인</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -38,10 +38,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/instructor_header.jsp" %>
+        <%@ include file="/WEB-INF/views/partials/instructor_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
-            <%@ include file="/views/partials/instructor_sidebar.jsp" %>
+            <%@ include file="/WEB-INF/views/partials/instructor_sidebar.jsp" %>
             <!-- 맡은 페이지에 따라 유동적으로 교체하고 나머지는 삭제 -->
             <%-- <%@ include file="/views/partials/student_sidebar.jsp" %> --%>
             <%-- <%@ include file="/views/partials/instructor_sidebar.jsp" %> --%>
@@ -112,7 +112,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					</div>
 				</section>
 				<!-- Page Footer-->
-                <%@ include file="/views/partials/footer.jsp" %>
+                <%@ include file="/WEB-INF/views/partials/footer.jsp" %>
             </div>
         </div>
     </div>

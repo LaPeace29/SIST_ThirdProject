@@ -49,26 +49,26 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                   <form method="post" class="form-validate">
+                   <form action="${pageContext.request.contextPath}/common/login" method="post" class="form-validate">
                     <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" required data-msg="이름을 입력하세요" class="input-material">
+                      <input id="login-username" type="text" name="loginUsername" data-msg="이름을 입력하세요" class="input-material">
                       <label for="login-username" class="label-material">User Name</label>
                     </div>
                     <div class="form-group">
-                      <input id="login-password" type="password" name="loginPassword" required data-msg="비밀번호를 입력하세요" class="input-material">
+                      <input id="login-password" type="password" name="loginPassword" data-msg="비밀번호를 입력하세요" class="input-material">
                       <label for="login-password" class="label-material">Password</label>
 					</div>
 					
 					<div class="form-group">
-					<div class="form-radio">
+						<div class="form-radio">
 						<!-- label style을 css로 빼기 ~~~~~~~~~~~~~~~~~~~~~~-->
-                              <input type="radio" class="radio-template" value="student" name="loginType"  checked >
-                              <label for="radio" style="margin-right:20px">수강생</label>
-                              <input type="radio" class="radio-template" value="instructor" name="loginType" >
-                              <label for="radio" style="margin-right:20px">강사</label>
-                              <input type="radio" class="radio-template" value="admin" name="loginType" >
-                              <label for="radio" style="margin-right:20px">관리자</label>
-	               </div>
+		                   <input type="radio" class="radio-template" value="student" name="loginType"  checked >
+		                   <label for="radio" style="margin-right:20px">수강생</label>
+		                   <input type="radio" class="radio-template" value="instructor" name="loginType" >
+		                   <label for="radio" style="margin-right:20px">강사</label>
+		                   <input type="radio" class="radio-template" value="admin" name="loginType" >
+		                   <label for="radio" style="margin-right:20px">관리자</label>
+		               </div>
 	               </div>
 	               <div class="form-group">
                     	<button class="btn btn-primary submit-btn btn-block">Login</button>

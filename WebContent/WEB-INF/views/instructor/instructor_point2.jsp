@@ -46,10 +46,10 @@
 
 	<div class="page">
 		<!-- Main Navbar-->
-		<%@ include file="/views/partials/instructor_header.jsp"%>
+		<%@ include file="/WEB-INF/views/partials/instructor_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
-			<%@ include file="/views/partials/instructor_sidebar.jsp" %>
+			<%@ include file="/WEB-INF/views/partials/instructor_sidebar.jsp" %>
 			<div class="content-inner">
 				
 				<!-- 네비게이션이 들어갈 자리입니다. -->
@@ -125,7 +125,7 @@
 					</div>
 				</section>
 				<!-- Page Footer-->
-				<%@ include file="/views/partials/footer.jsp"%>
+				<%@ include file="/WEB-INF/views/partials/footer.jsp"%>
 			</div>
 		</div>
 	</div>

@@ -38,10 +38,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/instructor_header.jsp" %>
+        <%@ include file="/WEB-INF/views/partials/instructor_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
-            <%@ include file="/views/partials/instructor_sidebar.jsp" %>
+            <%@ include file="/WEB-INF/views/partials/instructor_sidebar.jsp" %>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
@@ -80,7 +80,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					</div>
 				</section>
                 <!-- Page Footer-->
-                <%@ include file="/views/partials/footer.jsp" %>
+                <%@ include file="/WEB-INF/views/partials/footer.jsp" %>
             </div>
         </div>
     </div>

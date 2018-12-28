@@ -38,10 +38,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/views/partials/superadmin_header.jsp" %>
+        <%@ include file="/WEB-INF/views/partials/superadmin_header.jsp" %>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
-            <%@ include file="/views/partials/superadmin_sidebar.jsp" %>
+            <%@ include file="/WEB-INF/views/partials/superadmin_sidebar.jsp" %>
             <div class="content-inner">
 	            <!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
@@ -109,7 +109,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					</div>
 				</section>
 				<!-- Page Footer-->
-                <%@ include file="/views/partials/footer.jsp" %>
+                <%@ include file="/WEB-INF/views/partials/footer.jsp" %>
             </div>
         </div>
     </div>
