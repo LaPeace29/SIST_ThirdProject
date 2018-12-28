@@ -22,6 +22,12 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
+	public List<Student> login() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<Student> info() {
 		// TODO Auto-generated method stub
 		return null;

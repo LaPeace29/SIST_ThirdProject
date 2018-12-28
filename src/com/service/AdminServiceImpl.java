@@ -16,6 +16,12 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDAO adminDAO;
 	
 	@Override
+	public List<Admin> login() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<Admin> info() {
 		// TODO Auto-generated method stub
 		return null;
@@ -26,5 +32,4 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

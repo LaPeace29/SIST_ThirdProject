@@ -22,6 +22,12 @@ public class InstructorDAOImpl implements InstructorDAO{
 	}
 
 	@Override
+	public List<Instructor> login() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<Instructor> info() {
 		// TODO Auto-generated method stub
 		return null;
@@ -86,5 +92,4 @@ public class InstructorDAOImpl implements InstructorDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

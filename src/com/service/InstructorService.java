@@ -5,9 +5,13 @@ import java.util.List;
 import com.domain.Instructor;
 
 public interface InstructorService {
+	
 	// (타이틀) 강사 이름 / 강사 휴대폰번호
 	public List<Instructor> title();
 	
+	// (로그인) 강사 아이디
+	public List<Instructor> login();
+		
 	/* ==================================================================== */
 	
 	// (출력) 강사 - 개인 설정 - 개인정보 확인

@@ -22,6 +22,12 @@ public class InstructorServiceImpl implements InstructorService {
 	}
 
 	@Override
+	public List<Instructor> login() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<Instructor> info() {
 		// TODO Auto-generated method stub
 		return null;
@@ -86,5 +92,4 @@ public class InstructorServiceImpl implements InstructorService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

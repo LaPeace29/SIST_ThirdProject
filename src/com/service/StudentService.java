@@ -9,6 +9,9 @@ public interface StudentService {
 	// (타이틀) 수강생 이름 / 수강생 휴대폰번호
 	public List<Student> title();
 	
+	// (로그인) 수강생 아이디
+	public List<Student> login();
+		
 	/* ------------------------------------------------------------------- */
 	
 	// (출력) 수강생 - 개인 설정 - 개인정보 확인

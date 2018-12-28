@@ -14,13 +14,19 @@ public class StudentDAOImpl implements StudentDAO{
 
 	@Resource(name="jdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Override
 	public List<Student> title() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public List<Student> login() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public List<Student> info() {
 		// TODO Auto-generated method stub
@@ -92,4 +98,5 @@ public class StudentDAOImpl implements StudentDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }
