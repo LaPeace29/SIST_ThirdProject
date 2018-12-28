@@ -31,12 +31,12 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/common/login")
-	public String login(HttpServletRequest request, HttpServletRequest response, HttpSession session) {
+	public String login(HttpServletRequest request, HttpServletRequest response, HttpSession session, String loginType) {
 
-		String loginType = request.getParameter("loginType");
 		String url = "redirect:/common/loginFail";
 		
 		if(loginType.equals("student")) {
+			
 			url = "student/student_first";
 		} else if(loginType.equals("instructor")) {
 			url = "instructor/instructor_first";
