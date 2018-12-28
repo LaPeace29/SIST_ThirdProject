@@ -12,6 +12,7 @@ import com.domain.Course;
 import com.domain.Instructor;
 import com.domain.Subject;
 import com.domain.Subjectbook;
+import com.service.AdminService;
 import com.service.ClassroomService;
 import com.service.CourseService;
 import com.service.OpenCourseService;
@@ -22,6 +23,15 @@ import com.service.SubjectbookService;
 @RequestMapping("/admin")
 public class AdminController {
 
+	@Resource(name="adminService")
+	private AdminService adminService;
+	
+	@RequestMapping("/first")
+	public String first(Model model) {
+		
+		return "admin/admin_first";
+	}
+	
 	// 예린
 	/*11111111111111111111111111111111111111111111111111*/
 	@Resource(name="classroomService")
@@ -151,7 +161,7 @@ public class AdminController {
 	}
 
 	// 강사 비밀번호 초기화
-	public String reset(Instructor ins, RedirectAttributes rttr) {
+	public String instructorReset(Instructor ins, RedirectAttributes rttr) {
 		return "redirect:/instructor/mng1";
 	}
 
@@ -229,13 +239,11 @@ public class AdminController {
 	}
 
 	// 특정 개설과정의 개설 과목 정보 출력
-	@RequestMapping("/grade/student2")
 	public String studentOpensubjectList(Model model) {
 		return "admin/admin_grade_student2";
 	}
 
 	// 특정 수강생의 특정 개설과목 시험 정보 출력
-	@RequestMapping("/grade/student2")
 	public String studentScoreList(Model model) {
 		return "admin/admin_grade_student2";
 	}

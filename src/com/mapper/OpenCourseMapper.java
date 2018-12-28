@@ -18,7 +18,7 @@ public class OpenCourseMapper implements RowMapper<OpenCourse> {
 		
 		oc.setOpen_course_id(rs.getString("open_course_id"));
 		oc.setClassroom_id(rs.getString("classroom_id"));
-		oc.setClassroom_id(rs.getString("classroom_name"));
+		oc.setClassroom_name(rs.getString("classroom_name"));
 		oc.setCourse_id(rs.getString("course_id"));
 		oc.setCourse_name(rs.getString("course_name"));
 		oc.setOpen_course_start_date(rs.getDate("open_course_start_date"));

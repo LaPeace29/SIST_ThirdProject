@@ -1,6 +1,7 @@
 package com.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -24,15 +25,25 @@ public class LoginController {
 	   
 	@RequestMapping("/index")
 	public String index() {
-		
+
 		//WEB-INF/views/login/loginForm.jsp
 		return "common/common_login";
 	}
 	
 	@RequestMapping("/common/login")
-	public String login(HttpSession session) {
+	public String login(HttpServletRequest request, HttpServletRequest response, HttpSession session) {
+
+		String loginType = request.getParameter("loginType");
+		String url = "redirect:/common/loginFail";
 		
-		return null;
+		if(loginType.equals("student")) {
+			url = "student/student_first";
+		} else if(loginType.equals("instructor")) {
+			url = "instructor/instructor_first";
+		} else if(loginType.equals("admin")) {
+			url = "admin/admin_first";
+		} 
+		return url;
 	}
 	
 	@RequestMapping("/common/loginFail")
