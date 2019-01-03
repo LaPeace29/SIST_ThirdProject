@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@
 										"click",
 										function() {
 											window.location
-													.assign("${pageContext.request.contextPath}/views/admin/admin_opencourse2.jsp");
+													.assign("${pageContext.request.contextPath}/admin/opencourse2?open_course_id="+$(this).val());
 										});
 					});
 </script>
@@ -101,16 +102,17 @@
 													</tr>
 												</thead>
 												<tbody>
+													<c:forEach var="oc" items="${list}">
 													<tr>
-														<td>OC0015</td>
-														<td>Python &amp; Java 응용 SW실무 개발자 양성 과정</td>
-														<td>2018-06-25 ~ 2019-01-17</td>
-														<td>2강의실</td>
-														<td>3개</td>
-														<td>3명</td>
+														<td>${oc.open_course_id}</td>
+														<td>${oc.course_name}</td>
+														<td>${oc.open_course_start_date} ~ ${oc.open_course_end_date}</td>
+														<td>${oc.classroom_name}</td>
+														<td>${oc.open_subject_count}</td>
+														<td>${oc.student_count}</td>
 														<td>
 															<button class="btn btn-sm btn-light btn-look"
-																id="openSubject">보기</button>
+																id="openSubject" value="${oc.open_course_id}">보기</button>
 														</td>
 														<td>
 															<button type="button"
@@ -123,72 +125,7 @@
 																data-target="#opencourse_delete">삭제</button>
 														</td>
 													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>

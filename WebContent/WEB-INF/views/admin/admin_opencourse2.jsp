@@ -36,90 +36,108 @@
 	src="${pageContext.request.contextPath}/resources/script/common.js"></script>
 
 <script>
-	var txt = "";
 	$(document)
 			.ready(
 					function() {
-/* 						
-					$("#jobId").on("change", function() {
-						ajax($(this).val());
-					});
-					
-					
-					function ajax(jobId) {
-						$.ajax({
-							url: "${pageContext.request.contextPath}/employee/getMinBasicpay"
-							,data: {jobId:jobId}
-							,success: function(data_) {
-								console.log(data_);
-								var doc = JSON.parse(data_);
-								var minbasicpay = doc.minbasicpay;
-								//주의) numberWithCommas() 사용을 위해서 외부 스크립트(util.js) 연결 필요
-								$("#basicpay").attr("placeholder", "기본급 (최소 "+numberWithCommas(minbasicpay)+"원 이상)");
-								$("#basicpay").attr("min", minbasicpay);
-						}});
-*/
-						
-						
+
 						$(".btn-look")
 								.on(
 										"click",
 										function() {
-								
-											txt += "<div class=\"card\">";
-											txt += "<div class=\"card-header\">";
-											txt += "<h4>";
-											txt += "<strong>Java SE(2018-06-25 ~ 2018-08-10)</strong>";
-											txt += "</h4>";
-											txt += "<h5>시험 정보</h5>";
-											txt += "</div>";
-											txt += "<div class=\"card-body\">";
-											txt += "<div class=\"table-responsive\">";
-											txt += "<table class=\"table\">";
-											txt += "<thead>";
-											txt += "		<tr>";
-											txt += "		<th>시험 번호</th>";
-											txt += "		<th>출결 배점</th>";
-											txt += "		<th>필기 배점</th>";
-											txt += "			<th>실기 배점</th>";
-											txt += "			<th>시험 날짜</th>";
-											txt += "			<th>시험 문제 파일</th>";
-											txt += "		</tr>";
-											txt += "	</thead>";
-											txt += "		<tbody>";
-											txt += "			<tr>";
-											txt += "			<td>-</td>";
-											txt += "				<td>-</td>";
-											txt += "			<td>-</td>";
-											txt += "			<td>-</td>";
-											txt += "			<td>-</td>";
-											txt += "			<td>-</td>";
-											txt += "		</tr>";
-											txt += "		<tr>";
-											txt += "			<td>-</td>";
-											txt += "				<td>-</td>";
-											txt += "				<td>-</td>";
-											txt += "				<td>-</td>";
-											txt += "				<td>-</td>";
-											txt += "				<td>-</td>";
-											txt += "	</tr>";
-											txt += "	<tr>";
-											txt += "	<td>-</td>";
-											txt += "		<td>-</td>";
-											txt += "	<td>-</td>";
-											txt += "			<td>-</td>";
-											txt += "		<td>-</td>";
-											txt += "			<td>-</td>";
-											txt += "		</tr>";
-											txt += "		</tbody>";
-											txt += "	</table>";
-											txt += "	</div>";
-											txt += "	</div>";
 
-											console.log(txt);
-											$("#demo").html(txt);
+											var open_subject_id = $(this).val();
+											
+											var subject_name = $(this).parent().siblings().eq(1).text();
+											var subject_date = $(this).parent().siblings().eq(2).text();
+											
+											console.log($(this).parent().siblings().eq(1).text());
+											
 
+											$
+													.ajax({
+														url : "${pageContext.request.contextPath}/admin/opencourse2Ajax",
+														dataType : 'json',
+														type : 'Post',
+														data : {
+															open_subject_id : open_subject_id
+														},
+														success : function(
+																examList) {
+
+															var doc = JSON
+																	.stringify(examList);
+															var array = JSON
+																	.parse(doc);
+
+															var txt = "";
+
+															txt += "<div class=\"card\">";
+															txt += "<div class=\"card-header\">";
+															txt += "<h4>";
+															txt += "<strong>"
+																	+subject_name +"("+ subject_date+")</strong>";
+															txt += "</h4>";
+															txt += "<h5>시험 정보</h5>";
+															txt += "</div>";
+															txt += "<div class=\"card-body\">";
+															txt += "<div class=\"table-responsive\">";
+															txt += "<table class=\"table\">";
+															txt += "<thead>";
+															txt += "		<tr>";
+															txt += "		<th>시험 번호</th>";
+															txt += "		<th>출결 배점</th>";
+															txt += "		<th>필기 배점</th>";
+															txt += "		<th>실기 배점</th>";
+															txt += "		<th>시험 날짜</th>";
+															txt += "		<th>시험 문제 파일</th>";
+															txt += "		</tr>";
+															txt += "	</thead>";
+															txt += "		<tbody>";
+
+															for (var a = 0; a < array.length; ++a) {
+																var item = array[a];
+
+																var exam_id = item.exam_id;
+																var attendance_point = item.attendance_point;
+																var write_point = item.write_point;
+																var skill_point = item.skill_point;
+																var exam_date = new Date(item.exam_date);
+																var exam_file = item.exam_file;
+
+																txt += "			<tr>";
+																txt += "			<td>"
+																		+ exam_id
+																		+ "</td>";
+																txt += "			<td>"
+																		+ attendance_point
+																		+ "</td>";
+																txt += "			<td>"
+																		+ write_point
+																		+ "</td>";
+																txt += "			<td>"
+																		+ skill_point
+																		+ "</td>";
+																txt += "			<td>"
+																		+ exam_date.getFullYear() +"-" + (exam_date.getMonth()+1) + "-" + exam_date.getDate()
+																		+ "</td>";
+																txt += "			<td>"
+																		+ exam_file
+																		+ "</td>";
+																txt += "		</tr>";
+															}
+
+															txt += "		</tbody>";
+															txt += "	</table>";
+															txt += "	</div>";
+															txt += "	</div>";
+
+															$("#demo")
+																	.html(txt);
+
+														}
+													});
 										});
+
 					});
 </script>
 
@@ -140,9 +158,11 @@
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">Home</a></li>
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/admin/admin_opencourse1.jsp">개설 과정 관리</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_opencourse1.jsp">개설
+								과정 관리</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/views/admin/admin_opencourse2.jsp">과목 정보</a></li>
+							href="${pageContext.request.contextPath}/views/admin/admin_opencourse2.jsp">과목
+								정보</a></li>
 					</ul>
 				</div>
 
@@ -153,7 +173,8 @@
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="h4">Python &amp; Java 응용 SW실무 개발자 양성 과정(2018-06-25 ~ 2019-01-17)</h3>
+										<h3 class="h4">${os.course_name}(${os.open_course_start_date}
+											~ ${os.open_course_end_date})</h3>
 										<h5>과목 정보</h5>
 									</div>
 									<div class="card-body">
@@ -171,32 +192,19 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>
-															<button class="btn btn-sm btn-light btn-look">보기</button>
-														</td>
-													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-													<tr>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
+													<c:forEach var="os" items="${list}">
+														<tr>
+															<td>${os.open_subject_id}</td>
+															<td>${os.subject_name}</td>
+															<td>${os.subject_start_date}~${os.subject_end_date}</td>
+															<td>${os.instructor_name}</td>
+															<td>${os.subjectbook_name}</td>
+															<td>
+																<button class="btn btn-sm btn-light btn-look"
+																	value="${os.open_subject_id}">보기</button>
+															</td>
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>

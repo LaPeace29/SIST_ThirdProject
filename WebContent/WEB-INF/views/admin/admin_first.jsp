@@ -35,9 +35,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		function drawChart() {
 		  var data = google.visualization.arrayToDataTable([
 		    ['강의실명', '최대 정원', '수강 인원', '중도 탈락 인원'],
-		    ['1강의실', 30, 25, 1],
-		    ['2강의실', 25, 20, 0],
-		    ['3강의실', 25, 20, 0],
+		    <c:forEach var="os" items="${list}">
+		    	['${os.classroom_name}', ${os.max_number}, ${os.student_count}, ${os.dropout_count}],
+        	</c:forEach>
 		  ]);
 		
 		  var options = {
@@ -62,10 +62,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%@ include file="/WEB-INF/views/partials/admin_header.jsp" %>
+        <%-- <%@ include file="/WEB-INF/views/partials/admin_header.jsp" %> --%>
+        <jsp:include page="/WEB-INF/views/partials/admin_header.jsp"/>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/WEB-INF/views/partials/admin_sidebar.jsp" %>
+            <%-- <jsp:include page="/WEB-INF/views/partials/admin_sidebar.jsp"/> --%>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
@@ -94,27 +96,15 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													</tr>
 												</thead>
 												<tbody>
-		                                            <tr>
-		                                                <td>1강의실</td>
-		                                                <td>30</td>
-		                                                <td>25</td>
-		                                                <td>1</td>
-		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>2강의실</td>
-		                                                <td>30</td>
-		                                                <td>25</td>
-		                                                <td>1</td>
-		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>3강의실</td>
-		                                                <td>30</td>
-		                                                <td>25</td>
-		                                                <td>1</td>
-		                                                <td>웹기반 빅데이터 분석 응용SW개발자(0000-00-00 ~ 0000-00-00)</td>
-		                                            </tr>
+													<c:forEach var="os" items="${list}">
+		                                           		<tr>
+		                                           			<td>${os.classroom_name}</td>
+		                                           			<td>${os.max_number}</td>
+		                                           			<td>${os.student_count}</td>
+		                                           			<td>${os.dropout_count}</td>
+		                                           			<td>${os.course_name} (${os.open_course_start_date} ~ ${os.open_course_end_date})</td>
+		                                           		</tr>
+		                                            </c:forEach>
 		                                        </tbody>									
 											</table>
 										</div>

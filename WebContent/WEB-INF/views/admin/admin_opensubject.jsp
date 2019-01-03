@@ -93,8 +93,9 @@
 			                                       </tr>
 			                                    </thead>
 			                                    <tbody>
+			                                    <c:forEach var="os" items="${list}">
 			                                       <tr>
-			                                          <td>-</td>
+			                                          <td></td>
 			                                          <td>-</td>
 			                                          <td>-</td>
 			                                          <td>-</td>
@@ -109,78 +110,7 @@
 			                                             <button class="btn btn-sm btn-light btn-del" data-toggle="modal" data-target="#opensubject_delete">삭제</button>
 			                                          </td>
 			                                       </tr>
-			                                       <tr>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                       </tr>
-			                                       <tr>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                       </tr>
-			                                       <tr>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                       </tr>
-			                                       <tr>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                       </tr>
-			                                       <tr>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                       </tr>
-			                                       <tr>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                          <td>-</td>
-			                                       </tr>
+			                                       </c:forEach>
 			                                    </tbody>
 			                                 </table>
 										</div>

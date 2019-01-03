@@ -32,7 +32,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 						</ul></li>
 					<!-- Logout    -->
-					<li class="nav-item"><a href="${pageContext.request.contextPath}/views/common/common_logoutform.jsp"
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/index"
 						class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i
 							class="fa fa-sign-out"></i></a></li>
 				</ul>
