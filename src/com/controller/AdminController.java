@@ -1,6 +1,7 @@
 package com.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import com.service.AdminService;
 import com.service.ClassroomService;
 import com.service.CourseService;
 import com.service.OpenCourseService;
+import com.service.OpenSubjectService;
 import com.service.SubjectService;
 import com.service.SubjectbookService;
 
@@ -28,6 +30,8 @@ public class AdminController {
 	
 	@RequestMapping("/first")
 	public String first(Model model) {
+		
+		model.addAttribute("list", this.openSubjectService.print1());
 		
 		return "admin/admin_first";
 	}
@@ -198,10 +202,14 @@ public class AdminController {
 	/* 33333333333333333333333333333333333333333333333333 */
 	@Resource(name = "openCourseService")
 	private OpenCourseService openCourseService;
+	
+	@Resource(name = "openSubjectService")
+	private OpenSubjectService openSubjectService;
 
 	// 개설 과정 정보 출력
 	@RequestMapping("/grade/opencourse1")
 	public String openCourseList1(Model model) {
+		model.addAttribute("list", this.openCourseService.print1());
 		return "admin/admin_grade_opencourse1";
 	}
 
@@ -212,7 +220,14 @@ public class AdminController {
 
 	// 개설 과목 정보 출력
 	@RequestMapping("/grade/opencourse2")
-	public String openSubjectList2(Model model) {
+	public String openSubjectList2(Model model, String oc_id) {
+		model.addAttribute("title", this.openCourseService.title(oc_id));
+		model.addAttribute("list", this.openSubjectService.print3(oc_id));
+		
+		/*List<OpenSubject> list = this.openSubjectService.print3(oc_id);
+		for(OpenSubject os : list) {
+			System.out.println(os.getOpen_subject_id());
+		}*/
 		return "admin/admin_grade_opencourse2";
 	}
 

@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -16,49 +18,52 @@ import com.service.StudentService;
 @RequestMapping("/student")
 public class StudentController {
 
-   @Resource(name = "studentService")
-   private StudentService studentService;
+	@Resource(name = "studentService")
+	private StudentService studentService;
 
-   @Resource(name = "openCourseService")
-   private OpenCourseService openCourseService;
+	@Resource(name = "openCourseService")
+	private OpenCourseService openCourseService;
 
-   @Resource(name = "noticeService")
-   private NoticeService noticeService;
+	@Resource(name = "noticeService")
+	private NoticeService noticeService;
 
-   //첫 페이지
-   @RequestMapping("/first")
-   public String student_first(Model model) {
+	// 첫 페이지
+	@RequestMapping("/first")
+	public String student_first(Model model) {
 
-      return "/student/student_first";
-   }
+		return "/student/student_first";
 
-   //수강생 정보
-   @RequestMapping("/info")
-   public String student_info(Model model) {
+	}
 
-      return "/student/student_info";
-   }
-   //성적 조회
-   @RequestMapping("/score1")
-   public String student_score1(Model model) {
+	// 수강생 정보
+	@RequestMapping("/info")
+	public String student_info(Model model) {
 
-      return "/student/student_score1";
-   }
-   // 성적 조회 / 수강생 성적 조회
-   @RequestMapping("/score2")
-   public String student_score2(Model model) {
+		return "/student/student_info";
+	}
 
-      return "/student/student_score2";
-   }
-   
-   //비밀번호 변경
-   @RequestMapping("/changepw")
-   public String student_changepw(Student s, RedirectAttributes rttr) {
- 
-      
-      return "redirect:/student/student_changepw";
-   }
-   
-   
+	// 성적 조회
+	@RequestMapping("/score1")
+	public String student_score1(Model model) {
+
+		Student s = new Student();
+		List<Student> list = this.studentService.printi1();
+
+		return "/student/student_score1";
+	}
+
+	// 성적 조회 / 수강생 성적 조회
+	@RequestMapping("/score2")
+	public String student_score2(Model model) {
+
+		return "/student/student_score2";
+	}
+
+	// 비밀번호 변경
+	@RequestMapping("/changepw")
+	public String student_changepw(Student s, RedirectAttributes rttr) {
+
+		return "redirect:/student/student_changepw";
+	}
 
 }
