@@ -16,9 +16,8 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDAO adminDAO;
 	
 	@Override
-	public List<Admin> login() {
-		// TODO Auto-generated method stub
-		return null;
+	public Admin login(String admin_name, String admin_pw) {
+		return this.adminDAO.login(admin_name, admin_pw);
 	}
 	
 	@Override

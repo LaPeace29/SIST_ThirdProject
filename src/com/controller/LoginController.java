@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.domain.Admin;
+import com.domain.Instructor;
+import com.domain.Student;
 import com.service.AdminService;
 import com.service.InstructorService;
 import com.service.StudentService;
@@ -31,17 +34,23 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/common/login")
-	public String login(HttpServletRequest request, HttpServletRequest response, HttpSession session, String loginType) {
+	public String login(HttpSession session, String loginType, String loginUsername, String loginPassword) {
 
 		String url = "redirect:/common/loginFail";
+		Student s = null;
+		Instructor i = null;
+		Admin a = null;
 		
 		if(loginType.equals("student")) {
-			
-			url = "student/student_first";
+
+			url = "redirect:/student/first";
 		} else if(loginType.equals("instructor")) {
-			url = "instructor/instructor_first";
+			url = "redirect:/instructor/first";
 		} else if(loginType.equals("admin")) {
-			url = "admin/admin_first";
+			
+			a = this.adminService.login(loginUsername, loginPassword);
+			session.setAttribute("admin", a);
+			url = "redirect:/admin/first";
 		} 
 		return url;
 	}

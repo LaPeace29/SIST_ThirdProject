@@ -9,6 +9,7 @@ public interface OpenCourseService {
 
 	// (타이틀) 과정명 / 과정 시작일 / 과정 종료일
 	public List<OpenCourse> title();
+	public List<OpenCourse> title(String oc_id);
 	
 	/* ------------------------------------------------------------------- */
 	// (출력) 수강생 - 수강생 첫화면 - 현재 진행중인 과정 출력

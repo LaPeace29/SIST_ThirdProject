@@ -17,8 +17,12 @@ public class OpenCourseServiceImpl implements OpenCourseService {
 	
 	@Override
 	public List<OpenCourse> title() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.openCourseDAO.title();
+	}
+	
+	@Override
+	public List<OpenCourse> title(String oc_id) {
+		return this.openCourseDAO.title(oc_id);
 	}
 
 	@Override
@@ -39,10 +43,11 @@ public class OpenCourseServiceImpl implements OpenCourseService {
 		return 0;
 	}
 
+	// 개설 과정 번호 / 과정명 / 개설 과정 시작일 / 개설 과정 종료일 / 강의실명 / 개설 과목 등록 갯수 / 수강생 등록 인원
+	// open_course_id, course_name, open_course_start_date ,open_course_end_date, classroom_name, open_subject_count, student_count
 	@Override
 	public List<OpenCourse> print1() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.openCourseDAO.print1();
 	}
 
 	@Override

@@ -15,6 +15,7 @@ public class OpenCourse {
 	private int open_subject_count;			// 개설 과목 등록 갯수
 	private String student_id;				// 수강생 아이디
 	private String student_name;			// 수강생 이름
+	private String student_phone;			// 수강생 전화번호
 	private int student_count;				// 수강생 등록 인원
 	private int count_;						// 삭제 가능 여부
 	private String completion_status;		// 수료 여부
@@ -63,6 +64,10 @@ public class OpenCourse {
 
 	public String getStudent_name() {
 		return student_name;
+	}
+
+	public String getStudent_phone() {
+		return student_phone;
 	}
 
 	public int getStudent_count() {
@@ -124,6 +129,10 @@ public class OpenCourse {
 
 	public void setStudent_name(String student_name) {
 		this.student_name = student_name;
+	}
+	
+	public void setStudent_phone(String student_phone) {
+		this.student_phone = student_phone;
 	}
 
 	public void setStudent_count(int student_count) {

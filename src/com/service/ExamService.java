@@ -37,7 +37,7 @@ public interface ExamService {
 	// (출력1) 강사 - 배점 관리 - 시험 정보 - 출력
 	// 시험번호 / 출결배점 / 필기배점 / 실기배점 / 시험날짜 / 시험문제파일
 	// exam_id, attendance_point, write_point, skill_point, exam_date, exam_file, subject_point_id,
-	public List<Exam> print1();
+	public List<Exam> print1(Exam exam);
 		
 	// (출력2) 수강생 관리 - 수강생 과정 관리 - 출력
 	// (출력2) 성적 조회 - 수강생 개인 성적 조회 - 수강생 정보 - 출력

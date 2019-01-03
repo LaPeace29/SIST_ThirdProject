@@ -46,9 +46,8 @@ public class ExamServiceImpl implements ExamService {
 	}
 
 	@Override
-	public List<Exam> print1() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Exam> print1(Exam exam) {
+		return this.examDAO.print1(exam);
 	}
 
 	@Override

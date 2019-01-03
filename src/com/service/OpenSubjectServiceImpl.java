@@ -42,8 +42,8 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 
 	@Override
 	public List<OpenSubject> print1() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.openSubjectDAO.print1();
 	}
 
 	@Override
@@ -57,6 +57,16 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<OpenSubject> print3(String oc_id) {
+		return this.openSubjectDAO.print3(oc_id);
+	}
+	
+	@Override
+	public List<OpenSubject> print3(OpenCourse openCourse) {
+		return this.openSubjectDAO.print3(openCourse);
+	}
 
 	@Override
 	public List<OpenSubject> print4() {
@@ -68,6 +78,11 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 	public List<OpenSubject> print5() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public OpenSubject print6(OpenCourse opencourse) {
+		return this.openSubjectDAO.print6(opencourse);
 	}
 
 	@Override

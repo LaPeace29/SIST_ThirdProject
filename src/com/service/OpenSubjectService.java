@@ -43,6 +43,11 @@ public interface OpenSubjectService {
 	// 개설 과목 번호 / 과목명 / 과목 시작일 / 과목 종료일 / 강사명 / 교재명
 	// open_subject_id, subject_name, subject_start_date, subject_end_date, instructor_name, subjectbook_name, instructor_id
 	public List<OpenSubject> print3();
+	public List<OpenSubject> print3(String oc_id);
+	public List<OpenSubject> print3(OpenCourse opencourse);
+	
+	// (출력3-1) 개설 과정 관리 - 개설 과정 정보 이름 출력
+	public OpenSubject print6(OpenCourse opencourse);
 	
 	// (출력4) 개설 과목 관리 - 개설 과목 정보 - 출력
 	// 개설 과목 번호 / 과목명 / 과목 시작일 / 과목 종료일 / 강사명 / 교재명 / 과정명 / 개설 과정 시작일 / 개설 과정 종료일 / 강의실명
