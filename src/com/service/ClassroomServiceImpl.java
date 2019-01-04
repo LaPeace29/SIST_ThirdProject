@@ -17,26 +17,21 @@ public class ClassroomServiceImpl implements ClassroomService {
 	
 	@Override
 	public int insert(Classroom cr) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.classroomDAO.insert(cr);
 	}
 
 	@Override
 	public List<Classroom> print1() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.classroomDAO.print1();
 	}
 
 	@Override
 	public int update(Classroom cr) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.classroomDAO.update(cr);
 	}
 
 	@Override
 	public int delete(Classroom cr) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.classroomDAO.delete(cr);
 	}
-
 }

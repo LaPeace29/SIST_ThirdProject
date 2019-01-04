@@ -8,35 +8,48 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.domain.Classroom;
+import com.mapper.ClassroomMapper;
+import com.mapper.ClassroomMapper31;
 
 @Repository("classroomDAO")
-public class ClassroomDAOImpl implements ClassroomDAO{
+public class ClassroomDAOImpl implements ClassroomDAO {
 
-	@Resource(name="jdbcTemplate")
+	@Resource(name = "jdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Override
 	public int insert(Classroom cr) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql ="INSERT INTO classroom_tb (classroom_id, classroom_name, max_number)\r\n" + 
+				"    VALUES ((SELECT CONCAT('CR', LPAD(IFNULL(SUBSTR(MAX(classroom_id), 3), 0) + 1, 2, 0)) \r\n" + 
+				"	AS newId FROM classroom_tb c), ?, ?)";
+		return this.jdbcTemplate.update(sql, cr.getClassroom_name(), cr.getMax_number());
 	}
+
+	/* 은미 작성 부분 충돌 */
+	/*
+	@Override
+	public List<Classroom> print1() {
+		String sql = "SELECT classroom_id, classroom_name FROM classroom_tb";
+
+		return this.jdbcTemplate.query(sql, new ClassroomMapper31());
+	}
+	 */
 
 	@Override
 	public List<Classroom> print1() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT classroom_id, classroom_name, max_number, (SELECT COUNT(*) FROM open_course_tb WHERE classroom_id = c.classroom_id) count_ FROM classroom_tb c";
+		return this.jdbcTemplate.query(sql, new ClassroomMapper());
 	}
-
+	
 	@Override
 	public int update(Classroom cr) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql="UPDATE classroom_tb SET classroom_name =? , max_number= ? WHERE classroom_id=?";
+		return this.jdbcTemplate.update(sql, cr.getClassroom_name(), cr.getMax_number(), cr.getClassroom_id());
 	}
 
 	@Override
 	public int delete(Classroom cr) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "DELETE FROM classroom_tb WHERE classroom_id=?";
+		return this.jdbcTemplate.update(sql, cr.getClassroom_id());
 	}
-
 }

@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.domain.OpenCourse;
 import com.domain.Student;
 import com.service.NoticeService;
 import com.service.OpenCourseService;
@@ -46,9 +48,14 @@ public class StudentController {
 	@RequestMapping("/score1")
 	public String student_score1(Model model) {
 
-		Student s = new Student();
-		List<Student> list = this.studentService.printi1();
-
+		List <Student> stinfo = new ArrayList<Student>();
+		List <OpenCourse> list = new ArrayList<OpenCourse>();
+		stinfo = this.studentService.prints1();
+		list = this.openCourseService.prints1();
+		model.addAttribute("stinfo", stinfo);
+		model.addAttribute("list", list);
+		
+		
 		return "/student/student_score1";
 	}
 

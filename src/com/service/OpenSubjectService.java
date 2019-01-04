@@ -72,4 +72,8 @@ public interface OpenSubjectService {
 	// 개설과정번호 / 개설과정명 / 강사명 / 과정명 기준
 	// open_course_id, course_name, open_course_start_date ,open_course_end_date, classroom_name, os_count, s_count 
 	public List<OpenSubject> search2(String key, String value);
+	
+	// 예린 작성
+	public List<OpenSubject> print1(String instructor_id, String completion);
+	public int deleteInsert(OpenSubject os);
 }

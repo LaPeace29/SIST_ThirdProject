@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.domain.Student;
+import com.mapper.StudentMapper21;
 
 @Repository("studentDAO")
 public class StudentDAOImpl implements StudentDAO{
@@ -46,9 +47,11 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 
 	@Override
-	public int prints1() {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Student> prints1() {
+		String sql = "SELECT student_id, student_name, student_phone, student_regdate  \r\n"
+				+ "FROM student_list2_vw\r\n" + "WHERE student_id = ? ";
+
+		return this.jdbcTemplate.query(sql, new StudentMapper21(), "ST00001");
 	}
 
 	@Override

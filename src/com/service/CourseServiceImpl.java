@@ -17,26 +17,21 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Override
 	public int insert(Course cs) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.courseDAO.insert(cs);
 	}
 
 	@Override
 	public List<Course> print1() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.courseDAO.print1();
 	}
 
 	@Override
 	public int update(Course cs) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.courseDAO.update(cs);
 	}
 
 	@Override
 	public int delete(Course cs) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.courseDAO.delete(cs);
 	}
-
 }

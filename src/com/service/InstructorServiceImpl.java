@@ -53,14 +53,12 @@ public class InstructorServiceImpl implements InstructorService {
 
 	@Override
 	public int insert(Instructor ins) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.instructorDAO.insert(ins);
 	}
 
 	@Override
 	public List<Instructor> print1() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.instructorDAO.print1();
 	}
 
 	@Override
@@ -77,19 +75,16 @@ public class InstructorServiceImpl implements InstructorService {
 
 	@Override
 	public int reset(Instructor ins) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.instructorDAO.reset(ins);
 	}
 
 	@Override
 	public int delete(Instructor ins) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.instructorDAO.delete(ins);
 	}
 
 	@Override
 	public List<Instructor> search(String key, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.instructorDAO.search(key, value);
 	}
 }

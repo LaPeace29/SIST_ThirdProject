@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.domain.OpenCourse;
+import com.mapper.OpenCourseMapper21;
 import com.mapper.OpenCourseMapper51;
 import com.mapper.OpenCourseMapper53;
 
@@ -39,14 +40,19 @@ public class OpenCourseDAOImpl implements OpenCourseDAO{
 
 	@Override
 	public List<OpenCourse> prints1() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion\r\n" + 
+				"    FROM pass_non_view3\r\n" + 
+				"    WHERE student_id = ? "; ;
+
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper21(), "ST00077");
 	}
 
 	@Override
 	public int insert(OpenCourse oc) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "INSERT INTO open_course_tb (open_course_id, classroom_id, course_id, open_course_start_date, open_course_end_date)\r\n"
+				+ "    VALUES ((SELECT CONCAT('OC', LPAD(IFNULL(SUBSTR(MAX(open_course_id), 3), 0) + 1, 4, 0)) AS newId FROM open_course_tb oc), ?, ?, ?, ?)";
+		return this.jdbcTemplate.update(sql, oc.getClassroom_id(), oc.getCourse_id(), oc.getOpen_course_start_date(),
+				oc.getOpen_course_end_date());
 	}
 
 	// 개설 과정 번호 / 과정명 / 개설 과정 시작일 / 개설 과정 종료일 / 강의실명 / 개설 과목 등록 갯수 / 수강생 등록 인원
@@ -69,8 +75,9 @@ public class OpenCourseDAOImpl implements OpenCourseDAO{
 
 	@Override
 	public int update(OpenCourse oc) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "UPDATE open_course_tb SET classroom_id = ?, course_id = ?, open_course_start_date = ?, open_course_end_date = ? WHERE open_course_id=?";
+		return this.jdbcTemplate.update(sql, oc.getClassroom_id(), oc.getCourse_id(), oc.getOpen_course_start_date(),
+				oc.getOpen_course_end_date(), oc.getOpen_course_id());
 	}
 
 	@Override
@@ -81,8 +88,19 @@ public class OpenCourseDAOImpl implements OpenCourseDAO{
 
 	@Override
 	public List<OpenCourse> search1(String key, String value) {
-		// TODO Auto-generated method stub
-		return null;
+
+		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date \r\n"
+				+ "	, classroom_name, os_count, d_count\r\n" + "    FROM open_course_list1_vw\r\n";
+
+		if (key.equals("open_course_id")) {
+			sql += " WHERE open_course_id = ? ";
+		} else if (key.equals("course_name")) {
+			sql += " WHERE INSTR (course_name, ?) > 0 ";
+		}
+
+		sql += "    ORDER BY open_course_id";
+
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper51(), value);
 	}
 
 	@Override

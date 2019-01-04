@@ -17,25 +17,21 @@ public class SubjectbookServiceImpl implements SubjectbookService {
 	
 	@Override
 	public int insert(Subjectbook sb) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.subjectbookDAO.insert(sb);
 	}
 
 	@Override
 	public List<Subjectbook> print1() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.subjectbookDAO.print1();
 	}
 
 	@Override
 	public int update(Subjectbook sb) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.subjectbookDAO.update(sb);
 	}
 
 	@Override
 	public int delete(Subjectbook sb) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.subjectbookDAO.delete(sb);
 	}
 }

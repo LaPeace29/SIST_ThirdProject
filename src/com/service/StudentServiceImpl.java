@@ -46,9 +46,8 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public int prints1() {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Student> prints1() {
+		return this.studentDAO.prints1();
 	}
 
 	@Override

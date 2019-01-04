@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.domain.Exam;
 import com.mapper.ExamMapper31;
+import com.mapper.ExamMapper32;
 
 @Repository("examDAO")
 public class ExamDAOImpl implements ExamDAO{
@@ -58,8 +59,21 @@ public class ExamDAOImpl implements ExamDAO{
 
 	@Override
 	public List<Exam> print2() {
-		// TODO Auto-generated method stub
-		return null;
+
+		String sql = "SELECT student_id, student_name, student_phone, student_regdate, count_\r\n" + 
+				"FROM student_list2_vw";
+	
+		return this.jdbcTemplate.query(sql, new ExamMapper32());
+	}
+	
+	@Override
+	public List<Exam> print2(Exam exam) {
+		
+		String sql = "SELECT student_id, student_name, student_phone, student_regdate, count_, d_count\r\n" + 
+				"FROM student_list2_vw"
+				+ " WHERE student_id = ?";
+		
+		return this.jdbcTemplate.query(sql, new ExamMapper32(), exam.getStudent_id());
 	}
 
 	@Override

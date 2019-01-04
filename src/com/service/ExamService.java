@@ -44,6 +44,7 @@ public interface ExamService {
 	// 수강생번호 / 수강생이름 / 수강생휴대폰번호 / 수강생등록일 / 수강횟수
 	// student_id, student_name, student_phone, student_regdate, class_count
 	public List<Exam> print2();
+	public List<Exam> print2(Exam exam);
 	
 	// (출력3) 성적 조회 - 개설 과정 성적 조회 - 개설 과정 정보 - 개설 과목 정보 - 시험 정보 - 출력
 	// 시험번호 / 출결배점 / 필기배점 / 실기배점 / 시험날짜 / 시험문제파일

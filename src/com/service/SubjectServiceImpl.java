@@ -17,25 +17,21 @@ public class SubjectServiceImpl implements SubjectService {
 	
 	@Override
 	public int insert(Subject sub) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.subjectDAO.insert(sub);
 	}
 
 	@Override
 	public List<Subject> print1() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.subjectDAO.print1();
 	}
 
 	@Override
 	public int update(Subject sub) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.subjectDAO.update(sub);
 	}
 
 	@Override
 	public int delete(Subject sub) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.subjectDAO.delete(sub);
 	}
 }

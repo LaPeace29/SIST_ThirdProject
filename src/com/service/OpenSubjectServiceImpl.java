@@ -99,13 +99,22 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 
 	@Override
 	public List<OpenSubject> search1(String key, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.openSubjectDAO.search1(key, value);
 	}
 
 	@Override
 	public List<OpenSubject> search2(String key, String value) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public List<OpenSubject> print1(String instructor_id, String completion) {
+		return this.openSubjectDAO.print1(instructor_id, completion);
+	}
+
+	@Override
+	public int deleteInsert(OpenSubject os) {
+		return this.openSubjectDAO.deleteInsert(os);
 	}
 }
