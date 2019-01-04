@@ -25,6 +25,7 @@ public class OpenSubject {
 	private int dropout_count;				// 중도 탈락 인원
 	private String instructor_status;		// 강사 진행 여부(강의진행전, 강의진행중, 강의종료)
 	private int count_;						// 삭제 가능 여부
+	private String completion; 				// 진행 여부
 
 	// Getter
 	public String getOpen_subject_id() {
@@ -106,6 +107,10 @@ public class OpenSubject {
 	public int getCount_() {
 		return count_;
 	}
+	
+	public String getCompletion() {
+		return completion;
+	}
 
 	// Setter
 	public void setOpen_subject_id(String open_subject_id) {
@@ -186,5 +191,9 @@ public class OpenSubject {
 	
 	public void setCount_(int count_) {
 		this.count_ = count_;
+	}
+	
+	public void setCompletion(String completion) {
+		this.completion = completion;
 	}
 }
