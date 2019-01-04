@@ -34,6 +34,27 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				trigger: "hover", 
 				html: true
 			});
+			
+			//삭제
+			$(".btn-del").on("click", function(){
+				var subjectbook_id=$(this).parents("tr").find("td:eq(0)").text();
+				var subjectbook_name=$(this).parents("tr").find("td:eq(1)").text();
+				var subjectbook_isbn=$(this).parents("tr").find("td:eq(2)").text();
+				
+				$("#subjectbook_delete #subjectbook_id").val(subjectbook_id);
+				$("#subjectbook_delete #subjectbook_name").val(subjectbook_name);
+				$("#subjectbook_delete #subjectbook_isbn").val(subjectbook_isbn);
+			});
+			
+			$(".btn-update").on("click", function(){
+				var subjectbook_id=$(this).parents("tr").find("td:eq(0)").text();
+				var subjectbook_name=$(this).parents("tr").find("td:eq(1)").text();
+				var subjectbook_isbn=$(this).parents("tr").find("td:eq(2)").text();
+				
+				$("#subjectbook_update #subjectbook_id").val(subjectbook_id);
+				$("#subjectbook_update #subjectbook_name").val(subjectbook_name);
+				$("#subjectbook_update #subjectbook_isbn").val(subjectbook_isbn);
+			});
 		});
 	
 	</script>
@@ -50,9 +71,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_subjectbook.jsp">기초 정보 관리</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_subjectbook.jsp">교재 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/first">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/basic/course">기초 정보 관리</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/admin/basic/subjectbook">교재 관리</a></li>
 					</ul>
 				</div>
 				
@@ -79,39 +100,17 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-		                                                <td>SB00001</td>
-		                                                <td><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" 
-		                                                	data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='180px' height='216px'/> <br>출판사: 한빛 미디어<br>가격: 27000원">
-		                                                	이것이 자바다</a></td>
-		                                                <td>1111111111111111</td>
-														<td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#subjectbook_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
-													</tr>
+		                                            <c:forEach var="sb" items="${list}">
 		                                            <tr>
-		                                                <td>SB00002</td>
-		                                                <td><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" 
-		                                                	data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='180px' height='216px'/> <br>출판사: 한빛 미디어<br>가격: 27000원">
-		                                                	이것이 오라클이다.</a></td>
-		                                                <td>2222222222222222</td>
-		                                                <td><button class="btn btn-sm btn-light btn-update"
+		                                            	<td>${sb.subjectbook_id}</td>
+		                                            	<td>${sb.subjectbook_name}</td>
+		                                            	<td>${sb.subjectbook_isbn}</td>
+		                                            	<td><button class="btn btn-sm btn-light btn-update"
 																data-toggle="modal" data-target="#subjectbook_update">수정</button></td>
 														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
+																data-toggle="modal" data-target="#subjectbook_delete" ${sb.count_>=1?"disabled='disabled'":""}>삭제</button></td>
 		                                            </tr>
-		                                            <tr>
-		                                                <td>SB00003</td>
-		                                                <td><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" 
-		                                                	data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='180px' height='216px'/> <br>출판사: 한빛 미디어<br>가격: 27000원">
-		                                                	이것이 HTML이다.</a></td>
-		                                                <td>3333333333333333</td>
-		                                                <td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#subjectbook_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#subjectbook_delete">삭제</button></td>
-		                                            </tr>
+		                                            </c:forEach>
 												</tbody>
 											</table>
 										</div>
@@ -138,8 +137,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/subjectbook/insert" method="post">
 				<div class="modal-body">
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="subjectbook_name">교재명</label> 
 							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control">
@@ -148,12 +147,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="subjectbook_isbn">ISBN</label> 
 							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
+					<button type="submit" class="btn btn-primary">등록</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -169,8 +168,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/subjectbook/update" method="post">
 				<div class="modal-body">
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="subjectbook_id">교재번호</label> 
 							<input type="text" id="subjectbook_id" name="subjectbook_id" placeholder="교재번호" class="form-control" readonly>
@@ -183,12 +182,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="subjectbook_isbn">ISBN</label> 
 							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">수정</button>
+					<button type="submit" class="btn btn-primary">수정</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -204,9 +203,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/subjectbook/delete" method="post">
 				<div class="modal-body">
 					<p>다음 교재를 삭제하시겠습니까?</p>
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="subjectbook_id">교재번호</label> 
 							<input type="text" id="subjectbook_id" name="subjectbook_id" placeholder="교재번호" class="form-control" readonly>
@@ -219,12 +218,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="subjectbook_isbn">ISBN</label> 
 							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control" readonly>
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
+					<button type="submit" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>

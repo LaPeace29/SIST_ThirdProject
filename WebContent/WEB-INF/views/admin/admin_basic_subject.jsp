@@ -28,7 +28,20 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	<script>
 	
 		$(document).ready(function() {
+			//삭제 액션처리
+			$(".btn-del").on("click", function(){
+				var subject_id=$(this).parents("tr").find("td:eq(0)").text();
+				var subject_name=$(this).parents("tr").find("td:eq(1)").text();
+				$("#subject_delete #subject_id").val(subject_id);
+				$("#subject_delete #subject_name").val(subject_name);
+			});
 			
+			$(".btn-update").on("click", function(){
+				var subject_id=$(this).parents("tr").find("td:eq(0)").text();
+				var subject_name=$(this).parents("tr").find("td:eq(1)").text();
+				$("#subject_update #subject_id").val(subject_id);
+				$("#subject_update #subject_name").val(subject_name);
+			});
 		});
 	
 	</script>
@@ -45,9 +58,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_subject.jsp">기초 정보 관리</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_subject.jsp">과목 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/first">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/basic/course">기초 정보 관리</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/admin/basic/subject">과목 관리</a></li>
 					</ul>
 				</div>
 				
@@ -72,30 +85,16 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													</tr>
 												</thead>
 												<tbody>
-		                                            <tr>
-		                                                <td>SUB0001</td>
-		                                                <td>Java SE</td>
-														<td><button class="btn btn-sm btn-light btn-update"
+		                                          <c:forEach var="sub" items= "${list}">
+		                                          <tr>
+		                                          	<td>${sub.subject_id}</td>
+		                                          	<td>${sub.subject_name}</td>
+		                                          	<td><button class="btn btn-sm btn-light btn-update"
 																data-toggle="modal" data-target="#subject_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#subject_delete">삭제</button></td>
-													</tr>
-		                                            <tr>
-		                                                <td>SUB0002</td>
-		                                                <td>Oracle</td>
-		                                                <td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#subject_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#subject_delete">삭제</button></td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>SUB0003</td>
-		                                                <td>HTML5</td>
-		                                                <td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#subject_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#subject_delete">삭제</button></td>
-		                                            </tr>
+													<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#subject_delete" ${sub.count_>=1?"disabled='disabled'":""}>삭제</button></td>
+		                                          </tr>
+		                                          </c:forEach>
 		                                        </tbody>		                                         					
 											</table>
 										</div>
@@ -122,18 +121,18 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/subject/insert" method="post">
 				<div class="modal-body">
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="subject_name">과목명</label> 
 							<input type="text" id="subject_name" name="subject_name" placeholder="과목명" class="form-control">
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
+					<button type="submit" class="btn btn-primary">등록</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -149,8 +148,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/subject/update" method="post">
 				<div class="modal-body">
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="subject_id">과목번호</label> 
 							<input type="text" id="subject_id" name="subject_id" placeholder="과목번호" class="form-control" readonly>
@@ -159,12 +158,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="subject_name">과목명</label> 
 							<input type="text" id="subject_name" name="subject_name" placeholder="과목명" class="form-control" >
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">수정</button>
+					<button type="submit" class="btn btn-primary">수정</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -180,9 +179,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/subject/delete" method="post">
 				<div class="modal-body">
 					<p>다음 과목을 삭제하시겠습니까?</p>
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="subject_id">과목번호</label> 
 							<input type="text" id="subject_id" name="subject_id" placeholder="과목번호" class="form-control" readonly>
@@ -191,12 +190,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="subject_name">과목명</label> 
 							<input type="text" id="subject_name" name="subject_name" placeholder="과목명" class="form-control" readonly>
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
+					<button type="submit" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>

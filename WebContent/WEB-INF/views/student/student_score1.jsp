@@ -35,15 +35,34 @@
 <script
 	src="${pageContext.request.contextPath}/resources/script/common.js"></script>
 
+
 <script>
 	$(document).ready(function() {
+		
+
+    
+    	/* var siblings = $("#slist").find("td").siblings("td");
+		var start = new Date($(siblings).eq(2).text().substring(0,10)); // Jul 02 2012 
+		var end = new Date($(siblings).eq(2).text().substring(13));
+		var today = new Date();  
+ 		var total = end - start; 
+		var progress = today - start; 
+
+		var p = Math.round(progress/ total * 100) + "%"; 
+		
+		$(".progressbar").css("width", p); */
 		
 		$(".btn-look").on("click", function() {
             window.location.assign("${pageContext.request.contextPath}/views/student/student_score2.jsp");
          });
+		
+		
+		
+		
 	});
+	
 </script>
-
+<script src="${pageContext.request.contextPath}/resources/script/util.js"></script> 
 </head>
 <body>
 
@@ -91,31 +110,35 @@
 											<div class="col-sm-10">
 												<table class="table table-bordered text-center" >
 													<tbody>
+													
+													<c:forEach var="si" items="${stinfo}"> 
 														<tr>
 															<td>수강생 번호</td>
-															<td>ST00000</td>
+															<td>${si.student_id}</td>
 														</tr>
 
 														<tr>
 															<td>수강생 이름</td>
-															<td>홍길동</td>
+															<td>${si.student_name}</td>
 														</tr>
 
 														<tr>
 															<td>수강생 휴대폰번호</td>
-															<td>010-0000-0000</td>
+															<td>${si.student_phone}</td>
 														</tr>
 
 														<tr>
 															<td>수강생 등록일</td>
-															<td>2000-00-00</td>
+															<td>${si.student_regDate}</td>
 														</tr>
+														
+														</c:forEach>
 													</tbody>
 												</table>
 											</div>
 										</div>
 
-										<div class="table-responsive">
+										<div class="table-responsive list">
 											<table class="table">
 												<thead>
 													<tr>
@@ -128,38 +151,32 @@
 														<th>성적</th>
 													</tr>
 												</thead>
-												<tbody>
+												<tbody id= "slist">
+													<c:forEach var="s" items="${list}" > 
 													<tr>
-														<td>OC0001</td>
-														<td>웹기반 빅데이터 분석 응용 SW 개발자</td>
-														<td>2018-01-02 ~ 2018-05-06</td>
-														<td>1강의실</td>
+													
+										
+													
+														<td>${s.open_course_id}</td>
+														<td>${s.course_name}</td>
+														<td>${s.open_course_start_date} ~ ${s.open_course_end_date}</td>
+														<td>${s.classroom_name}</td>
 														<td>
 															<div class="progress">
-																<div class="progress-bar bg-primary" role="progressbar"
-																	style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+																<div class="progress-bar bg-primary progressbar" role="progressbar"
+																	style="width: 100%"
 																	aria-valuemax="100"></div>
 															</div>
 														</td>
-														<td>수료</td>
+														<td>${s.completion_status}</td>
 														<td><button class="btn btn-sm btn-light btn-look">성적 조회</button></td>
 													</tr>
-													<tr>
-														<td>OC0015</td>
-														<td>Java &amp; Python 기반 응용 SW 개발자 양성 과정</td>
-														<td>2018-06-25 ~ 2019-01-17</td>
-														<td>2강의실</td>
-														<td>
-															<div class="progress">
-																<div class="progress-bar bg-primary" role="progressbar"
-																	style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-														</td>
-														<td>수료 예정</td>
-														<td><button class ="btn btn-sm btn-light btn-look">성적 조회</button></td>
-													</tr>
+													
+													
+													</c:forEach>
+													
 												</tbody>
+												
 											</table>
 										</div>
 										

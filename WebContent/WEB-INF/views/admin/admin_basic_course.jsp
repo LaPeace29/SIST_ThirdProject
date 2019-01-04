@@ -28,7 +28,19 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	<script>
 	
 		$(document).ready(function() {
+			$(".btn-del").on("click", function(){
+				var course_id=$(this).parents("tr").find("td:eq(0)").text();
+				var course_name=$(this).parents("tr").find("td:eq(1)").text();
+				$("#course_delete #course_id").val(course_id);
+				$("#course_delete #course_name").val(course_name);
+			});
 			
+			$(".btn-update").on("click", function(){
+				var course_id=$(this).parents("tr").find("td:eq(0)").text();
+				var course_name=$(this).parents("tr").find("td:eq(1)").text();
+				$("#course_update #course_id").val(course_id);
+				$("#course_update #course_name").val(course_name);
+			});
 		});
 	
 	</script>
@@ -45,9 +57,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_course.jsp">기초 정보 관리</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_course.jsp">과정 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/first">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/basic/course">기초 정보 관리</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/admin/basic/course">과정 관리</a></li>
 					</ul>
 				</div>
 				
@@ -72,30 +84,16 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													</tr>
 												</thead>
 												<tbody>
-		                                            <tr>
-		                                                <td>CS0001</td>
-		                                                <td>웹기반 빅데이터 분석 응용</td>
-														<td><button class="btn btn-sm btn-light btn-update"
+		                                           <c:forEach var = "cs" items="${list}">
+		                                           <tr>
+		                                           	<td>${cs.course_id}</td>
+		                                           	<td>${cs.course_name}</td>
+		                                           	<td><button class="btn btn-sm btn-light btn-update"
 																data-toggle="modal" data-target="#course_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#course_delete">삭제</button></td>
-													</tr>
-		                                            <tr>
-		                                                <td>CS0002</td>
-		                                                <td>웹기반 빅데이터 분석 응용</td>
-		                                                <td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#course_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#course_delete">삭제</button></td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>CS0003</td>
-		                                                <td>웹기반 빅데이터 분석 응용</td>
-		                                                <td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#course_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#course_delete">삭제</button></td>
-		                                            </tr>
+													<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#course_delete" ${cs.count_>=1?"disabled='disabled'":""}>삭제</button></td>
+		                                           </tr>
+		                                           </c:forEach>
 		                                        </tbody>									
 											</table>
 										</div>
@@ -122,18 +120,18 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/course/insert" method="post">
 				<div class="modal-body">
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="course_name">과정명</label> 
 							<input type="text" id="course_name" name="course_name" placeholder="과정명" class="form-control">
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
+					<button type="submit" class="btn btn-primary">등록</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -149,8 +147,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/course/update" method="post">
 				<div class="modal-body">
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="course_id">과정번호</label> 
 							<input type="text" id="course_id" name="course_id" placeholder="과정번호" class="form-control" readonly>
@@ -159,12 +157,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="course_name">과정명</label> 
 							<input type="text" id="course_name" name="course_name" placeholder="과정명" class="form-control">
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">수정</button>
+					<button type="submit" class="btn btn-primary">수정</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -180,9 +178,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/course/delete" method="post">
 				<div class="modal-body">
 					<p>다음 과정을 삭제하시겠습니까?</p>
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="course_id">과정번호</label> 
 							<input type="text" id="course_id" name="course_id" placeholder="과정번호" class="form-control" readonly>
@@ -191,12 +189,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="course_name">과정명</label> 
 							<input type="text" id="course_name" name="course_name" placeholder="과정명" class="form-control" readonly>
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
+					<button type="submit" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>

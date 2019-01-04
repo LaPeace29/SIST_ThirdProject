@@ -45,8 +45,51 @@
 										"click",
 										function() {
 											window.location
-													.assign("${pageContext.request.contextPath}/admin/opencourse2?open_course_id="+$(this).val());
+													.assign("${pageContext.request.contextPath}/admin/opencourse2?open_course_id="
+															+ $(this).val());
 										});
+
+						$(".btn-update")
+								.on(
+										"click",
+										function() {
+
+											$(
+													"#opencourse_update #open_course_id")
+													.val($(this).val());
+											$(
+													"#opencourse_update #open_course_id")
+													.attr("placeholder",
+															$(this).val());
+
+										});
+
+						$(".btn-del").on(
+								"click",
+								function() {
+
+									var course_name = $(this).parent()
+											.siblings().eq(1).text();
+									var course_date = $(this).parent()
+											.siblings().eq(2).text();
+
+									$("#opencourse_delete #open_course_id")
+											.val($(this).val());
+									$("#open_course_id").attr("placeholder",
+											$(this).val());
+
+									$("#course_name").attr("placeholder",
+											course_name);
+									$("#course_date").attr("placeholder",
+											course_date);
+
+								});
+
+						//검색 진행시 상태값 유지 설정
+						$("#key option[value='${key}']").attr("selected",
+								"selected");
+						$("#value").val('${value}');
+
 					});
 </script>
 
@@ -84,8 +127,8 @@
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<button class="btn btn-primary btn-sm btn-reg"
-											data-toggle="modal" data-target="#opencourse_reg">신규 개설
-											과정 등록</button>
+											data-toggle="modal" data-target="#opencourse_reg">신규
+											개설 과정 등록</button>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -103,28 +146,31 @@
 												</thead>
 												<tbody>
 													<c:forEach var="oc" items="${list}">
-													<tr>
-														<td>${oc.open_course_id}</td>
-														<td>${oc.course_name}</td>
-														<td>${oc.open_course_start_date} ~ ${oc.open_course_end_date}</td>
-														<td>${oc.classroom_name}</td>
-														<td>${oc.open_subject_count}</td>
-														<td>${oc.student_count}</td>
-														<td>
-															<button class="btn btn-sm btn-light btn-look"
-																id="openSubject" value="${oc.open_course_id}">보기</button>
-														</td>
-														<td>
-															<button type="button"
-																class="btn btn-sm btn-light btn-update" data-toggle="modal"
-																data-target="#opencourse_update">수정</button>
-														</td>
-														<td>
-															<button type="button"
-																class="btn btn-sm btn-light btn-del" data-toggle="modal"
-																data-target="#opencourse_delete">삭제</button>
-														</td>
-													</tr>
+														<tr>
+															<td>${oc.open_course_id}</td>
+															<td>${oc.course_name}</td>
+															<td>${oc.open_course_start_date}~${oc.open_course_end_date}</td>
+															<td>${oc.classroom_name}</td>
+															<td>${oc.open_subject_count}</td>
+															<td>${oc.student_count}</td>
+															<td>
+																<button class="btn btn-sm btn-light btn-look"
+																	id="openSubject" value="${oc.open_course_id}">보기</button>
+															</td>
+															<td>
+																<button type="button"
+																	class="btn btn-sm btn-light btn-update"
+																	data-toggle="modal" data-target="#opencourse_update"
+																	value="${oc.open_course_id}">수정</button>
+															</td>
+															<td>
+																<button type="button"
+																	class="btn btn-sm btn-light btn-del"
+																	data-toggle="modal" data-target="#opencourse_delete"
+																	value="${oc.open_course_id}"
+																	${oc.student_count>=1?"disabled='disabled'":""}>삭제</button>
+															</td>
+														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
@@ -133,7 +179,9 @@
 											<button class="btn btn-primary" id="prev">이전</button>
 											<button class="btn btn-primary" id="next">다음</button>
 
-											<form style="float: right" class="form-inline" method="post">
+											<form
+												action="${pageContext.request.contextPath}/admin/opencourse1/search" 
+												style="float: right" class="form-inline" method="post">
 												<div>
 													<div class="form-group">
 														<select class="form-control text-small" id="key"
@@ -144,7 +192,7 @@
 														</select> <input type="text" class="form-control" id="value"
 															name="value" placeholder="Search">
 														<!-- 검색 진행 버튼 -->
-														<button type="button" class="btn btn-md btn-light"
+														<button type="submit" class="btn btn-md btn-light"
 															id="btnSearch">
 															<i class="fa fa-search"></i>
 														</button>
@@ -176,39 +224,43 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="post">
+					<form
+						action="${pageContext.request.contextPath}/admin/opencourse1/insert"
+						method="post">
 						<div class="form-group">
-							<label for="courseSelect">과정명</label> 
-							<select	class="form-control" id="courseSelect" name="courseSelect" required>
-								<option>과정번호1 / 과정명1</option>
-								<option>과정번호2 / 과정명2</option>
-								<option>과정번호3 / 과정명3</option>
-								<option>과정번호4 / 과정명4</option>
+							<label for="courseSelect">과정명</label> <select
+								class="form-control" id="course_id" name="course_id" required>
+								<c:forEach var="c" items="${course}">
+									<option value="${c.course_id}">${c.course_id}/
+										${c.course_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="courseStartDate">과정 시작일</label> 
-							<input type="date" class="form-control" id="courseStartDate" name="courseStartDate"	required> 
+							<label for="courseStartDate">과정 시작일</label> <input type="date"
+								class="form-control" id="open_course_start_date"
+								name="open_course_start_date" required>
 						</div>
 						<div class="form-group">
-							<label for="courseEndDate">과정 종료일</label>
-							<input type="date" class="form-control" id="courseEndDate"		name="courseEndDate" required>
+							<label for="courseEndDate">과정 종료일</label> <input type="date"
+								class="form-control" id="open_course_end_date"
+								name="open_course_end_date" required>
 						</div>
 						<div class="form-group">
-							<label for="classroomSelect">강의실</label>
-							<select class="form-control"
-								id="classroomSelect" name="classroomSelect" required>
-								<option>강의실번호1 / 강의실명1</option>
-								<option>강의실번호2 / 강의실명2</option>
-								<option>강의실번호3 / 강의실명3</option>
-								<option>강의실번호4 / 강의실명4</option>
+							<label for="classroomSelect">강의실</label> <select
+								class="form-control" id="classroom_id" name="classroom_id"
+								required>
+								<c:forEach var="c" items="${classroom}">
+									<option value="${c.classroom_id}">${c.classroom_id}/
+										${c.classroom_name}</option>
+								</c:forEach>
 							</select>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">등록</button>
+							<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
-					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -226,49 +278,52 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="post">
+					<form
+						action="${pageContext.request.contextPath}/admin/opencourse1/update"
+						method="post">
 						<div class="form-group">
-							<label for="opencourse_id">개설과정번호</label>
-							<input type="text" id=opencourse_id name="opencourse_id" placeholder="과정명" class="form-control" readonly>
+							<label for="open_course">개설과정번호</label> <input type="text"
+								id="open_course_id" name="open_course_id" placeholder="과정명"
+								class="form-control" value="" readonly>
 						</div>
 						<div class="form-group">
-							<label for="courseSelect">과정명</label> 
-							<select	class="form-control" id="courseSelect" name="courseSelect" required>
-								<option>과정번호1 / 과정명1</option>
-								<option>과정번호2 / 과정명2</option>
-								<option>과정번호3 / 과정명3</option>
-								<option>과정번호4 / 과정명4</option>
+							<label for="courseSelect">과정명</label> <select
+								class="form-control" id="course_id" name="course_id" required>
+								<c:forEach var="c" items="${course}">
+									<option value="${c.course_id}">${c.course_id}/${c.course_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="courseStartDate">과정 시작일</label> 
-							<input type="date" class="form-control" id="courseStartDate" name="courseStartDate"	required> 
+							<label for="courseStartDate">과정 시작일</label> <input type="date"
+								class="form-control" id="open_course_start_date"
+								name="open_course_start_date" required>
 						</div>
 						<div class="form-group">
-							<label for="courseEndDate">과정 종료일</label>
-							<input type="date" class="form-control" id="courseEndDate"		name="courseEndDate" required>
+							<label for="courseEndDate">과정 종료일</label> <input type="date"
+								class="form-control" id="open_course_end_date"
+								name="open_course_end_date" required>
 						</div>
 						<div class="form-group">
-							<label for="classroomSelect">강의실</label>
-							<select class="form-control"
-								id="classroomSelect" name="classroomSelect" required>
-								<option>강의실번호1 / 강의실명1</option>
-								<option>강의실번호2 / 강의실명2</option>
-								<option>강의실번호3 / 강의실명3</option>
-								<option>강의실번호4 / 강의실명4</option>
+							<label for="classroomSelect">강의실</label> <select
+								class="form-control" id="classroom_id" name="classroom_id"
+								required>
+								<c:forEach var="c" items="${classroom}">
+									<option value="${c.classroom_id}">${c.classroom_id}/${c.classroom_name}</option>
+								</c:forEach>
 							</select>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">수정</button>
+							<button type="button" data-dismiss="modal"
+								class="btn btn-secondary">취소</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">수정</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 과정 삭제에 관한 모달 -->
 	<div id="opencourse_delete" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
@@ -282,27 +337,30 @@
 				</div>
 				<div class="modal-body">
 					<p>다음 과정을 삭제하시겠습니까?</p>
-					<form action="" method="post">
+					<form
+						action="${pageContext.request.contextPath}/admin/opencourse1/delete"
+						method="post">
 						<div class="form-group">
-							<label for="opencourse_id">개설과정번호</label> <input type="text"
-								id=opencourse_id name="opencourse_id" placeholder="과정명"
+							<label for="open_course_id">개설과정번호</label> <input type="text"
+								id="open_course_id" name="open_course_id" placeholder="과정명"
 								class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="course_name">과정명</label> <input type="text"
+							<label for="open_course_name">과정명</label> <input type="text"
 								id=course_name name="course_name" placeholder="과정명"
 								class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="course_date">과정 기간</label> 
-							<input type="text" id="course_date" name="course_date" placeholder="과정 기간" class="form-control" readonly>
+							<label for="open_course_date">과정 기간</label> <input type="text"
+								id="course_date" name="course_date" placeholder="과정 기간"
+								class="form-control" readonly>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary">확인</button>
+							<button type="button" data-dismiss="modal"
+								class="btn btn-secondary">취소</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>

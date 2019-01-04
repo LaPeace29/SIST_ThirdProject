@@ -28,7 +28,22 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	<script>
 	
 		$(document).ready(function() {
+			//삭제 액션처리
+			$(".btn-del").on("click", function(){
+				var classroom_id=$(this).parents("tr").find("td:eq(0)").text();
+				var classroom_name=$(this).parents("tr").find("td:eq(1)").text();
+				$("#classroom_delete #classroom_id").val(classroom_id);
+				$("#classroom_delete #classroom_name").val(classroom_name);
+			});
 			
+			$(".btn-update").on("click", function(){
+				var classroom_id=$(this).parents("tr").find("td:eq(0)").text();
+				var classroom_name=$(this).parents("tr").find("td:eq(1)").text();
+				var max_number=$(this).parents("tr").find("td:eq(2)").text();
+				$("#classroom_update #classroom_id").val(classroom_id);
+				$("#classroom_update #classroom_name").val(classroom_name);
+				$("#classroom_update #max_number").val(max_number);
+			});
 		});
 	</script>
 
@@ -44,12 +59,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_basic_course.jsp">기초 정보 관리</a></li>
-						<li class="breadcrumb-item active"><a href="">강의실 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/first">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/basic/course">기초 정보 관리</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/admin/basic/classroom">강의실 관리</a></li>
 					</ul>
 				</div>
-				
 				<section class="table">
 					<div class="container-fluid">
 						<div class="row">
@@ -63,42 +77,17 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
-													<tr>
-														<th>강의실번호</th>
-		                                                <th>강의실명</th>
-		                                                <th>최대정원</th>
-		                                                <th>수정</th>
-		                                                <th>삭제</th>
-													</tr>
-												</thead>
-												<tbody>
-		                                            <tr>
-		                                                <td>CR01</td>
-		                                                <td>1강의실</td>
-		                                                <td>30명</td>
-														<td><button class="btn btn-sm btn-light btn-update"
+		                                           <c:forEach var="cr" items="${list}">
+		                                          <tr>
+		                                          	<td>${cr.classroom_id}</td>
+		                                          	<td>${cr.classroom_name}</td>  
+		                                          	<td>${cr.max_number}</td>  
+		                                          	<td><button class="btn btn-sm btn-light btn-update"
 																data-toggle="modal" data-target="#classroom_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#classroom_delete">삭제</button></td>
+													<td><button class="btn btn-sm btn-light btn-del" 
+																data-toggle="modal" data-target="#classroom_delete" ${cr.count_>=1?"disabled='disabled'":""}>삭제</button></td>
 													</tr>
-		                                            <tr>
-		                                                <td>CR02</td>
-		                                                <td>2강의실</td>
-														<td>30명</td>
-														<td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#classroom_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#classroom_delete">삭제</button></td>
-													</tr>
-		                                            <tr>
-		                                                <td>CR03</td>
-		                                                <td>3강의실</td>
-		                                                <td>30명</td>
-		                                                <td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#classroom_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#classroom_delete">삭제</button></td>
-		                                            </tr>
+		                                          </c:forEach>
 		                                        </tbody>		                                                                     					
 											</table>
 										</div>
@@ -125,22 +114,22 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/classroom/insert" method="post">
 				<div class="modal-body">
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="classroom_name">강의실명</label> 
 							<input type="text" id="classroom_name" name="classroom_name" placeholder="강의실명" class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="classroom_name">최대정원</label> 
-							<input type="text" id="classroom_max_number" name="classroom_max_number" placeholder="최대정원" class="form-control">
+							<input type="text" id="max_number" name="max_number" placeholder="최대정원" class="form-control">
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
+					<button type="submit" class="btn btn-primary">등록</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -156,8 +145,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/classroom/update" method="post">
 				<div class="modal-body">
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="classroom_id">강의실번호</label> 
 							<input type="text" id="classroom_id" name="classroom_id" placeholder="강의실번호" class="form-control" readonly>
@@ -168,14 +157,14 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						</div>
 						<div class="form-group">
 							<label for="classroom_name">최대정원</label> 
-							<input type="text" id="classroom_max_number" name="classroom_max_number" placeholder="최대정원" class="form-control">
+							<input type="text" id="max_number" name="max_number" placeholder="최대정원" class="form-control">
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">수정</button>
+					<button type="submit" class="btn btn-primary">수정</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -191,9 +180,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/admin/basic/classroom/delete" method="post">
 				<div class="modal-body">
 					<p>다음 강의실을 삭제하시겠습니까?</p>
-					<form action="" method="post">
 						<div class="form-group">
 							<label for="classroom_id">강의실번호</label> 
 							<input type="text" id="classroom_id" name="classroom_id" placeholder="강의실번호" class="form-control" readonly>
@@ -202,12 +191,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<label for="subject_name">강의실명</label> 
 							<input type="text" id="classroom_name" name="classroom_name" placeholder="강의실명" class="form-control" readonly>
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
+					<button type="submit" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>

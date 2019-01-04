@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  
 pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String instructor_id = request.getParameter("instructor_id");
+	String instructor_name = request.getParameter("instructor_name");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,14 +32,19 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	<script>
 	
 		$(document).ready(function() {
-			
+			var instructor_id = "<%=instructor_id %>";
+			var instructor_name = "<%=instructor_name %>";
+			$(".btn01").on("click", function(){
+			    //$('.btn01').removeClass('active');
+			    //$(this).addClass('active');
+				location.assign("${pageContext.request.contextPath}/admin/instructor/mng2?instructor_id="+instructor_id+"&completion="+$(this).val()+"&instructor_name="+instructor_name)
+			});
 		});
 	
 	</script>
 
 </head>
 <body>
-
 	<div class="page">
         <!-- Main Navbar-->
         <%@ include file="/WEB-INF/views/partials/admin_header.jsp" %>
@@ -45,9 +54,9 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_instructor_mng1.jsp">강사 계정 관리</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/admin/admin_instructor_mng2.jsp">강의 과목 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/first">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/instructor/mng1">강사 계정 관리</a></li>
+						<li class="breadcrumb-item active"><a href="">강의 과목 관리</a></li>
 					</ul>
 				</div>
 				
@@ -57,14 +66,14 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">김강사 - 강의 과목</h3>
+										<h3 class="h4"> <%=instructor_name %> - 강의 과목</h3>
 									</div>
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<div class="btn-group">					
-											<button type="button" class="btn btn-sm btn-default">강의 종료</button>
-											<button type="button" class="btn btn-sm btn-default active">강의 중</button>
-											<button type="button" class="btn btn-sm btn-default">강의 예정</button>
+											<button type="button" class="btn btn-sm btn-default btn01 " value="강의 종료">강의 종료</button>
+											<button type="button" class="btn btn-sm btn-default btn01 active" value="강의 중">강의 중</button>
+											<button type="button" class="btn btn-sm btn-default btn01 " value="강의 예정">강의 예정</button>
 										</div>
 										<div class="table-responsive">
 											<table class="table">
@@ -80,33 +89,17 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                            </tr>
 												</thead>
 												<tbody>
-													<tr>
-		                                                <td>OS0034</td>
-		                                                <td>HTML</td>
-		                                                <td>2018-01-02 ~ 2018-03-02</td>
-		                                                <td>웹기반 빅데이터 분석 응용SW개발자</td>
-		                                                <td>2018-01-02 ~ 2018-05-06</td>
-		                                                <td>1강의실</td>
-		                                                <td>강의종료</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>OS0034</td>
-		                                                <td>HTML</td>
-		                                                <td>2018-01-02 ~ 2018-03-02</td>
-		                                                <td>웹기반 빅데이터 분석 응용SW개발자</td>
-		                                                <td>2018-01-02 ~ 2018-05-06</td>
-		                                                <td>1강의실</td>
-		                                                <td>강의종료</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>OS0034</td>
-		                                                <td>HTML</td>
-		                                                <td>2018-01-02 ~ 2018-03-02</td>
-		                                                <td>웹기반 빅데이터 분석 응용SW개발자</td>
-		                                                <td>2018-01-02 ~ 2018-05-06</td>
-		                                                <td>1강의실</td>
-		                                                <td>강의종료</td>
-		                                            </tr>
+										         <c:forEach var="os" items="${list}">
+										         <tr>
+										         	<td>${os.open_subject_id}</td>
+										         	<td>${os.subject_name}</td>
+										         	<td>${os.subject_start_date} ~ ${os.subject_end_date}</td>
+										         	<td>${os.course_name}</td>
+										         	<td>${os.open_course_start_date} ~ ${os.open_course_end_date}</td>
+										         	<td>${os.classroom_name}</td>
+										         	<td>${os.completion}</td>
+										         </tr>
+										         </c:forEach>                                   
 												</tbody>
 											</table>
 										</div>

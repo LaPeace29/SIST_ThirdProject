@@ -44,7 +44,7 @@
 										"click",
 										function() {
 											window.location
-													.assign("${pageContext.request.contextPath}/views/admin/admin_student_mng2.jsp");
+													.assign("${pageContext.request.contextPath}/admin/student/mng2?student_id="+$(this).val());
 										});
 
 						$(".student-look").popover({
@@ -91,7 +91,8 @@
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<button class="btn btn-primary btn-sm btn-reg"
-											data-toggle="modal" data-target="#student_reg">수강생 등록</button>
+											data-toggle="modal" data-target="#student_reg">수강생
+											등록</button>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -108,22 +109,24 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>ST0001</td>
-														<td><a class="student-look popover-bold" data-toggle="popover"
-															title="홍길동 사진"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">홍길동</a></td>
-														<td>010-2356-4528</td>
-														<td>2017-12-20</td>
-														<td>1회</td>
-														<td><button class="btn btn-sm btn-light btnSearch">조회</button></td>
-														<td><button class="btn btn-sm btn-light btn-update"
-																data-toggle="modal" data-target="#student_update">수정</button></td>
-														<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#student_delete">삭제</button></td>
-														<td><button class="btn btn-sm btn-light btn-reset"
-																data-toggle="modal" data-target="#password_reset">초기화</button></td>
-													</tr>
+													<c:forEach var="st" items="${list}">
+														<tr>
+															<td>${st.student_id}</td>
+															<td><a class="student-look popover-bold"
+																data-toggle="popover" title="${st.student_name} 사진"
+																data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">${st.student_name}</a></td>
+															<td>${st.student_phone}</td>
+															<td>${st.student_regDate}</td>
+															<td>${st.class_count}</td>
+															<td><button class="btn btn-sm btn-light btnSearch" value = "${st.student_id}">조회</button></td>
+															<td><button class="btn btn-sm btn-light btn-update"
+																	data-toggle="modal" data-target="#student_update">수정</button></td>
+															<td><button class="btn btn-sm btn-light btn-del"
+																	data-toggle="modal" data-target="#student_delete" value = "${st.class_count}">삭제</button></td>
+															<td><button class="btn btn-sm btn-light btn-reset"
+																	data-toggle="modal" data-target="#password_reset">초기화</button></td>
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>
@@ -181,30 +184,36 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="student_name">이름</label> 
-							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control">
+							<label for="student_name">이름</label> <input type="text"
+								id="student_name" name="student_name" placeholder="이름"
+								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_pw">비밀번호</label> 
-							<input type="text" id="student_pw" name="student_pw" placeholder="비밀번호" class="form-control">
+							<label for="student_pw">비밀번호</label> <input type="text"
+								id="student_pw" name="student_pw" placeholder="비밀번호"
+								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_phone">휴대폰번호</label> 
-							<input type="text" id="student_phone" name="student_phone" placeholder="휴대폰번호" class="form-control">
+							<label for="student_phone">휴대폰번호</label> <input type="text"
+								id="student_phone" name="student_phone" placeholder="휴대폰번호"
+								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_regDate">등록일</label> 
-							<input type="text" id="student_regDate" name="student_regDate" placeholder="등록일" class="form-control">
+							<label for="student_regDate">등록일</label> <input type="text"
+								id="student_regDate" name="student_regDate" placeholder="등록일"
+								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_photo">사진 파일</label> 
-							<input type="file" id="student_photo" name="student_photo" placeholder="사진 파일" class="form-control">
+							<label for="student_photo">사진 파일</label> <input type="file"
+								id="student_photo" name="student_photo" placeholder="사진 파일"
+								class="form-control">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">등록</button>
-					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
@@ -225,36 +234,42 @@
 				<div class="modal-body">
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="student_id">수강생 번호</label> 
-							<input type="text" id="student_id" name="student_id" placeholder="수강생 번호" class="form-control" readonly>
+							<label for="student_id">수강생 번호</label> <input type="text"
+								id="student_id" name="student_id" placeholder="수강생 번호"
+								class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="student_name">이름</label> 
-							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control">
+							<label for="student_name">이름</label> <input type="text"
+								id="student_name" name="student_name" placeholder="이름"
+								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_phone">휴대폰번호</label> 
-							<input type="text" id="student_phone" name="student_phone" placeholder="휴대폰번호" class="form-control">
+							<label for="student_phone">휴대폰번호</label> <input type="text"
+								id="student_phone" name="student_phone" placeholder="휴대폰번호"
+								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_regDate">등록일</label> 
-							<input type="text" id="student_regDate" name="student_regDate" placeholder="등록일" class="form-control">
+							<label for="student_regDate">등록일</label> <input type="text"
+								id="student_regDate" name="student_regDate" placeholder="등록일"
+								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_photo">사진 파일</label> 
-							<input type="file" id="student_photo" name="student_photo" placeholder="사진 파일" class="form-control">
+							<label for="student_photo">사진 파일</label> <input type="file"
+								id="student_photo" name="student_photo" placeholder="사진 파일"
+								class="form-control">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">수정</button>
-					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
+					<button type="button" data-dismiss="modal"
+						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<!-- 수강생 삭제에 관한 모달 -->
 	<div id="student_delete" role="dialog" class="modal fade text-left">
 		<div role="document" class="modal-dialog">
@@ -270,8 +285,9 @@
 					<p>다음 수강생 정보를 삭제하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="student_id">수강생 번호</label>
-							<input type="text" id="student_id" name="student_id" placeholder="수강생번호" class="form-control" readonly>
+							<label for="student_id">수강생 번호</label> <input type="text"
+								id="student_id" name="student_id" placeholder="수강생번호"
+								class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<label for="student_name">이름</label> <input type="text"
@@ -304,27 +320,30 @@
 					<p>다음 수강생 비밀번호를 초기화하시겠습니까?</p>
 					<form action="" method="post">
 						<div class="form-group">
-							<label for="student_id">수강생번호</label> 
-							<input type="text" id="student_id" name="student_id" placeholder="수강생번호" class="form-control" readonly>
+							<label for="student_id">수강생번호</label> <input type="text"
+								id="student_id" name="student_id" placeholder="수강생번호"
+								class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="student_name">이름</label> 
-							<input type="text" id="student_name" name="student_name" placeholder="이름" class="form-control" readonly>
+							<label for="student_name">이름</label> <input type="text"
+								id="student_name" name="student_name" placeholder="이름"
+								class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label for="student_pw">신규 비밀번호</label> 
-							<input type="password" id="student_pw" name="student_pw" placeholder="신규 비밀번호" class="form-control">
+							<label for="student_pw">신규 비밀번호</label> <input type="password"
+								id="student_pw" name="student_pw" placeholder="신규 비밀번호"
+								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_pw2">신규 비밀번호 확인</label> 
-							<input type="password" id="student_pw2" name="student_pw2" placeholder="신규 비밀번호 확인" class="form-control">
+							<label for="student_pw2">신규 비밀번호 확인</label> <input
+								type="password" id="student_pw2" name="student_pw2"
+								placeholder="신규 비밀번호 확인" class="form-control">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-light">취소</button>
+					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
