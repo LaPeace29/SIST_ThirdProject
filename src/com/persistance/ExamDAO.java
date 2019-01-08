@@ -25,7 +25,7 @@ public interface ExamDAO {
 	// (출력) 강사 - 성적 관리 - 시험 정보 출력
 	// instructor_score2.jsp
 	// 시험번호 / 출결배점 / 필기배점 / 실기배점 / 시험날짜 / 시험문제파일 / 성적등록인원수 / 성적입력여부
-	public List<Exam> printi1();
+	public List<Exam> printi1(String open_subject_id);
 	
 	// (출력) 강사 - 성적 관리 - 시험 정보 - 수강생 정보 출력
 	// instructor_score2.jsp
@@ -48,11 +48,11 @@ public interface ExamDAO {
 	
 	// (출력3) 성적 조회 - 개설 과정 성적 조회 - 개설 과정 정보 - 개설 과목 정보 - 시험 정보 - 출력
 	// 시험번호 / 출결배점 / 필기배점 / 실기배점 / 시험날짜 / 시험문제파일
-	public List<Exam> print3();
+	public List<Exam> print3(String open_subject_id);
 	
 	// (출력4) 성적 조회 - 개설 과정 성적 조회 - 개설 과정 정보 - 개설 과목 정보 - 시험 정보 - 수강생 정보 - 출력
-	// 수강생번호 / 수강생이름 / 수강생휴대폰번호 / 출결점수 / 필기점수 / 실기점수 / 총점
-	public List<Exam> print4();
+	// 수강생번호 / 수강생이름 / 수강생휴대폰번호 / 수강생등록일 / 수료 여부 / 출결점수 / 필기점수 / 실기점수 / 총점
+	public List<Exam> print4(Exam e);
 	
 	// (출력5) 성적 조회 - 개설 과정 성적 조회 - 과정 정보 - 과목 정보 - 시험 정보 - 출력
 	// (출력5) 성적 조회 - 수강생 개인 성적 조회 - 수강 과정 정보 - 과목 정보 - 시험 정보 - 출력

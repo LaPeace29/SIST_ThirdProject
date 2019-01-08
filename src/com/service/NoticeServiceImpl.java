@@ -17,8 +17,9 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public List<Notice> notice() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+		List<Notice> result = this.noticeDAO.notice();
+		
+		return result;
+	}
 }

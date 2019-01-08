@@ -1,5 +1,6 @@
 package com.persistance;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.domain.Instructor;
 import com.mapper.InstructorIdMapper;
 import com.mapper.InstructorManageMapper;
+import com.mapper.InstructorMapper13;
 
 @Repository("instructorDAO")
 public class InstructorDAOImpl implements InstructorDAO{
@@ -48,9 +50,17 @@ public class InstructorDAOImpl implements InstructorDAO{
 	}
 
 	@Override
-	public int printi1() {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Instructor> printi1() {
+		
+		List<Instructor> result = new ArrayList<Instructor>();
+		
+		String sql = "SELECT instructor_id, instructor_name, instructor_phone, instructor_regDate\r\n" + 
+				"	FROM instructor_tb\r\n" + 
+				"    WHERE instructor_id = 'ins001'";
+		
+		result = this.jdbcTemplate.query(sql, new InstructorMapper13());
+		
+		return result;
 	}
 
 	@Override

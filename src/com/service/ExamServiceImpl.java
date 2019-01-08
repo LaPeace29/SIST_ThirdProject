@@ -29,14 +29,18 @@ public class ExamServiceImpl implements ExamService {
 
 	@Override
 	public int delete(Exam exam) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int result = this.examDAO.delete(exam);
+		
+		return result;
 	}
 
 	@Override
-	public List<Exam> printi1() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Exam> printi1(String open_subject_id) {
+		
+		List<Exam> result = this.examDAO.printi1(open_subject_id);
+		
+		return result;
 	}
 
 	@Override
@@ -62,15 +66,19 @@ public class ExamServiceImpl implements ExamService {
 	}
 	
 	@Override
-	public List<Exam> print3() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Exam> print3(String open_subject_id) {
+		
+		List<Exam> result = this.examDAO.print3(open_subject_id);
+		
+		return result;
 	}
 
 	@Override
-	public List<Exam> print4() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Exam> print4(Exam e) {
+
+		List<Exam> result = this.examDAO.print4(e);
+		
+		return result;
 	}
 
 	@Override

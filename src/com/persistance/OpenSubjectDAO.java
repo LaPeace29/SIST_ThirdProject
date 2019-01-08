@@ -10,16 +10,19 @@ public interface OpenSubjectDAO {
 	// (타이틀) 과목명 / 과목 시작일 / 과목 종료일
 	public List<OpenSubject> title();
 	
+	// (타이틀)
+	public List<OpenSubject> instructor_title(String open_subject_id);
+	
 	/* ==================================================================== */
 	// (출력) 강사 - 강사 첫화면 - 현재 진행중인 과목 출력
 	// 과정명 / 개설 과정 시작일 / 개설 과정 종료일 / 과목명 / 과목 시작일 / 과목 종료일
-	public List<OpenCourse> homePrint();
+	public List<OpenSubject> homePrint();
 	
 	// (출력1) 강사 - 강사 스케줄 조회 - 강의 과목 정보 출력
 	// (출력1) 강사 - 배점 관리 - 강의 과목 정보 출력
 	// (출력1) 강사 - 성적 관리 - 강의 과목 정보 출력
 	// 개설 과목 번호 / 개설 과목명 / 과목 시작일 / 과목 종료일 / 개설 과정명 / 개설 과정 시작일 / 개설 과정 종료일 / 강의실명 / 교재명 / 수강생 등록 인원 / 강의 진행 여부
-	public List<OpenSubject> printi1();
+	public List<OpenSubject> printi1(String instructor_status);
 	/* ==================================================================== */
 	
 	// (입력) 개설 과목 관리 - 개설 과목 정보 - 입력

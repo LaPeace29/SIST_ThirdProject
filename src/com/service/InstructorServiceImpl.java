@@ -46,9 +46,10 @@ public class InstructorServiceImpl implements InstructorService {
 	}
 
 	@Override
-	public int printi1() {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Instructor> printi1() {
+		List<Instructor> result = this.instructorDAO.printi1();
+		
+		return result;
 	}
 
 	@Override

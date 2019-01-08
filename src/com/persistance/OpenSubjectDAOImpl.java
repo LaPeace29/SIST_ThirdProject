@@ -1,5 +1,6 @@
 package com.persistance;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,9 @@ import com.domain.OpenCourse;
 import com.domain.OpenSubject;
 import com.mapper.OpenSubjectMapper01;
 import com.mapper.OpenSubjectMapper02;
+import com.mapper.OpenSubjectMapper11;
+import com.mapper.OpenSubjectMapper14;
+import com.mapper.OpenSubjectMapper15;
 import com.mapper.OpenSubjectMapper31;
 import com.mapper.OpenSubjectMapper32;
 import com.mapper.OpenSubjectMapper33;
@@ -29,15 +33,56 @@ public class OpenSubjectDAOImpl implements OpenSubjectDAO{
 	}
 
 	@Override
-	public List<OpenCourse> homePrint() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OpenSubject> instructor_title(String open_subject_id) {
+
+		List<OpenSubject> result = new ArrayList<OpenSubject>();
+		
+		String sql = "SELECT course_name, open_course_start_date, open_course_end_date\r\n" + 
+				"		,subject_name, subject_start_date, subject_end_date		\r\n" + 
+				"	FROM open_subject_list3_vw\r\n" + 
+				"    WHERE instructor_id = 'INS001'\r\n" + 
+				"    AND open_subject_id = ?";
+		
+		result = this.jdbcTemplate.query(sql, new OpenSubjectMapper15(),open_subject_id);
+		
+		return result;
+	}
+	
+	@Override
+	public List<OpenSubject> homePrint() {
+		List<OpenSubject> result = new ArrayList<OpenSubject>();
+		
+		String sql = "SELECT course_name, open_course_start_date, open_course_end_date ,subject_name, subject_start_date, subject_end_date	\r\n" + 
+				"		FROM open_subject_list3_vw \r\n" + 
+				"		WHERE subject_start_date < now() AND subject_end_date > now()\r\n" + 
+				"		AND instructor_id = 'INS001'";
+		
+		result = this.jdbcTemplate.query(sql, new OpenSubjectMapper11());
+		
+		return result;
 	}
 
 	@Override
-	public List<OpenSubject> printi1() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OpenSubject> printi1(String instructor_status) {
+		
+	List<OpenSubject> result = new ArrayList<OpenSubject>();
+		
+		String sql = "SELECT open_subject_id,\r\n" + 
+				"    subject_name,\r\n" + 
+				"    subject_start_date,\r\n" + 
+				"    subject_end_date,\r\n" + 
+				"    course_name,\r\n" + 
+				"    open_course_start_date,\r\n" + 
+				"    open_course_end_date,\r\n" + 
+				"    classroom_name,\r\n" + 
+				"    subjectbook_name, s_count, course_state as instructor_status\r\n" + 
+				"    FROM open_subject_list5_vw2\r\n" + 
+				"    WHERE instructor_id = 'ins001'\r\n" + 
+				"    AND course_state = ? ";
+		
+		result = this.jdbcTemplate.query(sql, new OpenSubjectMapper14(), instructor_status);
+		
+		return result;
 	}
 
 	@Override

@@ -23,15 +23,26 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 	}
 
 	@Override
-	public List<OpenCourse> homePrint() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OpenSubject> instructor_title(String open_subject_id) {
+
+		List<OpenSubject> result = this.openSubjectDAO.instructor_title(open_subject_id);
+
+		return result;
+	}
+	
+	@Override
+	public List<OpenSubject> homePrint() {
+
+		List<OpenSubject> result = this.openSubjectDAO.homePrint();
+
+		return result;
 	}
 
 	@Override
-	public List<OpenSubject> printi1() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OpenSubject> printi1(String instructor_status) {
+		List<OpenSubject> result = this.openSubjectDAO.printi1(instructor_status);
+
+		return result;
 	}
 
 	@Override

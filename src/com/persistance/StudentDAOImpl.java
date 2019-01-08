@@ -55,9 +55,18 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 
 	@Override
-	public List<Student> printi1() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Student> printi1(String open_subject_id) {
+
+		List<Student> result = new ArrayList<Student>();
+		
+		String sql = "SELECT student_id, student_name, student_phone, student_regdate, completion, completion_date \r\n" + 
+				"FROM student_list3_vw3\r\n" + 
+				" WHERE instructor_id = 'ins001'\r\n" + 
+				"AND open_subject_id = ? ";
+		
+		result = this.jdbcTemplate.query(sql, new StudentMapper16(),open_subject_id);
+		
+		return result;
 	}
 
 	@Override

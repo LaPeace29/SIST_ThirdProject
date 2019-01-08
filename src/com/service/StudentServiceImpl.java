@@ -51,9 +51,11 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public List<Student> printi1() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Student> printi1(String open_subject_id) {
+		
+		List<Student> result = this.studentDAO.printi1(open_subject_id);
+		
+		return result;
 	}
 
 	@Override

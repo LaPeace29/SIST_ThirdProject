@@ -25,7 +25,7 @@ public interface InstructorService {
 	
 	// (출력) 강사 - 강사 스케줄 조회
 	// 강사 사진 / 강사 번호 / 강사 이름 / 강사 휴대폰번호 / 강사 등록일
-	public int printi1();
+	public List<Instructor> printi1();
 	
 	/* ==================================================================== */
 	
