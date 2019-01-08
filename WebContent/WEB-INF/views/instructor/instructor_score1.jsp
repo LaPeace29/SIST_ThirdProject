@@ -45,9 +45,17 @@ $(document).ready(function() {
 	});
 	
 	$(".btn-look").on("click", function() {
-        window.location.assign("${pageContext.request.contextPath}/views/instructor/instructor_score2.jsp");
+		var open_subject_id = $(this).parents("tr").find("td:eq(0)").text();
+		window.location.assign("${pageContext.request.contextPath}/instructor/score2?open_subject_id="+open_subject_id);
+    });
+	
+	$(".btn-status").on("click",function() {
+		var instructor_status = $(this).val();
+		console.log(instructor_status);
+		window.location.assign("${pageContext.request.contextPath}/instructor/score1?instructor_status="+instructor_status);
      });
-});
+     });
+
 
 </script>
 
@@ -83,11 +91,11 @@ $(document).ready(function() {
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<div class="btn-group">
-											<button type="button" class="btn btn-sm btn-light">강의
+											<button type="button" class="btn btn-sm btn-light btn-status" value = "강의 종료">강의
 												종료</button>
-											<button type="button" class="btn btn-sm btn-light active">강의
+											<button type="button" class="btn btn-sm btn-light btn-status" value = "강의 중">강의
 												중</button>
-											<button type="button" class="btn btn-sm btn-light">강의
+											<button type="button" class="btn btn-sm btn-light btn-status" value = "강의 예정">강의
 												예정</button>
 										</div>
 										<div class="table-responsive">
@@ -107,34 +115,24 @@ $(document).ready(function() {
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>OS0034</td>
-														<td>HTML</td>
-														<td>2018-01-02 ~ 2018-03-02</td>
-														<td>웹기반 빅데이터 분석 응용SW개발자</td>
-														<td>2018-01-02 ~ 2018-05-06</td>
-														<td>1강의실</td>
-														<td><a class="subjectbook-look popover-bold" data-toggle="popover"
+														<c:forEach var="os" items="${list}">
+														<tr>
+															<td>${os.open_subject_id}</td>
+															<td>${os.subject_name}</td>
+															<td>${os.subject_start_date} ~ ${os.subject_end_date}
+															</td>
+															<td>${os.course_name}</td>
+															<td>${os.open_course_start_date} ~ ${os.open_course_end_date}</td>
+															<td>${os.classroom_name}</td>
+															<td><a class="subjectbook-look popover-bold" data-toggle="popover"
 															title="이것이 자바다"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">HTML5 웹 프로그래밍 입문</a></td>
-														<td>3명</td>
-														<td>강의 중</td>
-														<td><button class="btn btn-sm btn-light btn-look">보기</button></td>
-													</tr>
-													<tr>
-														<td>OS0032</td>
-														<td>Oracle</td>
-														<td>2018-09-11 ~ 2018-11-12</td>
-														<td>웹기반 빅데이터 분석 응용SW개발자</td>
-														<td>2018-01-02 ~ 2018-05-06</td>
-														<td>1강의실</td>
-														<td><a class="subjectbook-look popover-bold" data-toggle="popover"
-															title="이것이 자바다"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">HTML5 웹 프로그래밍 입문</a></td>
-														<td>2명</td>
-														<td>강의 종료</td>
-														<td><button class="btn btn-sm btn-light btn-look">보기</button></td>
-													</tr>
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">${os.subjectbook_name}</a></td>
+															<td>${os.student_count}</td>
+															<td>${os.instructor_status}</td>
+															<td><button class="btn btn-sm btn-light btn-look">보기</button></td>
+
+														</tr>
+													</c:forEach>
 													<tr>
 														<td></td>
 														<td></td>

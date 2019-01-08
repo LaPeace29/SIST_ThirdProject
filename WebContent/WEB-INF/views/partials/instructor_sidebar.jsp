@@ -22,7 +22,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 			<a href="${pageContext.request.contextPath}/instructor/point1"><i class="fa fa-bar-chart"></i>배점 관리</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}instructor/score1"><i class="icon-padnote"></i>성적 관리</a>
+			<a href="${pageContext.request.contextPath}/instructor/score1"><i class="icon-padnote"></i>성적 관리</a>
 		</li>
 	</ul>
 </nav>

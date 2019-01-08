@@ -37,6 +37,15 @@
 
 <script>
 	$(document).ready(function() {
+		
+		$(".btn-del").on("click",function() {
+			
+			var exam_id = $(this).parents("tr").find("td:eq(0)").text();
+			var exam_date = $(this).parents("tr").find("td:eq(4)").text();
+			$("#point_delete #exam_id").val(exam_id);
+			$("#point_delete #exam_date").val(exam_date);
+			
+		});
 
 	});
 </script>
@@ -68,10 +77,11 @@
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">웹기반 빅데이터 분석 응용 SW
-											개발자(2018-01-02~2018-05-06) Oracle(2018-01-02~2018-03-02) 시험
-											정보</h3>
-									</div>
+									<c:forEach var="o" items="${list2}">
+								<h3 class="h4"> ${o.course_name} (${o.open_course_start_date} ~ ${o.open_course_end_date}) / ${o.subject_name} (${o.subject_start_date} ~ ${o.subject_end_date})
+								</h3>
+								</c:forEach>
+								</div>
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<button class="btn btn-primary btn-sm btn-reg"
@@ -90,7 +100,7 @@
 													</tr>
 												</thead>
 												<tbody>													
-													<tr>
+												<!-- 	<tr>
 														<td>EXAM0013</td>
 														<td>20</td>
 														<td>30</td>
@@ -102,19 +112,21 @@
 														<td><button class="btn btn-sm btn-light btn-del"
 																data-toggle="modal" data-target="#point_delete">삭제
 															</button></td>
-													</tr>
-													<tr>
-														<td>EXAM0014</td>
-														<td>20</td>
-														<td>40</td>
-														<td>40</td>
-														<td>2018-11-12</td>
-														<td>OS0032_181112.zip<br>
-															<button class="btn btn-xs btn-light btn-look">다운로드</button></td>
-													 	<td><button class="btn btn-sm btn-light btn-del"
-																data-toggle="modal" data-target="#point_delete">삭제
-															</button></td> 
-													</tr>
+													</tr> -->
+												<c:forEach var="e" items="${list}">
+												<tr>
+													<td>${e.exam_id}</td>
+													<td>${e.attendance_point}</td>
+													<td>${e.write_point}</td>
+													<td>${e.skill_point}</td>
+													<td>${e.exam_date}</td>
+													<td>${e.exam_file}<br><button class=" btn btn-xs btn-light btn-look"
+																id="btnDown">다운로드</button></td>
+													<td><button class="btn btn-sm btn-light btn-del"
+																data-toggle="modal" data-target="#point_delete"  ${e.count_>=1?"disabled='disabled'":""} >삭제
+														</button>
+												</tr>									
+												</c:forEach>
 												</tbody>
 											</table>
 										</div>
@@ -187,13 +199,14 @@
 				<div class="modal-header">
 					<h4 id="exampleModalLabel" class="modal-title">배점 삭제</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
+						class="close"  >
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
+					<form action="${pageContext.request.contextPath}/instructor/point2/delete" method="post">
 				<div class="modal-body">
 					<p>다음 배점 정보를 삭제하시겠습니까?</p>
-					<form action="" method="post">
+					
 							<div class="form-group">
 							<label for="subjectbook_name">시험 번호</label> <input type="text"
 								id="exam_id" name="exam_id"
@@ -204,16 +217,21 @@
 								id="exam_date" name="exam_date"
 								placeholder="2018-10-15" class="form-control" readonly = "readonly">
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
+					<button type="submit" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
 						class="btn btn-secondary">취소</button>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>
+	
+	 
+	  
+	
+	
 
 	<!-- JavaScript files-->
 	<script

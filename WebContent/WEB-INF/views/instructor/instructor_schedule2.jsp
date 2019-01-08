@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +39,8 @@
 <script>
 	$(document).ready(function() {
 		
+	
+		
 		$(".student-look").popover({ 
 			placement : 'left',
 			trigger: "hover", 
@@ -59,11 +62,10 @@
 			<div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/instructor/09_instructor_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/instructor/10_instructor_schedule1.jsp">강사 스케줄 조회</a></li>
+								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/instructor/first">HOME</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/instructor/schedule1">강사 스케줄 조회</a></li>
 						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
-						<li class="breadcrumb-item active"><a href="">수강생
-								정보</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/instructor/schedule2">수강생 정보</a></li>
 					</ul>
 				</div>
 
@@ -77,9 +79,10 @@
 										<h3 class="h4">수강생 정보</h3>
 									</div>
 									<div class="card-body">
-										<h3>웹기반 빅데이터 분석 응용 SW 개발자(2018-01-02~2018-05-06)</h3>
-										<h3>HTML5(2018-01-02~2018-03-02)</h3>
-										<h3>수강생 정보</h3>
+										<c:forEach var="o" items="${list}">
+								<h3 class="h4"> ${o.course_name} (${o.open_course_start_date} ~ ${o.open_course_end_date}) / ${o.subject_name} (${o.subject_start_date} ~ ${o.subject_end_date})
+								</h3>
+								</c:forEach>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -93,22 +96,18 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>ST00001</td>
-														<td><a class ="student-look" data-toggle="popover" title="수강생 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-8.jpg' width='120' height='144'/>">홍길동</a></td>
-														<td>010-2356-4528</td>
-														<td>2017-12-20</td>
-														<td>수료</td>
-														<td>2018-05-06</td>
-													</tr>
-													<tr>
-														<td>ST00032</td>
-														<td><a class ="student-look" data-toggle="popover" title="수강생 사진" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-9.jpg' width='120' height='144'/>">조인성</a></td>
-														<td>010-1356-4528</td>
-														<td>2018-01-02</td>
-														<td>중도 탈락</td>
-														<td>2018-03-02</td>
-													</tr>
+													<c:forEach var="s" items="${list2}">
+														<tr>
+															<td>${s.student_id}</td>
+															<td>${s.student_name}</td>
+															<td>${s.student_phone} </td>
+															<td>${s.student_regDate}</td>
+															<td>${s.completion_status}</td>
+															<td>${s.completion_date}</td>
+						
+														
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>

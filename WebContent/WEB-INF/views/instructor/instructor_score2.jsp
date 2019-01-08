@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% 
+
+String open_subject_id = request.getParameter("open_subject_id");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,11 +41,47 @@
    src="${pageContext.request.contextPath}/resources/script/common.js"></script>
 
 <script>
+
+//+"&exam_id="+exam_id
    $(document).ready(function() {
+	    	 var open_subject_id = "<%=open_subject_id %>";
+	   $("#card").css("display","none");
+	      $(".btn-student").on("click", function() {
+				$("#card").css("display","block");
+	    	 var exam_id = $(this).parents("tr").find("td:eq(0)").text();
+	   			$.ajax({
+	   				url:"${pageContext.request.contextPath}/instructor/score2Ajax?open_subject_id="+open_subject_id+"&exam_id="+exam_id
+	   				
+	   				,dataType: 'json' ,
+	   				type:'Post'
+	   				,success: function(data_) {
+	   					console.log(data_);
+	   					var doc_=JSON.stringify(data_);
+	   					var doc = JSON.parse(doc_);
+	   					console.log(doc);
+	   					
+	   					var txt = "";
+	   					for(var a=0; a<doc.length; ++a) {
+	   						var temp = doc[a];
+	   						
+	   						var completion_date = new Date(temp.completion_date);
+	   						var student_regDate = new Date(temp.student_regDate);
+	   						
+	   						txt += "<tr><td>"+temp.student_id+"</td><td>"+temp.student_name+"</td><td>"+temp.student_phone+"</td><td>" + student_regDate.getFullYear() +"-" + (student_regDate.getMonth()+1) + "-" + student_regDate.getDate()
+                            +"</td><td>"+temp.completion_status+"</td><td>"+ completion_date.getFullYear() +"-" + (completion_date.getMonth()+1) + "-" + completion_date.getDate()
+                            +"</td><td>"+temp.attendance_score+"</td><td>"+temp.write_score+"</td><td>"+temp.skill_score+"</td><td>"+temp.total_score+"</td><td>"+
+	   						"<div class=\"btn-group\"><button class=\" btn btn-light btn-sm\"data-toggle=\"modal\" data-target=\"#score_reg\">입력</button><button class=\"btn btn-sm btn-light btn-del\"data-toggle=\"modal\" data-target=\"#subjectbook_delete\">삭제</button></div></td></tr>";  						  
+	   					}
+	   					$("#tbody").html(txt);
+	   			}}); 
+	        }); 
       
-      $(".btn-student").on("click", function() {
-         
-        });
+<%--       $(".btn-student").on("click", function() {
+         	var open_subject_id = "<%=open_subject_id %>";
+         	console.log(open_subject_id);
+         	location.assign("${pageContext.request.contextPath}/admin/instructor/mng2?instructor_id="+instructor_id+"&completion="+$(this).val()+"&instructor_name="+instructor_name)
+         	
+        }); --%>
    });
 </script>
 
@@ -71,8 +112,10 @@
                      <div class="col-lg-12">
                         <div class="card">
                            <div class="card-header d-flex align-items-center">
-                              <h3 class="h4">웹기반 빅데이터 분석 응용 SW
-                                 개발자(2018-01-02~2018-05-06) HTML5(2018-01-02~2018-03-02) 시험 정보</h3>
+                             <c:forEach var="o" items="${list2}">
+								<h3 class="h4"> ${o.course_name} (${o.open_course_start_date} ~ ${o.open_course_end_date}) / ${o.subject_name} (${o.subject_start_date} ~ ${o.subject_end_date})
+								</h3>
+								</c:forEach>
                            </div>
                            <div class="card-body">
                               <!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
@@ -92,7 +135,7 @@
                                        </tr>
                                     </thead>
                                     <tbody>
-                                       <tr>
+                                       <!-- <tr>
                                           <td>EXAM0013</td>
                                           <td>30</td>
                                           <td>30</td>
@@ -104,13 +147,30 @@
                                           <td>2명</td>
                                           <td>성적 입력 완료</td>
                                           <td><button class="btn btn-sm btn-light btn-student ">보기</button></td>
+                                       </tr> -->
+                                       <c:forEach var ="e" items="${list}">
+                                      
+                                       <tr>
+                                       
+                                       <td>${e.exam_id}</td>
+                                       <td>${e.attendance_point}</td>
+                                       <td>${e.write_point}</td>
+                                       <td>${e.skill_point}</td>
+                                       <td>${e.exam_date}</td>
+                                       <td>${e.exam_file}</td>
+                                       <td>${e.student_count}</td>
+                                       <td>${e.score_status}</td>
+                                       <td><button class="btn btn-sm btn-light btn-student ">보기</button></td>
+                                      
                                        </tr>
+                                       
+                                       </c:forEach>
                                     </tbody>
                                  </table>
                               </div>
                            </div>
                         </div>
-                        <div class="card">
+                        <div class="card"  id ="card">
                            <div class="card-header d-flex align-items-center">
                               <h3 class="h4">수강생 정보</h3>
                            </div>
@@ -132,28 +192,8 @@
                                           <th>성적</th>
                                        </tr>
                                     </thead>
-                                    <tbody>
-                                       <tr>
-                                          <td>ST00031</td>
-                                          <td>조인성</td>
-                                          <td>010-1234-1234</td>
-                                          <td>2018-01-02</td>
-                                          <td>수료 예정</td>
-                                          <td>2019-01-17</td>
-                                          <td>10</td>
-                                          <td>15</td>
-                                          <td>20</td>
-                                          <td>14</td>
-                                          <td>
-                                             <div class="btn-group">
-                                                <button class=" btn btn-light btn-sm"
-                                                   data-toggle="modal" data-target="#score_reg">입력</button>
-                                                <button class="btn btn-sm btn-light btn-del"
-                                                   data-toggle="modal" data-target="#subjectbook_delete">삭제
-                                                </button>
-                                             </div>
-                                          </td>
-                                       </tr>
+                                    <tbody id="tbody">
+                                    
                                     </tbody>
                                  </table>
                               </div>
