@@ -17,6 +17,7 @@ public class Student {
 	private Date dropout_date;				// 중도 탈락일
 	private String student_photo_filepath;	// 수강생 사진 경로
 	private int count_;						// 삭제 가능 여부
+	private Date completion_date; 			//수료 날짜
 
 	// Getter
 	public String getStudent_id() {
@@ -66,6 +67,10 @@ public class Student {
 	public int getCount_() {
 		return count_;
 	}
+	
+	public Date getCompletion_date() {
+		return completion_date;
+	}
 
 	// Setter
 	public void setDropout_date(Date dropout_date) {
@@ -114,5 +119,9 @@ public class Student {
 
 	public void setCount_(int count_) {
 		this.count_ = count_;
+	}
+
+	public void setCompletion_date(Date completion_date) {
+		this.completion_date = completion_date;
 	}
 }

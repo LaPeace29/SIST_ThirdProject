@@ -31,8 +31,10 @@ public class Exam {
 	private int class_count;			 	// 수강 횟수
 	private int count_; 					// 삭제 가능 여부
 	private String completion_status; 		// 수료 여부
+	private Date completion_date;			// 수료 날짜
 	private Date dropout_date; 				// 날짜(수료 or 중도탈락)
 	private String score_status; 			// 성적 입력 여부(관리자 20번 참고)
+	private int student_count;				// 학생 수
 
 	// Getter
 	public String getExam_id() {
@@ -135,12 +137,20 @@ public class Exam {
 		return completion_status;
 	}
 
+	public Date getCompletion_date() {
+		return completion_date;
+	}
+
 	public Date getDropout_date() {
 		return dropout_date;
 	}
 
 	public String getScore_status() {
 		return score_status;
+	}
+
+	public int getStudent_count() {
+		return student_count;
 	}
 
 	// Setter
@@ -251,6 +261,10 @@ public class Exam {
 	public void setCompletion_status(String completion_status) {
 		this.completion_status = completion_status;
 	}
+	
+	public void setCompletion_date(Date completion_date) {
+		this.completion_date = completion_date;
+	}
 
 	public void setDropout_date(Date dropout_date) {
 		this.dropout_date = dropout_date;
@@ -258,5 +272,9 @@ public class Exam {
 
 	public void setScore_status(String score_status) {
 		this.score_status = score_status;
+	}
+
+	public void setStudent_count(int student_count) {
+		this.student_count = student_count;
 	}
 }
