@@ -101,11 +101,6 @@ public class StudentController {
 		return "/student/student_changepw";
 	}
 	
-	
-	
-	
-	
-
 	// 비밀번호 변경
 	// 일단 비밀번호 변경 되면 /first 페이지로 안되면 원래페이지 그대로
 	@RequestMapping("/changepw")
