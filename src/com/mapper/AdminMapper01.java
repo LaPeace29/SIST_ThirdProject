@@ -23,5 +23,4 @@ public class AdminMapper01 implements RowMapper<Admin> {
 		
 		return admin;
 	}
-
 }
