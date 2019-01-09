@@ -77,6 +77,18 @@ public class AdminController {
 		return "admin/admin_first";
 	}
 	
+	@RequestMapping("/info")
+	public String info(Model model) {
+		
+		return "admin/admin_info";
+	}
+	
+	@RequestMapping("/changepw")
+	public String changepw(Model model) {
+		
+		return "admin/admin_changepw";
+	}
+	
 	// 예린
 	/*11111111111111111111111111111111111111111111111111*/
 	

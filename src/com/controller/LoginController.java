@@ -36,20 +36,39 @@ public class LoginController {
 	public String login(HttpSession session, String loginType, String loginUsername, String loginPassword) {
 
 		String url = "redirect:/common/loginFail";
-		Student s = null;
-		Instructor i = null;
-		Admin a = null;
+		Student studentSession = null;
+		Instructor instructorSession = null;
+		Admin adminSession = null;
 		
 		if(loginType.equals("student")) {
-
-			url = "redirect:/student/first";
+			
+			studentSession = this.studentService.login(loginUsername, loginPassword);
+			
+			if(studentSession != null) {
+				
+				session.setAttribute("student", studentSession);
+				url = "redirect:/student/first";
+			}
+			
 		} else if(loginType.equals("instructor")) {
-			url = "redirect:/instructor/first";
+			
+			instructorSession = this.instructorService.login(loginUsername, loginPassword);
+			
+			if(instructorSession != null) {
+				
+				session.setAttribute("instructor", instructorSession);
+				url = "redirect:/instructor/first";
+			}
+			
 		} else if(loginType.equals("admin")) {
 			
-			a = this.adminService.login(loginUsername, loginPassword);
-			session.setAttribute("admin", a);
-			url = "redirect:/admin/first";
+			adminSession = this.adminService.login(loginUsername, loginPassword);
+
+			if(adminSession != null) {
+				
+				session.setAttribute("admin", adminSession);
+				url = "redirect:/admin/first";
+			}
 		} 
 		return url;
 	}

@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.domain.Exam;
+import com.domain.Notice;
 import com.domain.OpenCourse;
 import com.domain.Student;
+import com.service.ExamService;
 import com.service.NoticeService;
 import com.service.OpenCourseService;
 import com.service.StudentService;
@@ -28,11 +31,24 @@ public class StudentController {
 
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
+	
+	@Resource(name = "examService")
+	private ExamService examService;
 
 	// 첫 페이지
 	@RequestMapping("/first")
 	public String student_first(Model model) {
+		List <Notice> notice = new ArrayList<Notice>();
+		List <OpenCourse> oclist = new ArrayList<OpenCourse> ();
+		
+		oclist = this.openCourseService.homePrint();
+ 		notice = this.noticeService.notice();
+ 
 
+ 		model.addAttribute("oclist", oclist);
+ 		model.addAttribute("end",  oclist.get(0).getOpen_course_end_date());
+ 		model.addAttribute("notice", notice);
+		
 		return "/student/student_first";
 
 	}
@@ -41,6 +57,10 @@ public class StudentController {
 	@RequestMapping("/info")
 	public String student_info(Model model) {
 
+		List <Student> stinfo = new ArrayList<Student>();
+		stinfo = this.studentService.prints1();
+		model.addAttribute("stinfo", stinfo);
+		
 		return "/student/student_info";
 	}
 
@@ -61,16 +81,46 @@ public class StudentController {
 
 	// 성적 조회 / 수강생 성적 조회
 	@RequestMapping("/score2")
-	public String student_score2(Model model) {
-
+	public String student_score2(Exam e, String open_course_id, Model model) {
+		List <OpenCourse> list = new ArrayList<OpenCourse>();
+		List <Exam> list2 = new ArrayList<Exam>();
+		
+		System.out.println(e.getOpen_course_id());
+		
+		list = this.openCourseService.prints1(open_course_id);
+		list2 = this.examService.prints1(e);
+		model.addAttribute("list", list);
+		model.addAttribute("list2", list2);
+		
 		return "/student/student_score2";
 	}
+	
+	@RequestMapping("/changepwPage")
+	public String student_changepwPage(String open_course_id, Model model) {
+		
+		return "/student/student_changepw";
+	}
+	
+	
+	
+	
+	
 
 	// 비밀번호 변경
+	// 일단 비밀번호 변경 되면 /first 페이지로 안되면 원래페이지 그대로
 	@RequestMapping("/changepw")
 	public String student_changepw(Student s, RedirectAttributes rttr) {
+		
+		int result = this.studentService.changepw(s);
 
-		return "redirect:/student/student_changepw";
+		if (result == 1) {
+			return "redirect:/student/first";
+		}else {
+			return "redirect:/student/changepwPage"; 
+		}
+		
+		
+		
 	}
 
 }
