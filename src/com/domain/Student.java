@@ -12,6 +12,7 @@ public class Student {
 	private Date student_regDate;			// 수강생 등록일
 	private String student_pw;				// 수강생 비밀번호
 	private String student_new_pw;			// 수강생 새 비밀번호
+	private String student_new_pw2;			// 수강생 새 비밀번호 확인용
 	private String completion_status;		// 수료 여부(수료 예정, 수료 완료, 중도 탈락)
 	private String open_course_id;			// 개설 과정 아이디
 	private Date dropout_date;				// 중도 탈락일
@@ -48,6 +49,10 @@ public class Student {
 		return student_new_pw;
 	}
 	
+	public String getStudent_new_pw2() {
+		return student_new_pw2;
+	}
+
 	public String getCompletion_status() {
 		return completion_status;
 	}
@@ -103,6 +108,10 @@ public class Student {
 
 	public void setStudent_new_pw(String student_new_pw) {
 		this.student_new_pw = student_new_pw;
+	}
+
+	public void setStudent_new_pw2(String student_new_pw2) {
+		this.student_new_pw2 = student_new_pw2;
 	}
 
 	public void setCompletion_status(String completion_status) {

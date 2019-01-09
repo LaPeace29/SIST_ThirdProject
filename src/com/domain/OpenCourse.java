@@ -20,6 +20,7 @@ public class OpenCourse {
 	private int count_;						// 삭제 가능 여부
 	private String completion_status;		// 수료 여부
 	private Date dropout_date;				// 수료or탈락 날짜
+	private int percent; 					// 진행률
 
 	// Getter
 	public String getOpen_course_id() {
@@ -86,6 +87,10 @@ public class OpenCourse {
 		return dropout_date;
 	}
 
+	public int getPercent() {
+		return percent;
+	}
+
 	// Setter
 	public void setOpen_course_id(String open_course_id) {
 		this.open_course_id = open_course_id;
@@ -149,5 +154,10 @@ public class OpenCourse {
 
 	public void setDropout_date(Date dropout_date) {
 		this.dropout_date = dropout_date;
+	}
+
+	public void setPercent(int percent) {
+		this.percent = percent;
 	}	
+
 }

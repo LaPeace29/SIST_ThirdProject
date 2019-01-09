@@ -9,6 +9,7 @@ public class Exam {
 	private String subject_point_id; 		// 과목별 배점 정보 아이디
 	private String student_score_id;	 	// 수강생 성적 정보 아이디
 	private String open_subject_id; 		// 개설 과목 아이디
+	private String open_course_id; 			// 개설 과정 아이디
 	private String subject_name; 			// 과목 이름
 	private String subjectbook_name; 		// 교재 이름
 	private Date subject_start_date; 		// 과목 시작일
@@ -35,7 +36,9 @@ public class Exam {
 	private Date dropout_date; 				// 날짜(수료 or 중도탈락)
 	private String score_status; 			// 성적 입력 여부(관리자 20번 참고)
 	private int student_count;				// 학생 수
-
+	private String subjectbook_isbn;
+	private String instructor_photo_filepath;
+	
 	// Getter
 	public String getExam_id() {
 		return exam_id;
@@ -51,6 +54,10 @@ public class Exam {
 
 	public String getOpen_subject_id() {
 		return open_subject_id;
+	}
+
+	public String getOpen_course_id() {
+		return open_course_id;
 	}
 
 	public String getSubject_name() {
@@ -153,6 +160,14 @@ public class Exam {
 		return student_count;
 	}
 
+	public String getSubjectbook_isbn() {
+		return subjectbook_isbn;
+	}
+
+	public String getInstructor_photo_filepath() {
+		return instructor_photo_filepath;
+	}
+
 	// Setter
 	public void setExam_id(String exam_id) {
 		this.exam_id = exam_id;
@@ -168,6 +183,10 @@ public class Exam {
 
 	public void setOpen_subject_id(String open_subject_id) {
 		this.open_subject_id = open_subject_id;
+	}
+
+	public void setOpen_course_id(String open_course_id) {
+		this.open_course_id = open_course_id;
 	}
 
 	public void setSubject_name(String subject_name) {
@@ -276,5 +295,13 @@ public class Exam {
 
 	public void setStudent_count(int student_count) {
 		this.student_count = student_count;
+	}
+
+	public void setSubjectbook_isbn(String subjectbook_isbn) {
+		this.subjectbook_isbn = subjectbook_isbn;
+	}
+
+	public void setInstructor_photo_filepath(String instructor_photo_filepath) {
+		this.instructor_photo_filepath = instructor_photo_filepath;
 	}
 }
