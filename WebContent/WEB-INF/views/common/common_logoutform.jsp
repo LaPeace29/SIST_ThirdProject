@@ -51,7 +51,7 @@
                       <h4><i class="fa fa-lock"> 로그아웃</i></h4>
                       <label>안전하게 로그아웃 되었습니다.</label>
                       <div style="margin-top: 50px" class="form-group">
-                          <a href="${pageContext.request.contextPath}/common/login" class="btn btn-primary btn-block">Main</a>
+                          <a href="${pageContext.request.contextPath}/index" class="btn btn-primary btn-block">Main</a>
                       </div>
                   	</div>
                     </div>

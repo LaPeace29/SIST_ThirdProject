@@ -29,6 +29,16 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	
 		$(document).ready(function() {
 			
+			
+			var Dday = new Date("${end}");   
+			var now = new Date();           
+			console.log(Dday);
+			console.log(now);
+			var gap = now.getTime() - Dday.getTime();    // 현재 날짜에서 D-day의 차이를 구한다.
+			var result = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;   
+			console.log(result);
+			$("#dday").text(result);
+			
 		});
 	
 	</script>
@@ -53,23 +63,29 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-lg-12">
+							
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
 										<h3 class="h4">현재 진행중인 과정</h3>
 									</div>
-									<div class="card-body">
-										Java&amp;Python 기반 응용 SW 개발자 양성과정 수료 (0000-00-00 ~ 0000-00-00) D-50
+									
+							<c:forEach var="oclist" items="${oclist}">
+									<div class="card-body oclist">
+										${oclist.course_name} (${oclist.open_course_start_date} ~ ${oclist.open_course_end_date})  D-<span id = "dday">50</span>
 									</div>
+							</c:forEach>
+							
 								</div>
-								
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
 										<h3 class="h4">공지사항</h3>
 									</div>
 									<div class="card-body">
 										<ul>
-											<li>12/3 개강 Java를 활용한 웹 응용...</li>
-											<li>12/10개강 Framework기반의...</li>
+								<c:forEach var="notice" items="${notice}">
+											<li>${notice.notice_regDate}   ${notice.notice_content}</li>
+								</c:forEach>
+											
 										</ul>
 									</div>
 								</div>

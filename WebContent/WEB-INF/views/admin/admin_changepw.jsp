@@ -42,27 +42,14 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/WEB-INF/views/partials/admin_sidebar.jsp" %>
-            <!-- 맡은 페이지에 따라 유동적으로 교체하고 나머지는 삭제 -->
-            <%-- <%@ include file="/views/partials/student_sidebar.jsp" %> --%>
-            <%-- <%@ include file="/views/partials/instructor_sidebar.jsp" %> --%>
+
             <div class="content-inner">
-	            <!-- --------------------미활용---------------------- -->
-	                <!-- Page Header-->
-					<!--                 
-					<header class="page-header">
-	                    <div class="container-fluid">
-	                        <h2 class="no-margin-bottom">Dashboard</h2>
-	                    </div>
-	                </header> 
-	                -->
-	            <!-- ------------------------------------------------ -->
+	            
 	            <!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/common/04_common_changepw.jsp" >비밀번호 변경</a></li>
-<!-- 						자신이 현재 위치한 마지막에 active 클래스 추가
-						<li class="breadcrumb-item active"><a href="index.html">교재 관리</a></li> -->
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/first">Home</a></li>
+						<li class="breadcrumb-item active"><a href="" >비밀번호 변경</a></li>
 					</ul>
 				</div>
 					
@@ -82,7 +69,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
                       <h3 class="h4">비밀번호 변경</h3>
                     </div>
                     <div class="card-body">
-                      <form class="form-horizontal">
+                      <form action="" class="form-horizontal">
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">이름</label>
                           <div class="col-sm-9">

@@ -37,17 +37,48 @@
 
 <script>
 	$(document).ready(function() {
-		$(".instructor-look").popover({ 
+		$(".instructor-look").popover({
 			placement : 'left',
-			trigger: "hover", 
-			html: true
+			trigger : "hover",
+			html : true
 		});
 
-		$(".subjectbook-look").popover({ 
+	
+		
+		$("a[rel]").on("mouseover", function(){
+    		var isbn = $(this).attr("rel");
+    		
+    		var s="a[rel="+isbn+"]";
+    		$.ajax({
+    			url: "${pageContext.request.contextPath}/admin/book/info"
+    			,data: {isbn:isbn}
+    			,success: function(data_) {
+    				var array = data_.item;
+    				for (var i = 0; i < array.length; ++i) {
+    	                var item = array[i];
+    	                var title = item.title;
+    	                var publisher = item.publisher;
+    	                var author = item.author;
+    	                var priceStandard = item.priceStandard;
+    	                var coverLargeUrl = item.coverLargeUrl;
+    	                console.log(author);
+    	            }
+    				/*  */
+    				var dataContent = "<img src='" + coverLargeUrl + " 'width='120' height='144'><div><ul><li>저자 : " + author + "</li><li>가격 : " + priceStandard + "원 </li><li>출판사 : " + publisher + "</li></ul></div>";
+    				$(".subjectbook-look").attr("data-content", dataContent);
+    		}});
+    	});
+
+	 	$(".subjectbook-look").popover({
 			placement : 'left',
-			trigger: "hover", 
-			html: true
+			trigger : "hover",
+			html : true
 		});
+	 	
+
+
+
+
 	});
 </script>
 
@@ -59,7 +90,7 @@
 		<%@ include file="/WEB-INF/views/partials/student_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
-			<%@ include file="/WEB-INF/views/partials/student_sidebar.jsp" %>
+			<%@ include file="/WEB-INF/views/partials/student_sidebar.jsp"%>
 			<div class="content-inner">
 				<!-- --------------------미활용---------------------- -->
 				<!-- Page Header-->
@@ -72,14 +103,17 @@
 	                -->
 				<!-- ------------------------------------------------ -->
 				<!-- 네비게이션이 들어갈 자리입니다. -->
-				
-				
-				
+
+
+
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/student_first.jsp">HOME</a></li>
-						
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/student_score1.jsp">성적 조회</a></li>
+						<li class="breadcrumb-item"><a
+							href="${pageContext.request.contextPath}/views/student/student_first.jsp">HOME</a></li>
+
+						<li class="breadcrumb-item"><a
+							href="${pageContext.request.contextPath}/views/student/student_score1.jsp">성적
+								조회</a></li>
 						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
 						<li class="breadcrumb-item active"><a href="">수강생 성적 조회</a></li>
 					</ul>
@@ -99,7 +133,7 @@
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 
 										<div class="table-responsive">
-											<table class="table">
+											<table class="table" >
 												<thead>
 													<tr>
 														<th>개설 과정 번호</th>
@@ -112,21 +146,27 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>OC0001</td>
-														<td>웹기반 빅데이터 분석 응용 SW 개발자</td>
-														<td>2018-01-02 ~ 2018-05-06</td>
-														<td>1강의실</td>
-														<td>
-															<div class="progress">
-																<div class="progress-bar bg-primary" role="progressbar"
-																	style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-														</td>
-														<td>수료</td>
+													<c:forEach var="s" items="${list}">
+														<tr>
+															<td>${s.open_course_id}</td>
+															<td>${s.course_name}</td>
+															<td>${s.open_course_start_date}~
+																${s.open_course_end_date}</td>
+															<td>${s.classroom_name}</td>
+															<td>
+																<div class="progress">
+																	<div class="progress-bar bg-primary progressbar"
+																		role="progressbar" style="width: ${s.percent}%"
+																		aria-valuemax="100"></div>
+																</div>
+															</td>
+															<td>${s.completion_status}</td>
 
-													</tr>
+
+														</tr>
+
+
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>
@@ -137,7 +177,7 @@
 									<div class="card-header d-flex align-items-center"></div>
 									<div class="card-body">
 										<div class="table-responsive">
-											<table class="table">
+											<table class="table" id="forRowspan">
 												<thead>
 													<tr>
 														<th>과목명</th>
@@ -151,10 +191,63 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
+												
+												<c:forEach var="s2" items="${list2}">
+												<tr>
+														<td > ${s2.subject_name}(${s2.subject_start_date}~${s2.subject_end_date})</td>
+														
+														<td><a class="subjectbook-look popover-bold" rel="${s2.subjectbook_isbn}"
+														data-toggle="popover" title="${s2.subjectbook_name}"
+														data-content="" > <span>${s2.subjectbook_name}</span></a></td>
+														
+														<td><a
+															class="instructor-look popover-bold"
+															data-toggle="popover" title="${s2.instructor_name}<br>010-1234-1234"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">${s2.instructor_name}</a></td>
+														<td>${s2.exam_date}</td>
+														<td>${s2.attendance_score}(${s2.attendance_point})</td>
+														<td>${s2.skill_score}(${s2.skill_point})</td>
+														<td>${s2.write_score}(${s2.write_point})</td>
+														<td>${s2.exam_file}<br>
+															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
+													</tr>
+													</c:forEach>
+													<%-- <tr>
+													<td >Java SE (2018-06-25~2018-09-10)</td>
+														
+														<td ><a
+															class="subjectbook-look popover-bold"
+															data-toggle="popover" title="이것이 자바다"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이
+																자바다</a></td>
+														<td><a
+															class="instructor-look popover-bold"
+															data-toggle="popover" title="김강사<br>010-1234-1234"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
+													
+													
+														<td>2018-11-12</td>
+														<td>-(20)</td>
+														<td>-(40)</td>
+														<td>-(40)</td>
+														<td>OS0032_181112.zip<br>
+															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
+															
+													</tr> --%>
+													
+													
+													
+												<%-- 	<tr>
 														<td rowspan="2">Java SE (2018-06-25~2018-09-10)</td>
-														<td rowspan="2"><a class="subjectbook-look popover-bold" data-toggle="popover" title="이것이 자바다" data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이 자바다</a></td>
-														<td rowspan="2"><a class ="instructor-look popover-bold" data-toggle="popover" title="김강사<br>010-1234-1234" data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
+														<td rowspan="2"><a
+															class="subjectbook-look popover-bold"
+															data-toggle="popover" title="이것이 자바다"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이
+																자바다</a></td>
+														<td rowspan="2"><a
+															class="instructor-look popover-bold"
+															data-toggle="popover" title="김강사<br>010-1234-1234"
+															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
 														<td>2018-10-15</td>
 														<td>-(20)</td>
 														<td>-(30)</td>
@@ -169,7 +262,7 @@
 														<td>-(40)</td>
 														<td>OS0032_181112.zip<br>
 															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
-													</tr>
+													</tr> --%>
 												</tbody>
 											</table>
 										</div>

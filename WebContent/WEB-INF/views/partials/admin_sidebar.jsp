@@ -8,7 +8,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
         	<img src="${pageContext.request.contextPath}/resources/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle">
         </div>
         <div class="title">
-            <h1 class="h4">관리자</h1>
+            <h1 class="h4">${sessionScope.admin.admin_name}</h1>
             <p>${sessionScope.admin.admin_id}</p>
         </div>
     </div>

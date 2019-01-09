@@ -51,11 +51,11 @@
                 <div class="content">
                    <form action="${pageContext.request.contextPath}/common/login" method="post" class="form-validate">
                     <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" data-msg="이름을 입력하세요" class="input-material">
+                      <input id="login-username" type="text" name="loginUsername" data-msg="이름을 입력하세요" class="input-material" required>
                       <label for="login-username" class="label-material">User Name</label>
                     </div>
                     <div class="form-group">
-                      <input id="login-password" type="password" name="loginPassword" data-msg="비밀번호를 입력하세요" class="input-material">
+                      <input id="login-password" type="password" name="loginPassword" data-msg="비밀번호를 입력하세요" class="input-material" required>
                       <label for="login-password" class="label-material">Password</label>
 					</div>
 					

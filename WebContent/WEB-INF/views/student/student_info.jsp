@@ -76,25 +76,27 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 										<h3 class="h4">개인 정보 확인</h3>
 									</div>
 									<div class="card-body">
+									<c:forEach var="si" items="${stinfo}">
+									
 										<form class="form-horizontal">
 											<div class="form-group row">
 												<label class="col-sm-3 form-control-label">이름</label>
 												<div class="col-sm-9">
-													<input id="name" type="text" placeholder="홍길동"
+													<input id="name" type="text" placeholder="${si.student_name}"
 														class="form-control form-control-success" readonly>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-3 form-control-label">휴대폰 번호</label>
 												<div class="col-sm-9">
-													<input id="phone" type="text" placeholder="010-1234-1234"
+													<input id="phone" type="text" placeholder="${si.student_phone}"
 														class="form-control form-control-success" readonly>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-3 form-control-label">등록일</label>
 												<div class="col-sm-9">
-													<input id="regDate" type="text" placeholder="2010-00-00"
+													<input id="regDate" type="text" placeholder="${si.student_regDate}"
 														class="form-control form-control-success" readonly>
 												</div>
 											</div>
@@ -105,6 +107,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 												</div>
 											</div>
 										</form>
+										</c:forEach>
 									</div>
 								</div>
 							</div>

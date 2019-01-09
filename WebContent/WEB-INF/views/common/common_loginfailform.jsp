@@ -51,7 +51,7 @@
                       <h4><i class="fa fa-lock"> 로그인</i></h4>
                       <label>로그인에 실패하였습니다.</label>
                       <div style="margin-top: 50px" class="form-group">
-                          <a href="${pageContext.request.contextPath}/views/common/common_login.jsp" class="btn btn-primary btn-block">Main</a>
+                          <a href="${pageContext.request.contextPath}/index" class="btn btn-primary btn-block">Main</a>
                       </div>
                   	</div>
                     </div>

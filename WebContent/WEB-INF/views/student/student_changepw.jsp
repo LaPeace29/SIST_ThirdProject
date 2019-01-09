@@ -82,7 +82,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
                       <h3 class="h4">비밀번호 변경</h3>
                     </div>
                     <div class="card-body">
-                      <form class="form-horizontal">
+                    <form class="form-horizontal" action="${pageContext.request.contextPath}/student/changepw" method="post">
+                      
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">이름</label>
                           <div class="col-sm-9">
@@ -92,19 +93,19 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">현재 비밀번호</label>
                           <div class="col-sm-9">
-                            <input id="inputHorizontalWarning" type="password" class="form-control form-control-warning">
+                            <input id="student_pw" name="student_pw" type="password" class="form-control form-control-warning">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">신규 비밀번호</label>
                           <div class="col-sm-9">
-                            <input id="inputHorizontalWarning" type="password" class="form-control form-control-warning">
+                            <input id="student_new_pw" name="student_new_pw"  type="password" class="form-control form-control-warning">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">신규 비밀번호 확인</label>
                           <div class="col-sm-9">
-                            <input id="inputHorizontalWarning" type="password" class="form-control form-control-warning">
+                            <input id="student_new_pw2" name="student_new_pw2"   type="password" class="form-control form-control-warning">
                           </div>
                         </div>
                         <div class="form-group row">       

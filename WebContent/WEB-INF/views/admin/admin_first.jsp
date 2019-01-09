@@ -62,16 +62,14 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 	<div class="page">
         <!-- Main Navbar-->
-        <%-- <%@ include file="/WEB-INF/views/partials/admin_header.jsp" %> --%>
         <jsp:include page="/WEB-INF/views/partials/admin_header.jsp"/>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/WEB-INF/views/partials/admin_sidebar.jsp" %>
-            <%-- <jsp:include page="/WEB-INF/views/partials/admin_sidebar.jsp"/> --%>
             <div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/admin/admin_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a href="">HOME</a></li>
 					</ul>
 				</div>
 				

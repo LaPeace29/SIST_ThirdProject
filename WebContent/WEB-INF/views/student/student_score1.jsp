@@ -37,32 +37,34 @@
 
 
 <script>
-	$(document).ready(function() {
-		
+	$(document)
+			.ready(
+					function() {
 
-    
-    	/* var siblings = $("#slist").find("td").siblings("td");
-		var start = new Date($(siblings).eq(2).text().substring(0,10)); // Jul 02 2012 
-		var end = new Date($(siblings).eq(2).text().substring(13));
-		var today = new Date();  
- 		var total = end - start; 
-		var progress = today - start; 
+				/* 	 	var siblings = $("#slist").find("td").siblings("td");
+						var start = new Date($(siblings).eq(2).text().substring(0,10)); // Jul 02 2012 
+						var end = new Date($(siblings).eq(2).text().substring(13));
+						var today = new Date();  
+						var total = end - start; 
+						var progress = today - start; 
 
-		var p = Math.round(progress/ total * 100) + "%"; 
-		
-		$(".progressbar").css("width", p); */
-		
-		$(".btn-look").on("click", function() {
-            window.location.assign("${pageContext.request.contextPath}/views/student/student_score2.jsp");
-         });
-		
-		
-		
-		
-	});
-	
+						var p = Math.round(progress/ total * 100) + "%"; 
+						
+						$(".progressbar").css("width", p);   */
+						
+
+						$(".btn-look")
+								.on(
+										"click",
+										function() {
+											window.location
+													.assign("${pageContext.request.contextPath}/views/student/student_score2.jsp");
+										});
+
+					});
 </script>
-<script src="${pageContext.request.contextPath}/resources/script/util.js"></script> 
+<script
+	src="${pageContext.request.contextPath}/resources/script/util.js"></script>
 </head>
 <body>
 
@@ -71,7 +73,7 @@
 		<%@ include file="/WEB-INF/views/partials/student_header.jsp"%>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
-			<%@ include file="/WEB-INF/views/partials/student_sidebar.jsp" %>
+			<%@ include file="/WEB-INF/views/partials/student_sidebar.jsp"%>
 			<div class="content-inner">
 				<!-- --------------------미활용---------------------- -->
 				<!-- Page Header-->
@@ -86,7 +88,8 @@
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/views/student/student_first.jsp">HOME</a></li>
+						<li class="breadcrumb-item"><a
+							href="${pageContext.request.contextPath}/views/student/student_first.jsp">HOME</a></li>
 						<li class="breadcrumb-item active"><a href="">성적 조회</a></li>
 					</ul>
 				</div>
@@ -108,30 +111,30 @@
 													height="182px">
 											</div>
 											<div class="col-sm-10">
-												<table class="table table-bordered text-center" >
+												<table class="table table-bordered text-center">
 													<tbody>
-													
-													<c:forEach var="si" items="${stinfo}"> 
-														<tr>
-															<td>수강생 번호</td>
-															<td>${si.student_id}</td>
-														</tr>
 
-														<tr>
-															<td>수강생 이름</td>
-															<td>${si.student_name}</td>
-														</tr>
+														<c:forEach var="si" items="${stinfo}">
+															<tr>
+																<td>수강생 번호</td>
+																<td>${si.student_id}</td>
+															</tr>
 
-														<tr>
-															<td>수강생 휴대폰번호</td>
-															<td>${si.student_phone}</td>
-														</tr>
+															<tr>
+																<td>수강생 이름</td>
+																<td>${si.student_name}</td>
+															</tr>
 
-														<tr>
-															<td>수강생 등록일</td>
-															<td>${si.student_regDate}</td>
-														</tr>
-														
+															<tr>
+																<td>수강생 휴대폰번호</td>
+																<td>${si.student_phone}</td>
+															</tr>
+
+															<tr>
+																<td>수강생 등록일</td>
+																<td>${si.student_regDate}</td>
+															</tr>
+
 														</c:forEach>
 													</tbody>
 												</table>
@@ -151,35 +154,40 @@
 														<th>성적</th>
 													</tr>
 												</thead>
-												<tbody id= "slist">
-													<c:forEach var="s" items="${list}" > 
-													<tr>
-													
-										
-													
-														<td>${s.open_course_id}</td>
-														<td>${s.course_name}</td>
-														<td>${s.open_course_start_date} ~ ${s.open_course_end_date}</td>
-														<td>${s.classroom_name}</td>
-														<td>
-															<div class="progress">
-																<div class="progress-bar bg-primary progressbar" role="progressbar"
-																	style="width: 100%"
-																	aria-valuemax="100"></div>
-															</div>
-														</td>
-														<td>${s.completion_status}</td>
-														<td><button class="btn btn-sm btn-light btn-look">성적 조회</button></td>
-													</tr>
-													
-													
+												<tbody id="slist">
+													<c:forEach var="s" items="${list}">
+														<tr>
+
+
+
+															<td>${s.open_course_id}</td>
+															<td>${s.course_name}</td>
+															<td>${s.open_course_start_date}~
+																${s.open_course_end_date}</td>
+															<td>${s.classroom_name}</td>
+															<td>
+																<div class="progress">
+																	<div class="progress-bar bg-primary progressbar"
+																		role="progressbar" style="width: ${s.percent}%"
+																		aria-valuemax="100"></div>
+																</div>
+															</td>
+															<td>${s.completion_status} </td>
+
+
+															<td><a
+																href="${pageContext.request.contextPath}/student/score2?open_course_id=${s.open_course_id}"><button
+																		class="btn btn-sm btn-light btn-look">성적 조회</button></a></td>
+														</tr>
+
+
 													</c:forEach>
-													
+
 												</tbody>
-												
+
 											</table>
 										</div>
-										
+
 									</div>
 								</div>
 							</div>

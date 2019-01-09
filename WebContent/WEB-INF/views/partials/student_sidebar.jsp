@@ -8,8 +8,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
         	<img src="${pageContext.request.contextPath}/resources/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle">
         </div>
         <div class="title">
-            <h1 class="h4">수강생</h1>
-            <p>Student</p>
+            <h1 class="h4">${sessionScope.student.student_name}</h1>
+            <p>${sessionScope.student.student_id}</p>
         </div>
     </div>
     <!-- Sidebar Navidation Menus-->
