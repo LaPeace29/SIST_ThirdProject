@@ -22,9 +22,8 @@ public class InstructorServiceImpl implements InstructorService {
 	}
 
 	@Override
-	public List<Instructor> login() {
-		// TODO Auto-generated method stub
-		return null;
+	public Instructor login(String instructor_name, String instructor_pw) {
+		return this.instructorDAO.login(instructor_name, instructor_pw);
 	}
 	
 	@Override

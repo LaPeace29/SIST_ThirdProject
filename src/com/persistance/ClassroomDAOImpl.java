@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.domain.Classroom;
 import com.mapper.ClassroomMapper;
-import com.mapper.ClassroomMapper31;
 
 @Repository("classroomDAO")
 public class ClassroomDAOImpl implements ClassroomDAO {

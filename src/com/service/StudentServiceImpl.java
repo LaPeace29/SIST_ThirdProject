@@ -22,9 +22,9 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public List<Student> login() {
-		// TODO Auto-generated method stub
-		return null;
+	public Student login(String student_name, String student_pw) {
+
+		return this.studentDAO.login(student_name, student_pw);
 	}
 	
 	@Override
@@ -35,8 +35,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public int changepw(Student s) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.studentDAO.changepw(s);
 	}
 
 	@Override

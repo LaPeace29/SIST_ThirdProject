@@ -10,7 +10,7 @@ public interface StudentDAO {
 	public List<Student> title();
 	
 	// (로그인) 수강생 아이디
-	public List<Student> login();
+	public Student login(String student_name, String student_pw);
 	
 	/* ------------------------------------------------------------------- */
 	

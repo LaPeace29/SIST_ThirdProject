@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.domain.Course;
 import com.mapper.CourseMapper;
-import com.mapper.CourseMapper31;
 
 @Repository("courseDAO")
 public class CourseDAOImpl implements CourseDAO{

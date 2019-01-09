@@ -34,19 +34,36 @@ public class OpenCourseDAOImpl implements OpenCourseDAO{
 
 	@Override
 	public List<OpenCourse> homePrint() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String sql = "SELECT course_name, open_course_start_date, open_course_end_date FROM open_course_list3_vw1\r\n" + 
+				"WHERE open_course_start_date < now() AND open_course_end_date > now()\r\n" + 
+				"AND student_id = ? ";
+		
+		
+		// ST00001에 값 없어서 임시로 ST00027 넣어둠
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper53() , "ST00027" );
 	}
 
 	@Override
 	public List<OpenCourse> prints1() {
-		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion\r\n" + 
-				"    FROM pass_non_view3\r\n" + 
-				"    WHERE student_id = ? "; ;
+		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion, percent \r\n" + 
+				"    FROM pass_non_view4\r\n" + 
+				"    WHERE student_id = ? "; 
 
 		return this.jdbcTemplate.query(sql, new OpenCourseMapper21(), "ST00077");
 	}
 
+	@Override
+	public List<OpenCourse> prints1(String open_course_id) {
+		
+		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion, percent \r\n" + 
+				"    FROM pass_non_view4\r\n" + 
+				"    WHERE student_id = ? AND open_course_id = ? "; 
+
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper21(), "ST00077", open_course_id );
+		
+	}
+	
 	@Override
 	public int insert(OpenCourse oc) {
 		String sql = "INSERT INTO open_course_tb (open_course_id, classroom_id, course_id, open_course_start_date, open_course_end_date)\r\n"

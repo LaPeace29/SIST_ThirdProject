@@ -27,13 +27,17 @@ public class OpenCourseServiceImpl implements OpenCourseService {
 
 	@Override
 	public List<OpenCourse> homePrint() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.openCourseDAO.homePrint();
 	}
 
 	@Override
 	public List<OpenCourse> prints1() {
 		return this.openCourseDAO.prints1();
+	}
+	
+	@Override
+	public List<OpenCourse> prints1(String open_course_id) {
+		return this.openCourseDAO.prints1(open_course_id);
 	}
 
 	@Override

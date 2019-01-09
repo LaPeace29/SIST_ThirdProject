@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.domain.Instructor;
 import com.mapper.InstructorIdMapper;
 import com.mapper.InstructorManageMapper;
+import com.mapper.InstructorMapper01;
 import com.mapper.InstructorMapper13;
 
 @Repository("instructorDAO")
@@ -26,9 +28,18 @@ public class InstructorDAOImpl implements InstructorDAO{
 	}
 
 	@Override
-	public List<Instructor> login() {
-		// TODO Auto-generated method stub
-		return null;
+	public Instructor login(String instructor_name, String instructor_pw) {
+
+		String sql = "SELECT instructor_id, instructor_name, instructor_phone, instructor_regDate\r\n" + 
+				"	FROM instructor_tb\r\n" + 
+				"    WHERE instructor_name=? AND instructor_pw=?";
+		
+		try {
+			
+			return this.jdbcTemplate.queryForObject(sql, new InstructorMapper01(), instructor_name, instructor_pw);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	@Override

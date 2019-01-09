@@ -12,6 +12,7 @@ import com.domain.Exam;
 import com.mapper.ExamMapper17;
 import com.mapper.ExamMapper18;
 import com.mapper.ExamMapper19;
+import com.mapper.ExamMapper21;
 import com.mapper.ExamMapper31;
 import com.mapper.ExamMapper32;
 
@@ -22,9 +23,15 @@ public class ExamDAOImpl implements ExamDAO{
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public List<Exam> prints1() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Exam> prints1(Exam exam) {
+		String sql = "SELECT subject_name, subjectbook_name, instructor_name, exam_date\r\n" + 
+				"		,attendance_score, attendance_point, write_score, write_point, skill_score, skill_point, \r\n" + 
+				"		exam_file, subjectbook_isbn, instructor_photo_filepath, subject_start_date, subject_end_date \r\n" + 
+				"FROM student_transcript_vw4\r\n" + 
+				"WHERE student_id = ? \r\n" + 
+				"AND open_course_id = ? ;";
+	
+		return this.jdbcTemplate.query(sql, new ExamMapper21(),"ST00077" ,exam.getOpen_course_id());
 	}
 
 	@Override

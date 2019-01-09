@@ -10,7 +10,7 @@ public interface InstructorService {
 	public List<Instructor> title();
 	
 	// (로그인) 강사 아이디
-	public List<Instructor> login();
+	public Instructor login(String instructor_name, String instructor_pw);
 		
 	/* ==================================================================== */
 	

@@ -1,13 +1,17 @@
 package com.persistance;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.domain.Student;
+import com.mapper.StudentMapper01;
+import com.mapper.StudentMapper16;
 import com.mapper.StudentMapper21;
 
 @Repository("studentDAO")
@@ -23,9 +27,18 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 
 	@Override
-	public List<Student> login() {
-		// TODO Auto-generated method stub
-		return null;
+	public Student login(String student_name, String student_pw) {
+
+		String sql = "SELECT student_id, student_name, student_phone, student_regDate\r\n" + 
+				"	FROM student_tb\r\n" + 
+				"    WHERE student_name=? AND student_pw=?";
+		
+		try {
+			
+			return this.jdbcTemplate.queryForObject(sql, new StudentMapper01(), student_name, student_pw);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	@Override
@@ -36,8 +49,8 @@ public class StudentDAOImpl implements StudentDAO{
 
 	@Override
 	public int changepw(Student s) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql="UPDATE student_tb SET student_pw=? WHERE student_pw= ? AND student_id = ?";
+		return this.jdbcTemplate.update(sql, s.getStudent_new_pw2(), s.getStudent_pw(), "ST00001");
 	}
 
 	@Override

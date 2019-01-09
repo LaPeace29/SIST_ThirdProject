@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +24,12 @@ public class AdminDAOImpl implements AdminDAO {
 				"	FROM admin_tb\r\n" + 
 				"    WHERE admin_name=? AND admin_pw=?";
 		
-		return this.jdbcTemplate.queryForObject(sql, new AdminMapper01(), admin_name, admin_pw);
+		try {
+			
+			return this.jdbcTemplate.queryForObject(sql, new AdminMapper01(), admin_name, admin_pw);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	@Override
