@@ -22,6 +22,7 @@ public class StudentMapper implements RowMapper<Student> {
 		st.setStudent_regDate(rs.getDate("student_regDate"));
 		st.setStudent_pw(rs.getString("student_pw"));
 		st.setStudent_new_pw(rs.getString("student_new_pw"));
+		st.setStudent_new_pw2(rs.getString("student_new_pw2"));
 		st.setCompletion_status(rs.getString("completion_status"));
 		st.setOpen_course_id(rs.getString("open_course_id"));
 		st.setDropout_date(rs.getDate("dropout_date"));
