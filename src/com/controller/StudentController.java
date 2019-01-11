@@ -75,7 +75,6 @@ public class StudentController {
 		model.addAttribute("stinfo", stinfo);
 		model.addAttribute("list", list);
 		
-		
 		return "/student/student_score1";
 	}
 
@@ -113,9 +112,5 @@ public class StudentController {
 		}else {
 			return "redirect:/student/changepwPage"; 
 		}
-		
-		
-		
 	}
-
 }
