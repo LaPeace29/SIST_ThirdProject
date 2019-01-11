@@ -37,6 +37,7 @@ public class Exam {
 	private String score_status; 			// 성적 입력 여부(관리자 20번 참고)
 	private int student_count;				// 학생 수
 	private String subjectbook_isbn;
+	private String student_photo_filepath;
 	private String instructor_photo_filepath;
 	
 	// Getter
@@ -162,6 +163,10 @@ public class Exam {
 
 	public String getSubjectbook_isbn() {
 		return subjectbook_isbn;
+	}
+
+	public String getStudent_photo_filepath() {
+		return student_photo_filepath;
 	}
 
 	public String getInstructor_photo_filepath() {
@@ -299,6 +304,10 @@ public class Exam {
 
 	public void setSubjectbook_isbn(String subjectbook_isbn) {
 		this.subjectbook_isbn = subjectbook_isbn;
+	}
+
+	public void setStudent_photo_filepath(String student_photo_filepath) {
+		this.student_photo_filepath = student_photo_filepath;
 	}
 
 	public void setInstructor_photo_filepath(String instructor_photo_filepath) {

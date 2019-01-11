@@ -2,6 +2,8 @@ package com.domain;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Student {
 
 	// Field
@@ -17,6 +19,7 @@ public class Student {
 	private String open_course_id;			// 개설 과정 아이디
 	private Date dropout_date;				// 중도 탈락일
 	private String student_photo_filepath;	// 수강생 사진 경로
+	private MultipartFile student_photo_file;
 	private int count_;						// 삭제 가능 여부
 	private Date completion_date; 			//수료 날짜
 
@@ -67,6 +70,10 @@ public class Student {
 	
 	public String getStudent_photo_filepath() {
 		return student_photo_filepath;
+	}
+
+	public MultipartFile getStudent_photo_file() {
+		return student_photo_file;
 	}
 
 	public int getCount_() {
@@ -124,6 +131,10 @@ public class Student {
 
 	public void setStudent_photo_filepath(String student_photo_filepath) {
 		this.student_photo_filepath = student_photo_filepath;
+	}
+
+	public void setStudent_photo_file(MultipartFile student_photo_file) {
+		this.student_photo_file = student_photo_file;
 	}
 
 	public void setCount_(int count_) {

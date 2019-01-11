@@ -10,6 +10,7 @@ public class OpenSubject {
 	private String subject_name;			// 과목 이름
 	private String subjectbook_id;			// 교재 아이디
 	private String subjectbook_name;		// 교재 이름
+	private String subjectbook_isbn;		// 교재 ISBN
 	private String instructor_id;			// 강사 아이디
 	private String instructor_name;			// 강사 이름
 	private String student_id;				// 수강생 아이디
@@ -46,6 +47,10 @@ public class OpenSubject {
 
 	public String getSubjectbook_name() {
 		return subjectbook_name;
+	}
+
+	public String getSubjectbook_isbn() {
+		return subjectbook_isbn;
 	}
 
 	public String getInstructor_id() {
@@ -131,6 +136,10 @@ public class OpenSubject {
 
 	public void setSubjectbook_name(String subjectbook_name) {
 		this.subjectbook_name = subjectbook_name;
+	}
+
+	public void setSubjectbook_isbn(String subjectbook_isbn) {
+		this.subjectbook_isbn = subjectbook_isbn;
 	}
 
 	public void setInstructor_id(String instructor_id) {
