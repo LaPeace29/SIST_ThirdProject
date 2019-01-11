@@ -173,7 +173,7 @@
 								placeholder="실기 배점" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="subjectbook_isbn">시험 날짜</label> <input type="text"
+							<label for="subjectbook_isbn">시험 날짜</label> <input type="date"
 								id="exam_date" name="exam_date"
 								placeholder="시험 날짜" class="form-control">
 						</div>
@@ -213,7 +213,7 @@
 								placeholder="EXAM0013" class="form-control" readonly = "readonly">
 						</div>
 						<div class="form-group">
-							<label for="subjectbook_isbn">시험 날짜</label> <input type="text"
+							<label for="subjectbook_isbn">시험 날짜</label> <input type="date"
 								id="exam_date" name="exam_date"
 								placeholder="2018-10-15" class="form-control" readonly = "readonly">
 						</div>
@@ -227,11 +227,6 @@
 			</div>
 		</div>
 	</div>
-	
-	 
-	  
-	
-	
 
 	<!-- JavaScript files-->
 	<script

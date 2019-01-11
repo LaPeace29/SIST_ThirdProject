@@ -37,27 +37,28 @@
 
 <script>
 	$(document).ready(function() {
-						$(".subjectbook-look").popover({
-							placement : 'left',
-							trigger : "hover",
-							html : true
-						});
-
-						$(".btn-look").on("click",function() { 
-							var open_subject_id = $(this).parents("tr").find("td:eq(0)").text();
-							console.log(open_subject_id)
-							window.location.assign("${pageContext.request.contextPath}/instructor/schedule2?open_subject_id="+open_subject_id);
-										
-						});
+		
+		var par = "${instructor_status}";
+		console.log(par);
+		
+		$(".subjectbook-look").popover({
+			placement : 'left',
+			trigger : "hover",
+			html : true
+		});	
+		
+		$(".btn-look").on("click",function() { 
+			var open_subject_id = $(this).parents("tr").find("td:eq(0)").text();
+			console.log(open_subject_id)
+			window.location.assign("${pageContext.request.contextPath}/instructor/schedule2?open_subject_id="+open_subject_id);
 						
-						$(".btn-status").on("click",function() {
-							var instructor_status = $(this).val();
-							console.log(instructor_status);
-							window.location.assign("${pageContext.request.contextPath}/instructor/schedule1?instructor_status="+instructor_status);
-					     });
-						});
-					
-					
+		});
+		
+		$(".btn-status").on("click",function() {
+			var instructor_status = $(this).val();
+			window.location.assign("${pageContext.request.contextPath}/instructor/schedule11?instructor_status="+instructor_status);
+		    });
+		});
 </script>
 
 </head>
@@ -70,23 +71,14 @@
 			<!-- Side Navbar -->
 			<%@ include file="/WEB-INF/views/partials/instructor_sidebar.jsp"%>
 			<div class="content-inner">
-				<!-- --------------------미활용---------------------- -->
-				<!-- Page Header-->
-				<!--                 
-					<header class="page-header">
-	                    <div class="container-fluid">
-	                        <h2 class="no-margin-bottom">Dashboard</h2>
-	                    </div>
-	                </header> 
-	                -->
-				<!-- ------------------------------------------------ -->
+
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
 
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/instructor/first">HOME</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/instructor/schedule1">강사 스케줄 조회</a></li>
+						<li class="breadcrumb-item active"><a href="">강사 스케줄 조회</a></li>
 					</ul>
 				</div>
 
@@ -100,7 +92,7 @@
 										<h3 class="h4">강사 스케줄 조회</h3>
 									</div>
 									<div class="card-body">
-										<div class="row">
+										<div class="row demo">
 											<div class="col-sm-2">
 												<img
 													src="${pageContext.request.contextPath}/resources/img/avatar-2.jpg"
@@ -133,12 +125,9 @@
 										</div>
 
 										<div class="btn-group">
-											<button type="button" class="btn btn-sm btn-light btn-status" value="강의 종료">강의
-												종료</button>
-											<button type="button" class="btn btn-sm btn-light btn-status" value="강의 중" >강의
-												중</button>
-											<button type="button" class="btn btn-sm btn-light btn-status" value="강의 예정" >강의
-												예정</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" value="0">강의 종료</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" value="1">강의 중</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" value="2">강의 예정</button>
 										</div>
 										<div class="table-responsive">
 											<table class="table">

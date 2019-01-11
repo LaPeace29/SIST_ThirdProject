@@ -52,7 +52,7 @@ $(document).ready(function() {
 	$(".btn-status").on("click",function() {
 		var instructor_status = $(this).val();
 		console.log(instructor_status);
-		window.location.assign("${pageContext.request.contextPath}/instructor/score1?instructor_status="+instructor_status);
+		window.location.assign("${pageContext.request.contextPath}/instructor/score11?instructor_status="+instructor_status);
      });
      });
 
@@ -133,66 +133,6 @@ $(document).ready(function() {
 
 														</tr>
 													</c:forEach>
-													<tr>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td>...</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													<tr>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td>...</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													<tr>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td>...</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													<tr>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td>...</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													<tr>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td>...</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
 												</tbody>
 											</table>
 										</div>

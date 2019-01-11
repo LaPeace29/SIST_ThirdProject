@@ -52,7 +52,7 @@ $(document).ready(function() {
 	$(".btn-status").on("click",function() {
 		var instructor_status = $(this).val();
 		console.log(instructor_status);
-		window.location.assign("${pageContext.request.contextPath}/instructor/point1?instructor_status="+instructor_status);
+		window.location.assign("${pageContext.request.contextPath}/instructor/point11?instructor_status="+instructor_status);
      });
 });
 
