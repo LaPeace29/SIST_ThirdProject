@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.domain.Exam;
+import com.domain.OpenSubject;
 import com.persistance.ExamDAO;
 
 @Service("examService")
@@ -35,9 +36,9 @@ public class ExamServiceImpl implements ExamService {
 	}
 
 	@Override
-	public List<Exam> printi1(String open_subject_id) {
+	public List<Exam> printi1(OpenSubject os) {
 		
-		List<Exam> result = this.examDAO.printi1(open_subject_id);
+		List<Exam> result = this.examDAO.printi1(os);
 		
 		return result;
 	}
@@ -65,9 +66,9 @@ public class ExamServiceImpl implements ExamService {
 	}
 	
 	@Override
-	public List<Exam> print3(String open_subject_id) {
+	public List<Exam> print3(OpenSubject os) {
 		
-		List<Exam> result = this.examDAO.print3(open_subject_id);
+		List<Exam> result = this.examDAO.print3(os);
 		
 		return result;
 	}
@@ -80,9 +81,21 @@ public class ExamServiceImpl implements ExamService {
 		return result;
 	}
 
+	//새로 추가(현아)
+	@Override
+	public List<Exam> print4_1(Exam exam) {
+		return this.examDAO.print4_1(exam);
+	}
+
 	@Override
 	public List<Exam> print5() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	//새로 추가(현아)
+	@Override
+	public List<Exam> print5(Exam exam) {
+		return this.examDAO.print5(exam);
 	}
 }

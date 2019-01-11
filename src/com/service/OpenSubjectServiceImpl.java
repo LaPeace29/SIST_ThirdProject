@@ -23,9 +23,9 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 	}
 
 	@Override
-	public List<OpenSubject> instructor_title(String open_subject_id) {
+	public List<OpenSubject> instructor_title(OpenSubject os) {
 
-		List<OpenSubject> result = this.openSubjectDAO.instructor_title(open_subject_id);
+		List<OpenSubject> result = this.openSubjectDAO.instructor_title(os);
 
 		return result;
 	}
@@ -39,18 +39,24 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 	}
 
 	@Override
-	public List<OpenSubject> printi1(String instructor_status) {
-		List<OpenSubject> result = this.openSubjectDAO.printi1(instructor_status);
+	public List<OpenSubject> printi1(OpenSubject os) {
+		List<OpenSubject> result = this.openSubjectDAO.printi1(os);
 
+		return result;
+	}
+	
+	@Override
+	public List<OpenSubject> printi2(OpenSubject os) {
+		List<OpenSubject> result = this.openSubjectDAO.printi2(os);
+		
 		return result;
 	}
 
 	@Override
 	public int insert(OpenSubject os) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.openSubjectDAO.insert(os);
 	}
-
+	
 	@Override
 	public List<OpenSubject> print1() {
 		
@@ -81,8 +87,7 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 
 	@Override
 	public List<OpenSubject> print4() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.openSubjectDAO.print4();
 	}
 
 	@Override
@@ -98,16 +103,14 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 
 	@Override
 	public int update(OpenSubject os) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.openSubjectDAO.update(os);
 	}
 
 	@Override
 	public int delete(OpenSubject os) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.openSubjectDAO.delete(os);
 	}
-
+	
 	@Override
 	public List<OpenSubject> search1(String key, String value) {
 		return this.openSubjectDAO.search1(key, value);

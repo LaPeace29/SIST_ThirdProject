@@ -9,8 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.domain.OpenCourse;
 import com.mapper.OpenCourseMapper21;
+import com.mapper.OpenCourseMapper31;
+import com.mapper.OpenCourseMapper33;
 import com.mapper.OpenCourseMapper51;
 import com.mapper.OpenCourseMapper53;
+import com.mapper.OpenCourseMapper55;
 
 @Repository("openCourseDAO")
 public class OpenCourseDAOImpl implements OpenCourseDAO{
@@ -61,15 +64,15 @@ public class OpenCourseDAOImpl implements OpenCourseDAO{
 				"    WHERE student_id = ? AND open_course_id = ? "; 
 
 		return this.jdbcTemplate.query(sql, new OpenCourseMapper21(), "ST00077", open_course_id );
-		
 	}
 	
 	@Override
 	public int insert(OpenCourse oc) {
 		String sql = "INSERT INTO open_course_tb (open_course_id, classroom_id, course_id, open_course_start_date, open_course_end_date)\r\n"
 				+ "    VALUES ((SELECT CONCAT('OC', LPAD(IFNULL(SUBSTR(MAX(open_course_id), 3), 0) + 1, 4, 0)) AS newId FROM open_course_tb oc), ?, ?, ?, ?)";
-		return this.jdbcTemplate.update(sql, oc.getClassroom_id(), oc.getCourse_id(), oc.getOpen_course_start_date(),
-				oc.getOpen_course_end_date());
+		
+		return this.jdbcTemplate.update(sql, oc.getClassroom_id(), oc.getCourse_id(), oc.getOpen_course_start_date().toString(),
+				oc.getOpen_course_end_date().toString());
 	}
 
 	// 개설 과정 번호 / 과정명 / 개설 과정 시작일 / 개설 과정 종료일 / 강의실명 / 개설 과목 등록 갯수 / 수강생 등록 인원
@@ -91,16 +94,45 @@ public class OpenCourseDAOImpl implements OpenCourseDAO{
 	}
 
 	@Override
+	public List<OpenCourse> print2(String student_id) {
+		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date\r\n"
+				+ "	, classroom_name, os_count, student_id\r\n" + "    FROM open_course_list1_vw2\r\n"
+				+ "    WHERE student_id = ?\r\n";
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper55(), student_id);
+	}
+	
+	// 과정 id / 과정명
+	@Override
+	public List<OpenCourse> printj1(OpenCourse oc) {
+		
+		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date FROM student_history_list1_vw1 WHERE student_id = ?";
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper31(), oc.getStudent_id());
+	}
+	
+	
+	@Override
+	public List<OpenCourse> printj2(OpenCourse oc) {
+		
+		String sql = "SELECT student_id, open_course_id, course_name, open_course_start_date, open_course_end_date, student_id, completion, completion_date\r\n" + 
+				"	FROM open_course_list8_vw3\r\n" + 
+				"    WHERE student_id = ?";
+		
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper33(), oc.getStudent_id());
+	}
+		
+	@Override
 	public int update(OpenCourse oc) {
+		System.out.println(oc.getOpen_course_start_date());
 		String sql = "UPDATE open_course_tb SET classroom_id = ?, course_id = ?, open_course_start_date = ?, open_course_end_date = ? WHERE open_course_id=?";
-		return this.jdbcTemplate.update(sql, oc.getClassroom_id(), oc.getCourse_id(), oc.getOpen_course_start_date(),
-				oc.getOpen_course_end_date(), oc.getOpen_course_id());
+		
+		return this.jdbcTemplate.update(sql, oc.getClassroom_id(), oc.getCourse_id(), oc.getOpen_course_start_date().toString(),
+				oc.getOpen_course_end_date().toString(), oc.getOpen_course_id());
 	}
 
 	@Override
 	public int delete(OpenCourse oc) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "DELETE FROM open_course_tb WHERE open_course_id =?";
+		return this.jdbcTemplate.update(sql, oc.getOpen_course_id());
 	}
 
 	@Override

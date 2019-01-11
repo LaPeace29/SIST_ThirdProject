@@ -59,14 +59,29 @@ public class OpenCourseServiceImpl implements OpenCourseService {
 	}
 
 	@Override
+	public List<OpenCourse> print2(String student_id) {
+		return this.openCourseDAO.print2(student_id);
+	}
+	
+	@Override
+	public List<OpenCourse> printj1(OpenCourse oc) {
+		return this.openCourseDAO.printj1(oc);
+	}
+	
+	@Override
+	public List<OpenCourse> printj2(OpenCourse oc){
+		return this.openCourseDAO.printj2(oc);
+	}
+
+
+	@Override
 	public int update(OpenCourse oc) {
 		return this.openCourseDAO.update(oc);
 	}
 
 	@Override
 	public int delete(OpenCourse oc) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.openCourseDAO.delete(oc);
 	}
 
 	@Override

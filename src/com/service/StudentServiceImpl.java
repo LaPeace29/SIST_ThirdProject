@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.domain.OpenSubject;
 import com.domain.Student;
 import com.persistance.StudentDAO;
 
@@ -21,6 +22,12 @@ public class StudentServiceImpl implements StudentService {
 		return null;
 	}
 
+	//현아 추가
+	@Override
+	public List<Student> title(String student_id) {
+		return this.studentDAO.title(student_id);
+	}
+	
 	@Override
 	public Student login(String student_name, String student_pw) {
 
@@ -50,35 +57,36 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public List<Student> printi1(String open_subject_id) {
+	public List<Student> printi1(OpenSubject os) {
 		
-		List<Student> result = this.studentDAO.printi1(open_subject_id);
+		List<Student> result = this.studentDAO.printi1(os);
 		
 		return result;
 	}
 
 	@Override
+	public List<Student> printj1() {
+		return this.studentDAO.printj1();
+	}
+	
+	@Override
 	public int insert(Student s) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.studentDAO.insert(s);
 	}
 
 	@Override
 	public int insertCourse(Student s) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.studentDAO.insertCourse(s);
 	}
 
 	@Override
 	public int insertDrop(Student s) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.studentDAO.insertDrop(s);
 	}
 
 	@Override
 	public int update(Student s) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.studentDAO.update(s);
 	}
 
 	@Override
@@ -89,13 +97,22 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public int delete(Student s) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.studentDAO.delete(s);
+	}
+
+	@Override
+	public int deleteCourse(Student s) {
+		return this.studentDAO.deleteCourse(s);
 	}
 
 	@Override
 	public List<Student> search(String key, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.studentDAO.search(key, value);
+	}
+	
+	//수강생 출력(현아)
+	@Override
+	public List<Student> print1() {
+		return this.studentDAO.print1();
 	}
 }

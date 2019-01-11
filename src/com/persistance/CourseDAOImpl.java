@@ -23,15 +23,6 @@ public class CourseDAOImpl implements CourseDAO{
 		return this.jdbcTemplate.update(sql, cs.getCourse_name());
 	}
 	
-	/*
-	@Override
-	public List<Course> print1() {
-		String sql = "SELECT course_id, course_name FROM course_tb";
-		
-		return this.jdbcTemplate.query(sql, new CourseMapper31());
-	}
-	*/
-	
 	@Override
 	public List<Course> print1() {
 		String sql="SELECT course_id, course_name, (SELECT COUNT(*) FROM open_course_tb WHERE course_id = c.course_id) count_ FROM course_tb c";

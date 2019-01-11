@@ -3,6 +3,7 @@ package com.service;
 import java.util.List;
 
 import com.domain.Instructor;
+import com.domain.OpenSubject;
 
 public interface InstructorService {
 	
@@ -25,7 +26,7 @@ public interface InstructorService {
 	
 	// (출력) 강사 - 강사 스케줄 조회
 	// 강사 사진 / 강사 번호 / 강사 이름 / 강사 휴대폰번호 / 강사 등록일
-	public List<Instructor> printi1();
+	public List<Instructor> printi1(OpenSubject os);
 	
 	/* ==================================================================== */
 	
@@ -38,6 +39,8 @@ public interface InstructorService {
 	// instructor_photo_id / instructor_photo_filePath instructor_id
 	// instructor_id subject_id
 	public List<Instructor> print1();
+	
+	public List<Instructor> print2();
 	
 	// (출력) 강사 계정 관리 - 강의 가능 과목 관리
 	public int subjectManage();

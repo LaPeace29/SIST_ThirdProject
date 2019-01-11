@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.domain.Instructor;
+import com.domain.OpenSubject;
 import com.persistance.InstructorDAO;
 
 @Service("instructorService")
@@ -45,8 +46,8 @@ public class InstructorServiceImpl implements InstructorService {
 	}
 
 	@Override
-	public List<Instructor> printi1() {
-		List<Instructor> result = this.instructorDAO.printi1();
+	public List<Instructor> printi1(OpenSubject os) {
+		List<Instructor> result = this.instructorDAO.printi1(os);
 		
 		return result;
 	}
@@ -59,6 +60,11 @@ public class InstructorServiceImpl implements InstructorService {
 	@Override
 	public List<Instructor> print1() {
 		return this.instructorDAO.print1();
+	}
+
+	@Override
+	public List<Instructor> print2() {
+		return this.instructorDAO.print2();
 	}
 
 	@Override

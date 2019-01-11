@@ -24,16 +24,6 @@ public class ClassroomDAOImpl implements ClassroomDAO {
 		return this.jdbcTemplate.update(sql, cr.getClassroom_name(), cr.getMax_number());
 	}
 
-	/* 은미 작성 부분 충돌 */
-	/*
-	@Override
-	public List<Classroom> print1() {
-		String sql = "SELECT classroom_id, classroom_name FROM classroom_tb";
-
-		return this.jdbcTemplate.query(sql, new ClassroomMapper31());
-	}
-	 */
-
 	@Override
 	public List<Classroom> print1() {
 		String sql = "SELECT classroom_id, classroom_name, max_number, (SELECT COUNT(*) FROM open_course_tb WHERE classroom_id = c.classroom_id) count_ FROM classroom_tb c";

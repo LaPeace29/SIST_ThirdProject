@@ -40,6 +40,12 @@ public interface OpenCourseService {
 	// (출력2) 성적 조회 - 수강생 개인 성적 조회 - 수강 과정 정보 - 출력
 	// 개설 과정번호 / 과정명 / 개설 과정 시작일 / 개설 과정 종료일 / 강의실명 / 개설 과목 등록 갯수
 	public List<OpenCourse> print2();
+	public List<OpenCourse> print2(String student_id);
+	
+	public List<OpenCourse> printj1(OpenCourse oc);
+	
+	// 과정아이디 / 과정명 / 과정기간 / 수료여부 / 날짜
+	public List<OpenCourse> printj2(OpenCourse oc);
 	
 	// (수정) 개설 과정 관리 - 개설 과정 정보 - 수정
 	public int update(OpenCourse oc);
