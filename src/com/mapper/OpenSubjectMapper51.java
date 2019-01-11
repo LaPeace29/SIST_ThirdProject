@@ -22,10 +22,7 @@ public class OpenSubjectMapper51 implements RowMapper<OpenSubject>{
 		os.setSubject_end_date(rs.getDate("subject_end_date"));
 		os.setInstructor_name(rs.getString("instructor_name"));
 		os.setSubjectbook_name(rs.getString("subjectbook_name"));
-		/*
-		open_subject_id, subject_name, subject_start_date, subject_end_date
-		, instructor_name, subjectbook_name
-		*/
+
 		return os;
 	}
 }

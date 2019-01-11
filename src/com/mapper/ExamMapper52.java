@@ -20,7 +20,7 @@ public class ExamMapper52 implements RowMapper<Exam> {
 		exam.setAttendance_score(rs.getInt("attendance_score"));
 		exam.setWrite_score(rs.getInt("write_score"));
 		exam.setSkill_score(rs.getInt("skill_score"));
-		exam.setTotal_score(rs.getInt("total_score"));
+		exam.setTotal_score(rs.getInt("score"));
 		
 		return exam;
 	}

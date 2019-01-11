@@ -24,5 +24,4 @@ public class ExamMapper31 implements RowMapper<Exam> {
 
 		return exam;
 	}
-
 }
