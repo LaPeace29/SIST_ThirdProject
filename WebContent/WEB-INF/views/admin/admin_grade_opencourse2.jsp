@@ -28,8 +28,221 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	<script>
 	
 		$(document).ready(function() {
+		
 			
+			$(".btn-lookone").on("click", function() {
+
+						var open_subject_id = $(this).val();
+						
+						var subject_name = $(this).parent().siblings().eq(1).text();
+						var subject_date = $(this).parent().siblings().eq(2).text();
+						
+						
+						$.ajax({
+									url : "${pageContext.request.contextPath}/admin/osExamAjax",
+									dataType : 'json',
+									type : 'Post',
+									data : {
+										open_subject_id : open_subject_id
+									},
+									success : function(
+											examList) {
+
+										/* 
+										var doc = JSON
+												.stringify(examList);
+										var array = JSON
+												.parse(doc);
+										 */
+										 
+										var array = examList; 
+										 
+										var txt = "";
+
+										txt += "<div class=\"card\">";
+										txt += "<div class=\"card-header\">";
+										txt += "<h4>";
+										txt += "<strong>"
+												+subject_name +"("+ subject_date+")</strong> 시험 정보";
+										txt += "</h4>";
+										txt += "</div>";
+										txt += "<div class=\"card-body\">";
+										txt += "<div class=\"table-responsive\">";
+										txt += "<table class=\"table\">";
+										txt += "<thead>";
+										txt += "		<tr>";
+										txt += "		<th>시험 번호</th>";
+										txt += "		<th>출결 배점</th>";
+										txt += "		<th>필기 배점</th>";
+										txt += "		<th>실기 배점</th>";
+										txt += "		<th>시험 날짜</th>";
+										txt += "		<th>시험 문제 파일</th>";
+										txt += "		<th>수강생 정보</th>";
+										txt += "		</tr>";
+										txt += "	</thead>";
+										txt += "		<tbody>";
+
+										for (var a = 0; a < array.length; ++a) {
+											var item = array[a];
+
+											var exam_id = item.exam_id;
+											var attendance_point = item.attendance_point;
+											var write_point = item.write_point;
+											var skill_point = item.skill_point;
+											var exam_date = new Date(item.exam_date);
+											var exam_file = item.exam_file;
+
+											txt += "			<tr>";
+											txt += "			<td>"
+													+ exam_id
+													+ "</td>";
+											txt += "			<td>"
+													+ attendance_point
+													+ "</td>";
+											txt += "			<td>"
+													+ write_point
+													+ "</td>";
+											txt += "			<td>"
+													+ skill_point
+													+ "</td>";
+											txt += "			<td>"
+													+ exam_date.getFullYear() +"-" + digitConvert(exam_date.getMonth()+1) + "-" + digitConvert(exam_date.getDate())
+													+ "</td>";
+											txt += "			<td>"
+													+ exam_file
+													+ "</td>";
+											txt += "			<td>"
+													+ "<button class='btn btn-sm btn-light btn-looktwo' value=" + exam_id +">보기</button>"
+													+ "</td>";
+											txt += "		</tr>";
+										}
+
+										txt += "		</tbody>";
+										txt += "	</table>";
+										txt += "	</div>";
+										txt += "	</div>";
+
+										$("#demo")
+												.html(txt);
+
+									}
+								});
+					});
+			
+			
+			$(document).on("click",".btn-looktwo", function() {
+				
+				var exam_id = $(this).val();
+				
+				var exam_date = $(this).parent().siblings().eq(4).text();
+				
+				$.ajax({
+					url : "${pageContext.request.contextPath}/admin/studentScoreAjax",
+					dataType : 'json',
+					type : 'Post',
+					data : {
+						exam_id : exam_id
+					},
+					success : function(
+							studentScoreList) {
+
+						/* 
+						var doc = JSON
+								.stringify(studentScoreList);
+						var array = JSON
+								.parse(doc);
+						 */
+						 
+						var array = studentScoreList;
+						
+						var txt = "";
+
+						txt += "<div class=\"card\">";
+						txt += "<div class=\"card-header\">";
+						txt += "<h4>";
+						
+						txt += exam_id +"("+exam_date+")"+" 수강생 성적 정보";
+						txt += "</h4>";
+						txt += "</div>";
+						txt += "<div class=\"card-body\">";
+						txt += "<div class=\"table-responsive\">";
+						txt += "<table class=\"table\">";
+						txt += "<thead>";
+						txt += "		<tr>";
+						txt += "		<th>수강생 번호</th>";
+						txt += "		<th>수강생 이름</th>";
+						txt += "		<th>수강생 휴대폰번호</th>";
+						txt += "		<th>출결 점수</th>";
+						txt += "		<th>필기 점수</th>";
+						txt += "		<th>실기 점수</th>";
+						txt += "		<th>총점</th>";
+						txt += "		</tr>";
+						txt += "	</thead>";
+						txt += "		<tbody>";
+
+						for (var a = 0; a < array.length; ++a) {
+							var item = array[a];
+
+							var student_id = item.student_id;
+							var student_name = item.student_name;
+							var student_phone = item.student_phone;
+							var attendance_score = item.attendance_score;
+							var write_score = item.write_score;
+							var skill_score = item.skill_score;
+							var total_score = item.total_score;
+							
+							txt += "			<tr>";
+							txt += "			<td>"
+									+ student_id
+									+ "</td>";
+							txt += "			<td>"
+									+ student_name
+									+ "</td>";
+							txt += "			<td>"
+									+ student_phone
+									+ "</td>";
+							txt += "			<td>"
+									+ attendance_score
+									+ "</td>";
+							txt += "			<td>"
+									+ write_score
+									+ "</td>";
+							txt += "			<td>"
+									+ skill_score
+									+ "</td>";
+							txt += "			<td>"
+									+ total_score
+									+ "</td>";
+						
+							txt += "		</tr>";
+						}
+
+						txt += "		</tbody>";
+						txt += "	</table>";
+						txt += "	</div>";
+						txt += "	</div>";
+
+						$("#demo2")
+								.html(txt);
+
+					}
+				}); 
+				
+				
+				
+			});
+			
+			 
 		});
+		
+		
+		function digitConvert(digit) {
+			var temp = digit;
+			if (digit < 10) {
+				temp = "0" + temp;
+			}
+			return temp;
+		}
 	
 	</script>
 
@@ -61,8 +274,10 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">Python &amp; Java 응용 SW실무 개발자 양성 과정(2018-06-25 ~ 2019-01-17)과목 정보</h3>
-									</div>
+									<c:forEach var="t" items="${title}">
+											<h3 class="h4">${t.course_name}(${t.open_course_start_date} ~ ${t.open_course_end_date}) 과목 정보</h3>
+										</c:forEach>
+										</div>
 									<div class="card-body">
 										<div class="table-responsive">
 											<table class="table">
@@ -77,21 +292,24 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td><button class="btn btn-sm btn-light">보기</button></td>
-													</tr>
+													<c:forEach var="os" items="${list}">
+														<tr>
+															<td>${os.open_subject_id}</td>
+															<td>${os.subject_name}</td>
+															<td>${os.subject_start_date} ~ ${os.subject_end_date}</td>
+															<td>${os.instructor_name}</td>
+															<td>${os.subjectbook_name}</td>
+															<td><button class="btn btn-sm btn-light btn-lookone" value="${os.open_subject_id}">보기</button></td>
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>
 									</div>
 								</div>
+								<div id="demo"></div>
 							
-								<div class="card">
+								<!-- <div class="card">
 									<div class="card-header d-flex align-items-center">
 										<h3 class="h4">HTML(2018-09-01 ~ 2018-09-20)시험 정보</h3>
 									</div>
@@ -126,8 +344,11 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 											</table>
 										</div>
 									</div>
-								</div>
-						
+								</div> -->
+								
+								<div id="demo2"></div>
+								
+								<!-- 
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
 										<h3 class="h4">홍길동 / 000-0000-000 성적 정보</h3>
@@ -161,7 +382,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 										</div>
 									</div>
 								</div>
-							
+							 -->
 							</div>
 						</div>
 					</div>

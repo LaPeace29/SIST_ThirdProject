@@ -110,7 +110,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                            <tr>
 		                                            	<td>${ins.instructor_id}</td>
 		                                                <td><a class="instructor-look popover-bold" data-toggle="popover" title="${ins.instructor_name} 사진" 
-		                                                data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' 
+		                                                data-content="<img src='${pageContext.request.contextPath}/resources/img/${ins.instructor_photo_filepath}' 
 		                                                		width='120' height='144'/>">${ins.instructor_name}</a></td>
 		                                            	<td>${ins.instructor_phone}</td>
 		                                            	<td>${ins.instructor_regDate}</td>
@@ -194,7 +194,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						</div>
 						<div class="form-group">
 							<label for="instructor_photo">사진 파일</label> 
-							<input type="file" id="instructor_photo_filepath" name="filePath" placeholder="사진 파일" class="form-control" required>
+							<input type="file" id="getInstructor_photo_file" name="getInstructor_photo_file" placeholder="사진 파일" class="form-control" required>
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -217,7 +217,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-					<form action="" method="post">
+					<form action="${pageContext.request.contextPath}/admin/instructor/mng1/update" method="post" enctype="multipart/form-data">
 				<div class="modal-body">
 						<div class="form-group">
 							<label for="instructor_id">강사번호</label> 
@@ -237,7 +237,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						</div>
 						<div class="form-group">
 							<label for="instructor_photo">사진 파일</label> 
-							<input type="file" id="instructor_photo" name="instructor_photo" placeholder="사진 파일" class="form-control">
+							<input type="file" id="getInstructor_photo_file" name="getInstructor_photo_file" placeholder="사진 파일" class="form-control">
 						</div>
 				</div>
 				<div class="modal-footer">

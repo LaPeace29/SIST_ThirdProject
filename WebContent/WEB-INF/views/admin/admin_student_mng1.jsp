@@ -44,7 +44,8 @@
 										"click",
 										function() {
 											window.location
-													.assign("${pageContext.request.contextPath}/admin/student/mng2?student_id="+$(this).val());
+													.assign("${pageContext.request.contextPath}/admin/student/mng2?student_id="
+															+ $(this).val());
 										});
 
 						$(".student-look").popover({
@@ -52,6 +53,56 @@
 							trigger : "hover",
 							html : true
 						});
+
+						$(".btn-update").on(
+								"click",
+								function() {
+
+									$("#student_update #student_id").val(
+											$(this).val());
+									$("#student_update #student_id").attr(
+											"placeholder", $(this).val());
+
+								});
+
+						$(".btn-del").on(
+								"click",
+								function() {
+
+									var student_name = $(this).parent()
+											.siblings().eq(1).text();
+
+									$("#student_delete #student_id").val(
+											$(this).val());
+									$("#student_delete #student_id").attr(
+											"placeholder", $(this).val());
+
+									$("#student_delete #student_name").attr(
+											"placeholder", student_name);
+
+								});
+
+						$(".btn-reset").on(
+								"click",
+								function() {
+
+									var student_name = $(this).parent()
+											.siblings().eq(1).text();
+
+									$("#password_reset #student_id").val(
+											$(this).val());
+									$("#password_reset #student_id").attr(
+											"placeholder", $(this).val());
+
+									$("#password_reset #student_name").attr(
+											"placeholder", student_name);
+
+								});
+
+						//검색 진행시 상태값 유지 설정
+						$("#key option[value='${key}']").attr("selected",
+								"selected");
+						$("#value").val('${value}');
 					});
 </script>
 
@@ -114,17 +165,22 @@
 															<td>${st.student_id}</td>
 															<td><a class="student-look popover-bold"
 																data-toggle="popover" title="${st.student_name} 사진"
-																data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">${st.student_name}</a></td>
+																data-content="<img src='${pageContext.request.contextPath}/resources/img/${st.student_photo_filepath}' width='120' height='144'/>">${st.student_name}</a></td>
 															<td>${st.student_phone}</td>
 															<td>${st.student_regDate}</td>
-															<td>${st.class_count}</td>
-															<td><button class="btn btn-sm btn-light btnSearch" value = "${st.student_id}">조회</button></td>
+															<td>${st.count_}</td>
+															<td><button class="btn btn-sm btn-light btnSearch"
+																	value="${st.student_id}">조회</button></td>
 															<td><button class="btn btn-sm btn-light btn-update"
-																	data-toggle="modal" data-target="#student_update">수정</button></td>
+																	data-toggle="modal" data-target="#student_update"
+																	value="${st.student_id}">수정</button></td>
 															<td><button class="btn btn-sm btn-light btn-del"
-																	data-toggle="modal" data-target="#student_delete" value = "${st.class_count}">삭제</button></td>
+																	data-toggle="modal" data-target="#student_delete"
+																	value="${st.student_id}"
+																	${st.count_>=1?"disabled='disabled'":""}>삭제</button></td>
 															<td><button class="btn btn-sm btn-light btn-reset"
-																	data-toggle="modal" data-target="#password_reset">초기화</button></td>
+																	data-toggle="modal" data-target="#password_reset"
+																	value="${st.student_id}">초기화</button></td>
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -134,21 +190,23 @@
 											<button class="btn btn-primary" id="prev">이전</button>
 											<button class="btn btn-primary" id="next">다음</button>
 
-											<form style="float: right" class="form-inline" method="post">
+											<form
+												action="${pageContext.request.contextPath}/admin/student/mng1/search"
+												style="float: right" class="form-inline" method="post">
 												<div>
 													<div class="form-group">
 														<!-- 검색 단어 입력 폼 -->
 														<!-- 검색 기준은 각자 상황에 맞춰서 설정하세요!! -->
 														<select class="form-control text-small" id="key"
 															name="key">
-															<option class="text-small" value="gid">Gid</option>
-															<option class="text-small" value="name">Name</option>
-															<option class="text-small" value="phone">Phone</option>
-															<option class="text-small" value="regDate">RegDate</option>
+															<option class="text-small" value="student_id">Gid</option>
+															<option class="text-small" value="student_name">Name</option>
+															<option class="text-small" value="student_phone">Phone</option>
+															<option class="text-small" value="student_regDate">RegDate</option>
 														</select> <input type="text" class="form-control" id="value"
 															name="value" placeholder="Search">
 														<!-- 검색 진행 버튼 -->
-														<button type="button" class="btn btn-md btn-light"
+														<button type="submit" class="btn btn-md btn-light"
 															id="btnSearch">
 															<i class="fa fa-search"></i>
 														</button>
@@ -182,14 +240,16 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="post">
+					<form
+						action="${pageContext.request.contextPath}/admin/student/mng1/insert"
+						method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="student_name">이름</label> <input type="text"
 								id="student_name" name="student_name" placeholder="이름"
 								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_pw">비밀번호</label> <input type="text"
+							<label for="student_pw">비밀번호</label> <input type="password"
 								id="student_pw" name="student_pw" placeholder="비밀번호"
 								class="form-control">
 						</div>
@@ -199,21 +259,21 @@
 								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_regDate">등록일</label> <input type="text"
+							<label for="student_regDate">등록일</label> <input type="date"
 								id="student_regDate" name="student_regDate" placeholder="등록일"
 								class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="student_photo">사진 파일</label> <input type="file"
-								id="student_photo" name="student_photo" placeholder="사진 파일"
-								class="form-control">
+								id="student_photo_file" name="student_photo_file"
+								placeholder="사진 파일" class="form-control">
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">등록</button>
+							<button type="button" data-dismiss="modal"
+								class="btn btn-secondary">취소</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">등록</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
@@ -232,7 +292,9 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="post">
+					<form
+						action="${pageContext.request.contextPath}/admin/student/mng1/update"
+						method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="student_id">수강생 번호</label> <input type="text"
 								id="student_id" name="student_id" placeholder="수강생 번호"
@@ -249,21 +311,21 @@
 								class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="student_regDate">등록일</label> <input type="text"
+							<label for="student_regDate">등록일</label> <input type="date"
 								id="student_regDate" name="student_regDate" placeholder="등록일"
 								class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="student_photo">사진 파일</label> <input type="file"
-								id="student_photo" name="student_photo" placeholder="사진 파일"
-								class="form-control">
+								id="student_photo_file" name="student_photo_file"
+								placeholder="사진 파일" class="form-control">
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">수정</button>
+							<button type="button" data-dismiss="modal"
+								class="btn btn-secondary">취소</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">수정</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
@@ -283,7 +345,9 @@
 				</div>
 				<div class="modal-body">
 					<p>다음 수강생 정보를 삭제하시겠습니까?</p>
-					<form action="" method="post">
+					<form
+						action="${pageContext.request.contextPath}/admin/student/mng1/delete"
+						method="post">
 						<div class="form-group">
 							<label for="student_id">수강생 번호</label> <input type="text"
 								id="student_id" name="student_id" placeholder="수강생번호"
@@ -294,12 +358,12 @@
 								id=student_name name="student_name" placeholder="이름"
 								class="form-control" readonly>
 						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">확인</button>
+							<button type="button" data-dismiss="modal"
+								class="btn btn-secondary">취소</button>
+						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">취소</button>
 				</div>
 			</div>
 		</div>
@@ -318,7 +382,9 @@
 				</div>
 				<div class="modal-body">
 					<p>다음 수강생 비밀번호를 초기화하시겠습니까?</p>
-					<form action="" method="post">
+					<form
+						action="${pageContext.request.contextPath}/admin/student/mng1/pwupdate"
+						method="post">
 						<div class="form-group">
 							<label for="student_id">수강생번호</label> <input type="text"
 								id="student_id" name="student_id" placeholder="수강생번호"
@@ -331,19 +397,19 @@
 						</div>
 						<div class="form-group">
 							<label for="student_pw">신규 비밀번호</label> <input type="password"
-								id="student_pw" name="student_pw" placeholder="신규 비밀번호"
-								class="form-control">
+								id="student_new_pw" name="student_new_pw"
+								placeholder="신규 비밀번호" class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="student_pw2">신규 비밀번호 확인</label> <input
-								type="password" id="student_pw2" name="student_pw2"
+								type="password" id="student_new_pw2" name="student_new_pw2"
 								placeholder="신규 비밀번호 확인" class="form-control">
 						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">확인</button>
+							<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
+						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>

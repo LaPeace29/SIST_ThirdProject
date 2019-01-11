@@ -28,10 +28,16 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 	<script>
 	
 		$(document).ready(function() {
-			
+		
 			$(".btn-look").on("click", function() {
-	            window.location.assign("${pageContext.request.contextPath}/views/admin/admin_grade_opencourse2.jsp");
+				var oc_id = $(this).parents("tr").find("td:eq(0)").text(); 
+				window.location.assign("${pageContext.request.contextPath}/admin/grade/opencourse2?oc_id="+oc_id);
 	         });
+			 
+			//검색 진행시 상태값 유지 설정
+			$("#key option[value='${key}']").attr("selected", "selected");
+			$("#value").val('${value}');
+			
 			
 		});
 	
@@ -78,12 +84,13 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														<th>과정명</th>
 														<th>개설 과정 기간</th>
 														<th>강의실명</th>
-														<th>개설 과목 등록 개수</th>
-														<th>개설 과목</th>
 														<th>수강생 등록 인원</th>
+														<th>개설 과목 등록 개수</th>
+														<th>개설 과목 보기</th>
 													</tr>
 												</thead>
 												<tbody>
+													<!-- 
 													<tr>
 		                                                <td>OC0015</td>
 		                                                <td>Python &amp; Java 응용 SW 실무 개발자 양성 과정</td>
@@ -95,26 +102,41 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														</td>
 														<td>3명</td>
 													</tr>
-		                                       </tbody>
+													 -->
+													<c:forEach var="oc" items="${list}">
+														<tr>
+															<td>${oc.open_course_id}</td>
+															<td>${oc.course_name}</td>
+															<td>${oc.open_course_start_date} ~ ${oc.open_course_end_date}</td>
+															<td>${oc.classroom_name}</td>
+															<td>${oc.student_count}</td>
+															<td>${oc.open_subject_count}</td>
+															<td><button type="button"
+																class="btn-look btn btn-sm btn-light">보기</button>
+															</td>
+														</tr>
+													</c:forEach>
+
+												</tbody>
 											</table>
 										</div>
 										<div style="text-align: center; padding-top: 10px">
 		                                    <button class="btn btn-primary" id="prev">이전</button>
 		                                    <button class="btn btn-primary" id="next">다음</button>
 		                                
-			                                <form style="float: right" class="form-inline" method="post">
+		                                
+			                                <form
+			                                	action="${pageContext.request.contextPath}/admin/opencourse/search"  
+			                                	style="float: right" class="form-inline" method="post">
 			                                    <div>
 			                                        <div class="form-group">
-			                                            <!-- 검색 단어 입력 폼 -->
-			                                            <!-- 검색 기준은 각자 상황에 맞춰서 설정하세요!! -->
 			                                            <select class="form-control text-small" id="key" name="key">
-			                                                <option class="text-small" value="subjectbook_id">개설 과정 번호</option>
-			                                                <option class="text-small" value="subjectbook_name">과정명</option>
-			                                                <option class="text-small" value="class_room_name">강의실명</option>
+			                                                <option class="text-small" value="open_course_id">개설 과정 번호</option>
+			                                                <option class="text-small" value="course_name">과정명</option>
 			                                            </select>
 			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
 			                                            <!-- 검색 진행 버튼 -->
-			                                            <button type="button" class="btn btn-md btn-secondary" id="btnSearch">
+			                                            <button type="submit" class="btn btn-md btn-secondary" id="btnSearch">
 			                                                <i class="fa fa-search"></i>
 			                                            </button>
 			                                        </div>

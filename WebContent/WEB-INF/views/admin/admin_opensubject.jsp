@@ -36,13 +36,38 @@
 	src="${pageContext.request.contextPath}/resources/script/common.js"></script>
 
 <script>
-	$(document).ready(function() {
+	$(document).ready(
+			function() {
 
-		//검색 진행시 상태값 유지 설정
-		$("#key option[value='${key}']").attr("selected", "selected");
-		$("#value").val('${value}');
+				//검색 진행시 상태값 유지 설정
+				$("#key option[value='${key}']").attr("selected", "selected");
+				$("#value").val('${value}');
 
-	});
+				$(".btn-update").on(
+						"click",
+						function() {
+
+							$("#opensubject_update #open_subject_id").val(
+									$(this).val());
+							$("#opensubject_update #open_subject_id").attr(
+									"placeholder", $(this).val());
+
+						});
+
+				$(".btn-del").on("click", function() {
+
+					var subject_name = $(this).parent().siblings().eq(1).text();
+					var subject_date = $(this).parent().siblings().eq(2).text();
+
+					$("#opensubject_delete #open_subject_id").val($(this).val());
+					$("#open_subject_id").attr("placeholder", $(this).val());
+
+					$("#subject_name").attr("placeholder", subject_name);
+					$("#subject_date").attr("placeholder", subject_date);
+
+				});
+
+			});
 </script>
 
 </head>
@@ -112,13 +137,13 @@
 															<td>
 																<button class="btn btn-sm btn-light btn-update"
 																	data-toggle="modal" data-target="#opensubject_update"
-																	value="${oc.open_subject_id}">수정</button>
+																	value="${os.open_subject_id}">수정</button>
 															</td>
 															<td>
 																<button class="btn btn-sm btn-light btn-del"
 																	data-toggle="modal" data-target="#opensubject_delete"
-																	value="${oc.open_subject_id}"
-																	${oc.count_>=1?"disabled='disabled'":""}>삭제</button>
+																	value="${os.open_subject_id}" 
+																	${os.count_>=1?"disabled='disabled'":""}>삭제</button>
 															</td>
 														</tr>
 													</c:forEach>
@@ -187,56 +212,51 @@
 						method="post">
 						<div class="form-group">
 							<label for="courseNumSelect">개설 과정</label> <select
-								class="form-control" id="courseNumSelect" name="courseNumSelect"
+								class="form-control" id="open_course_id" name="open_course_id"
 								required>
-								<option>개설과정번호1 / 과정명1</option>
-								<option>개설과정번호2 / 과정명2</option>
-								<option>개설과정번호3 / 과정명3</option>
-								<option>개설과정번호4 / 과정명4</option>
+								<c:forEach var="oc" items="${openCourse}">
+									<option value="${oc.open_course_id }">${oc.open_course_id} / ${oc.course_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="subjectSelect">과목</label> <select
-								class="form-control" id="subjectSelect" name="subjectSelect"
-								required>
-								<option>과목번호1 / 과목명1</option>
-								<option>과목번호2 / 과목명2</option>
-								<option>과목번호3 / 과목명3</option>
-								<option>과목번호4 / 과목명4</option>
+								class="form-control" id="subject_id" name="subject_id" required>
+								<c:forEach var="s" items="${subject}">
+									<option value="${s.subject_id}">${s.subject_id} / ${s.subject_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="subjectStartDate">과목 시작일</label> <input type="date"
-								class="form-control" id="subjectStartDate"
-								name="subjectStartDate" required>
+								class="form-control" id="subject_start_date"
+								name="subject_start_date" required>
 						</div>
 						<div class="form-group">
 							<label for="subjectEndDate">과목 종료일</label> <input type="date"
-								class="form-control" id="subjectEndDate" name="subjectEndDate"
-								required>
+								class="form-control" id="subject_end_date"
+								name="subject_end_date" required>
 						</div>
 						<div class="form-group">
 							<label for="subjectBookSelect">교재</label> <select
-								class="form-control" id="subjectBookSelect"
-								name="subjectBookSelect" required>
-								<option>교재번호1 / 교재명1</option>
-								<option>교재번호2 / 교재명2</option>
-								<option>교재번호3 / 교재명3</option>
-								<option>교재번호4 / 교재명4</option>
+								class="form-control" id="subjectbook_id" name="subjectbook_id"
+								required>
+								<c:forEach var="sb" items="${subjectbook}">
+									<option value="${sb.subjectbook_id}">${sb.subjectbook_id} / ${sb.subjectbook_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="instructorSelect">강사</label> <select
-								class="form-control" id="instructorSelect"
-								name="instructorSelect" required>
-								<option>강사번호1 / 강사명1</option>
-								<option>강사번호2 / 강사명2</option>
-								<option>강사번호3 / 강사명3</option>
-								<option>강사번호4 / 강사명4</option>
+								class="form-control" id="instructor_id" name="instructor_id"
+								required>
+								<c:forEach var="i" items="${instructor}">
+									<option value="${i.instructor_id}">${i.instructor_id} / ${i.instructor_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">등록</button>
+							<button type="submit" class="btn btn-primary">등록</button>
 							<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 						</div>
 					</form>
@@ -262,62 +282,57 @@
 						action="${pageContext.request.contextPath}/admin/opensubject/update"
 						method="post">
 						<div class="form-group">
-							<label for="opensubject_id">개설 과정 번호</label> <input type="date"
-								class="form-control" id="opensubject_id" name="opensubject_id"
-								required>
+							<label for="open_subject_id">개설 과목 번호</label> <input type="text"
+								class="form-control" id="open_subject_id" name="open_subject_id"
+								value="" readonly>
 						</div>
 						<div class="form-group">
 							<label for="courseNumSelect">개설과정명</label> <select
-								class="form-control" id="courseNumSelect" name="courseNumSelect"
-								required>
-								<option>개설과정번호1 / 과정명1</option>
-								<option>개설과정번호2 / 과정명2</option>
-								<option>개설과정번호3 / 과정명3</option>
-								<option>개설과정번호4 / 과정명4</option>
+								class="form-control" id="open_course_id"
+								name="open_course_id" required>
+								<c:forEach var="oc" items="${openCourse}">
+									<option value="${oc.open_course_id }">${oc.open_course_id} / ${oc.course_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="subjectSelect">과목</label> <select
-								class="form-control" id="subjectSelect" name="subjectSelect"
-								required>
-								<option>과목번호1 / 과목명1</option>
-								<option>과목번호2 / 과목명2</option>
-								<option>과목번호3 / 과목명3</option>
-								<option>과목번호4 / 과목명4</option>
+								class="form-control" id="subject_id" name="subject_id" required>
+								<c:forEach var="s" items="${subject}">
+									<option value="${s.subject_id}">${s.subject_id} / ${s.subject_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="subjectStartDate">과목 시작일</label> <input type="date"
-								class="form-control" id="subjectStartDate"
-								name="subjectStartDate" required>
+								class="form-control" id="subject_start_date"
+								name="subject_start_date" required>
 						</div>
 						<div class="form-group">
 							<label for="subjectEndDate">과목 종료일</label> <input type="date"
-								class="form-control" id="subjectEndDate" name="subjectEndDate"
-								required>
+								class="form-control" id="subject_end_date"
+								name="subject_end_date" required>
 						</div>
 						<div class="form-group">
 							<label for="subjectBookSelect">교재</label> <select
-								class="form-control" id="subjectBookSelect"
-								name="subjectBookSelect" required>
-								<option>교재번호1 / 교재명1</option>
-								<option>교재번호2 / 교재명2</option>
-								<option>교재번호3 / 교재명3</option>
-								<option>교재번호4 / 교재명4</option>
+								class="form-control" id="subjectbook_id" name="subjectbook_id"
+								required>
+								<c:forEach var="sb" items="${subjectbook}">
+									<option value="${sb.subjectbook_id}">${sb.subjectbook_id} / ${sb.subjectbook_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="instructorSelect">강사</label> <select
-								class="form-control" id="instructorSelect"
-								name="instructorSelect" required>
-								<option>강사번호1 / 강사명1</option>
-								<option>강사번호2 / 강사명2</option>
-								<option>강사번호3 / 강사명3</option>
-								<option>강사번호4 / 강사명4</option>
+								class="form-control" id="instructor_id" name="instructor_id"
+								required>
+								<c:forEach var="i" items="${instructor}">
+									<option value="${i.instructor_id}">${i.instructor_id} / ${i.instructor_name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">수정</button>
+							<button type="submit" class="btn btn-primary">수정</button>
 							<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 						</div>
 					</form>
@@ -343,9 +358,9 @@
 						action="${pageContext.request.contextPath}/admin/opensubject/delete"
 						method="post">
 						<div class="form-group">
-							<label for="subject_name">개설 과목 번호</label> <input type="text"
-								id=subject_name name="subject_name" placeholder="과목명"
-								class="form-control" readonly>
+							<label for="open_subject_id">개설 과목 번호</label> <input type="text"
+								class="form-control" id="open_subject_id" name="open_subject_id"
+								value="" readonly>
 						</div>
 						<div class="form-group">
 							<label for="subject_name">개설 과목명</label> <input type="text"
@@ -358,7 +373,7 @@
 								class="form-control" readonly>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">확인</button>
+							<button type="submit" class="btn btn-primary">확인</button>
 							<button type="button" data-dismiss="modal"
 								class="btn btn-secondary">취소</button>
 						</div>

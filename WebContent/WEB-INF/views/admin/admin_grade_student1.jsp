@@ -30,8 +30,15 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		$(document).ready(function() {
 			
 			$(".btn-look").on("click", function() {
-	            window.location.assign("${pageContext.request.contextPath}/views/admin/admin_grade_student2.jsp");
+				var student_id = $(this).parents("tr").find("td:eq(0)").text(); 
+	            window.location.assign("${pageContext.request.contextPath}/admin/grade/student2?student_id="+student_id);
 	         });
+			
+			 
+			//검색 진행시 상태값 유지 설정
+			$("#key option[value='${key}']").attr("selected", "selected");
+			$("#value").val('${value}');
+			
 			
 		});
 	
@@ -81,6 +88,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 													</tr>
 												</thead>
 												<tbody>
+												<!-- 
 													<tr>
 														<td>ST000001</td>
 														<td></td>
@@ -89,6 +97,17 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 														<td></td>
 														<td><button class="btn-look btn btn-sm btn-light">보기</button></td>
 		                                            </tr>
+		                                             -->
+		                                             <c:forEach var="s" items="${list}">
+		                                             <tr>
+														<td>${s.student_id}</td>
+														<td>${s.student_name}</td>
+														<td>${s.student_phone}</td>
+														<td>${s.student_regDate}</td>
+														<td>${s.count_}</td>
+														<td><button class="btn-look btn btn-sm btn-light">보기</button></td>
+		                                            </tr>
+		                                            </c:forEach>
 												</tbody>
 											</table>
 										</div>
@@ -96,18 +115,23 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                    <button class="btn btn-primary" id="prev">이전</button>
 		                                    <button class="btn btn-primary" id="next">다음</button>
 		                                
-			                                <form style="float: right" class="form-inline" method="post">
+			                                <form 
+				                                action="${pageContext.request.contextPath}/admin/grade_student1/search"
+				                                style="float: right" class="form-inline" method="post">
 			                                    <div>
 			                                        <div class="form-group">
 			                                            <!-- 검색 단어 입력 폼 -->
 			                                            <!-- 검색 기준은 각자 상황에 맞춰서 설정하세요!! -->
 			                                            <select class="form-control text-small" id="key" name="key">
-			                                               <option value="student_id">수강생 번호</option>
-														   <option value="student_name">수강생 이름</option>
+			                                               <option value="student_id">번호</option>
+														   <option value="student_name">이름</option>
+														   <option value="student_phone">전화번호</option>
+														   <option value="student_regDate">등록일</option>
 			                                            </select>
 			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
+			                                            
 			                                            <!-- 검색 진행 버튼 -->
-			                                            <button type="button" class="btn btn-md btn-secondary" id="btnSearch">
+			                                            <button type="submit" class="btn btn-md btn-secondary" id="btnSearch">
 			                                                <i class="fa fa-search"></i>
 			                                            </button>
 			                                        </div>

@@ -356,7 +356,7 @@
 								class="form-control" readonly>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">확인</button>
+							<button type="submit" class="btn btn-primary">확인</button>
 							<button type="button" data-dismiss="modal"
 								class="btn btn-secondary">취소</button>
 						</div>

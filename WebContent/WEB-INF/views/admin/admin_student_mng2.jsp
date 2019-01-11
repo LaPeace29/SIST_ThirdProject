@@ -36,15 +36,205 @@
 	src="${pageContext.request.contextPath}/resources/script/common.js"></script>
 
 <script>
-	$(document).ready(function() {
+	$(document)
+			.ready(
+					function() {
 
-		$(".student-look").popover({
-			placement : 'left',
-			trigger : "hover",
-			html : true
-		});
+						$(".student-look").popover({
+							placement : 'left',
+							trigger : "hover",
+							html : true
+						});
 
-	});
+						$(".btn-reg").on(
+								"click",
+								function() {
+
+									var student_name = $(this).parent()
+											.parent().siblings().eq(1).text();
+									var student_phone = $(this).parent()
+											.parent().siblings().eq(2).text();
+
+									var temp = student_name + " / "
+											+ student_phone;
+
+									$("#myModal01 #student_id").val(
+											$(this).val());
+									$("#myModal01 #student_name").html(temp);
+
+								});
+
+						$(".btn-update")
+								.on(
+										"click",
+										function() {
+
+											var student_id = $(this).val();
+
+											var student_name = $(this).parent()
+													.parent().siblings().eq(1)
+													.text();
+
+											$
+													.ajax({
+														url : "${pageContext.request.contextPath}/admin/student/mng2Ajax",
+														dataType : 'json',
+														type : 'Post',
+														data : {
+															student_id : student_id
+														},
+														success : function(
+																ocList) {
+
+															var doc = JSON
+																	.stringify(ocList);
+															var array = JSON
+																	.parse(doc);
+
+															var txt = "";
+
+															txt += "<div class=\"card\">";
+															txt += "<div class=\"card-header\">";
+															txt += "<h4>";
+															txt += "<strong>"
+																	+ student_name
+																	+ "의 수강 과정</strong>";
+															txt += "</h4>";
+															txt += "</div>";
+															txt += "<div class=\"card-body\">";
+															txt += "<div class=\"table-responsive\">";
+															txt += "<table class=\"table\">";
+															txt += "<thead>";
+															txt += "		<tr>";
+															txt += "		<th>과정 번호</th>";
+															txt += "		<th>과정명</th>";
+															txt += "		<th>과정 기간</th>";
+															txt += "		<th>수료 여부</th>";
+															txt += "		<th>수료(중도탈락) 날짜</th>";
+															txt += "		<th>중도탈락처리</th>";
+															txt += "		</tr>";
+															txt += "	</thead>";
+															txt += "		<tbody>";
+
+															for (var a = 0; a < array.length; ++a) {
+																var item = array[a];
+
+																var open_course_id = item.open_course_id;
+																var course_name = item.course_name;
+																var open_course_start_date = new Date(
+																		item.open_course_start_date);
+																var open_course_end_date = new Date(
+																		item.open_course_end_date);
+																var completion_status = item.completion_status;
+																var student_id = item.student_id;
+																var dropout_date = new Date(
+																		item.dropout_date);
+
+																txt += "			<tr>";
+																txt += "			<td>"
+																		+ open_course_id
+																		+ "</td>";
+																txt += "			<td>"
+																		+ course_name
+																		+ "</td>";
+																txt += "			<td>"
+																		+ open_course_start_date
+																				.getFullYear()
+																		+ "-"
+																		+ (open_course_start_date
+																				.getMonth() + 1)
+																		+ "-"
+																		+ open_course_start_date
+																				.getDate()
+																		+ " ~ "
+																		+ open_course_end_date
+																				.getFullYear()
+																		+ "-"
+																		+ (open_course_end_date
+																				.getMonth() + 1)
+																		+ "-"
+																		+ open_course_end_date
+																				.getDate()
+																		+ "</td>";
+																txt += "			<td>"
+																		+ completion_status
+																		+ "</td>";
+																txt += "			<td>"
+																		+ dropout_date
+																				.getFullYear()
+																		+ "-"
+																		+ (dropout_date
+																				.getMonth() + 1)
+																		+ "-"
+																		+ dropout_date
+																				.getDate()
+																		+ "</td>";
+																txt += "			<td>"
+																		+ "<button type=\"button\" class=\"btn btn-sm btn-light btn-look\""
+												+"		data-toggle=\"modal\" data-target=\"#myModal03\""
+												+"		value="+student_id+">처리</button>"
+																		+ "</td>";
+
+																txt += "		</tr>";
+															}
+
+															txt += "		</tbody>";
+															txt += "	</table>";
+															txt += "	</div>";
+															txt += "	</div>";
+
+															$("#demo")
+																	.html(txt);
+															
+															
+															$(".btn-look").on(
+																	"click",
+																	function() {
+
+																		var open_course_id = $(this).parent()
+																				.siblings().eq(0).text();
+																		var course_name = $(this).parent()
+																				.siblings().eq(1).text();
+																		var course_date = $(this).parent()
+																				.siblings().eq(2).text();
+
+																		var temp = course_name + " / "
+																				+ course_date;
+
+																		$("#myModal03 #student_id").val(
+																				$(this).val());
+																		$("#myModal03 #open_course_id").val(open_course_id);
+																		$("#myModal03 #course_name").html(temp);
+
+																	});
+															
+
+														}
+													});
+
+										});
+
+						
+
+						$(".btn-del").on(
+								"click",
+								function() {
+
+									var student_name = $(this).parent()
+											.parent().siblings().eq(1).text();
+									var student_phone = $(this).parent()
+											.parent().siblings().eq(2).text();
+
+									var temp = student_name + " / "
+											+ student_phone;
+
+									$("#myModal02 #student_id").val(
+											$(this).val());
+									$("#myModal02 #student_name").html(temp);
+
+								});
+
+					});
 </script>
 
 </head>
@@ -108,15 +298,16 @@
 															<td>
 																<div class="btn-group" role="group"
 																	aria-label="Basic example">
-																	<button type="button" class="btn btn-sm btn-light"
-																		data-toggle="modal" data-target="#myModal01">과정
-																		등록</button>
-																	<button type="button" class="btn btn-sm btn-light"
-																		data-toggle="modal" data-target="#myModal02">과정
-																		취소</button>
-																	<button type="button" class="btn btn-sm btn-light"
-																		data-toggle="modal" data-target="#myModal03">중도
-																		탈락</button>
+																	<button type="button"
+																		class="btn btn-sm btn-light btn-reg"
+																		data-toggle="modal" data-target="#myModal01"
+																		value="${st.student_id}">과정 등록</button>
+																	<button type="button"
+																		class="btn btn-sm btn-light btn-del"
+																		data-toggle="modal" data-target="#myModal02"
+																		value="${st.student_id}">과정 취소</button>
+																	<button class="btn btn-sm btn-light btn-update"
+																		value="${st.student_id}">중도 탈락</button>
 																</div>
 															</td>
 														</tr>
@@ -126,6 +317,7 @@
 										</div>
 									</div>
 								</div>
+								<div id="demo"></div>
 							</div>
 						</div>
 					</div>
@@ -150,28 +342,32 @@
 				</div>
 				<div class="modal-body">
 					<div class="modal-body">
-						<p>홍길동 / 010-2356-4528</p>
+						<p id="student_name">홍길동 / 010-2356-4528</p>
 						<br>
-						<form action="" method="post">
+						<form
+							action="${pageContext.request.contextPath}/admin/student/mng2/insert"
+							method="post">
 							<div class="form-group">
 								<label for="exampleFormControlSelect3">개설 과정</label>
 								<div class="form-group">
-									<select class="form-control" id="exampleFormControlSelect3">
-										<option>모든개설과정출력합니다.</option>
-										<option>OC0001/Java</option>
-										<option>OC0002/Oracle</option>
-										<option>4</option>
-										<option>5</option>
-									</select>
+									<select class="form-control" id="open_course_id"
+										name="open_course_id">
+										<c:forEach var="oc" items="${openCourse}">
+											<option value="${oc.open_course_id}">${oc.open_course_id}
+												/ ${oc.course_name} / ${oc.open_course_start_date} ~
+												${oc.open_course_end_date}</option>
+										</c:forEach>
+									</select> <input type="hidden" name="student_id" id="student_id"
+										value="">
 								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary">확인</button>
+								<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 							</div>
 						</form>
 
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -190,27 +386,31 @@
 				</div>
 				<div class="modal-body">
 					<div class="modal-body">
-						<p>홍길동 / 010-2356-4528</p>
+						<p id="student_name">홍길동 / 010-2356-4528</p>
 						<br>
-						<form action="" method="post">
+						<form
+							action="${pageContext.request.contextPath}/admin/student/mng2/delete"
+							method="post">
 							<div class="form-group">
 								<label for="exampleFormControlSelect3">개설 과정</label>
 								<div class="form-group">
-									<select class="form-control" id="exampleFormControlSelect3">
-										<option>모든개설과정출력합니다.</option>
-										<option>OC0001/Java</option>
-										<option>OC0002/Oracle</option>
-										<option>4</option>
-										<option>5</option>
-									</select>
+									<select class="form-control" id="open_course_id"
+										name="open_course_id">
+										<c:forEach var="oc" items="${studentCourse}">
+											<option value="${oc.open_course_id }">${oc.open_course_id}
+												/ ${oc.course_name} / ${oc.open_course_start_date} ~
+												${oc.open_course_end_date}</option>
+										</c:forEach>
+									</select> <input type="hidden" name="student_id" id="student_id"
+										value="">
 								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary">확인</button>
+								<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 							</div>
 						</form>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>
@@ -229,35 +429,30 @@
 				</div>
 				<div class="modal-body">
 					<div class="modal-body">
-						<p>홍길동 / 010-2356-4528</p>
+						<p>과정명</p>
+						<p id="course_name">과정명</p>
 						<br>
-						<form action="" method="post">
-							<div class="form-group">
-								<label for="exampleFormControlSelect3">개설 과정</label>
-								<div class="form-group">
-									<select class="form-control" id="exampleFormControlSelect3">
-										<option>OC0001/Java/2018-01-01 ~ 2018-06-06</option>
-										<option>OC0002/Java/2018-01-01 ~ 2018-06-06</option>
-										<option>OC0003/Oracle/2018-01-01 ~ 2018-06-06</option>
-										<option>OC0004/Oracle/2018-01-01 ~ 2018-06-06</option>
-										<option>OC0005/Oracle/2018-01-01 ~ 2018-06-06</option>
-									</select>
-								</div>
-							</div>
-
+						<form
+							action="${pageContext.request.contextPath}/admin/student/mng2/update"
+							method="post">
 							<div class="form-group">
 								<label for="exampleFormControlSelect3">중도 탈락 날짜</label>
 								<div class="input group">
-									<input type="date" class="form-control"
-										id="exampleInputPassword2" placeholder="날짜">
+									<input type="date" class="form-control" id="dropout_date"
+										name="dropout_date" placeholder="날짜"> <input
+										type="hidden" name="open_course_id" id="open_course_id"
+										value="">
+										<input
+										type="hidden" name="student_id" id="student_id"
+										value="">
 								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary">확인</button>
+								<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 							</div>
 						</form>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal" class="btn btn-light">취소</button>
 				</div>
 			</div>
 		</div>

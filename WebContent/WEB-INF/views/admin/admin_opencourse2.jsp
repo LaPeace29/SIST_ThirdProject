@@ -50,8 +50,6 @@
 											var subject_name = $(this).parent().siblings().eq(1).text();
 											var subject_date = $(this).parent().siblings().eq(2).text();
 											
-											console.log($(this).parent().siblings().eq(1).text());
-											
 
 											$
 													.ajax({
