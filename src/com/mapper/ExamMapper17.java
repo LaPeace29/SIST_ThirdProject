@@ -24,8 +24,6 @@ public class ExamMapper17 implements RowMapper<Exam> {
 		exam.setWrite_point(rs.getInt("write_point"));
 		exam.setCount_(rs.getInt("count_"));
 		
-		
-		
 		return exam;
 	}
 

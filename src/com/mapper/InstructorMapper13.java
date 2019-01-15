@@ -19,8 +19,9 @@ public class InstructorMapper13 implements RowMapper<Instructor> {
 		ins.setInstructor_name(rs.getString("instructor_name"));
 		ins.setInstructor_phone(rs.getString("instructor_phone"));
 		ins.setInstructor_regDate(rs.getDate("instructor_regDate"));
+		ins.setInstructor_photo_id(rs.getString("instructor_photo_id"));
+		ins.setInstructor_photo_filepath(rs.getString("instructor_photo_filepath"));
 		
 		return ins;
 	}
-
 }

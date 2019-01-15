@@ -21,7 +21,7 @@ public class ExamMapper19 implements RowMapper<Exam> {
 		exam.setStudent_name(rs.getString("student_name"));
 		exam.setStudent_phone(rs.getString("student_phone"));
 		exam.setStudent_regDate(rs.getDate("student_regDate"));
-		exam.setCompletion_status(rs.getString("completion"));
+		exam.setCompletion_status(rs.getString("completion_status"));
 		exam.setCompletion_date(rs.getDate("completion_date"));
 		exam.setAttendance_score(rs.getInt("attendance_score"));
 		exam.setWrite_score(rs.getInt("write_score"));
@@ -30,5 +30,4 @@ public class ExamMapper19 implements RowMapper<Exam> {
 		
 		return exam;
 	}
-
 }

@@ -12,7 +12,6 @@ public class OpenSubjectMapper15 implements RowMapper<OpenSubject> {
 	@Override
 	public OpenSubject mapRow(ResultSet rs, int count) throws SQLException {
 		OpenSubject os = new OpenSubject();
-		System.out.println("맵퍼");
 		//course_name, open_course_start_date, open_course_end_date ,subject_name, subject_start_date, subject_end_date
 
 		os.setSubject_name(rs.getString("subject_name")); //
