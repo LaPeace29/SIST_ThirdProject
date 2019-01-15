@@ -195,60 +195,36 @@ SELECT course_name, open_course_start_date, open_course_end_date, subject_name, 
     AND s.subject_id = os.subject_id;
 
 
-#12. 개설과목번호, 과목명, 개설과목시작일, 개설과목종료일, 과정명, 개설과정시작일, 개설과정종료일, 강의실명, 교재명, 수강생등록인원, 강의진행여부 - instructor_schedule1.jsp / instructor_point1.jsp / instructor_score1.jsp
+#12. 개설과목번호, 과목명, 개설과목시작일, 개설과목종료일, 과정명, 개설과정시작일, 개설과정종료일, 강의실명, 교재명, 수강생등록인원, 강의진행여부 
+- instructor_schedule1.jsp / instructor_point1.jsp / instructor_score1.jsp
 
-CREATE OR REPLACE VIEW open_subject_list5_vw1
+CREATE OR REPLACE VIEW instructor_lecture_vw1
 AS
-SELECT 
-    open_subject_id,
-    subject_name,
-    subject_start_date,
-    subject_end_date,
-    course_name,
-    open_course_start_date,
-    open_course_end_date,
-    classroom_name,
-    subjectbook_id,
-    
-    (SELECT 
-            COUNT(*)
-        FROM
-            student_history_tb
-        WHERE
-            open_course_id = oc.open_course_id) s_count,
+SELECT open_subject_id, subject_name, subject_start_date, subject_end_date,
+    course_name, open_course_start_date, open_course_end_date, classroom_name, subjectbook_id,
+    (SELECT COUNT(*)
+        FROM student_history_tb
+        WHERE open_course_id = oc.open_course_id) s_count,
     CASE
-        WHEN
-            NOW() < open_course_start_date
-        THEN
-            '강의예정'
-        WHEN
-            NOW() > open_course_end_date
-        THEN
-            '강의완료'
+        WHEN NOW() < open_course_start_date
+        THEN '강의예정'
+        WHEN NOW() > open_course_end_date
+        THEN '강의완료'
         ELSE '강의중'
-    END course_state,
-    instructor_id 
-    FROM open_subject_tb os, subject_tb s, course_tb c, open_course_tb oc
-      ,classroom_tb cl
+    END instructor_status, instructor_id 
+    FROM open_subject_tb os, subject_tb s, course_tb c, open_course_tb oc ,classroom_tb cl
    WHERE oc.course_id = c.course_id
     AND oc.open_course_id = os.open_course_id
     AND s.subject_id = os.subject_id
     AND oc.classroom_id = cl.classroom_id;
     
     
-CREATE OR REPLACE VIEW open_subject_list5_vw2
+CREATE OR REPLACE VIEW instructor_lecture_vw2
 AS
-SELECT open_subject_id,
-    subject_name,
-    subject_start_date,
-    subject_end_date,
-    course_name,
-    open_course_start_date,
-    open_course_end_date,
-    classroom_name,
-    subjectbook_name, s_count, course_state,
-    instructor_id
-   FROM open_subject_list5_vw1 v1 LEFT JOIN subjectbook_tb sb
+SELECT open_subject_id, subject_name, subject_start_date, subject_end_date,
+    course_name, open_course_start_date, open_course_end_date, classroom_name,
+    subjectbook_name, s_count, instructor_status, subjectbook_isbn, instructor_id
+   FROM instructor_lecture_vw1 v1 LEFT JOIN subjectbook_tb sb
     ON sb.subjectbook_id = v1.subjectbook_id;
 
 
@@ -327,7 +303,7 @@ SELECT exam_id, attendance_point, write_point, skill_point, exam_date, exam_file
 
 #15. 수강생번호, 수강생이름, 수강생휴대폰번호, 수강생등록일, 수료여부, 날짜, 출석점수, 필기점수, 실기점수, 총점 - instructor_score2.jsp
 
-CREATE OR REPLACE VIEW student_list3_vw1
+CREATE OR REPLACE VIEW instructor_score2_list2_vw1
 AS
 SELECT s.student_id, student_name, student_phone, student_regDate, 
         (SELECT dropout_date 
@@ -341,9 +317,8 @@ SELECT s.student_id, student_name, student_phone, student_regDate,
         AND s.student_id = sh.student_id
         AND oc.open_course_id = sh.open_course_id
         AND oc.open_course_id = os.open_course_id;
-
-
-CREATE OR REPLACE VIEW student_list3_vw2
+        
+CREATE OR REPLACE VIEW instructor_score2_list2_vw2
 AS
 SELECT student_id, student_name, student_phone, student_regDate, open_subject_id, drop_date,
         open_course_end_date, instructor_id, exam_id, 
@@ -352,22 +327,20 @@ SELECT student_id, student_name, student_phone, student_regDate, open_subject_id
             WHEN NOW() > open_course_end_date AND drop_date is null THEN '수료완료'
             WHEN drop_date IS NOT NULL THEN '중도탈락'
             else '진행중'
-        END completion, 
+        END completion_status, 
         attendance_score, write_score, skill_score, 
-        attendance_score+write_score+skill_score AS total
-    FROM student_list3_vw1;
+        attendance_score+write_score+skill_score AS total_score
+    FROM instructor_score2_list2_vw1;
 
-
-
-CREATE OR REPLACE VIEW student_list3_vw3
+CREATE OR REPLACE VIEW instructor_score2_list2_vw3
 AS
-SELECT student_id, student_name, student_phone, student_regDate, completion, 
-        CASE completion 
+SELECT student_id, student_name, student_phone, student_regDate, completion_status, 
+        CASE completion_status 
             WHEN '중도탈락' THEN drop_date 
             ELSE open_course_end_date 
         END completion_date,
-        attendance_score, write_score, skill_score, total
-    FROM student_list3_vw2;
+        attendance_score, write_score, skill_score, total_score, open_subject_id, exam_id
+    FROM instructor_score2_list2_vw2;
 
 
 #16. 개설과정번호, 과정명, 개설과정시작일, 개설과정종료일, 강의실명, 수료여부 - student_score1.jsp / student_score2.jsp
@@ -482,3 +455,32 @@ SELECT oc.open_course_id, course_name, s.student_id
     WHERE c.course_id = oc.course_id
     AND oc.open_course_id = sh.open_course_id
     AND sh.student_id = s.student_id;
+    
+#20. 강사번호, 강사이름, 강사휴대폰번호, 강사등록일, 강사사진아이디, 강사사진경로 - instructor_schedule1.jsp
+CREATE OR REPLACE VIEW instructor_info_vw1
+AS
+SELECT ins.instructor_id, instructor_name, instructor_phone, instructor_regDate, 
+		instructor_photo_id, instructor_photo_filepath
+	FROM instructor_tb ins, instructor_photo_tb insp
+    WHERE ins.instructor_id = insp.instructor_id;
+    
+#21. 과정명, 개설과정 시작일, 개설 과정 종료일, 과목명, 과목시작일, 과목종료일 - instructor_schedule2.jsp, instructor_point2.jsp, instructor_score2.jsp
+CREATE OR REPLACE VIEW open_subject_title_vw1
+AS 
+SELECT os.open_subject_id, subject_name, subject_start_date, subject_end_date, course_name, 
+        open_course_start_date, open_course_end_date, i.instructor_id
+    FROM subject_tb s, open_subject_tb os, course_tb c, open_course_tb oc, classroom_tb cr, 
+        instructor_tb i
+    WHERE s.subject_id = os.subject_id
+        AND oc.open_course_id = os.open_course_id
+        AND c.course_id = oc.course_id
+        AND cr.classroom_id = oc.classroom_id
+        AND i.instructor_id = os.instructor_id;
+        
+#22. 수강생번호, 수강생이름, 수강생휴대폰번호, 수강생등록일, 수강생사진아이디, 수강생사진경로 - student_score1.jsp
+CREATE OR REPLACE VIEW student_info_vw1
+AS
+SELECT st.student_id, student_name, student_phone, student_regDate, 
+		student_photo_id, student_photo_filepath
+	FROM student_tb st, student_photo_tb stp
+    WHERE st.student_id = stp.student_id;
