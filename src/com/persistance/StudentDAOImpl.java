@@ -73,11 +73,13 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 
 	@Override
-	public List<Student> prints1() {
-		String sql = "SELECT student_id, student_name, student_phone, student_regdate  \r\n"
-				+ "FROM student_list2_vw\r\n" + "WHERE student_id = ? ";
+	public Student studentInfoPrint(String student_id) {
+		String sql = "SELECT student_id, student_name, student_phone, student_regDate, \r\n" + 
+				"		student_photo_id, student_photo_filepath\r\n" + 
+				"	FROM student_info_vw1\r\n" + 
+				"    WHERE student_id = ?";
 
-		return this.jdbcTemplate.query(sql, new StudentMapper21(), "ST00001");
+		return this.jdbcTemplate.queryForObject(sql, new StudentMapper21(), student_id);
 	}
 
 	@Override

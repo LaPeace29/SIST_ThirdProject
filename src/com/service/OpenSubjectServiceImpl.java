@@ -23,33 +23,18 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 	}
 
 	@Override
-	public List<OpenSubject> instructor_title(OpenSubject os) {
-
-		List<OpenSubject> result = this.openSubjectDAO.instructor_title(os);
-
-		return result;
+	public List<OpenSubject> openSubjectTitle(OpenSubject os) {
+		return this.openSubjectDAO.openSubjectTitle(os);
 	}
 	
 	@Override
 	public List<OpenSubject> homePrint() {
-
-		List<OpenSubject> result = this.openSubjectDAO.homePrint();
-
-		return result;
-	}
-
-	@Override
-	public List<OpenSubject> printi1(OpenSubject os) {
-		List<OpenSubject> result = this.openSubjectDAO.printi1(os);
-
-		return result;
+		return this.openSubjectDAO.homePrint();
 	}
 	
 	@Override
-	public List<OpenSubject> printi2(OpenSubject os) {
-		List<OpenSubject> result = this.openSubjectDAO.printi2(os);
-		
-		return result;
+	public List<OpenSubject> lectureSchedulePrint(OpenSubject os) {
+		return this.openSubjectDAO.lectureSchedulePrint(os);
 	}
 
 	@Override
@@ -59,7 +44,6 @@ public class OpenSubjectServiceImpl implements OpenSubjectService {
 	
 	@Override
 	public List<OpenSubject> print1() {
-		
 		return this.openSubjectDAO.print1();
 	}
 

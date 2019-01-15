@@ -46,10 +46,8 @@ public class InstructorServiceImpl implements InstructorService {
 	}
 
 	@Override
-	public List<Instructor> printi1(OpenSubject os) {
-		List<Instructor> result = this.instructorDAO.printi1(os);
-		
-		return result;
+	public Instructor instructorInfoPrint(OpenSubject os) {
+		return this.instructorDAO.instructorInfoPrint(os);
 	}
 
 	@Override

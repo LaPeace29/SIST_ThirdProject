@@ -27,7 +27,7 @@ public interface StudentService {
 	
 	// (출력) 수강생 - 성적 조회
 	// 수강생 사진 / 수강생 번호 / 수강생 이름 / 수강생 휴대폰번호 / 수강생 등록일
-	public List<Student> prints1();
+	public Student studentInfoPrint(String student_id);
 	
 	/* ------------------------------------------------------------------- */
 	

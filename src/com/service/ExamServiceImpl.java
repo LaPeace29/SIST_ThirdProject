@@ -23,8 +23,7 @@ public class ExamServiceImpl implements ExamService {
 
 	@Override
 	public int insert(Exam exam) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.examDAO.insert(exam);
 	}
 
 	@Override

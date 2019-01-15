@@ -39,8 +39,26 @@ public class ExamDAOImpl implements ExamDAO{
 
 	@Override
 	public int insert(Exam exam) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		String sql1 = "INSERT INTO exam_tb (exam_id, exam_date, exam_file, open_subject_id)\r\n"
+						+ " VALUES ((SELECT CONCAT('EXAM', LPAD(IFNULL(SUBSTR(MAX(exam_id), 5), 0) + 1, 4, 0)) AS newId"
+									+ " FROM exam_tb e), ?, ?, ?)";
+		int result1 = this.jdbcTemplate.update(sql1, exam.getExam_date(), exam.getExam_file(), exam.getOpen_subject_id());
+		
+		String sql2 = "SELECT exam_id FROM exam_tb ORDER BY exam_id DESC limit 1";
+		String exam_id = (String)this.jdbcTemplate.queryForObject(sql2, String.class);
+		
+		String sql3 = "INSERT INTO subject_point_tb (subject_point_id, attendance_point, write_point, skill_point, exam_id)\r\n" + 
+					"	VALUES ((SELECT CONCAT('SP', LPAD(IFNULL(SUBSTR(MAX(subject_point_id), 3), 0) + 1, 4, 0)) AS newId \r\n" + 
+					"				FROM subject_point_tb sp), ?, ?, ?, ?)";
+		
+		int result2 = this.jdbcTemplate.update(sql3, exam.getAttendance_point(), exam.getWrite_point(), exam.getSkill_point(), exam_id);
+		
+		if (result1 >= 1 && result2 >= 1) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -109,12 +127,9 @@ public class ExamDAOImpl implements ExamDAO{
 	@Override
 	public List<Exam> print3(OpenSubject os) {
 		
-		System.out.println(os.getOpen_subject_id());
-		System.out.println(os.getInstructor_id());
-		
 		List<Exam> result = new ArrayList<Exam>();
 		
-		String sql = "SELECT exam_id,  attendance_point, write_point, skill_point , exam_date, exam_file, (SELECT COUNT(*) FROM exam_tb WHERE exam_id = v2.exam_id)count_\r\n" + 
+		String sql = "SELECT exam_id,  attendance_point, write_point, skill_point , exam_date, exam_file, (SELECT COUNT(*) FROM student_score_tb WHERE exam_id = v2.exam_id)count_\r\n" + 
 				"      FROM  exam_list1_VW2 v2\r\n" + 
 				"      WHERE open_subject_id = ? AND instructor_id = ?";
 		
@@ -128,16 +143,11 @@ public class ExamDAOImpl implements ExamDAO{
 
 		List<Exam> result = new ArrayList<Exam>();
 		
-		String sql = "SELECT \r\n" + 
-				"    student_id, student_name, student_phone, student_regDate, completion,\r\n" + 
-				"    CASE completion\r\n" + 
-				"        WHEN '중도탈락' THEN drop_date\r\n" + 
-				"        ELSE open_course_end_date\r\n" + 
-				"    END completion_date, attendance_score, write_score, skill_score, total as total_score\r\n" + 
-				"FROM\r\n" + 
-				"    student_list3_vw2\r\n" + 
-				"WHERE\r\n" + 
-				"    exam_id = ? \r\n" + 
+		String sql = "SELECT student_id, student_name, student_phone, student_regDate, \r\n" + 
+				"		completion_status, completion_date, \r\n" + 
+				"        attendance_score, write_score, skill_score, total_score\r\n" + 
+				"	FROM instructor_score2_list2_vw3\r\n" + 
+				" 	WHERE exam_id = ?\r\n" + 
 				"    AND open_subject_id= ? ";
 		
 		result = this.jdbcTemplate.query(sql, new ExamMapper19(), e.getExam_id(), e.getOpen_subject_id());

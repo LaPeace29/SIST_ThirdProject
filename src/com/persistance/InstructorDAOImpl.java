@@ -1,6 +1,5 @@
 package com.persistance;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -63,23 +62,21 @@ public class InstructorDAOImpl implements InstructorDAO{
 	}
 
 	@Override
-	public List<Instructor> printi1(OpenSubject os) {
+	public Instructor instructorInfoPrint(OpenSubject os) {
 
-		List<Instructor> result = new ArrayList<Instructor>();
-
-		String sql = "SELECT instructor_id, instructor_name, instructor_phone, instructor_regDate\r\n"
-				+ "	FROM instructor_tb\r\n" + "    WHERE instructor_id = ?";
+		String sql = "SELECT instructor_id, instructor_name, instructor_phone, instructor_regDate, \r\n" + 
+				"		instructor_photo_id, instructor_photo_filepath\r\n" + 
+				"	FROM instructor_info_vw1\r\n" + 
+				"    WHERE instructor_id = ?";
 		
-		result = this.jdbcTemplate.query(sql, new InstructorMapper13(), os.getInstructor_id());
-
-		return result;
+		return this.jdbcTemplate.queryForObject(sql, new InstructorMapper13(), os.getInstructor_id());
 	}
 
 	@Override
 	public int insert(Instructor ins) {
 		String sql1 = "INSERT INTO instructor_tb (instructor_id, instructor_name, instructor_phone,instructor_regDate, instructor_pw)\r\n"
 				+ "    VALUES ((SELECT CONCAT('INS', LPAD(IFNULL(SUBSTR(MAX(instructor_id), 4), 0) + 1, 3, 0)) \r\n"
-				+ "	AS newId FROM instructor_tb i), ?, ?, ?,?)";
+				+ "	AS newId FROM instructor_tb i), ?, ?, ?, ?)";
 		int result1 = this.jdbcTemplate.update(sql1, ins.getInstructor_name(), ins.getInstructor_phone(),
 				ins.getInstructor_regDate().toString(), ins.getInstructor_pw());
 

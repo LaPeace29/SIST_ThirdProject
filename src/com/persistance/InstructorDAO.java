@@ -26,7 +26,7 @@ public interface InstructorDAO {
 	
 	// (출력) 강사 - 강사 스케줄 조회
 	// 강사 사진 / 강사 번호 / 강사 이름 / 강사 휴대폰번호 / 강사 등록일
-	public List<Instructor> printi1(OpenSubject os);
+	public Instructor instructorInfoPrint(OpenSubject os);
 	
 	/* ==================================================================== */
 	

@@ -52,8 +52,8 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public List<Student> prints1() {
-		return this.studentDAO.prints1();
+	public Student studentInfoPrint(String student_id) {
+		return this.studentDAO.studentInfoPrint(student_id);
 	}
 
 	@Override

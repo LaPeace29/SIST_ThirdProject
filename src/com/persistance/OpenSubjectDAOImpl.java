@@ -33,19 +33,14 @@ public class OpenSubjectDAOImpl implements OpenSubjectDAO{
 	}
 
 	@Override
-	public List<OpenSubject> instructor_title(OpenSubject os) {
+	public List<OpenSubject> openSubjectTitle(OpenSubject os) {
 
 		List<OpenSubject> result = new ArrayList<OpenSubject>();
 
-		String sql = "SELECT course_name, open_course_start_date, open_course_end_date\r\n"
-				+ "		,subject_name, subject_start_date, subject_end_date		\r\n"
-				+ "	FROM open_subject_list3_vw\r\n" + "    WHERE instructor_id = ?\r\n"
-				+ "    AND open_subject_id = ?";
-		
-		System.out.println("&");
-		System.out.println(os.getOpen_subject_id());
-		System.out.println(os.getInstructor_id());
-		System.out.println("&");
+		String sql = "SELECT subject_name, subject_start_date, subject_end_date, \r\n" + 
+				"		course_name, open_course_start_date, open_course_end_date\r\n" + 
+				"	FROM open_subject_title_vw1\r\n" + 
+				"    WHERE instructor_id = ? AND open_subject_id = ?";
 
 		result = this.jdbcTemplate.query(sql, new OpenSubjectMapper15(), os.getInstructor_id(), os.getOpen_subject_id());
 
@@ -67,35 +62,18 @@ public class OpenSubjectDAOImpl implements OpenSubjectDAO{
 	}
 
 	@Override
-	public List<OpenSubject> printi1(OpenSubject os) {
-
-		List<OpenSubject> result = new ArrayList<OpenSubject>();
-
-		String sql = "SELECT open_subject_id,\r\n" + "    subject_name,\r\n" + "    subject_start_date,\r\n"
-				+ "    subject_end_date,\r\n" + "    course_name,\r\n" + "    open_course_start_date,\r\n"
-				+ "    open_course_end_date,\r\n" + "    classroom_name,\r\n"
-				+ "    subjectbook_name, s_count, course_state as instructor_status\r\n"
-				+ "    FROM open_subject_list5_vw2\r\n" + "    WHERE instructor_id = ?";
-
-		result = this.jdbcTemplate.query(sql, new OpenSubjectMapper14(), os.getInstructor_id());
-
-		return result;
-	}
-
-	@Override
-	public List<OpenSubject> printi2(OpenSubject os) {
+	public List<OpenSubject> lectureSchedulePrint(OpenSubject os) {
 		
 		List<OpenSubject> result = new ArrayList<OpenSubject>();
 		
-		String sql = "SELECT open_subject_id,\r\n" + "    subject_name,\r\n" + "    subject_start_date,\r\n"
-				+ "    subject_end_date,\r\n" + "    course_name,\r\n" + "    open_course_start_date,\r\n"
-				+ "    open_course_end_date,\r\n" + "    classroom_name,\r\n"
-				+ "    subjectbook_name, s_count, course_state as instructor_status\r\n"
-				+ "    FROM open_subject_list5_vw2\r\n" + "    WHERE instructor_id = ?\r\n"
-				+ "    AND course_state = ? ";
+		String sql = "SELECT open_subject_id, subject_name, subject_start_date, subject_end_date, \r\n" + 
+				"		course_name, open_course_start_date, open_course_end_date, \r\n" + 
+				"		classroom_name, subjectbook_isbn, subjectbook_name, s_count, instructor_status\r\n" + 
+				"	FROM instructor_lecture_vw2\r\n" + 
+				"	WHERE instructor_id = ?\r\n" + 
+				"	AND instructor_status = ? ";
 		
 		result = this.jdbcTemplate.query(sql, new OpenSubjectMapper14(), os.getInstructor_id(), os.getInstructor_status());
-		
 		return result;
 	}
 	
