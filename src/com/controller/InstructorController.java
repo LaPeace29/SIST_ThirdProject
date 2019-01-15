@@ -62,33 +62,31 @@ public class InstructorController {
 
 		return "instructor/instructor_info";
 	}
+	
+	// 강사 비밀번호 변경 페이지
+	@RequestMapping("/changepw")
+	public String instructorChangepw(Model model) {
+		
+		return "instructor/instructor_changepw";
+	}
 
+	// 강사 강의 과목 AJAX 처리(schedule, point, score 공통)
+	@RequestMapping(value="/lectureAjax", method=RequestMethod.POST)
+	@ResponseBody
+	public List<OpenSubject> lectureAjax(OpenSubject os) {
+
+		List<OpenSubject> result = this.openSubjectService.lectureSchedulePrint(os);
+		return result;
+	}
+	
 	// schedule1 페이지
 	@RequestMapping("/schedule1")
 	public String instructorSchedule1(Model model, OpenSubject os, HttpSession session) {
-		
 		Instructor ins = (Instructor) session.getAttribute("instructor");
 		os.setInstructor_id(ins.getInstructor_id());
 		
-		List<Instructor> list = this.instructorService.printi1(os);
-		List<OpenSubject> list2 = this.openSubjectService.printi1(os);
+		Instructor list = this.instructorService.instructorInfoPrint(os);
 		model.addAttribute("list", list);
-		model.addAttribute("list2", list2);
-
-		return "instructor/instructor_schedule1";
-	}
-
-	// schedule1 페이지
-	@RequestMapping("/schedule11")
-	public String instructorSchedule11(Model model, OpenSubject os, HttpSession session) {
-		
-		Instructor ins = (Instructor) session.getAttribute("instructor");
-		os.setInstructor_id(ins.getInstructor_id());
-		
-		List<Instructor> list = this.instructorService.printi1(os);
-		List<OpenSubject> list2 = this.openSubjectService.printi2(os);
-		model.addAttribute("list", list);
-		model.addAttribute("list2", list2);
 
 		return "instructor/instructor_schedule1";
 	}
@@ -100,7 +98,7 @@ public class InstructorController {
 		Instructor ins = (Instructor) session.getAttribute("instructor");
 		os.setInstructor_id(ins.getInstructor_id());
 
-		List<OpenSubject> list = this.openSubjectService.instructor_title(os);
+		List<OpenSubject> list = this.openSubjectService.openSubjectTitle(os);
 		List<Student> list2 = this.studentService.printi1(os);
 		
 		model.addAttribute("list", list);
@@ -113,79 +111,53 @@ public class InstructorController {
 	@RequestMapping("/point1")
 	public String instructorPoint1(Model model, OpenSubject os) {
 
-		List<OpenSubject> list = this.openSubjectService.printi1(os);
-		model.addAttribute("list", list);
-
-		return "instructor/instructor_point1";
-	}
-	
-	// point1 페이지
-	@RequestMapping("/point11")
-	public String instructorPoint11(Model model, OpenSubject os, HttpSession session) {
-		
-		Instructor ins = (Instructor) session.getAttribute("instructor");
-		os.setInstructor_id(ins.getInstructor_id());
-		
-		List<OpenSubject> list = this.openSubjectService.printi2(os);
-		model.addAttribute("list", list);
-		
 		return "instructor/instructor_point1";
 	}
 
 	// point2 페이지
 	@RequestMapping("/point2")
 	public String instructorPoint2(Model model, OpenSubject os, HttpSession session) {
-
 		Instructor ins = (Instructor) session.getAttribute("instructor");
 		os.setInstructor_id(ins.getInstructor_id());
 		
 		List<Exam> list = this.examService.print3(os);
-		List<OpenSubject> list2 = this.openSubjectService.instructor_title(os);
-
+		List<OpenSubject> list2 = this.openSubjectService.openSubjectTitle(os);
+		
 		model.addAttribute("list", list);
 		model.addAttribute("list2", list2);
+		model.addAttribute("os", os);
 
 		return "instructor/instructor_point2";
 	}
 
-	// point2 인서트
-	@RequestMapping("/insert")
-	public String pointInsert(Exam e, RedirectAttributes rttr) {
-
-		return "redirect:instructor/instructor/point2";
-
+	// point2 insert
+	@RequestMapping("/point2/insert")
+	public String pointInsert(Exam exam, RedirectAttributes rttr) {
+		
+		String txt = "fail";
+		int result = this.examService.insert(exam);
+		if (result == 1) {
+			txt = "success";
+		}
+		
+		rttr.addFlashAttribute("result", txt);
+		return "redirect:/instructor/point1";
 	}
 
-	// AJAX(score2 페이지)
-	@RequestMapping(value = "/score2Ajax", produces = "application/json", method = RequestMethod.POST)
-	@ResponseBody
-	public List<Exam> score2Ajax(Model model, Exam e) {
+	@RequestMapping("/point2/delete")
+	public String point2Delete(Exam e, RedirectAttributes rttr) {
 
-		List<Exam> list = this.examService.print4(e);
+		int result = this.examService.delete(e);
 
-		return list;
+		rttr.addFlashAttribute("result", result);
+
+		return "redirect:/instructor/point1";
 	}
-
+	
 	// score1 페이지
 	@RequestMapping("/score1")
 	public String instructorScore1(Model model, OpenSubject os) {
 
-		List<OpenSubject> list = this.openSubjectService.printi1(os);
-		model.addAttribute("list", list);
-
-		return "instructor/instructor_score1";
-	}
-
-	// score1 페이지
-	@RequestMapping("/score11")
-	public String instructorScore11(Model model, OpenSubject os, HttpSession session) {
-		
-		Instructor ins = (Instructor) session.getAttribute("instructor");
-		os.setInstructor_id(ins.getInstructor_id());
-		
-		List<OpenSubject> list = this.openSubjectService.printi2(os);
-		model.addAttribute("list", list);
-		
 		return "instructor/instructor_score1";
 	}
 	
@@ -197,37 +169,34 @@ public class InstructorController {
 		os.setInstructor_id(ins.getInstructor_id());
 
 		List<Exam> list = this.examService.printi1(os);
-		List<OpenSubject> list2 = this.openSubjectService.instructor_title(os);
+		List<OpenSubject> list2 = this.openSubjectService.openSubjectTitle(os);
 
 		model.addAttribute("list", list);
 		model.addAttribute("list2", list2);
-
+		model.addAttribute("os", os);
+		
 		return "instructor/instructor_score2";
 	}
+	
+	// AJAX(score2 페이지)
+	@RequestMapping(value = "/score2Ajax", produces = "application/json", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Exam> score2Ajax(Model model, Exam e) {
 
-	// schedule2 입력
+		List<Exam> list = this.examService.print4(e);
+		return list;
+	}
+	
+	// score2 입력
 	@RequestMapping("/score2/insert")
 	public String score2Insert(Student s, RedirectAttributes rttr) {
 
 		return "redirect:/instructor/instructor/score2";
-
 	}
    
 	@RequestMapping("/score2/delete")
 	public String score2Delete(Student s, RedirectAttributes rttr) {
 
 		return "redirect:/instructor/instructor/score2";
-
-	}
-
-	@RequestMapping("/point2/delete")
-	public String point2Delete(Exam e, RedirectAttributes rttr) {
-
-		int result = this.examService.delete(e);
-
-		rttr.addFlashAttribute("result", result);
-
-		return "redirect:/instructor/instructor/point2";
-
 	}
 }
