@@ -7,39 +7,33 @@
 <head>
 <title>쌍용교육센터</title>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Fontastic Custom icon font-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/fontastic.css">
-<!-- Google fonts - Poppins -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-<!-- theme stylesheet-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.default.css"
-	id="theme-stylesheet">
-<!-- Favicon-->
-<link rel="shortcut icon" href="img/favicon.ico">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common.css">
-<script
-	src="${pageContext.request.contextPath}/resources/script/common.js"></script>
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
+
+<!-- Fontastic Custom icon font-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
+
+<!-- Google fonts - Poppins -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css" id="theme-stylesheet">
+
+<!-- Favicon-->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Customizing Common Element -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 
 <script>
 	$(document).ready(function() {
-		
-	
 		
 		$(".student-look").popover({ 
 			placement : 'left',
@@ -62,10 +56,9 @@
 			<div class="content-inner">
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/instructor/first">HOME</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/instructor/schedule1">강사 스케줄 조회</a></li>
-						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/instructor/schedule2">수강생 정보</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/instructor/first">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/instructor/schedule1">강사 스케줄 조회</a></li>
+						<li class="breadcrumb-item active"><a href="">수강생 정보</a></li>
 					</ul>
 				</div>
 
@@ -76,13 +69,14 @@
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">수강생 정보</h3>
+										<h3 class="h3">수강생 정보</h3>
 									</div>
 									<div class="card-body">
 										<c:forEach var="o" items="${list}">
-								<h3 class="h4"> ${o.course_name} (${o.open_course_start_date} ~ ${o.open_course_end_date}) / ${o.subject_name} (${o.subject_start_date} ~ ${o.subject_end_date})
-								</h3>
-								</c:forEach>
+											<h4 class="h4"> 
+												${o.course_name} (${o.open_course_start_date} ~ ${o.open_course_end_date}) / ${o.subject_name} (${o.subject_start_date} ~ ${o.subject_end_date})
+											</h4>
+										</c:forEach>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -104,8 +98,6 @@
 															<td>${s.student_regDate}</td>
 															<td>${s.completion_status}</td>
 															<td>${s.completion_date}</td>
-						
-														
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -126,24 +118,15 @@
 			</div>
 		</div>
 	</div>
-
-
 	
 	<!-- JavaScript files-->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery.cookie/jquery.cookie.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery-validation/jquery.validate.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/charts-home.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/vendor/jquery.cookie/jquery.cookie.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/vendor/jquery-validation/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/charts-home.js"></script>
 
 	<!-- Main File-->
 	<script src="${pageContext.request.contextPath}/resources/js/front.js"></script>

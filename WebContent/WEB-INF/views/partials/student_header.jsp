@@ -11,7 +11,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				<!-- Navbar Header-->
 				<div class="navbar-header">
 					<!-- Navbar Brand -->
-					<a href="${pageContext.request.contextPath}/views/student/student_first.jsp" class="navbar-brand d-none d-sm-inline-block">
+					<a href="${pageContext.request.contextPath}/student/first" class="navbar-brand d-none d-sm-inline-block">
 						<span class="brand-text d-none d-lg-inline-block">쌍용교육센터</span>
 						<strong class="brand-text d-none d-sm-inline-block d-lg-none">SIST</strong>
 					</a>
@@ -27,14 +27,17 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" class="nav-link language dropdown-toggle">
 							<span class="d-none d-sm-inline-block">개인 설정</span></a>
 						<ul class="dropdown-menu">
-							<li><a rel="nofollow" href="${pageContext.request.contextPath}/views/student/student_info.jsp" class="dropdown-item"> 개인정보 확인</a></li>
-							<li><a rel="nofollow" href="${pageContext.request.contextPath}/views/student/student_changepw.jsp" class="dropdown-item"> 비밀번호 변경</a></li>
+							<li><a rel="nofollow" href="${pageContext.request.contextPath}/student/info" class="dropdown-item"> 개인정보 확인</a></li>
+							<li><a rel="nofollow" href="${pageContext.request.contextPath}/student/changepw" class="dropdown-item"> 비밀번호 변경</a></li>
 
 						</ul></li>
 					<!-- Logout    -->
-					<li class="nav-item"><a href="${pageContext.request.contextPath}/views/common/common_logoutform.jsp"
-						class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i
-							class="fa fa-sign-out"></i></a></li>
+					<li class="nav-item">
+						<a href="${pageContext.request.contextPath}/common/logout" class="nav-link logout"> 
+							<span class="d-none d-sm-inline">Logout</span>
+							<i class="fa fa-sign-out"></i>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -16,7 +16,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <span class="heading">Main</span>
     <ul class="list-unstyled">
 		<li>
-			<a href="${pageContext.request.contextPath}/instructor/schedule1?instructor_status=1"><i class="icon-user"></i>강사 스케쥴 조회</a>
+			<a href="${pageContext.request.contextPath}/instructor/schedule1"><i class="icon-user"></i>강사 스케쥴 조회</a>
 		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/instructor/point1"><i class="fa fa-bar-chart"></i>배점 관리</a>

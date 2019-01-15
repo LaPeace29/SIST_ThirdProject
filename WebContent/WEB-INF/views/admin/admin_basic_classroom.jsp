@@ -114,22 +114,22 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-					<form action="${pageContext.request.contextPath}/admin/basic/classroom/insert" method="post">
-				<div class="modal-body">
-						<div class="form-group">
-							<label for="classroom_name">강의실명</label> 
-							<input type="text" id="classroom_name" name="classroom_name" placeholder="강의실명" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="classroom_name">최대정원</label> 
-							<input type="text" id="max_number" name="max_number" placeholder="최대정원" class="form-control">
-						</div>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary">등록</button>
-					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
-				</div>
-					</form>
+				<form action="${pageContext.request.contextPath}/admin/basic/classroom/insert" method="post">
+					<div class="modal-body">
+							<div class="form-group">
+								<label for="classroom_name">강의실명</label> 
+								<input type="text" id="classroom_name" name="classroom_name" placeholder="강의실명" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="classroom_name">최대정원</label> 
+								<input type="text" id="max_number" name="max_number" placeholder="최대정원" class="form-control">
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">등록</button>
+						<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

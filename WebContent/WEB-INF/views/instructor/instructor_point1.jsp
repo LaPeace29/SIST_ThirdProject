@@ -1,60 +1,135 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>쌍용교육센터</title>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Fontastic Custom icon font-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/fontastic.css">
-<!-- Google fonts - Poppins -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-<!-- theme stylesheet-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.default.css"
-	id="theme-stylesheet">
-<!-- Favicon-->
-<link rel="shortcut icon" href="img/favicon.ico">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common.css">
-<script
-	src="${pageContext.request.contextPath}/resources/script/common.js"></script>
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
+
+<!-- Fontastic Custom icon font-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
+
+<!-- Google fonts - Poppins -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css" id="theme-stylesheet">
+
+<!-- Favicon-->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Customizing Common Element -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 
 <script>
-$(document).ready(function() {
-	
-	$(".subjectbook-look").popover({ 
-		placement : 'left',
-		trigger: "hover", 
-		html: true
+	$(document).ready(function() {
+		
+		lectureAjax('강의중');
+		$("#lecture_ing").addClass("active");
+		
+		$(".btn-status").on("click", function() {
+			var instructor_status = $(this).val();
+			$(this).addClass("active");
+			$(this).siblings().removeClass("active");
+			lectureAjax(instructor_status);
+	    });
+		
+		$(document).on("mouseover", ".subjectbook-look", function() {
+			var subjectbook_isbn = $(this).attr("data-isbn"); 
+			console.log(subjectbook_isbn);
+			$.ajax({
+				url : "${pageContext.request.contextPath}/admin/book/info",
+				data : {isbn : subjectbook_isbn},
+				success : function(result) {
+					var array = result.item;
+    				for (var i = 0; i < array.length; ++i) {
+    	                var item = array[i];
+    	                var title = item.title;
+    	                var publisher = item.publisher;
+    	                var author = item.author;
+    	                var priceStandard = item.priceStandard;
+    	                var coverLargeUrl = item.coverLargeUrl;
+    	            }
+    				var dataContent = "<img src='" + coverLargeUrl + " 'width='120' height='144'><div><ul><li>저자 : " + author + "</li><li>가격 : " + priceStandard + "원 </li><li>출판사 : " + publisher + "</li></ul></div>";
+    				$(".subjectbook-look").attr("data-content", dataContent);
+				}
+			});
+			
+			$(this).popover({
+				placement : 'left',
+				trigger : "hover",
+				html : true
+			});
+		});
+
+		function lectureAjax(instructor_status) {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/instructor/lectureAjax",
+				dataType : 'json',
+				type : 'Post',
+				data : {
+					instructor_id : "${sessionScope.instructor.instructor_id}",
+					instructor_status : instructor_status
+				},
+				success : function(result) {
+					var doc = JSON.stringify(result);
+					var array = JSON.parse(doc);
+					console.log(array);
+					var txt = "";
+					
+					for(var i=0; i<array.length; i++) {
+						var item = array[i];
+						
+						var open_subject_id = item.open_subject_id;
+						var subject_name = item.subject_name;
+						var subject_start_date = new Date(item.subject_start_date);
+						var subject_end_date = new Date(item.subject_end_date);
+						var course_name = item.course_name;
+						var open_course_start_date = new Date(item.open_course_start_date);
+						var open_course_end_date = new Date(item.open_course_end_date);
+						var classroom_name = item.classroom_name;
+						var subjectbook_name = item.subjectbook_name;
+						var subjectbook_isbn = item.subjectbook_isbn;
+						var student_count = item.student_count;
+						var instructor_status = item.instructor_status;
+
+						txt += "<tr>";
+						txt += "<td>" + open_subject_id + "</td>";
+						txt += "<td>" + subject_name + "</td>";
+						txt += "<td>" + subject_start_date.toISOString().slice(0,10) + " ~ " + 
+										subject_end_date.toISOString().slice(0,10) + "</td>";
+						txt += "<td>" + course_name + "</td>";
+						txt += "<td>" + open_course_start_date.toISOString().slice(0,10) + " ~ " + 
+										open_course_end_date.toISOString().slice(0,10) + "</td>";
+						txt += "<td>" + classroom_name + "</td>";
+						txt += "<td>" + 
+								"<a class='subjectbook-look popover-bold' data-isbn='" + subjectbook_isbn + "'data-toggle='popover' title='" + subjectbook_name + "' data-content=''>" + subjectbook_name + "</a></td>";
+						txt += "<td>" + student_count + "</td>";
+						txt += "<td>" + instructor_status + "</td>";
+						txt += "<td>" + 
+								"<form action='${pageContext.request.contextPath}/instructor/point2' method='post'>" + 
+								"<input type='hidden' name='open_subject_id' value='" + open_subject_id + "'>" + 
+								"<button class='btn btn-sm btn-light btn-look'>보기</button></form>" + 
+								"</td>";
+						txt += "</tr>";
+					}
+					
+					$("#tbody_lecture").html(txt);
+				}	
+			});
+		}
 	});
-	
-	$(".btn-look").on("click", function() {
-		var open_subject_id = $(this).parents("tr").find("td:eq(0)").text();
-		window.location.assign("${pageContext.request.contextPath}/instructor/point2?open_subject_id="+open_subject_id);
-     });
-	
-	$(".btn-status").on("click",function() {
-		var instructor_status = $(this).val();
-		console.log(instructor_status);
-		window.location.assign("${pageContext.request.contextPath}/instructor/point11?instructor_status="+instructor_status);
-     });
-});
 
 </script>
 
@@ -72,9 +147,8 @@ $(document).ready(function() {
 				<!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="instructor_first.jsp">HOME</a></li>
-						<li class="breadcrumb-item active"><a
-							href="instructor_point1.jsp">배점 관리</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/instructor/first">HOME</a></li>
+						<li class="breadcrumb-item active"><a href="">배점 관리</a></li>
 					</ul>
 				</div>
 
@@ -85,17 +159,13 @@ $(document).ready(function() {
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">김강사 강사 - 강의 과목</h3>
+										<h3 class="h3">${sessionScope.instructor.instructor_name} 강사 - 강의 과목</h3>
 									</div>
 									<div class="card-body">
-										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<div class="btn-group">
-											<button type="button" class="btn btn-sm btn-light btn-status" value = "강의 종료">강의
-												종료</button>
-											<button type="button" class="btn btn-sm btn-light btn-status" value = "강의 중">강의
-												중</button>
-											<button type="button" class="btn btn-sm btn-light btn-status"value = "강의 예정">강의
-												예정</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" id="lecture_end" value="강의완료">강의 종료</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" id="lecture_ing" value="강의중">강의 중</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" id="lectrue_begin" value="강의예정">강의 예정</button>
 										</div>
 										<div class="table-responsive">
 											<table class="table">
@@ -113,34 +183,12 @@ $(document).ready(function() {
 														<th>시험 정보</th>
 													</tr>
 												</thead>
-												<tbody>
-												<c:forEach var="os" items="${list}">
-														<tr>
-															<td>${os.open_subject_id}</td>
-															<td>${os.subject_name}</td>
-															<td>${os.subject_start_date} ~ ${os.subject_end_date}
-															</td>
-															<td>${os.course_name}</td>
-															<td>${os.open_course_start_date} ~ ${os.open_course_end_date}</td>
-															<td>${os.classroom_name}</td>
-															<td><a class="subjectbook-look popover-bold" data-toggle="popover"
-															title="이것이 자바다"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">${os.subjectbook_name}</a></td>
-															<td>${os.student_count}</td>
-															<td>${os.instructor_status}</td>
-															<td><button class="btn btn-sm btn-light btn-look">보기</button></td>
-
-														</tr>
-													</c:forEach>
-													
-												</tbody>
+												<tbody id="tbody_lecture"></tbody>
 											</table>
 										</div>
 										<div style="text-align: center; padding-top: 10px">
 											<button class="btn btn-primary" id="prev">이전</button>
 											<button class="btn btn-primary" id="next">다음</button>
-
-
 										</div>
 									</div>
 								</div>
@@ -154,23 +202,14 @@ $(document).ready(function() {
 		</div>
 	</div>
 
-
-
 	<!-- JavaScript files-->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery.cookie/jquery.cookie.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery-validation/jquery.validate.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/charts-home.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/vendor/jquery.cookie/jquery.cookie.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/vendor/jquery-validation/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/charts-home.js"></script>
 
 	<!-- Main File-->
 	<script src="${pageContext.request.contextPath}/resources/js/front.js"></script>

@@ -1,29 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  
 pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>개인정보 확인</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>쌍용교육센터</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
- 	<!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Fontastic Custom icon font-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
-    <!-- Google fonts - Poppins -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css" id="theme-stylesheet">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <script src="${pageContext.request.contextPath}/resources/script/common.js"></script>
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
+
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
+
+<!-- Fontastic Custom icon font-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
+
+<!-- Google fonts - Poppins -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css" id="theme-stylesheet">
+
+<!-- Favicon-->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Customizing Common Element -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
     
 	<script>
 	
