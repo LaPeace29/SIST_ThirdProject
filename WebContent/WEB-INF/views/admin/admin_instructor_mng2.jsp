@@ -3,7 +3,6 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String instructor_id = request.getParameter("instructor_id");
-	String instructor_name = request.getParameter("instructor_name");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,17 +29,67 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <script src="${pageContext.request.contextPath}/resources/script/common.js"></script>
     
 	<script>
-	
+
 		$(document).ready(function() {
 			var instructor_id = "<%=instructor_id %>";
-			var instructor_name = "<%=instructor_name %>";
+			var completion = '강의 중';
+			
+			a("강의 중");
+			
 			$(".btn01").on("click", function(){
-			    //$('.btn01').removeClass('active');
-			    //$(this).addClass('active');
-				location.assign("${pageContext.request.contextPath}/admin/instructor/mng2?instructor_id="+instructor_id+"&completion="+$(this).val()+"&instructor_name="+instructor_name)
+				$(".btn01").removeClass("active");
+				$(this).addClass("active");
+				completion = $(this).val();
+				a($(this).val());
 			});
+			
+			$("#btnSearch").on("click", function(){
+				var key = $("#key").val()
+				var value =	$("#value").val()
+				
+				
+				a(completion,key, value);
+			});
+			
+			
+			function a(completion,key, value){
+				console.log(instructor_id);
+				console.log(completion);
+				console.log(key);
+				console.log(value);
+				$.ajax({
+	                  url:"${pageContext.request.contextPath}/admin/instructorAjax?instructor_id="+instructor_id+"&completion="+completion+"&key="+key+"&value="+value
+	                  
+	                  ,dataType: 'json' ,
+	                  type:'Post'
+	                  ,success: function(data_) {
+	                     console.log(data_);
+	                     var doc_=JSON.stringify(data_);
+	                     var doc = JSON.parse(doc_);
+	                     console.log(doc);
+	                     
+	                     var txt = "";
+	                     for(var a=0; a<doc.length; ++a) {
+	                        var temp = doc[a];
+	                        
+	                        var subject_start_date = new Date(temp.subject_start_date);
+	                        var subject_end_date = new Date(temp.subject_end_date);
+	                        
+	                        var open_course_start_date = new Date(temp.open_course_start_date);
+	                        var open_course_end_date = new Date(temp.open_course_end_date);
+	                        txt += "<tr><td>"+temp.open_subject_id+"</td><td>"+temp.subject_name+"</td><td>";
+	                        txt += subject_start_date.getFullYear()+ "-"+(subject_start_date.getMonth()+1)+ "-" + subject_start_date.getDate()+" ~ ";
+	                        txt += subject_end_date.getFullYear()+ "-" + (subject_end_date.getMonth()+1)+ "-" + subject_end_date.getDate()+"</td><td>";
+	                        txt += temp.course_name +"</td><td>" 
+	                        txt += open_course_start_date.getFullYear()+ "-"+(open_course_start_date.getMonth()+1)+ "-" + open_course_start_date.getDate()+" ~ ";
+	                        txt += open_course_end_date.getFullYear()+ "-" + (open_course_end_date.getMonth()+1)+ "-" + open_course_end_date.getDate()+"</td><td>";
+	                        txt += temp.classroom_name+"</td><td>";
+	                  		txt += temp.completion +"</td>";
+	                     }
+	                     $("#tbody").html(txt);
+	               }}); 
+			}
 		});
-	
 	</script>
 
 </head>
@@ -66,7 +115,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4"> <%=instructor_name %> - 강의 과목</h3>
+										<h3 class="h4">  ${l} - 강의 과목</h3>
 									</div>
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
@@ -88,42 +137,34 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                <th>강의 진행 여부</th>
 		                                            </tr>
 												</thead>
-												<tbody>
-										         <c:forEach var="os" items="${list}">
-										         <tr>
-										         	<td>${os.open_subject_id}</td>
-										         	<td>${os.subject_name}</td>
-										         	<td>${os.subject_start_date} ~ ${os.subject_end_date}</td>
-										         	<td>${os.course_name}</td>
-										         	<td>${os.open_course_start_date} ~ ${os.open_course_end_date}</td>
-										         	<td>${os.classroom_name}</td>
-										         	<td>${os.completion}</td>
-										         </tr>
-										         </c:forEach>                                   
+												<tbody id="tbody">
 												</tbody>
 											</table>
 										</div>
 										<div style="text-align: center; padding-top: 10px">
-		                                    <button class="btn btn-primary" id="prev">이전</button>
-		                                    <button class="btn btn-primary" id="next">다음</button>
+<!-- 		                                    <button class="btn btn-primary" id="prev">이전</button>
+		                                    <button class="btn btn-primary" id="next">다음</button> -->
 		                                
-			                                <form style="float: right" class="form-inline" method="post">
-			                                    <div>
-			                                        <div class="form-group">
+			                                
+			                                    
+			                                        <div style="float: right" class="form-group form-inline">
 			                                            <!-- 검색 단어 입력 폼 -->
 			                                            <select class="form-control text-small" id="key" name="key">
 			                                                <option class="text-small" value="opensubject_id">개설과목번호</option>
-			                                                <option class="text-small" value="opensubject_name">개설과목명</option>
-			                                                <option class="text-small" value="opencourse_name">개설과정명</option>
+			                                                <option class="text-small" value="subject_name">개설과목명</option>
+			                                                <option class="text-small" value="course_name">개설과정명</option>
 			                                            </select>
 			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
 			                                            <!-- 검색 진행 버튼 -->
-			                                            <button type="button" class="btn btn-md btn-secondary" id="btnSearch">
+			                                             <input type="hidden" id="instructor_id" name="instructor_id" value = "${l2}">
+			                                             <input type="hidden" id="completion" name="completion" value = "${l3}">
+			                                             
+			                                            <button class="btn btn-md btn-secondary" id="btnSearch">
 			                                                <i class="fa fa-search"></i>
 			                                            </button>
 			                                        </div>
-			                                    </div>
-			                                </form>
+			                                    
+			                                 
 		                                </div>
 									</div>
 								</div>
@@ -168,38 +209,6 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		</div>
 	</div>
 	
-	<!-- 삭제에 관한 모달 -->
-	<div id="subjectbook_delete" role="dialog" class="modal fade text-left">
-		<div role="document" class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 id="exampleModalLabel" class="modal-title">교재 삭제</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close"
-						class="close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>다음 교재를 삭제하시겠습니까?</p>
-					<form action="" method="post">
-						<div class="form-group">
-							<label for="subjectbook_name">교재명</label> 
-							<input type="text" id="subjectbook_name" name="subjectbook_name" placeholder="교재명" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="subjectbook_isbn">ISBN</label> 
-							<input type="text" id="subjectbook_isbn" name="subjectbook_isbn" placeholder="ISBN" class="form-control">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/popper.js/umd/popper.min.js"></script>

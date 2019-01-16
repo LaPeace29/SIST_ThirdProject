@@ -68,11 +68,6 @@
 			trigger : "hover",
 			html : true
 		});
-	 	
-
-
-
-
 	});
 </script>
 
@@ -86,29 +81,11 @@
 			<!-- Side Navbar -->
 			<%@ include file="/WEB-INF/views/partials/student_sidebar.jsp"%>
 			<div class="content-inner">
-				<!-- --------------------미활용---------------------- -->
-				<!-- Page Header-->
-				<!--                 
-					<header class="page-header">
-	                    <div class="container-fluid">
-	                        <h2 class="no-margin-bottom">Dashboard</h2>
-	                    </div>
-	                </header> 
-	                -->
-				<!-- ------------------------------------------------ -->
-				<!-- 네비게이션이 들어갈 자리입니다. -->
-
-
 
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/student/student_first.jsp">HOME</a></li>
-
-						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/views/student/student_score1.jsp">성적
-								조회</a></li>
-						<!-- 자신이 현재 위치한 마지막에 active 클래스 추가 -->
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/student/first">HOME</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/student/score1">성적 조회</a></li>
 						<li class="breadcrumb-item active"><a href="">수강생 성적 조회</a></li>
 					</ul>
 				</div>
@@ -121,7 +98,7 @@
 
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">O O O 수강생 성적 조회</h3>
+										<h3 class="h3">${sessionScope.student.student_name} 수강생 성적 조회</h3>
 									</div>
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
@@ -136,7 +113,6 @@
 														<th>강의실명</th>
 														<th>진행 상황</th>
 														<th>수료 여부</th>
-
 													</tr>
 												</thead>
 												<tbody>
@@ -155,11 +131,7 @@
 																</div>
 															</td>
 															<td>${s.completion_status}</td>
-
-
 														</tr>
-
-
 													</c:forEach>
 												</tbody>
 											</table>

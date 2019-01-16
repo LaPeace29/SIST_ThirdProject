@@ -74,9 +74,9 @@
                     	<button class="btn btn-primary submit-btn btn-block">Login</button>
 					</div>
                   </form>
- 					<div class="form-group">
-                       <button class="btn btn-default btn-reg" style="float: right">오시는 길</button>
-                   </div> 
+<!-- 					<div class="form-group">
+						<button class="btn btn-default btn-reg" style="float: right">오시는 길</button>
+					</div>  -->
                 </div>
               </div>
             </div>

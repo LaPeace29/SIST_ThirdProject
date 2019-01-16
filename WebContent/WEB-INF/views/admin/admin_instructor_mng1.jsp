@@ -27,10 +27,27 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
     <style>
 
     </style>
+<script>
+function passwordCheckFunction(){
+	 var pw = $('#password_reset #instructor_pw').val();
+	 var pw2 = $('#password_reset #instructor_pw2').val();
+		var confrimMsg = document.getElementById('confirmMsg');		
+		var correctColor = "#00ff00";	
+		var wrongColor ="#ff0000";	
+		
+		if(pw==pw2){
+			confirmMsg.style.color = correctColor;
+			confirmMsg.innerHTML ="비밀번호가 일치합니다.";
+			$('#password_reset button').attr('type', 'submit');
+		}else{
+			confirmMsg.style.color = wrongColor;
+			confirmMsg.innerHTML ="비밀번호가 일치하지 않습니다.";
+			$('#password_reset button').attr('type', 'button');
+		}
+	}
+</script>
 	<script>
-	
 		$(document).ready(function() {
-			
 			$(".instructor-look").popover({ 
 				placement : 'left',
 				trigger: "hover", 
@@ -58,10 +75,63 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				$("#password_reset #instructor_id").val(instructor_id);
 				$("#password_reset #instructor_name").val(instructor_name);
 			});
+			
+			//강사 수정
+			$(".btn-update").on("click", function(){
+				var instructor_id=$(this).parents("tr").find("td:eq(0)").text();
+				var instructor_name=$(this).parents("tr").find("td:eq(1)").text();
+				var instructor_phone=$(this).parents("tr").find("td:eq(2)").text();
+				var instructor_regDate=$(this).parents("tr").find("td:eq(3)").text();
+				var instructor_photo_filepath=$(this).parents("tr").find("td:eq(4)").text();
+				console.log(instructor_photo_filepath);
+				
+				$("#instructor_update #instructor_id").val(instructor_id);
+				$("#instructor_update #instructor_name").val(instructor_name);
+				$("#instructor_update #instructor_phone").val(instructor_phone);
+				$("#instructor_update #instructor_regDate").val(instructor_regDate);
+				$("#instructor_update #instructor_photo_filepath").val(instructor_photo_filepath);
+			});
+			
+			//강의 가능 과목 관리
+			$(".btn-manage").on("click", function(){
+				var instructor_id=$(this).parents("tr").find("td:eq(0)").text();
+				var instructor_name=$(this).parents("tr").find("td:eq(1)").text();
+				var instructor_phone=$(this).parents("tr").find("td:eq(2)").text();
+				document.getElementById('ins_info').innerHTML= "<p>"+instructor_name + " / " + instructor_phone+"</p>";
+				
+				//강의하는 과목만 체크
+ 				var instructor_possible=$(this).val();
+				console.log(instructor_possible); 
+				var ipArray=instructor_possible.split(',');
+				var temp;
+				
+				for(var i in ipArray){
+					temp =ipArray[i];
+					//console.log(temp);
+					console.log($("input[name=loginType]:checkbox").text());
+/* 					if(temp==$("input[name=loginType]:checkbox").text()){
+					} */
+				}
+			});
+			
+	        // 체크 박스 전체 해제
+/*  	        $("#uncheckAll").click(function() {
+	            $("input[name=loginType]:checkbox").each(function() {
+	                $(this).attr("checked", false);
+	            });
+	        }); */ 
+	        
+	        //검색
+			$(".btn-reset").on("click", function(){
+				var instructor_id=$(this).parents("tr").find("td:eq(0)").text();
+				var instructor_name=$(this).parents("tr").find("td:eq(1)").text();
+				$("#password_reset #instructor_id").val(instructor_id);
+				$("#password_reset #instructor_name").val(instructor_name);
+			});
+			
 		});
 	
 	</script>
-
 </head>
 <body>
 
@@ -114,7 +184,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 		                                                		width='120' height='144'/>">${ins.instructor_name}</a></td>
 		                                            	<td>${ins.instructor_phone}</td>
 		                                            	<td>${ins.instructor_regDate}</td>
-		                                            	<td>${ins.instructor_possible}<br><button class="btn btn-xs btn-light" data-toggle="modal" data-target="#subject_manage">강의 가능 과목 관리</button></td>
+		                                            	<td>${ins.instructor_possible}<br><button class="btn btn-xs btn-light btn-manage" data-toggle="modal" data-target="#subject_manage" value="${ins.instructor_possible}">강의 가능 과목 관리</button></td>
 		                                           		<td><button class="btn btn-sm btn-light instructor_manage" value="${ins.instructor_name}">조회</button></td>
 		                                                <td><button class="btn btn-sm btn-light btn-update"
 																data-toggle="modal" data-target="#instructor_update">수정</button></td>
@@ -128,8 +198,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 											</table>
 										</div>
 										<div style="text-align: center; padding-top: 10px">
-		                                    <button class="btn btn-primary" id="prev">이전</button>
-		                                    <button class="btn btn-primary" id="next">다음</button>
+<!-- 		                                    <button class="btn btn-primary" id="prev">이전</button>
+		                                    <button class="btn btn-primary" id="next">다음</button> -->
 		                                
 			                                <form style="float: right" class="form-inline" method="post" 
 			                                	action="${pageContext.request.contextPath}/admin/instructor/mng1/search">
@@ -194,7 +264,7 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						</div>
 						<div class="form-group">
 							<label for="instructor_photo">사진 파일</label> 
-							<input type="file" id="getInstructor_photo_file" name="getInstructor_photo_file" placeholder="사진 파일" class="form-control" required>
+							<input type="file" id="instructor_photo_filepath" name="filePath" placeholder="사진 파일" class="form-control" required>
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -217,7 +287,8 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-					<form action="${pageContext.request.contextPath}/admin/instructor/mng1/update" method="post" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/admin/instructor/mng1/update" method="post" 
+					enctype="multipart/form-data" role="form">
 				<div class="modal-body">
 						<div class="form-group">
 							<label for="instructor_id">강사번호</label> 
@@ -236,12 +307,12 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<input type="text" id="instructor_regDate" name="instructor_regDate" placeholder="등록일" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="instructor_photo">사진 파일</label> 
-							<input type="file" id="getInstructor_photo_file" name="getInstructor_photo_file" placeholder="사진 파일" class="form-control">
+							<label for="instructor_photo_filepath">사진 파일</label> 
+							<input type="file" id="instructor_photo_filepath" name="filePath" placeholder="사진 파일" class="form-control"  required>
 						</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">수정</button>
+					<button type="submit" class="btn btn-primary" id="btnUp">수정</button>
 					<button type="button" data-dismiss="modal" class="btn btn-secondary">취소</button>
 				</div>
 					</form>
@@ -304,15 +375,18 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 						</div>
 						<div class="form-group">
 							<label for="instructor_pw">신규 비밀번호</label> 
-							<input type="password" id="instructor_pw" name="instructor_pw" placeholder="신규 비밀번호" class="form-control">
+							<input type="password" id="instructor_pw" name="instructor_pw" placeholder="신규 비밀번호" class="form-control" 
+								onkeyup="passwordCheckFunction();">
 						</div>
 						<div class="form-group">
 							<label for="instructor_pw2">신규 비밀번호 확인</label> 
-							<input type="password" id="instructor_pw2" name="instructor_pw2" placeholder="신규 비밀번호 확인" class="form-control">
+							<input type="password" id="instructor_pw2" name="instructor_pw2" placeholder="신규 비밀번호 확인" class="form-control"
+								onkeyup="passwordCheckFunction();">
+							<span id="confirmMsg"></span>
 						</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary">확인</button>
+					<button type="button" class="btn btn-primary">확인</button>
 					<button type="button" data-dismiss="modal"
 						class="btn btn-light">취소</button>
 				</div>
@@ -334,47 +408,23 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 				</div>
 					<form action="${pageContext.request.contextPath}/admin/instructor/mng1/possible" method="post">
 				<div class="modal-body">
-					<p>김강사 / 010-1234-1234</p>
+					<div id="ins_info">
+					 <p>김강사 / 010-1234-1234</p> 
+					</div>
 						<div class="form-group">
 							<div class="row">
-								<div class="col-lg-6">
+							<c:forEach var="s" items="${sName}">
+							<div class="col-lg-6">
 									<div class="form-checkbox">
 										<input type="checkbox" class="checkbox-template"
-											value="student" name="loginType" checked> <label
-											for="checkbox">Java SE</label>
+											value="${s.subject_id}" name="loginType" checked> <label
+											for="checkbox">${s.subject_name}</label>
 									</div>
 								</div>
-								<div class="col-lg-6">
-									<div class="form-checkbox">
-										<input type="checkbox" class="checkbox-template"
-											value="instructor" name="loginType" checked> <label
-											for="checkbox">Oracle</label>
-									</div>
-									<div class="form-checkbox">
-										<input type="checkbox" class="checkbox-template" value="admin"
-											name="loginType" checked> <label for="checkbox">HTML5</label>
-									</div>
-									<div class="form-checkbox">
-										<input type="checkbox" class="checkbox-template" value="admin"
-											name="loginType"> <label for="checkbox">CSS</label>
-									</div>
-									<div class="form-checkbox">
-										<input type="checkbox" class="checkbox-template" value="admin"
-											name="loginType"> <label for="checkbox">JavaScript</label>
-									</div>
-									<div class="form-checkbox">
-										<input type="checkbox" class="checkbox-template" value="admin"
-											name="loginType"> <label for="checkbox">...</label>
-									</div>
-									<div class="form-checkbox">
-										<input type="checkbox" class="checkbox-template" value="admin"
-											name="loginType"> <label for="checkbox">...</label>
-									</div>
-									<div class="form-checkbox">
-										<input type="checkbox" class="checkbox-template" value="admin"
-											name="loginType"> <label for="checkbox">...</label>
-									</div>
-								</div>
+							</c:forEach>
+<!-- 							<div>		
+								<input type="button" id="uncheckAll" value="uncheck all" />
+							</div> -->
 							</div>
 						</div>
 				</div>

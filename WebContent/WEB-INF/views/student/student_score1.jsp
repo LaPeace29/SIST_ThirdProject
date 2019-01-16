@@ -136,13 +136,18 @@
 																<div class="progress">
 																	<div class="progress-bar bg-primary progressbar"
 																		role="progressbar" style="width: ${s.percent}%"
-																		aria-valuemax="100"></div>
+																		aria-valuemax="100">
+																	</div>
 																</div>
 															</td>
 															<td>${s.completion_status} </td>
-															<td><a
-																href="${pageContext.request.contextPath}/student/score2?open_course_id=${s.open_course_id}"><button
-																		class="btn btn-sm btn-light btn-look">성적 조회</button></a></td>
+															<td>
+																<form action="${pageContext.request.contextPath}/student/score2" method="POST">
+																	<input type="hidden" name=student_id value="${sessionScope.student.student_id}">
+																	<input type="hidden" name="open_course_id" value="${s.open_course_id}">
+																	<button type="submit" class="btn btn-sm btn-light btn-look">성적 조회</button>
+																</form>
+															</td>
 														</tr>
 													</c:forEach>
 												</tbody>
