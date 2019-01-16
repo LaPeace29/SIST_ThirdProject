@@ -101,51 +101,52 @@ public class AdminController {
 	/*11111111111111111111111111111111111111111111111111*/
 	
 	/** 강의실 관리 */
-	// 강의실 목록 출력
+	//강의실 목록 출력
 	@RequestMapping("/basic/classroom")
 	public String classroomList(Model model) {
 		model.addAttribute("list", this.classroomService.print1());
 		return "admin/admin_basic_classroom";
 	}
-
-	// 강의실 수정
+	
+	//강의실 수정
 	@RequestMapping("/basic/classroom/update")
 	public String classroomUpdate(Classroom cr, RedirectAttributes rttr) {
-		String txt = "fail";
-		int result = this.classroomService.update(cr);
-		if (result == 1) {
-			txt = "success";
+		String txt="fail";
+		int result=this.classroomService.update(cr);
+		if(result==1) {
+			txt="success";
 		}
 		rttr.addFlashAttribute("result", txt);
 		return "redirect:/admin/basic/classroom";
 	}
-
-	// 강의실 삭제
+	
+	//강의실 삭제
 	@RequestMapping("/basic/classroom/delete")
 	public String classroomDelete(Classroom cr, RedirectAttributes rttr) {
-		String txt = "fail";
+		String txt="fail";
 		System.out.println(cr.getClassroom_id());
 		int result = this.classroomService.delete(cr);
-		if (result == 1) {
-			txt = "success";
+		if(result==1) {
+			txt="success";
 		}
 		System.out.println(txt);
 		rttr.addFlashAttribute("result", txt);
 		return "redirect:/admin/basic/classroom";
 	}
-
-	// 강의실 등록
+	
+	//강의실 등록
 	@RequestMapping("/basic/classroom/insert")
 	public String classroomInsert(Classroom cr, RedirectAttributes rttr) {
-		String txt = "fail";
-		int result = this.classroomService.insert(cr);
-		if (result == 1) {
-			txt = "success";
+		String txt="fail";
+		int result =this.classroomService.insert(cr);
+		if(result==1) {
+			txt="success";
 		}
 		rttr.addFlashAttribute("result", txt);
 		return "redirect:/admin/basic/classroom";
 	}
 
+	
 	/** 과정 관리 */
 	//과정 출력
 	@RequestMapping("/basic/course")
@@ -153,19 +154,19 @@ public class AdminController {
 		model.addAttribute("list", this.courseSerivce.print1());
 		return "admin/admin_basic_course";
 	}
-
+	
 	// 과정 수정
 	@RequestMapping("/basic/course/update")
 	public String courseUpdate(Course cs, RedirectAttributes rttr) {
-		int result = this.courseSerivce.update(cs);
-		rttr.addFlashAttribute("result", result);
+		int result=this.courseSerivce.update(cs);
+		rttr.addFlashAttribute("result",result);
 		return "redirect:/admin/basic/course";
 	}
-
+	
 	// 과정 삭제
 	@RequestMapping("/basic/course/delete")
 	public String courseDelete(Course cs, RedirectAttributes rttr) {
-		int result = this.courseSerivce.delete(cs);
+		int result =this.courseSerivce.delete(cs);
 		rttr.addFlashAttribute("result", result);
 		return "redirect:/admin/basic/course";
 	}
@@ -173,10 +174,10 @@ public class AdminController {
 	// 과정 등록
 	@RequestMapping("/basic/course/insert")
 	public String courseInsert(Course cs, RedirectAttributes rttr) {
-		String txt = "fail";
+		String txt="fail";
 		int result = this.courseSerivce.insert(cs);
-		if (result == 1) {
-			txt = "success";
+		if(result==1) {
+			txt="success";
 		}
 		System.out.println(txt);
 		rttr.addFlashAttribute("result", txt);
@@ -185,13 +186,13 @@ public class AdminController {
 	
 	
 	/** 과목 관리 */
-	// 과목 출력
+	//과목 출력
 	@RequestMapping("/basic/subject")
 	public String subjectList(Model model) {
 		model.addAttribute("list", this.subjectService.print1());
 		return "admin/admin_basic_subject";
 	}
-
+	
 	// 과목 수정
 	@RequestMapping("/basic/subject/update")
 	public String subjectUpdate(Subject sub, RedirectAttributes rttr) {
@@ -203,18 +204,18 @@ public class AdminController {
 	// 과목 삭제
 	@RequestMapping("/basic/subject/delete")
 	public String subjectDelete(Subject sub, RedirectAttributes rttr) {
-		int result = this.subjectService.delete(sub);
+		int result =this.subjectService.delete(sub);
 		rttr.addFlashAttribute("result", result);
 		return "redirect:/admin/basic/subject";
 	}
-
+	
 	// 과목 등록
 	@RequestMapping("/basic/subject/insert")
 	public String subjectInsert(Subject sub, RedirectAttributes rttr) {
-		String txt = "fail";
-		int result = this.subjectService.insert(sub);
-		if (result == 1) {
-			txt = "success";
+		String txt="fail";
+		int result =this.subjectService.insert(sub);
+		if(result==1) {
+			txt="success";
 		}
 		System.out.println(txt);
 		rttr.addFlashAttribute("result", txt);
@@ -223,35 +224,35 @@ public class AdminController {
 	
 	
 	/** 교재 관리 */
-	// 교재 출력
+	//교재 출력
 	@RequestMapping("/basic/subjectbook")
 	public String subjectbookList(Model model) {
 		model.addAttribute("list", this.subjectbookService.print1());
 		return "admin/admin_basic_subjectbook";
 	}
-
+	
 	// 교재 수정
 	@RequestMapping("/basic/subjectbook/update")
 	public String subjectbookUpdate(Subjectbook sb, RedirectAttributes rttr) {
-		rttr.addFlashAttribute("result", this.subjectbookService.update(sb));
+		rttr.addFlashAttribute("result",this.subjectbookService.update(sb));
 		return "redirect:/admin/basic/subjectbook";
 	}
-
+	
 	// 교재 삭제
 	@RequestMapping("/basic/subjectbook/delete")
 	public String subjectbookDelete(Subjectbook sb, RedirectAttributes rttr) {
-		int result = this.subjectbookService.delete(sb);
+		int result =this.subjectbookService.delete(sb);
 		rttr.addFlashAttribute("result", result);
 		return "redirect:/admin/basic/subjectbook";
 	}
-
+	
 	// 교재 등록
 	@RequestMapping("/basic/subjectbook/insert")
 	public String subjectbookInsert(Subjectbook sb, RedirectAttributes rttr) {
-		String txt = "fail";
+		String txt="fail";
 		int result = this.subjectbookService.insert(sb);
-		if (result == 1) {
-			txt = "success";
+		if(result==1) {
+			txt="success";
 		}
 		rttr.addFlashAttribute("result", txt);
 		return "redirect:/admin/basic/subjectbook";
@@ -262,44 +263,63 @@ public class AdminController {
 	@RequestMapping("/instructor/mng1")
 	public String instructorList(Model model) {
 		model.addAttribute("list", this.instructorService.print1());
+		model.addAttribute("sName", this.subjectService.print1());
 		return "admin/admin_instructor_mng1";
 	}
 	
 	// 강사 등록
-	@RequestMapping(value = "/instructor/mng1/insert", method = RequestMethod.POST)
-	public String instructorInsert(MultipartFile filePath, Instructor ins, RedirectAttributes rttr) throws IOException {
+	@RequestMapping(value="/instructor/mng1/insert", method=RequestMethod.POST)
+	public String instructorInsert(MultipartFile filePath, Instructor ins, RedirectAttributes rttr) throws IOException{
 		System.out.println("파일 업로드 액션 처리중!");
 		System.out.println(filePath.getOriginalFilename());
 		String uploadPath = this.context.getRealPath("") + "resources/img" + File.separator;
 		System.out.println(uploadPath);
 		String temp = filePath.getOriginalFilename();
 		String ext = temp.substring(temp.lastIndexOf("."));
-		String newFileName = "img_" + java.util.UUID.randomUUID() + ext;
+		String newFileName = "img_"+java.util.UUID.randomUUID() + ext;
 		FileCopyUtils.copy(filePath.getBytes(), new File(uploadPath + newFileName));
 		ins.setInstructor_photo_filepath(newFileName);
-
+		
 		int result = this.instructorService.insert(ins);
-		String txt = "";
-		if (result == 1) {
-			txt = "success";
-		} else {
-			txt = "fail";
+		String txt="";
+		if(result==1) {
+			txt="success";
+		}else {
+			txt="fail";
 		}
 		System.out.println(txt);
 		rttr.addFlashAttribute("result", result);
 		return "redirect:/admin/instructor/mng1";
 	}
-	
 	// 강사 수정
-	@RequestMapping("/instructor/mng1/update")
-	public String instructorUpdate(Instructor ins, RedirectAttributes rttr) {
+	@RequestMapping(value="/instructor/mng1/update", method=RequestMethod.POST)
+	public String instructorUpdate(MultipartFile filePath, Instructor ins, RedirectAttributes rttr) throws IOException{
+			System.out.println("파일 업로드 액션 처리중!");
+			System.out.println(filePath.getOriginalFilename());
+			String uploadPath = this.context.getRealPath("") + "resources/img" + File.separator;
+			System.out.println(uploadPath);
+			String temp = filePath.getOriginalFilename();
+			String ext = temp.substring(temp.lastIndexOf("."));
+			String newFileName = "img_"+java.util.UUID.randomUUID() + ext;
+			FileCopyUtils.copy(filePath.getBytes(), new File(uploadPath + newFileName));	
+			ins.setInstructor_photo_filepath(newFileName);
+
+		int result =this.instructorService.update1(ins);
+		int result2= this.instructorService.update2(ins);
+		System.out.println(result+result2);
+		if((result>=1 && result2>=1) || result>=1) {
+			rttr.addFlashAttribute("result", result);
+			rttr.addFlashAttribute("result", result2);
+		}else {
+			rttr.addFlashAttribute("result", result);
+		}
+		
 		return "redirect:/admin/instructor/mng1";
 	}
-
 	// 강사 삭제
 	@RequestMapping("/instructor/mng1/delete")
 	public String instructorDelete(Instructor ins, RedirectAttributes rttr) {
-		rttr.addFlashAttribute("result", this.instructorService.delete(ins));
+		rttr.addFlashAttribute("result",this.instructorService.delete(ins));
 		return "redirect:/admin/instructor/mng1";
 	}
 
@@ -317,7 +337,7 @@ public class AdminController {
 		model.addAttribute("list", list);
 		model.addAttribute("key", key);
 		model.addAttribute("value", value);
-
+		
 		return "admin/admin_instructor_mng1";
 	}
 
@@ -330,32 +350,82 @@ public class AdminController {
 
 	/** 강의 과목 관리 */
 	// 강사 - 강의 과목 출력
-	@RequestMapping("/instructor/mng2")
-	public String openSubjectList(String instructor_id, String completion, Model model) {
-		model.addAttribute("list", this.openSubjectService.print1(instructor_id, completion));
+/*	@RequestMapping("/instructor/mng2")
+	public String openSubjectList(OpenSubject os, Model model) {
+		model.addAttribute("list", this.openSubjectService.print1(os));
+		model.addAttribute("l", os.getInstructor_name());
 		return "admin/admin_instructor_mng2";
-	}
+	}*/
 
 	// 강사 - 강의 과목 검색
-	@RequestMapping("/instructor/mng2/search")
-	public String openSubjectSearch(String key, String value, Model model) {
+	@RequestMapping("/instructor/mng2")
+	public String openSubjectSearch(OpenSubject os,String key, String value, Model model) {
+		/*List<OpenSubject> list = null;
+		
+		System.out.println(key);
+		System.out.println(value);
+		if(key == null || key.equals("") || key.equals("all")) {
+			key="all";
+			value="";
+		}
+		if(key.equals("all")) {
+			list =this.openSubjectService.print1(os);
+		}else {
+			list = this.openSubjectService.search3(os, key, value);
+		}
+		
+		model.addAttribute("list", list);*/
+		model.addAttribute("key", key);
+		model.addAttribute("value", value);
+		model.addAttribute("l", os.getInstructor_name());
+		model.addAttribute("l2", os.getInstructor_id());
+		
+		System.out.println(os.getInstructor_id());
 		return "admin/admin_instructor_mng2";
 	}
 	
-	//인터파크 도서검색
+	// 인터파크 도서검색
 	@RequestMapping("/book/info")
 	public @ResponseBody Map<?, ?> infoBook(String isbn) throws IOException {
-
-		String str = String.format(
-
-				"http://book.interpark.com/api/search.api?"
-						+ "key=790818C2D3B8DFB5483E7ABEC92B35B752A61FA367C03C1FEBDF484FAECE0BF9"
-						+ "&query=%s&queryType=isbn&output=json", isbn);
-
+	
+		String str = String.format("http://book.interpark.com/api/search.api?"
+				+ "key=790818C2D3B8DFB5483E7ABEC92B35B752A61FA367C03C1FEBDF484FAECE0BF9"
+				+ "&query=%s&queryType=isbn&output=json", isbn);
+	
 		URL url = new URL(str);
+	
 		ObjectMapper mapper = new ObjectMapper();
 		Map<?, ?> temp = mapper.readValue(url.openStream(), Map.class);
+	
 		return temp;
+	}
+	
+	// 강의가능 과목 조회Ajax
+	@RequestMapping(value = "/instructorAjax", produces = "application/json", method = RequestMethod.POST)
+	@ResponseBody
+	public List<OpenSubject> score2Ajax(Model model, OpenSubject os, String key, String value, String completion) {
+		System.out.println("1" + "키:" + key + "벨류:" + value + os.getInstructor_id());
+		System.out.println("completion:" + os.getCompletion());
+		System.out.println("completion2:" + completion);
+		// List<Exam> list = this.examService.print4(e);
+		List<OpenSubject> list = null;
+		if (key == "undefined" || key.equals("undefined") || key.equals("all")) {
+			list = this.openSubjectService.print1(os);
+			System.out.println("전체");
+
+		} else {
+			System.out.println("검색");
+			list = this.openSubjectService.search3(os, key, value);
+
+		}
+
+		model.addAttribute("key", key);
+		model.addAttribute("value", value);
+		/*
+		 * model.addAttribute("l", os.getInstructor_name()); model.addAttribute("l2",
+		 * os.getInstructor_id()); model.addAttribute("l3", os.getCompletion());
+		 */
+		return list;
 	}
 
 	/*--------------------------------------------------*/

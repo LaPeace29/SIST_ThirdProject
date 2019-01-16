@@ -65,7 +65,6 @@ public class StudentController {
 		return "/student/student_info";
 	}
 	
-	
 	@RequestMapping("/changepwPage")
 	public String student_changepwPage(String open_course_id, Model model) {
 		
@@ -81,20 +80,22 @@ public class StudentController {
 
 		if (result == 1) {
 			return "redirect:/student/first";
-		}else {
+		} else {
 			return "redirect:/student/changepwPage"; 
 		}
 	}
 
 	// 성적 조회
 	@RequestMapping("/score1")
-	public String student_score1(Model model, HttpSession session) {
+	public String student_score1(Model model, OpenCourse oc, HttpSession session) {
 
 		Student st = (Student) session.getAttribute("student");
 		String student_id = st.getStudent_id();
 		
+		oc.setStudent_id(student_id);
+		
 		Student stinfo = this.studentService.studentInfoPrint(student_id);
-		List<OpenCourse> list = this.openCourseService.prints1();
+		List<OpenCourse> list = this.openCourseService.prints1(oc);
 		
 		model.addAttribute("stinfo", stinfo);
 		model.addAttribute("list", list);
@@ -104,14 +105,13 @@ public class StudentController {
 
 	// 성적 조회 / 수강생 성적 조회
 	@RequestMapping("/score2")
-	public String student_score2(Exam e, String open_course_id, Model model) {
+	public String student_score2(Exam exam, Model model) {
 		List <OpenCourse> list = new ArrayList<OpenCourse>();
 		List <Exam> list2 = new ArrayList<Exam>();
 		
-		System.out.println(e.getOpen_course_id());
+		list = this.openCourseService.prints1(exam);
+		list2 = this.examService.prints1(exam);
 		
-		list = this.openCourseService.prints1(open_course_id);
-		list2 = this.examService.prints1(e);
 		model.addAttribute("list", list);
 		model.addAttribute("list2", list2);
 		
