@@ -66,7 +66,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping("/changepwPage")
-	public String student_changepwPage(String open_course_id, Model model) {
+	public String student_changepwPage(Model model, HttpSession session) {
 		
 		return "/student/student_changepw";
 	}

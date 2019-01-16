@@ -291,6 +291,7 @@ public class AdminController {
 		rttr.addFlashAttribute("result", result);
 		return "redirect:/admin/instructor/mng1";
 	}
+	
 	// 강사 수정
 	@RequestMapping(value="/instructor/mng1/update", method=RequestMethod.POST)
 	public String instructorUpdate(MultipartFile filePath, Instructor ins, RedirectAttributes rttr) throws IOException{
@@ -359,28 +360,12 @@ public class AdminController {
 
 	// 강사 - 강의 과목 검색
 	@RequestMapping("/instructor/mng2")
-	public String openSubjectSearch(OpenSubject os,String key, String value, Model model) {
-		/*List<OpenSubject> list = null;
-		
-		System.out.println(key);
-		System.out.println(value);
-		if(key == null || key.equals("") || key.equals("all")) {
-			key="all";
-			value="";
-		}
-		if(key.equals("all")) {
-			list =this.openSubjectService.print1(os);
-		}else {
-			list = this.openSubjectService.search3(os, key, value);
-		}
-		
-		model.addAttribute("list", list);*/
+	public String openSubjectSearch(Model model, OpenSubject os, String key, String value) {
+
 		model.addAttribute("key", key);
 		model.addAttribute("value", value);
-		model.addAttribute("l", os.getInstructor_name());
-		model.addAttribute("l2", os.getInstructor_id());
+		model.addAttribute("os", os);
 		
-		System.out.println(os.getInstructor_id());
 		return "admin/admin_instructor_mng2";
 	}
 	
@@ -401,30 +386,21 @@ public class AdminController {
 	}
 	
 	// 강의가능 과목 조회Ajax
-	@RequestMapping(value = "/instructorAjax", produces = "application/json", method = RequestMethod.POST)
+	@RequestMapping(value = "/instructorAjax", method = RequestMethod.POST)
 	@ResponseBody
-	public List<OpenSubject> score2Ajax(Model model, OpenSubject os, String key, String value, String completion) {
-		System.out.println("1" + "키:" + key + "벨류:" + value + os.getInstructor_id());
-		System.out.println("completion:" + os.getCompletion());
-		System.out.println("completion2:" + completion);
-		// List<Exam> list = this.examService.print4(e);
+	public List<OpenSubject> score2Ajax(Model model, OpenSubject os, String key, String value) {
+
 		List<OpenSubject> list = null;
-		if (key == "undefined" || key.equals("undefined") || key.equals("all")) {
+		
+		if (key == null) {
 			list = this.openSubjectService.print1(os);
-			System.out.println("전체");
-
 		} else {
-			System.out.println("검색");
 			list = this.openSubjectService.search3(os, key, value);
-
 		}
 
 		model.addAttribute("key", key);
 		model.addAttribute("value", value);
-		/*
-		 * model.addAttribute("l", os.getInstructor_name()); model.addAttribute("l2",
-		 * os.getInstructor_id()); model.addAttribute("l3", os.getCompletion());
-		 */
+
 		return list;
 	}
 
@@ -822,7 +798,7 @@ public class AdminController {
 	// AJAX
 	@RequestMapping(value = "/osAjax", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	public List<OpenSubject> OpensubjectList(OpenCourse opencourse) {
+	public List<OpenSubject> opensubjectList(OpenCourse opencourse) {
 		List<OpenSubject> opensubjectList = this.openSubjectService.print3(opencourse);
 		return opensubjectList;
 	}
