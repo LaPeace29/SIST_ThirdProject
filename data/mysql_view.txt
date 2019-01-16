@@ -141,25 +141,27 @@ SELECT il.instructor_id, il.instructor_name, il.instructor_phone, il.instructor_
 from instructor_tb il , instructor_photo_tb ipt where ipt.instructor_id=il.instructor_id;
 
 
-#9. 개설과목번호, 과목명, 개설과목시작일, 개설과목종료일, 과정명, 개설과정시작일, 개설과정종료일, 강의실명, 강의진행여부 - admin_instructor_mng2.jsp
+#9. 
+# 입력 - 강사아이디, 강의진행여부
+# 출력 - 개설과목번호, 과목명, 개설과목시작일, 개설과목종료일, 과정명, 개설과정시작일, 개설과정종료일, 강의실명, 강의진행여부 
+# 사용하는 VIEW- admin_instructor_mng2.jsp
 
-CREATE OR REPLACE VIEW open_subject_list3_vw
+CREATE OR REPLACE VIEW admin_instructor_lecture_vw1
 AS 
-  SELECT os.open_subject_id, subject_name, subject_start_date, subject_end_date, course_name, 
-        open_course_start_date, open_course_end_date, classroom_name,
+  SELECT open_subject_id, subject_name, subject_start_date, subject_end_date, 
+		course_name, open_course_start_date, open_course_end_date, classroom_name,
         CASE
-            WHEN now() <subject_start_date THEN '강의 예정'
-            WHEN now() >subject_end_date THEN '강의 종료'
-            else '강의 중'
-        END completion, ip.instructor_id
-    FROM subject_tb s, open_subject_tb os, course_tb c, open_course_tb oc, classroom_tb cr, 
-        instructor_tb i, instructor_possible_tb ip
-    WHERE s.subject_id = os.subject_id
-        AND oc.open_course_id = os.open_course_id
-        AND c.course_id = oc.course_id
-        AND cr.classroom_id = oc.classroom_id
-        AND i.instructor_id = os.instructor_id
-        AND ip.subject_id = s.subject_id;  
+			WHEN NOW() < open_course_start_date
+				THEN '강의예정'
+			WHEN NOW() > open_course_end_date
+				THEN '강의종료'
+			ELSE '강의중'
+		END instructor_status, instructor_id
+    FROM open_subject_tb os, subject_tb s, open_course_tb oc, course_tb c, classroom_tb cr
+    WHERE os.subject_id = s.subject_id
+		AND os.open_course_id = oc.open_course_id
+        AND oc.course_id = c.course_id
+        AND oc.classroom_id = cr.classroom_id;
     
 
 #10. 강의실명, 최대정원, 수강인원, 중도탈락인원, 과정명, 개설과정시작일, 개설과정종료일 -admin_first.jsp
@@ -195,8 +197,10 @@ SELECT course_name, open_course_start_date, open_course_end_date, subject_name, 
     AND s.subject_id = os.subject_id;
 
 
-#12. 개설과목번호, 과목명, 개설과목시작일, 개설과목종료일, 과정명, 개설과정시작일, 개설과정종료일, 강의실명, 교재명, 수강생등록인원, 강의진행여부 
-- instructor_schedule1.jsp / instructor_point1.jsp / instructor_score1.jsp
+#12. 
+# 입력 - 강사아이디, 강의진행여부
+# 출력 - 개설과목번호, 과목명, 개설과목시작일, 개설과목종료일, 과정명, 개설과정시작일, 개설과정종료일, 강의실명, 교재명, 수강생등록인원, 강의진행여부 
+# 사용 VIEW - instructor_schedule1.jsp / instructor_point1.jsp / instructor_score1.jsp
 
 CREATE OR REPLACE VIEW instructor_lecture_vw1
 AS
@@ -207,9 +211,9 @@ SELECT open_subject_id, subject_name, subject_start_date, subject_end_date,
         WHERE open_course_id = oc.open_course_id) s_count,
     CASE
         WHEN NOW() < open_course_start_date
-        THEN '강의예정'
+			THEN '강의예정'
         WHEN NOW() > open_course_end_date
-        THEN '강의완료'
+			THEN '강의종료'
         ELSE '강의중'
     END instructor_status, instructor_id 
     FROM open_subject_tb os, subject_tb s, course_tb c, open_course_tb oc ,classroom_tb cl
@@ -217,7 +221,6 @@ SELECT open_subject_id, subject_name, subject_start_date, subject_end_date,
     AND oc.open_course_id = os.open_course_id
     AND s.subject_id = os.subject_id
     AND oc.classroom_id = cl.classroom_id;
-    
     
 CREATE OR REPLACE VIEW instructor_lecture_vw2
 AS
@@ -379,50 +382,35 @@ SELECT open_course_id, course_name, open_course_start_date, open_course_end_date
 
 CREATE OR REPLACE VIEW student_transcript_vw1
 AS
-SELECT e.exam_id, subject_name, subjectbook_id, instructor_name, exam_date
-      ,attendance_score, write_score, skill_score, (attendance_score + write_score + skill_score) / 3 AS avg_, exam_file, ss.student_id, open_course_id,
-      sp.student_photo_filepath, ip.instructor_photo_filepath
-    FROM subject_tb s, open_subject_tb os, instructor_tb i, exam_tb e,
-        student_score_tb ss, student_photo_tb sp, instructor_photo_tb ip
-    WHERE os.subject_id = s.subject_id
-        AND i.instructor_id = os.instructor_id
-        AND e.open_subject_id = os.open_subject_id
-        AND ss.exam_id = e.exam_id
-        AND ss.student_id = sp.student_id
-        AND i.instructor_id = ip.instructor_id;
+SELECT subject_name, subject_start_date, subject_end_date, instructor_name, instructor_phone, instructor_photo_filepath, open_course_id, subjectbook_id, open_subject_id
+	FROM subject_tb s, open_subject_tb os, instructor_tb ins, instructor_photo_tb insp
+	WHERE s.subject_id = os.subject_id
+		AND os.instructor_id = ins.instructor_id
+		AND ins.instructor_id = insp.instructor_id;
         
 CREATE OR REPLACE VIEW student_transcript_vw2
 AS
-SELECT exam_id, subject_name, subjectbook_id, instructor_name, exam_date, exam_file
-      ,attendance_score, write_score, skill_score, RANK() OVER(ORDER BY avg_ DESC) rank_, avg_, student_id, open_course_id,
-       student_photo_filepath, instructor_photo_filepath
-       FROM student_transcript_vw1;
-        
+SELECT subject_name, subject_start_date, subject_end_date, instructor_name, instructor_phone, instructor_photo_filepath, open_course_id, open_subject_id, sb.subjectbook_id, subjectbook_name, subjectbook_isbn
+	FROM student_transcript_vw1 v1 LEFT JOIN subjectbook_tb sb
+		ON v1.subjectbook_id = sb.subjectbook_id;
+    
 CREATE OR REPLACE VIEW student_transcript_vw3
 AS
-SELECT subject_name, subjectbook_id, instructor_name, exam_date, exam_file
-      ,attendance_score, attendance_point, write_score, write_point, skill_score, skill_point
-      ,rank_, avg_,student_id, open_course_id, student_photo_filepath, instructor_photo_filepath
-      FROM student_transcript_vw2 v2 LEFT JOIN subject_point_tb sp
-        ON v2.exam_id = sp.exam_id;
+SELECT subject_name, subject_start_date, subject_end_date, instructor_name, instructor_phone, instructor_photo_filepath, open_course_id, subjectbook_name, subjectbook_isbn, exam_date, exam_file, exam_id
+	FROM student_transcript_vw2 v2 LEFT JOIN exam_tb e
+		ON v2.open_subject_id = e.open_subject_id;
         
 CREATE OR REPLACE VIEW student_transcript_vw4
 AS
-SELECT subject_name, subjectbook_name, instructor_name, exam_date
-      ,attendance_score, attendance_point, write_score, write_point, skill_score, skill_point
-      ,avg_, rank_, exam_file, student_id, open_course_id, student_photo_filepath, instructor_photo_filepath, sb.subjectbook_isbn
-      FROM student_transcript_vw3 v3 LEFT JOIN subjectbook_tb sb
-        ON v3.subjectbook_id = sb.subjectbook_id;
-
+SELECT subject_name, subject_start_date, subject_end_date, instructor_name, instructor_phone, instructor_photo_filepath, open_course_id, subjectbook_name, subjectbook_isbn, exam_date, exam_file, v3.exam_id, attendance_point, write_point, skill_point
+	FROM student_transcript_vw3 v3 LEFT JOIN subject_point_tb sp
+		ON v3.exam_id = sp.exam_id;
+        
 CREATE OR REPLACE VIEW student_transcript_vw5
 AS
-SELECT e.exam_id, attendance_score, attendance_point
-  , write_score, write_point, skill_score, skill_point
-    , (attendance_score + write_score + skill_score) score
-    ,exam_date, exam_file, open_subject_id, student_id
-  FROM exam_tb e, subject_point_tb sp, student_score_tb ss
-  WHERE e.exam_id = sp.exam_id
-  AND e.exam_id = ss.exam_id;
+SELECT subject_name, subject_start_date, subject_end_date, instructor_name, instructor_phone, instructor_photo_filepath, open_course_id, subjectbook_name, subjectbook_isbn, exam_date, exam_file, v4.exam_id, attendance_point, write_point, skill_point, attendance_score, write_score, skill_score, student_id
+	FROM student_transcript_vw4 v4 LEFT JOIN student_score_tb ss
+		ON v4.exam_id = ss.exam_id;
   
 #18. 
  CREATE OR REPLACE VIEW pass_non_view1 
