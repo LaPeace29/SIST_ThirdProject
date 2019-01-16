@@ -16,6 +16,7 @@ public class Exam {
 	private Date subject_end_date; 			// 과목 종료일
 	private String instructor_id; 			// 강사 아이디
 	private String instructor_name; 		// 강사 이름
+	private String instructor_phone; 		// 강사 휴대폰번호
 	private int attendance_point; 			// 출결 배점
 	private int write_point;				// 필기 배점
 	private int skill_point; 				// 실기 배점
@@ -83,6 +84,10 @@ public class Exam {
 
 	public String getInstructor_name() {
 		return instructor_name;
+	}
+
+	public String getInstructor_phone() {
+		return instructor_phone;
 	}
 
 	public int getAttendance_point() {
@@ -214,16 +219,20 @@ public class Exam {
 		this.instructor_id = instructor_id;
 	}
 
+	public void setInstructor_name(String instructor_name) {
+		this.instructor_name = instructor_name;
+	}
+
+	public void setInstructor_phone(String instructor_phone) {
+		this.instructor_phone = instructor_phone;
+	}
+
 	public int getCount_() {
 		return count_;
 	}
 
 	public void setCount_(int count_) {
 		this.count_ = count_;
-	}
-
-	public void setInstructor_name(String instructor_name) {
-		this.instructor_name = instructor_name;
 	}
 
 	public void setAttendance_point(int attendance_point) {
