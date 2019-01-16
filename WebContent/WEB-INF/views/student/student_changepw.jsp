@@ -42,86 +42,75 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
         <div class="page-content d-flex align-items-stretch">
             <!-- Side Navbar -->
             <%@ include file="/WEB-INF/views/partials/student_sidebar.jsp" %>
-            <!-- 맡은 페이지에 따라 유동적으로 교체하고 나머지는 삭제 -->
-            <%-- <%@ include file="/views/partials/student_sidebar.jsp" %> --%>
-            <%-- <%@ include file="/views/partials/instructor_sidebar.jsp" %> --%>
+
             <div class="content-inner">
-	            <!-- --------------------미활용---------------------- -->
-	                <!-- Page Header-->
-					<!--                 
-					<header class="page-header">
-	                    <div class="container-fluid">
-	                        <h2 class="no-margin-bottom">Dashboard</h2>
-	                    </div>
-	                </header> 
-	                -->
-	            <!-- ------------------------------------------------ -->
 	            <!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/common/04_common_changepw.jsp" >비밀번호 변경</a></li>
-<!-- 						자신이 현재 위치한 마지막에 active 클래스 추가
-						<li class="breadcrumb-item active"><a href="index.html">교재 관리</a></li> -->
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/student/first">Home</a></li>
+						<li class="breadcrumb-item active"><a href="" >비밀번호 변경</a></li>
 					</ul>
 				</div>
 					
                 <!-- 폼 자리-->
-                <section>
-            	 <div class="container-fluid">
-				<div class="row">
-                <div class="col-lg-12">
-                  <div class="card">
-<!--                     <div class="card-close">
-                      <div class="dropdown">
-                        <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                      </div>
-                    </div> -->
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">비밀번호 변경</h3>
-                    </div>
-                    <div class="card-body">
-                    <form class="form-horizontal" action="${pageContext.request.contextPath}/student/changepw" method="post">
-                      
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">이름</label>
-                          <div class="col-sm-9">
-                            <input id="inputHorizontalSuccess" type="text" placeholder="홍길동" class="form-control form-control-success" readonly>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">현재 비밀번호</label>
-                          <div class="col-sm-9">
-                            <input id="student_pw" name="student_pw" type="password" class="form-control form-control-warning">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">신규 비밀번호</label>
-                          <div class="col-sm-9">
-                            <input id="student_new_pw" name="student_new_pw"  type="password" class="form-control form-control-warning">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">신규 비밀번호 확인</label>
-                          <div class="col-sm-9">
-                            <input id="student_new_pw2" name="student_new_pw2"   type="password" class="form-control form-control-warning">
-                          </div>
-                        </div>
-                        <div class="form-group row">       
-                          <div class="col-sm-12 text-center" >
-                            <input type="button" value="취소" class="btn btn-default" style="width: 72px;" >
-                            <input type="submit" value="확인" class="btn btn-primary" style="width: 72px;">
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>			
-		</div>
-		</div>	
-		</section>	
-                <!-- Page Footer-->
+				<section>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h3">비밀번호 변경</h3>
+									</div>
+									<div class="card-body">
+										<form class="form-horizontal" 
+											action="${pageContext.request.contextPath}/student/changepw"
+											method="post">
+
+											<div class="form-group row">
+												<label class="col-sm-3 form-control-label">이름</label>
+												<div class="col-sm-9">
+													<input id="inputHorizontalSuccess" type="text"
+														placeholder="${sessionScope.student.student_name}"
+														class="form-control form-control-success" readonly>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 form-control-label">현재 비밀번호</label>
+												<div class="col-sm-9">
+													<input id="student_pw" name="student_pw" type="password"
+														class="form-control form-control-warning">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 form-control-label">신규 비밀번호</label>
+												<div class="col-sm-9">
+													<input id="student_new_pw" name="student_new_pw"
+														type="password" class="form-control form-control-warning">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 form-control-label">신규 비밀번호
+													확인</label>
+												<div class="col-sm-9">
+													<input id="student_new_pw2" name="student_new_pw2"
+														type="password" class="form-control form-control-warning">
+												</div>
+											</div>
+											<div class="form-group row">
+												<div class="col-sm-12 text-center">
+													<input type="button" value="취소" class="btn btn-default"
+														style="width: 72px;"> <input type="submit"
+														value="확인" class="btn btn-primary" style="width: 72px;">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Page Footer-->
                 <%@ include file="/WEB-INF/views/partials/footer.jsp" %>
             </div>
         </div>

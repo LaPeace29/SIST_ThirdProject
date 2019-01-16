@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  
 pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,26 +44,13 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
             <!-- Side Navbar -->
             <%@ include file="/WEB-INF/views/partials/student_sidebar.jsp" %>
             <!-- 맡은 페이지에 따라 유동적으로 교체하고 나머지는 삭제 -->
-            <%-- <%@ include file="/views/partials/student_sidebar.jsp" %> --%>
-            <%-- <%@ include file="/views/partials/instructor_sidebar.jsp" %> --%>
             <div class="content-inner">
-	            <!-- --------------------미활용---------------------- -->
-	                <!-- Page Header-->
-					<!--                 
-					<header class="page-header">
-	                    <div class="container-fluid">
-	                        <h2 class="no-margin-bottom">Dashboard</h2>
-	                    </div>
-	                </header> 
-	                -->
-	            <!-- ------------------------------------------------ -->
+
 	            <!-- 네비게이션이 들어갈 자리입니다. -->
 				<div class="breadcrumb-holder container-fluid">
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/views/common/05_common_info.jsp" >개인 정보 확인</a></li>
-<!-- 						자신이 현재 위치한 마지막에 active 클래스 추가
-						<li class="breadcrumb-item active"><a href="index.html">교재 관리</a></li> -->
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/student/first">Home</a></li>
+						<li class="breadcrumb-item active"><a href="" >개인 정보 확인</a></li>
 					</ul>
 				</div>
 					
@@ -73,41 +61,37 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">개인 정보 확인</h3>
+										<h3 class="h3">개인 정보 확인</h3>
 									</div>
 									<div class="card-body">
-									<c:forEach var="si" items="${stinfo}">
-									
-										<form class="form-horizontal">
+										<form action="" class="form-horizontal">
 											<div class="form-group row">
 												<label class="col-sm-3 form-control-label">이름</label>
 												<div class="col-sm-9">
-													<input id="name" type="text" placeholder="${si.student_name}"
+													<input id="name" type="text" placeholder="${stinfo.student_name}"
 														class="form-control form-control-success" readonly>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-3 form-control-label">휴대폰 번호</label>
 												<div class="col-sm-9">
-													<input id="phone" type="text" placeholder="${si.student_phone}"
+													<input id="phone" type="text" placeholder="${stinfo.student_phone}"
 														class="form-control form-control-success" readonly>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-3 form-control-label">등록일</label>
 												<div class="col-sm-9">
-													<input id="regDate" type="text" placeholder="${si.student_regDate}"
+													<input id="regDate" type="text" placeholder="${stinfo.student_regDate}"
 														class="form-control form-control-success" readonly>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-sm-12 text-center">
-													<input type="submit" value="확인" class="btn btn-primary"
-														style="width: 72px;">
+													<input type="submit" value="확인" class="btn btn-primary" style="width: 72px;">
 												</div>
 											</div>
 										</form>
-										</c:forEach>
 									</div>
 								</div>
 							</div>

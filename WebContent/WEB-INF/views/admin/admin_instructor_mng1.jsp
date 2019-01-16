@@ -1,32 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  
 pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>강사 계정 관리</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>쌍용교육센터</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
- 	<!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Fontastic Custom icon font-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
-    <!-- Google fonts - Poppins -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css" id="theme-stylesheet">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <script src="${pageContext.request.contextPath}/resources/script/common.js"></script>
-    <style>
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 
-    </style>
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
+
+<!-- Fontastic Custom icon font-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
+
+<!-- Google fonts - Poppins -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css" id="theme-stylesheet">
+
+<!-- Favicon-->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Customizing Common Element -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 <script>
 function passwordCheckFunction(){
 	 var pw = $('#password_reset #instructor_pw').val();
@@ -185,7 +189,12 @@ function passwordCheckFunction(){
 		                                            	<td>${ins.instructor_phone}</td>
 		                                            	<td>${ins.instructor_regDate}</td>
 		                                            	<td>${ins.instructor_possible}<br><button class="btn btn-xs btn-light btn-manage" data-toggle="modal" data-target="#subject_manage" value="${ins.instructor_possible}">강의 가능 과목 관리</button></td>
-		                                           		<td><button class="btn btn-sm btn-light instructor_manage" value="${ins.instructor_name}">조회</button></td>
+		                                           		<td><form action="${pageContext.request.contextPath}/admin/instructor/mng2" method="POST">
+		                                           			<input type="hidden" name="instructor_id" value="${ins.instructor_id}">
+		                                           			<input type="hidden" name="instructor_name" value="${ins.instructor_name}">
+		                                           			<input type="hidden" name="instructor_status" value="강의중">
+		                                           			<button class="btn btn-sm btn-light instructor_manage">조회</button>
+		                                           		</form></td>
 		                                                <td><button class="btn btn-sm btn-light btn-update"
 																data-toggle="modal" data-target="#instructor_update">수정</button></td>
 														<td><button class="btn btn-sm btn-light btn-del"

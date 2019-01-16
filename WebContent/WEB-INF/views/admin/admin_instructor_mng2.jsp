@@ -1,93 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  
 pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String instructor_id = request.getParameter("instructor_id");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>강의 과목</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>쌍용교육센터</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
- 	<!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Fontastic Custom icon font-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
-    <!-- Google fonts - Poppins -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css" id="theme-stylesheet">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <script src="${pageContext.request.contextPath}/resources/script/common.js"></script>
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
+
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css">
+
+<!-- Fontastic Custom icon font-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
+
+<!-- Google fonts - Poppins -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css" id="theme-stylesheet">
+
+<!-- Favicon-->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Customizing Common Element -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
     
 	<script>
 
 		$(document).ready(function() {
-			var instructor_id = "<%=instructor_id %>";
-			var completion = '강의 중';
+			var instructor_id = "${os.instructor_id}";
+			var instructor_status = "${os.instructor_status}";
 			
-			a("강의 중");
-			
-			$(".btn01").on("click", function(){
-				$(".btn01").removeClass("active");
+			$(".btn-status").on("click", function(){
+				$(".btn-status").removeClass("active");
 				$(this).addClass("active");
-				completion = $(this).val();
-				a($(this).val());
+				instructor_status = $(this).val();
+				lectureAjax($(this).val());
 			});
 			
 			$("#btnSearch").on("click", function(){
 				var key = $("#key").val()
 				var value =	$("#value").val()
 				
-				
-				a(completion,key, value);
+				lectureAjax(instructor_status, key, value);
 			});
 			
-			
-			function a(completion,key, value){
-				console.log(instructor_id);
-				console.log(completion);
-				console.log(key);
-				console.log(value);
+			function lectureAjax(instructor_status, key, value){
 				$.ajax({
-	                  url:"${pageContext.request.contextPath}/admin/instructorAjax?instructor_id="+instructor_id+"&completion="+completion+"&key="+key+"&value="+value
-	                  
-	                  ,dataType: 'json' ,
-	                  type:'Post'
-	                  ,success: function(data_) {
-	                     console.log(data_);
-	                     var doc_=JSON.stringify(data_);
-	                     var doc = JSON.parse(doc_);
-	                     console.log(doc);
-	                     
-	                     var txt = "";
-	                     for(var a=0; a<doc.length; ++a) {
-	                        var temp = doc[a];
+					url : "${pageContext.request.contextPath}/admin/instructorAjax",
+					data : {
+						instructor_id : instructor_id,
+						instructor_status : instructor_status,
+						key : key,
+						value : value
+					},
+					dataType : 'json',
+					type : 'Post',
+					success : function(result) {
+	           	  		var doc = JSON.stringify(result);
+						var array = JSON.parse(doc);
+						var txt = "";
+						
+						for(var i=0; i<array.length; i++) {
+							var item = array[i];
 	                        
-	                        var subject_start_date = new Date(temp.subject_start_date);
-	                        var subject_end_date = new Date(temp.subject_end_date);
+	                        var subject_start_date = new Date(item.subject_start_date).toISOString().slice(0,10);
+	                        var subject_end_date = new Date(item.subject_end_date).toISOString().slice(0,10);
 	                        
-	                        var open_course_start_date = new Date(temp.open_course_start_date);
-	                        var open_course_end_date = new Date(temp.open_course_end_date);
-	                        txt += "<tr><td>"+temp.open_subject_id+"</td><td>"+temp.subject_name+"</td><td>";
-	                        txt += subject_start_date.getFullYear()+ "-"+(subject_start_date.getMonth()+1)+ "-" + subject_start_date.getDate()+" ~ ";
-	                        txt += subject_end_date.getFullYear()+ "-" + (subject_end_date.getMonth()+1)+ "-" + subject_end_date.getDate()+"</td><td>";
-	                        txt += temp.course_name +"</td><td>" 
-	                        txt += open_course_start_date.getFullYear()+ "-"+(open_course_start_date.getMonth()+1)+ "-" + open_course_start_date.getDate()+" ~ ";
-	                        txt += open_course_end_date.getFullYear()+ "-" + (open_course_end_date.getMonth()+1)+ "-" + open_course_end_date.getDate()+"</td><td>";
-	                        txt += temp.classroom_name+"</td><td>";
-	                  		txt += temp.completion +"</td>";
-	                     }
-	                     $("#tbody").html(txt);
-	               }}); 
+	                        var open_course_start_date = new Date(item.open_course_start_date).toISOString().slice(0,10);
+	                        var open_course_end_date = new Date(item.open_course_end_date).toISOString().slice(0,10);
+	                        
+	                        txt += "<tr>";
+	                        txt += "<td>" + item.open_subject_id + "</td>";
+	                        txt += "<td>" + item.subject_name + "</td>";
+	                        txt += "<td>" + subject_start_date + " ~ " + subject_end_date + "</td>";
+	                        txt += "<td>" + item.course_name + "</td>";
+	                        txt += "<td>" + open_course_start_date + " ~ " + open_course_end_date + "</td>";
+	                        txt += "<td>" + item.classroom_name+"</td>";
+	                        txt += "<td>" + item.instructor_status +"</td>";
+	                        txt += "</tr>";
+                     }
+						
+                     $("#tbody").html(txt);
+               }}); 
 			}
 		});
 	</script>
@@ -115,14 +117,14 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">  ${l} - 강의 과목</h3>
+										<h3 class="h3">  ${os.instructor_name} - 강의 과목</h3>
 									</div>
 									<div class="card-body">
 										<!-- 우상단에 위치할 등록버튼에'만' btn-reg 클래스 추가! -->
 										<div class="btn-group">					
-											<button type="button" class="btn btn-sm btn-default btn01 " value="강의 종료">강의 종료</button>
-											<button type="button" class="btn btn-sm btn-default btn01 active" value="강의 중">강의 중</button>
-											<button type="button" class="btn btn-sm btn-default btn01 " value="강의 예정">강의 예정</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" value="강의종료">강의 종료</button>
+											<button type="button" class="btn btn-sm btn-light btn-status active" value="강의중">강의 중</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" value="강의예정">강의 예정</button>
 										</div>
 										<div class="table-responsive">
 											<table class="table">
@@ -142,29 +144,22 @@ pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 											</table>
 										</div>
 										<div style="text-align: center; padding-top: 10px">
-<!-- 		                                    <button class="btn btn-primary" id="prev">이전</button>
-		                                    <button class="btn btn-primary" id="next">다음</button> -->
-		                                
-			                                
-			                                    
-			                                        <div style="float: right" class="form-group form-inline">
-			                                            <!-- 검색 단어 입력 폼 -->
-			                                            <select class="form-control text-small" id="key" name="key">
-			                                                <option class="text-small" value="opensubject_id">개설과목번호</option>
-			                                                <option class="text-small" value="subject_name">개설과목명</option>
-			                                                <option class="text-small" value="course_name">개설과정명</option>
-			                                            </select>
-			                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
-			                                            <!-- 검색 진행 버튼 -->
-			                                             <input type="hidden" id="instructor_id" name="instructor_id" value = "${l2}">
-			                                             <input type="hidden" id="completion" name="completion" value = "${l3}">
-			                                             
-			                                            <button class="btn btn-md btn-secondary" id="btnSearch">
-			                                                <i class="fa fa-search"></i>
-			                                            </button>
-			                                        </div>
-			                                    
-			                                 
+	                                        <div style="float: right" class="form-group form-inline">
+	                                            <!-- 검색 단어 입력 폼 -->
+	                                            <select class="form-control text-small" id="key" name="key">
+	                                                <option class="text-small" value="opensubject_id">개설과목번호</option>
+	                                                <option class="text-small" value="subject_name">개설과목명</option>
+	                                                <option class="text-small" value="course_name">개설과정명</option>
+	                                            </select>
+	                                            <input type="text" class="form-control" id="value" name="value" placeholder="Search">
+	                                            <!-- 검색 진행 버튼 -->
+	                                             <input type="hidden" id="instructor_id" name="instructor_id" value = "${l2}">
+	                                             <input type="hidden" id="completion" name="completion" value = "${l3}">
+	                                             
+	                                            <button class="btn btn-md btn-secondary" id="btnSearch">
+	                                                <i class="fa fa-search"></i>
+	                                            </button>
+	                                        </div>
 		                                </div>
 									</div>
 								</div>

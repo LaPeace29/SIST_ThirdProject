@@ -158,77 +158,24 @@
 												</thead>
 												<tbody>
 												
-												<c:forEach var="s2" items="${list2}">
-												<tr>
-														<td > ${s2.subject_name}(${s2.subject_start_date}~${s2.subject_end_date})</td>
-														
-														<td><a class="subjectbook-look popover-bold" rel="${s2.subjectbook_isbn}"
-														data-toggle="popover" title="${s2.subjectbook_name}"
-														data-content="" > <span>${s2.subjectbook_name}</span></a></td>
-														
-														<td><a
-															class="instructor-look popover-bold"
-															data-toggle="popover" title="${s2.instructor_name}<br>010-1234-1234"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">${s2.instructor_name}</a></td>
-														<td>${s2.exam_date}</td>
-														<td>${s2.attendance_score}(${s2.attendance_point})</td>
-														<td>${s2.skill_score}(${s2.skill_point})</td>
-														<td>${s2.write_score}(${s2.write_point})</td>
-														<td>${s2.exam_file}<br>
-															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
-													</tr>
+													<c:forEach var="s2" items="${list2}">
+														<tr>
+															<td> ${s2.subject_name}<br>(${s2.subject_start_date}~${s2.subject_end_date})</td>
+															<td><a class="subjectbook-look popover-bold" rel="${s2.subjectbook_isbn}"
+															data-toggle="popover" title="${s2.subjectbook_name}"
+															data-content="" > <span>${s2.subjectbook_name}</span></a></td>
+															<td><a
+																class="instructor-look popover-bold"
+																data-toggle="popover" title="${s2.instructor_name}<br>${s2.instructor_phone}"
+																data-content="<img src='${pageContext.request.contextPath}/resources/img/${s2.instructor_photo_filepath}' width='120' height='144'/>">${s2.instructor_name}</a></td>
+															<td>${s2.exam_date}</td>
+															<td>${s2.attendance_score}(${s2.attendance_point})</td>
+															<td>${s2.skill_score}(${s2.skill_point})</td>
+															<td>${s2.write_score}(${s2.write_point})</td>
+															<td>${s2.exam_file}<br>
+																<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
+														</tr>
 													</c:forEach>
-													<%-- <tr>
-													<td >Java SE (2018-06-25~2018-09-10)</td>
-														
-														<td ><a
-															class="subjectbook-look popover-bold"
-															data-toggle="popover" title="이것이 자바다"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이
-																자바다</a></td>
-														<td><a
-															class="instructor-look popover-bold"
-															data-toggle="popover" title="김강사<br>010-1234-1234"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
-													
-													
-														<td>2018-11-12</td>
-														<td>-(20)</td>
-														<td>-(40)</td>
-														<td>-(40)</td>
-														<td>OS0032_181112.zip<br>
-															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
-															
-													</tr> --%>
-													
-													
-													
-												<%-- 	<tr>
-														<td rowspan="2">Java SE (2018-06-25~2018-09-10)</td>
-														<td rowspan="2"><a
-															class="subjectbook-look popover-bold"
-															data-toggle="popover" title="이것이 자바다"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/subjectbook_example.png' width='120' height='144'/>">이것이
-																자바다</a></td>
-														<td rowspan="2"><a
-															class="instructor-look popover-bold"
-															data-toggle="popover" title="김강사<br>010-1234-1234"
-															data-content="<img src='${pageContext.request.contextPath}/resources/img/avatar-1.jpg' width='120' height='144'/>">김강사</a></td>
-														<td>2018-10-15</td>
-														<td>-(20)</td>
-														<td>-(30)</td>
-														<td>-(50)</td>
-														<td>OS0032_181015.zip<br>
-															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
-													</tr>
-													<tr>
-														<td>2018-11-12</td>
-														<td>-(20)</td>
-														<td>-(40)</td>
-														<td>-(40)</td>
-														<td>OS0032_181112.zip<br>
-															<button type="button" class="btn btn-xs btn-light">다운로드</button></td>
-													</tr> --%>
 												</tbody>
 											</table>
 										</div>

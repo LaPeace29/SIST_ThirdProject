@@ -162,7 +162,7 @@
 									</div>
 									<div class="card-body">
 										<div class="btn-group">
-											<button type="button" class="btn btn-sm btn-light btn-status" id="lecture_end" value="강의완료">강의 종료</button>
+											<button type="button" class="btn btn-sm btn-light btn-status" id="lecture_end" value="강의종료">강의 종료</button>
 											<button type="button" class="btn btn-sm btn-light btn-status" id="lecture_ing" value="강의중">강의 중</button>
 											<button type="button" class="btn btn-sm btn-light btn-status" id="lectrue_begin" value="강의예정">강의 예정</button>
 										</div>
