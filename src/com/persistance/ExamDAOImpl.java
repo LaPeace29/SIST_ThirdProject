@@ -27,12 +27,15 @@ public class ExamDAOImpl implements ExamDAO{
 	
 	@Override
 	public List<Exam> prints1(Exam exam) {
-		String sql = "SELECT subject_name, subjectbook_name, instructor_name, exam_date\r\n" + 
-				"		,attendance_score, attendance_point, write_score, write_point, skill_score, skill_point, \r\n" + 
-				"		exam_file, subjectbook_isbn, instructor_photo_filepath, subject_start_date, subject_end_date \r\n" + 
-				"FROM student_transcript_vw4\r\n" + 
-				"WHERE student_id = ? \r\n" + 
-				"AND open_course_id = ?";
+		String sql = "SELECT subject_name, subject_start_date, subject_end_date, \r\n" + 
+				"		instructor_name, instructor_phone, instructor_photo_filepath, \r\n" + 
+				"        subjectbook_name, subjectbook_isbn, \r\n" + 
+				"        exam_date, exam_file, \r\n" + 
+				"        attendance_point, write_point, skill_point, \r\n" + 
+				"        attendance_score, write_score, skill_score\r\n" + 
+				"	FROM student_transcript_vw5\r\n" + 
+				"    WHERE student_id = ?\r\n" + 
+				"		AND open_course_id = ?";
 	
 		return this.jdbcTemplate.query(sql, new ExamMapper21(), exam.getStudent_id() ,exam.getOpen_course_id());
 	}

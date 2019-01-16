@@ -14,7 +14,7 @@ import com.mapper.OpenSubjectMapper01;
 import com.mapper.OpenSubjectMapper11;
 import com.mapper.OpenSubjectMapper14;
 import com.mapper.OpenSubjectMapper15;
-import com.mapper.OpenSubjectMapper2;
+import com.mapper.OpenSubjectMapper42;
 import com.mapper.OpenSubjectMapper31;
 import com.mapper.OpenSubjectMapper32;
 import com.mapper.OpenSubjectMapper33;
@@ -207,17 +207,14 @@ public class OpenSubjectDAOImpl implements OpenSubjectDAO{
 	
 	@Override
 	public List<OpenSubject> print1(OpenSubject os) {
-		System.out.println("전체dao");
-		String sql="SELECT open_subject_id, subject_name, subject_start_date, subject_end_date, course_name, \r\n" + 
-				"        open_course_start_date, open_course_end_date, classroom_name,\r\n" + 
-				"               CASE\r\n" + 
-				"            WHEN now() <subject_start_date THEN '강의 예정'\r\n" + 
-				"            WHEN now() >subject_end_date THEN '강의 종료'\r\n" + 
-				"            else '강의 중'\r\n" + 
-				"        END completion\r\n" + 
-				"    FROM open_subject_list3_vw\r\n" + 
-				"    WHERE instructor_id=? AND completion=?";
-		return this.jdbcTemplate.query(sql, new Object[] {os.getInstructor_id(), os.getCompletion()}, new OpenSubjectMapper2());
+		
+		String sql = "SELECT open_subject_id, subject_name, subject_start_date, subject_end_date, \r\n" + 
+				"		course_name, open_course_start_date, open_course_end_date, \r\n" + 
+				"        classroom_name, instructor_status \r\n" + 
+				"	FROM teamproject.admin_instructor_lecture_vw1\r\n" + 
+				"    WHERE instructor_id = ?\r\n" + 
+				"		AND instructor_status = ?";
+		return this.jdbcTemplate.query(sql, new OpenSubjectMapper42(), os.getInstructor_id(), os.getInstructor_status());
 	}
 
 	@Override
@@ -241,7 +238,7 @@ public class OpenSubjectDAOImpl implements OpenSubjectDAO{
 			sql += " AND INSTR(course_name, ?) > 0 ";
 		}
 			
-		return this.jdbcTemplate.query(sql,new Object[] {os.getInstructor_id(), os.getCompletion(), value} ,new OpenSubjectMapper2());
+		return this.jdbcTemplate.query(sql,new Object[] {os.getInstructor_id(), os.getCompletion(), value} ,new OpenSubjectMapper42());
 	}
 	
 	@Override
