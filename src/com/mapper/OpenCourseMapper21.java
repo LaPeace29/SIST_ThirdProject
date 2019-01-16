@@ -23,9 +23,8 @@ public class OpenCourseMapper21 implements RowMapper<OpenCourse> {
 		oc.setOpen_course_start_date(rs.getDate("open_course_start_date"));
 		oc.setOpen_course_end_date(rs.getDate("open_course_end_date"));
 		oc.setClassroom_name(rs.getString("classroom_name"));
-		oc.setCompletion_status(rs.getString("completion"));
+		oc.setCompletion_status(rs.getString("completion_status"));
 		oc.setPercent(rs.getInt("percent"));
-		
 		
 		return oc;
 	}
