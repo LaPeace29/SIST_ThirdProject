@@ -72,12 +72,6 @@ public class InstructorServiceImpl implements InstructorService {
 	}
 
 	@Override
-	public int update(Instructor ins) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int reset(Instructor ins) {
 		return this.instructorDAO.reset(ins);
 	}
@@ -90,5 +84,15 @@ public class InstructorServiceImpl implements InstructorService {
 	@Override
 	public List<Instructor> search(String key, String value) {
 		return this.instructorDAO.search(key, value);
+	}
+	
+	@Override
+	public int update1(Instructor ins) {
+		return this.instructorDAO.update1(ins);
+	}
+
+	@Override
+	public int update2(Instructor ins) {
+		return this.instructorDAO.update2(ins);
 	}
 }

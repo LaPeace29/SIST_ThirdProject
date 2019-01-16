@@ -77,6 +77,7 @@ public interface OpenSubjectDAO {
 	public List<OpenSubject> search2(String key, String value);
 	
 	// 예린 작성
-	public List<OpenSubject> print1(String instructor_id, String completion);
+	public List<OpenSubject> print1(OpenSubject os);
+	public List<OpenSubject> search3(OpenSubject os, String key, String value);
 	public int deleteInsert(OpenSubject os);
 }

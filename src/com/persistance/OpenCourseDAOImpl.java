@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.domain.Exam;
 import com.domain.OpenCourse;
 import com.mapper.OpenCourseMapper21;
 import com.mapper.OpenCourseMapper31;
@@ -48,22 +49,22 @@ public class OpenCourseDAOImpl implements OpenCourseDAO{
 	}
 
 	@Override
-	public List<OpenCourse> prints1() {
-		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion, percent \r\n" + 
+	public List<OpenCourse> prints1(OpenCourse oc) {
+		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion_status, percent \r\n" + 
 				"    FROM pass_non_view4\r\n" + 
 				"    WHERE student_id = ? "; 
 
-		return this.jdbcTemplate.query(sql, new OpenCourseMapper21(), "ST00077");
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper21(), oc.getStudent_id());
 	}
 
 	@Override
-	public List<OpenCourse> prints1(String open_course_id) {
+	public List<OpenCourse> prints1(Exam exam) {
 		
-		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion, percent \r\n" + 
+		String sql = "SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion_status, percent \r\n" + 
 				"    FROM pass_non_view4\r\n" + 
 				"    WHERE student_id = ? AND open_course_id = ? "; 
 
-		return this.jdbcTemplate.query(sql, new OpenCourseMapper21(), "ST00077", open_course_id );
+		return this.jdbcTemplate.query(sql, new OpenCourseMapper21(), exam.getStudent_id(), exam.getOpen_course_id());
 	}
 	
 	@Override

@@ -46,7 +46,7 @@ public interface InstructorService {
 	public int subjectManage();
 	
 	// (수정) 강사 계정 관리 - 강사 수정
-	public int update(Instructor ins);
+	// public int update(Instructor ins);
 	
 	// (수정) 강사 비밀번호 초기화
 	public int reset(Instructor ins);
@@ -56,4 +56,8 @@ public interface InstructorService {
 	
 	// (검색) 강사 계정 관리 - 강사 검색
 	public List<Instructor> search(String key, String value);
+	
+	// 예린 작성
+	public int update1(Instructor ins);
+	public int update2(Instructor ins);
 }

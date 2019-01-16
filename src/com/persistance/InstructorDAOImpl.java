@@ -76,7 +76,7 @@ public class InstructorDAOImpl implements InstructorDAO{
 	public int insert(Instructor ins) {
 		String sql1 = "INSERT INTO instructor_tb (instructor_id, instructor_name, instructor_phone,instructor_regDate, instructor_pw)\r\n"
 				+ "    VALUES ((SELECT CONCAT('INS', LPAD(IFNULL(SUBSTR(MAX(instructor_id), 4), 0) + 1, 3, 0)) \r\n"
-				+ "	AS newId FROM instructor_tb i), ?, ?, ?, ?)";
+				+ "	AS newId FROM instructor_tb i), ?, ?, ?,?)";
 		int result1 = this.jdbcTemplate.update(sql1, ins.getInstructor_name(), ins.getInstructor_phone(),
 				ins.getInstructor_regDate().toString(), ins.getInstructor_pw());
 
@@ -118,9 +118,17 @@ public class InstructorDAOImpl implements InstructorDAO{
 	}
 
 	@Override
-	public int update(Instructor ins) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update1(Instructor ins) {
+		String sql1="UPDATE instructor_tb SET instructor_name=?, instructor_phone=?, instructor_regDate=? WHERE instructor_id=?";
+		int result1=this.jdbcTemplate.update(sql1, ins.getInstructor_name(), 
+				ins.getInstructor_phone(), ins.getInstructor_regDate(), ins.getInstructor_id());
+			return result1;
+	}
+	@Override
+	public int update2(Instructor ins) {
+		String sql2="UPDATE instructor_photo_tb SET instructor_photo_filePath=? WHERE instructor_id=?";
+		int result2=this.jdbcTemplate.update(sql2, ins.getInstructor_photo_filepath(), ins.getInstructor_id());
+		return result2;
 	}
 
 	@Override

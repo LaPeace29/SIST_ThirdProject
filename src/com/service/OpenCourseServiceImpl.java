@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.domain.Exam;
 import com.domain.OpenCourse;
 import com.persistance.OpenCourseDAO;
 
@@ -31,13 +32,13 @@ public class OpenCourseServiceImpl implements OpenCourseService {
 	}
 
 	@Override
-	public List<OpenCourse> prints1() {
-		return this.openCourseDAO.prints1();
+	public List<OpenCourse> prints1(OpenCourse oc) {
+		return this.openCourseDAO.prints1(oc);
 	}
 	
 	@Override
-	public List<OpenCourse> prints1(String open_course_id) {
-		return this.openCourseDAO.prints1(open_course_id);
+	public List<OpenCourse> prints1(Exam exam) {
+		return this.openCourseDAO.prints1(exam);
 	}
 
 	@Override

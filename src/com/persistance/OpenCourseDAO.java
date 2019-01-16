@@ -2,6 +2,7 @@ package com.persistance;
 
 import java.util.List;
 
+import com.domain.Exam;
 import com.domain.OpenCourse;
 
 public interface OpenCourseDAO {
@@ -21,8 +22,8 @@ public interface OpenCourseDAO {
 	// 과정 검색 (조건 student_id)
 	// 개설 과정 번호 / 과정명 / 개설 과정 시작일 / 개설 과정 종료일 / 강의실명 / 진행 상황 / 수료 여부 
 	// open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion_status
-	public List<OpenCourse> prints1();
-	public List<OpenCourse> prints1(String open_course_id);
+	public List<OpenCourse> prints1(OpenCourse oc);
+	public List<OpenCourse> prints1(Exam exam);
 	
 	/* ------------------------------------------------------------------- */
 	

@@ -32,9 +32,9 @@ public class ExamDAOImpl implements ExamDAO{
 				"		exam_file, subjectbook_isbn, instructor_photo_filepath, subject_start_date, subject_end_date \r\n" + 
 				"FROM student_transcript_vw4\r\n" + 
 				"WHERE student_id = ? \r\n" + 
-				"AND open_course_id = ? ;";
+				"AND open_course_id = ?";
 	
-		return this.jdbcTemplate.query(sql, new ExamMapper21(),"ST00077" ,exam.getOpen_course_id());
+		return this.jdbcTemplate.query(sql, new ExamMapper21(), exam.getStudent_id() ,exam.getOpen_course_id());
 	}
 
 	@Override
