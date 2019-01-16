@@ -18,6 +18,8 @@ public class StudentMapper21 implements RowMapper<Student>  {
 		st.setStudent_name(rs.getString("student_name"));
 		st.setStudent_phone(rs.getString("student_phone"));
 		st.setStudent_regDate(rs.getDate("student_regDate"));
+		st.setStudent_photo_id(rs.getString("student_photo_id"));
+		st.setStudent_photo_filepath(rs.getString("student_photo_filepath"));
 		
 		
 		return st;
