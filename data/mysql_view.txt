@@ -6,11 +6,8 @@
           (SELECT COUNT(*)  
               FROM open_subject_tb
            WHERE open_course_id=oc.open_course_id) os_count, 
-       (SELECT COUNT(*)  
-             FROM student_history_tb
-             WHERE open_course_id=oc.open_course_id) d_count,
-		(SELECT COUNT(*) FROM open_subject_tb 
-            WHERE open_course_id = oc.open_course_id) d_count
+       (SELECT COUNT(*) FROM student_history_tb
+             WHERE open_course_id=oc.open_course_id) d_count
       FROM open_course_tb oc, course_tb c, classroom_tb cr  WHERE oc.course_id = c.course_id AND oc.classroom_id=cr.classroom_id;
 
 
@@ -136,6 +133,9 @@ as
 SELECT il.instructor_id, il.instructor_name, il.instructor_phone, il.instructor_regDate,
 (select group_concat(subject_name) from instructor_possible_tb ip, subject_tb s 
     where ip.subject_id = s.subject_id AND ip.instructor_id = il.instructor_id group by ip.instructor_id) instructor_possible,
+(select group_concat(s.subject_id) from instructor_possible_tb ip, subject_tb s 
+    where ip.subject_id = s.subject_id AND ip.instructor_id = il.instructor_id group by ip.instructor_id) instructor_pp,
+    
     ipt.instructor_photo_id, ipt.instructor_photo_filePath,  
          (SELECT COUNT(*) FROM instructor_possible_tb WHERE instructor_id = il.instructor_id) count_
 from instructor_tb il , instructor_photo_tb ipt where ipt.instructor_id=il.instructor_id;
@@ -373,7 +373,9 @@ SELECT open_course_id, course_name, open_course_start_date, open_course_end_date
     
 
 
-#17. 과목명, 교재명, 강사이름, 시험날짜, 출결점수, 출결배점, 필기점수, 필기배점, 실기점수, 실기배점, 평균, 석차, 시험문제 - student_score2.jsp
+#17. 
+# 입력 - 수강생번호, 개설과정번호
+# 출력 - 과목명, 과목시작일, 과목종료일, 교재명, 강사이름, 강사사진경로, 시험날짜, 출결점수, 출결배점, 필기점수, 필기배점, 실기점수, 실기배점, 시험문제 - student_score2.jsp
 
 CREATE OR REPLACE VIEW student_transcript_vw1
 AS
@@ -388,7 +390,7 @@ SELECT e.exam_id, subject_name, subjectbook_id, instructor_name, exam_date
         AND ss.exam_id = e.exam_id
         AND ss.student_id = sp.student_id
         AND i.instructor_id = ip.instructor_id;
-                
+        
 CREATE OR REPLACE VIEW student_transcript_vw2
 AS
 SELECT exam_id, subject_name, subjectbook_id, instructor_name, exam_date, exam_file
@@ -403,7 +405,7 @@ SELECT subject_name, subjectbook_id, instructor_name, exam_date, exam_file
       ,rank_, avg_,student_id, open_course_id, student_photo_filepath, instructor_photo_filepath
       FROM student_transcript_vw2 v2 LEFT JOIN subject_point_tb sp
         ON v2.exam_id = sp.exam_id;
-
+        
 CREATE OR REPLACE VIEW student_transcript_vw4
 AS
 SELECT subject_name, subjectbook_name, instructor_name, exam_date
@@ -412,6 +414,16 @@ SELECT subject_name, subjectbook_name, instructor_name, exam_date
       FROM student_transcript_vw3 v3 LEFT JOIN subjectbook_tb sb
         ON v3.subjectbook_id = sb.subjectbook_id;
 
+CREATE OR REPLACE VIEW student_transcript_vw5
+AS
+SELECT e.exam_id, attendance_score, attendance_point
+  , write_score, write_point, skill_score, skill_point
+    , (attendance_score + write_score + skill_score) score
+    ,exam_date, exam_file, open_subject_id, student_id
+  FROM exam_tb e, subject_point_tb sp, student_score_tb ss
+  WHERE e.exam_id = sp.exam_id
+  AND e.exam_id = ss.exam_id;
+  
 #18. 
  CREATE OR REPLACE VIEW pass_non_view1 
      AS 
@@ -429,21 +441,21 @@ SELECT subject_name, subjectbook_name, instructor_name, exam_date
      , classroom_name, student_name, view1.student_id 
      , CASE WHEN NOW() < open_course_start_date AND dropout_date is null THEN '수료예정'
             WHEN NOW() > open_course_end_date AND dropout_date is null THEN '수료완료'
-            WHEN dropout_date IS NOT NULL THEN '중도탈락' else '진행중' END completion
+            WHEN dropout_date IS NOT NULL THEN '중도탈락' else '진행중' END completion_status
      FROM pass_non_view1 view1 LEFT JOIN dropout_tb dt1
      ON view1.open_course_id = dt1.open_course_id ;
      
 CREATE OR REPLACE VIEW pass_non_view3
      AS 
      SELECT view2.open_course_id, course_name, open_course_start_date, open_course_end_date 
-     , classroom_name, student_name, view2.student_id , completion
+     , classroom_name, student_name, view2.student_id, completion_status
      FROM pass_non_view2 view2
       LEFT JOIN dropout_tb dt2
       ON view2.student_id = dt2.student_id; 
 
 CREATE OR REPLACE VIEW pass_non_view4
 AS
-SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion,student_id,
+SELECT open_course_id, course_name, open_course_start_date, open_course_end_date, classroom_name, completion_status, student_id,
 DATEDIFF(NOW(), open_course_start_date)/DATEDIFF(open_course_end_date, open_course_start_date) *100 as percent
 FROM pass_non_view3;
 
